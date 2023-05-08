@@ -29,7 +29,8 @@ const Dashboard = () => {
 
   return (
     <div class="dashboardRow ">
-      <div class="navigation bg-danger ">
+      <Sidebar />
+      {/*   <div class="navigation  ">
         <ul>
           <li>
             <a href="#">
@@ -53,7 +54,7 @@ const Dashboard = () => {
               <span class="icon">
                 <ion-icon name="people-outline"></ion-icon>
               </span>
-              <span class="title">Customers</span>
+              <span class="title">Brands</span>
             </a>
           </li>
 
@@ -62,7 +63,7 @@ const Dashboard = () => {
               <span class="icon">
                 <ion-icon name="chatbubble-outline"></ion-icon>
               </span>
-              <span class="title">Messages</span>
+              <span class="title">Products</span>
             </a>
           </li>
 
@@ -71,7 +72,7 @@ const Dashboard = () => {
               <span class="icon">
                 <ion-icon name="help-outline"></ion-icon>
               </span>
-              <span class="title">Help</span>
+              <span class="title">Slider</span>
             </a>
           </li>
 
@@ -104,7 +105,7 @@ const Dashboard = () => {
         </ul>
       </div>
 
-      {/*  <!-- ========================= Main ==================== --> */}
+  <!-- ========================= Main ==================== --> */}
       <div class="main">
         <div class="topbar">
           <div

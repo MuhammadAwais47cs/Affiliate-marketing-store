@@ -12,12 +12,12 @@ const Sidebar = () => {
       <ul>
         {navigationItems.map((item) => (
           <li key={item.id}>
-            <a href="#">
+            <Link to={"/"}>
               <span className="icon">
                 <span name={item.icon} />
               </span>
               <span className="title">{item.title}</span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

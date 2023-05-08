@@ -81,7 +81,7 @@ module.exports.addBrandFields = [
 module.exports.navigationItems = [
   {
     id: 1,
-    title: "Brand Name",
+    title: "Admin",
     icon: "logo-apple",
   },
   {
@@ -91,17 +91,17 @@ module.exports.navigationItems = [
   },
   {
     id: 3,
-    title: "Customers",
+    title: "Add Brand",
     icon: "people-outline",
   },
   {
     id: 4,
-    title: "Messages",
+    title: "Add Product",
     icon: "chatbubble-outline",
   },
   {
     id: 5,
-    title: "Help",
+    title: "Add Slider",
     icon: "help-outline",
   },
   {
