@@ -80,18 +80,18 @@ export const clearErrors = () => async (dispatch) => {
 };
 
 // Create Brand
-export const createBrand = (data) => async (dispatch) => {
+export const createBrand = (brand) => async (dispatch) => {
   try {
     dispatch({ type: NEW_BRAND_REQUEST });
+    console.log(brand, "data");
 
     const config = {
       headers: { "Content-Type": "application/json" },
     };
-    console.log(data, "data");
 
     const { data } = await axios.post(
       `${baseurl}/api/v1/brand/new`,
-      data,
+      brand,
       config
     );
 

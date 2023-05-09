@@ -12,7 +12,7 @@ const Sidebar = () => {
       <ul>
         {navigationItems.map((item) => (
           <li key={item.id}>
-            <Link to={"/"}>
+            <Link to={item?.link}>
               <span className="icon">
                 <span name={item.icon} />
               </span>

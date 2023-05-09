@@ -24,7 +24,16 @@ const brandSchema = mongoose.Schema({
   },
   relatedBrand: {
     type: String,
-    required: [true, "Please Enter product Description"],
+    // required: [true, "Please Enter product Description"],
+  },
+  published: {
+    type: Boolean,
+  },
+  popular: {
+    type: Boolean,
+  },
+  other: {
+    type: Boolean,
   },
 });
 

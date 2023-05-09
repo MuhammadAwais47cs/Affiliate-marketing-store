@@ -83,40 +83,48 @@ module.exports.navigationItems = [
     id: 1,
     title: "Admin",
     icon: "logo-apple",
+    link: "/admin",
   },
   {
     id: 2,
     title: "Dashboard",
     icon: "home-outline",
+    link: "/admin",
   },
   {
     id: 3,
     title: "Add Brand",
     icon: "people-outline",
+    link: "/addBrand",
   },
   {
     id: 4,
     title: "Add Product",
     icon: "chatbubble-outline",
+    link: "/addProduct",
   },
   {
     id: 5,
     title: "Add Slider",
     icon: "help-outline",
+    link: "/admin",
   },
   {
     id: 6,
     title: "Settings",
     icon: "settings-outline",
+    link: "/admin",
   },
   {
     id: 7,
     title: "Password",
     icon: "lock-closed-outline",
+    link: "/admin",
   },
   {
     id: 8,
     title: "Sign Out",
     icon: "log-out-outline",
+    link: "/admin",
   },
 ];
