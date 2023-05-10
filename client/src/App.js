@@ -15,17 +15,19 @@ import AddProduct from "./components/Admin/AddProduct";
 import Search from "./components/layout/search/Search";
 import LoginSignUp from "./components/User/LoginSignUp";
 import store from "./store";
-import { loadUser } from "./actions/userAction";
 import Dashboard from "./components/Admin/Dashboard";
 import Sidebar from "./components/Admin/Sidebar";
 function App() {
+  const currentPath = window.location.pathname;
+  console.log("currentPath :>> ", currentPath);
   useEffect(() => {
-    store.dispatch(loadUser());
+    // store.dispatch(loadUser());
   }, []);
+  const user = localStorage.getItem("name");
   return (
     <>
       <Router>
-        <Header />
+        {user === "admin" && currentPath === "/admin" ? "" : <Header />}
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/product/:id" element={<ProductDetails />} />
@@ -39,10 +41,19 @@ function App() {
           <Route exact path="/addBrand" element={<AddBrand />} />
           <Route exact path="/addProduct" element={<AddProduct />} />
           <Route exact path="/admins" element={<Sidebar />} />
-          <Route exact path="/admin" element={<Dashboard />} />
+          <Route
+            path="/admin"
+            element={
+              user === "admin" ? (
+                <Dashboard />
+              ) : (
+                <h1 className="my-5 py-5">404: Not Found</h1>
+              )
+            }
+          />
         </Routes>
-        <Features />
-        <Footer />
+        {user === "admin" && currentPath === "/admin" ? "" : <Features />}
+        {user === "admin" && currentPath === "/admin" ? "" : <Footer />}
       </Router>
     </>
   );
