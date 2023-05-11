@@ -17,7 +17,7 @@ export const getBrand =
   (
     keyword = "",
     currentPage = 1,
-    price = 500000,
+    price = "",
     state,
     ratings = 0,
     proName = ""
@@ -25,7 +25,7 @@ export const getBrand =
   async (dispatch) => {
     try {
       dispatch({ type: ALL_BRAND_REQUEST });
-      let link = `${baseurl}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=1000&price[lte]=${price}`;
+      let link = `${baseurl}/api/v1/brands?keyword=${keyword}&page=${currentPage}&price[gte]=''&price[lte]=''`;
 
       //   let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}`;
       //   let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;

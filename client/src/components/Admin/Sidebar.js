@@ -6,17 +6,17 @@ import { Link } from "react-router-dom";
 import "./dashboard.css";
 import { navigationItems } from "./data";
 
-const Sidebar = () => {
+const Sidebar = ({ callback }) => {
   return (
     <div className="navigation">
       <ul>
-        {navigationItems.map((item) => (
-          <li key={item.id}>
-            <Link to={item?.link}>
+        {navigationItems.map(({ id, link, icon, title }) => (
+          <li key={id}>
+            <Link to={link} onClick={callback(title)}>
               <span className="icon">
-                <span name={item.icon} />
+                <span name={icon} />
               </span>
-              <span className="title">{item.title}</span>
+              <span className="title">{title}</span>
             </Link>
           </li>
         ))}

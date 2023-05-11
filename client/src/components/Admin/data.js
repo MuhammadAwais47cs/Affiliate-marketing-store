@@ -128,3 +128,4 @@ module.exports.navigationItems = [
     link: "/admin",
   },
 ];
+module.exports.languages = ["English", "Urdu"];

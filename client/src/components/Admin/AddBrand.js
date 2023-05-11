@@ -7,7 +7,7 @@ import { FaSpellCheck, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import MetaData from "../layout/MetaData";
 
 import { NEW_BRAND_RESET } from "../../constant/brandConstant";
-import { addBrandCheckBox, addBrandFields } from "./data";
+import { addBrandCheckBox, addBrandFields, languages } from "./data";
 import Loader from "../layout/Loader/Loader";
 const NewProduct = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,6 @@ const NewProduct = () => {
     // "Camera",
     // "SmartPhones",
   ];
-  const languages = ["English", "Urdu"];
 
   useEffect(() => {
     if (error) {
@@ -148,7 +147,7 @@ const NewProduct = () => {
     <Fragment>
       <MetaData title="Create Brand" />
       <div className="dashboard">
-        <div className="newProductContainer">
+        <div className=" ">
           {loading ? (
             <Loader />
           ) : (

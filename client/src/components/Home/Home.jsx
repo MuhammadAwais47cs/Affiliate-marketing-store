@@ -6,6 +6,7 @@ import "./Home.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
+import { getBrand } from "../../actions/brandAction";
 import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import banner3 from "./Asset/banner3.png";
@@ -22,7 +23,8 @@ function Home() {
     console.log("objec :>> ", error);
     if (error) return alert.error(error);
 
-    dispatch(getProduct());
+    // dispatch(getProduct());
+    dispatch(getBrand());
   }, [dispatch, error]);
 
   const catgory = [

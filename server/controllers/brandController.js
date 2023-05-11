@@ -39,11 +39,11 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   const result = await apiFeatures.query;
 
   const key = "name";
-  const brands = [
-    ...new Map(filteredResult?.map((item) => [item[key], item])).values(),
-  ];
+  // const brands = [
+  //   ...new Map(filteredResult?.map((item) => [item[key], item])).values(),
+  // ];
 
-  if (!brands) {
+  if (!result) {
     return next(new ErrorHandler(`Brand not found`, 404));
   }
   // console.log("else brands :>> ", brands);
