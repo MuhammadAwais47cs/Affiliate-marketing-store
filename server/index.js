@@ -2,6 +2,7 @@ const app = require("./app");
 const dotenv = require("dotenv");
 const { connect } = require("mongoose");
 const connectDB = require("./config/connect.js");
+const cloudinary = require("cloudinary");
 
 // uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -22,11 +23,11 @@ connectDB();
 //         console.log('error :>> ', error);
 //     }
 // }
-// cloudinary.config({
-//     cloud_name: process.env.CLOUDINARY_NAME,
-//     api_key: process.env.CLOUDINARY_API_KEY,
-//     api_secret: process.env.CLOUDINARY_API_SECRET,
-//   });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // Unhandled promise rejection
 process.on("unhandledRejection", (err) => {

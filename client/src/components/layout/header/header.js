@@ -234,6 +234,11 @@ function Header() {
             <NavDropdown.Item eventKey="4.4">Profile</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item eventKey="4.1">{userName}</NavDropdown.Item>
+            {userName === "admin" && (
+              <NavDropdown.Item eventKey="4.1">
+                <Link to="/admin"> Dashboard </Link>
+              </NavDropdown.Item>
+            )}
             <NavDropdown.Item eventKey="4.2" onClick={handleLogout}>
               LogOut
             </NavDropdown.Item>

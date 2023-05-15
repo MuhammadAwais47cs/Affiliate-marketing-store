@@ -6,14 +6,11 @@ import { useAlert } from "react-alert";
 import { FaSpellCheck, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import MetaData from "../layout/MetaData";
 import { NEW_PRODUCT_RESET } from "../../constant/productConstant";
-import {
-  addProductCheckBox,
-  addProductFields,
-  checkBox,
-  languages,
-} from "./data";
+import { addProductCheckBox, addProductFields, languages } from "./data";
+import { uploadImage } from "../../utils/functions";
+import Loader from "../layout/Loader/Loader";
 
-const NewProduct = ({ history }) => {
+const NewProduct = ({}) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -30,11 +27,16 @@ const NewProduct = ({ history }) => {
     Published: "",
     Popular: "",
     other: "",
+    image: "",
   });
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-
+  const [checkboxes, setCheckboxes] = useState([
+    { id: 1, label: "Published", isChecked: false },
+    { id: 2, label: "Popular", isChecked: false },
+    { id: 3, label: "Other", isChecked: false },
+  ]);
   const categories = [
     "Laptop",
     "Footwear",
@@ -56,34 +58,56 @@ const NewProduct = ({ history }) => {
       // history.push("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
-  }, [dispatch, alert, error, history, success]);
-
-  const createProductSubmitHandler = (e) => {
+  }, [dispatch, alert, error, success]);
+  const handleCheckboxChange = (id) => {
+    const updatedCheckboxes = checkboxes.map((checkbox) => {
+      if (checkbox.id === id) {
+        return {
+          ...checkbox,
+          isChecked: !checkbox.isChecked,
+        };
+      }
+      return checkbox;
+    });
+    setCheckboxes(updatedCheckboxes);
+  };
+  const createProductSubmitHandler = async (e) => {
     e.preventDefault();
     const {
       name,
+      code,
       sName,
       link,
       category,
-      relatedBrand,
-      language,
-      relatedProduct,
       description,
+      relatedProduct,
+      language,
+      Published,
+      Popular,
+      other,
+      image,
     } = product;
-    console.log(" :>> ");
-    const myForm = new FormData();
 
-    myForm.set("name", name);
+    const data = {
+      name,
+      category,
+      code,
+      sName,
+      link,
+      relatedProduct,
+      language,
+      description,
+      published: checkboxes[0].isChecked,
+      popular: checkboxes[1].isChecked,
+      other: checkboxes[2].isChecked,
+      checkboxes,
+      images,
+    };
 
-    myForm.set("description", description);
-    myForm.set("category", category);
-    myForm.set("Stock", Stock);
-
-    images.forEach((image) => {
-      myForm.append("images", image);
-    });
-    console.log("myForm :>> ", myForm);
-    // dispatch(createProduct(myForm));
+    console.log("product :>> ", product, images);
+    // console.log("myForm :>> ", myForm);
+    // return;
+    dispatch(createProduct(data, images));
   };
 
   const handleChange = (e) => {
@@ -113,109 +137,109 @@ const NewProduct = ({ history }) => {
       reader.readAsDataURL(file);
     });
   };
-  const {
-    name,
-    sName,
-    link,
-    relatedBrand,
-    category,
-    language,
-    relatedProduct,
-    description,
-  } = product;
+  const { name, sName, link, category, language, relatedProduct, description } =
+    product;
 
   return (
     <Fragment>
       <MetaData title="Create Product" />
       <div className="dashboard">
         <div className=" ">
-          <form
-            className="createProductForm mt-4"
-            encType="multipart/form-data"
-            onSubmit={createProductSubmitHandler}
-          >
-            <h3>Add Product</h3>
-            {addProductFields.map(({ label, type, id, name, className }) => (
-              <div className={``}>
-                <input
-                  placeholder={label}
-                  type={type}
-                  id={id}
-                  name={name}
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-            ))}
-
-            <div>
-              <select onChange={handleChange} name="category">
-                <option value={category}> Category </option>
-                {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <select onChange={handleChange} name="relatedProduct">
-                <option value={relatedProduct}> Related Product</option>
-                {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <select onChange={handleChange} name="language">
-                <option value={language}> languages</option>
-                {languages.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div id="createProductFormFile">
-              <input
-                type="file"
-                placeholder="Add Images"
-                name="avatar"
-                accept="image/*"
-                onChange={createProductImagesChange}
-                multiple
-              />
-            </div>
-
-            <div id="createProductFormImage">
-              {imagesPreview.map((image, index) => (
-                <img key={index} src={image} alt="Product Preview" />
-              ))}
-            </div>
-            <div className="d-flex   mt-3 pt-1">
-              {addProductCheckBox.map((inputField, index) => (
-                <div className="d-flex  mx-4 w-50" key={index}>
+          {loading ? (
+            <Loader />
+          ) : (
+            <form
+              className="createProductForm mt-4"
+              encType="multipart/form-data"
+              onSubmit={createProductSubmitHandler}
+            >
+              <h3>Add Product</h3>
+              {addProductFields.map(({ label, type, id, name, className }) => (
+                <div className={``}>
                   <input
-                    type="checkbox"
-                    name="types"
-                    value={inputField.label}
+                    placeholder={label}
+                    type={type}
+                    id={id}
+                    required
+                    name={name}
+                    onChange={handleChange}
                   />
-                  <label className=" font-bold mx-2">{inputField.label}</label>
                 </div>
               ))}
-            </div>
 
-            <button
-              id="createProductBtn"
-              type="submit"
-              disabled={loading ? true : false}
-            >
-              Create
-            </button>
-          </form>
+              <div>
+                <select onChange={handleChange} name="category">
+                  <option value={category}> Category </option>
+                  {categories.map((cate) => (
+                    <option key={cate} value={cate}>
+                      {cate}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select onChange={handleChange} name="relatedProduct">
+                  <option value={relatedProduct}> Related Product</option>
+                  {categories.map((cate) => (
+                    <option key={cate} value={cate}>
+                      {cate}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select onChange={handleChange} name="language">
+                  <option value={language}> languages</option>
+                  {languages.map((cate) => (
+                    <option key={cate} value={cate}>
+                      {cate}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div id="createProductFormFile">
+                <input
+                  type="file"
+                  placeholder="Add Images"
+                  name="avatar"
+                  accept="image/*"
+                  onChange={createProductImagesChange}
+                  multiple
+                />
+              </div>
+
+              <div id="createProductFormImage">
+                {imagesPreview.map((image, index) => (
+                  <img key={index} src={image} alt="Product Preview" />
+                ))}
+              </div>
+              <div className="d-flex   mt-3 pt-1">
+                {checkboxes.map((inputField, index) => (
+                  <div className="d-flex  mx-4 w-50" key={index}>
+                    <input
+                      type="checkbox"
+                      name="types"
+                      key={inputField?.id}
+                      checked={inputField.isChecked}
+                      onChange={() => handleCheckboxChange(inputField.id)}
+                    />
+                    <label className=" font-bold mx-2">
+                      {inputField.label}
+                    </label>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                id="createProductBtn"
+                type="submit"
+                // disabled={loading ? true : false}
+              >
+                Create
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </Fragment>

@@ -17,6 +17,16 @@ const brandSchema = mongoose.Schema({
     type: String,
     //required: [true, "Please Enter product Stock"],
   },
+  images: {
+    public_id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+  },
 
   language: {
     type: String,

@@ -10,22 +10,16 @@ module.exports.addBrandCheckBox = [
   },
 ];
 module.exports.addProductCheckBox = [
-  {
-    label: "Published ",
-  },
-  {
-    label: "Popular ",
-  },
-  {
-    label: "priority",
-  },
+  { id: 1, label: "Published", isChecked: false },
+  { id: 2, label: "Popular", isChecked: false },
+  { id: 3, label: "Other", isChecked: false },
 ];
 module.exports.addProductFields = [
   {
     label: "Name",
     type: "text",
-    id: "productName",
-    name: "productName",
+    id: "name",
+    name: "name",
     className: "w-1/3",
   },
   {
@@ -47,8 +41,8 @@ module.exports.addProductFields = [
   {
     label: "Description",
     type: "textarea",
-    id: "hostelAddress",
-    name: "hostelAddress",
+    id: "description",
+    name: "description",
     className: "w-1/2",
   },
 ];

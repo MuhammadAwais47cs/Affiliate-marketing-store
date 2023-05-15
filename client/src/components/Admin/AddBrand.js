@@ -92,7 +92,7 @@ const NewProduct = () => {
       popular: checkboxes[1].isChecked,
       other: checkboxes[2].isChecked,
       checkboxes,
-      // images,
+      images,
     };
     // images.forEach((image) => {
     //   console.log("image :>> ", image);

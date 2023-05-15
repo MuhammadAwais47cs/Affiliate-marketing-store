@@ -2,10 +2,22 @@ const tryCatchAsyncError = require("../middleware/tryCatchAsyncError");
 const Brand = require("../models/brandModel");
 const ApiFeatures = require("../utils/apiFeature");
 const ErrorHandler = require("../utils/ErrorHandler");
+const cloudinary = require("cloudinary");
+
 // // Create brand
 exports.createBrand = tryCatchAsyncError(async (req, res, next) => {
   console.log("brand :>> ", req.body);
-  // return;
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.images[0], {
+    folder: "Brands",
+    width: 300,
+    crop: "scale",
+  });
+  console.log("myCloud :>> ", myCloud);
+  req.body.images = {
+    public_id: myCloud.public_id,
+    url: myCloud.url,
+  };
+
   const brand = await Brand.create(req.body);
   return res.status(201).json({
     success: true,

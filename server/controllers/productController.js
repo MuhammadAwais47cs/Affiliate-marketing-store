@@ -4,35 +4,16 @@ const ApiFeatures = require("../utils/apiFeature");
 const ErrorHandler = require("../utils/ErrorHandler");
 // // Create product
 exports.createProduct = tryCatchAsyncError(async (req, res, next) => {
-  const { name, imgUrl } = req.body.product;
-  if (imgUrl == "https://static.priceoye.pk/images/badges/fever-cricket.png") {
-    return res.status(400).json({
-      success: false,
-      message: "A product with the same name already exists",
-    });
-  } else {
-    // const existingProduct = await Product.findOne({ name });
-    // console.log('existingProduct :>> ', existingProduct);
-    // if (existingProduct) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: 'A product with the same name already exists',
-    //   });
-    // }
-    // const existingProducts = await Product.find({ name });
-    // if (existingProducts.length > 0) {
-    //   const deletedProducts = await Product.deleteMany({ name });
-    //   console.log('Deleted products:', deletedProducts);
-    // }
+  console.log("req.body.product :>> ", req.body);
 
-    const product = await Product.create(req.body?.product);
-    console.log("res :>> ", product?.id);
-    return res.status(201).json({
-      success: true,
-      message: "product created successfully",
-      product,
-    });
-  }
+  const product = await Product.create(req.body);
+  console.log("res :>> ", product?.id);
+  return res.status(201).json({
+    success: true,
+    message: "product created successfully",
+    product,
+  });
+  
 });
 
 // get Product by Id OR get Product details

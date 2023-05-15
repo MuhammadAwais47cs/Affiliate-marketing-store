@@ -12,6 +12,7 @@ import {
   PRODUCT_DETAILS_FAIL,
   CLEAR_ERROR,
 } from "../constant/productConstant";
+import { uploadImage } from "../utils/functions";
 
 export const getProduct =
   (
@@ -80,17 +81,29 @@ export const clearErrors = () => async (dispatch) => {
 };
 
 // Create Product
-export const createProduct = (productData) => async (dispatch) => {
+export const createProduct = (productData, images) => async (dispatch) => {
   try {
     dispatch({ type: NEW_PRODUCT_REQUEST });
+    console.log(productData, images);
+
+    const image = await uploadImage(images, "Products");
+    console.log(image);
+
+    let product = productData;
+    product = {
+      ...product,
+      images: image,
+    };
+    console.log("proda", product);
 
     const config = {
       headers: { "Content-Type": "application/json" },
     };
+    console.log(productData);
 
     const { data } = await axios.post(
-      `/api/v1/admin/product/new`,
-      productData,
+      `${baseurl}/api/v1/products/new`,
+      product,
       config
     );
 
@@ -101,7 +114,7 @@ export const createProduct = (productData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: NEW_PRODUCT_FAIL,
-      payload: error.response.data.message,
+      payload: error,
     });
   }
 };
