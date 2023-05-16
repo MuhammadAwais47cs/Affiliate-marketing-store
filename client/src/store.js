@@ -21,6 +21,7 @@ import {
 } from "./reducer/brandReducer";
 const reducer = combineReducers({
   products: productReducer,
+  brands: brandReducer,
   productDetails: productDetailsReducer,
   brandDetails: brandDetailsReducer,
   newProduct: newProductReducer,

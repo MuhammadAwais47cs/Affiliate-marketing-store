@@ -23,7 +23,7 @@ function Home() {
     console.log("objec :>> ", error);
     if (error) return alert.error(error);
 
-    // dispatch(getProduct());
+    dispatch(getProduct());
     dispatch(getBrand());
   }, [dispatch, error]);
 
