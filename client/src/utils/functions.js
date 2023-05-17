@@ -1,4 +1,4 @@
-exports.uploadImage = async (image, folderName) => {
+export const uploadImage = async (image, folderName) => {
   console.log("image :>> ", image[0]);
   const cloudinaryApi =
     "https://api.cloudinary.com/v1_1/dicm4zjvb/image/upload";

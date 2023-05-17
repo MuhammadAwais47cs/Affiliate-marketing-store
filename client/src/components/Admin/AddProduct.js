@@ -7,7 +7,6 @@ import { FaSpellCheck, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import MetaData from "../layout/MetaData";
 import { NEW_PRODUCT_RESET } from "../../constant/productConstant";
 import { addProductCheckBox, addProductFields, languages } from "./data";
-import { uploadImage } from "../../utils/functions";
 import Loader from "../layout/Loader/Loader";
 
 const NewProduct = ({}) => {
@@ -29,7 +28,6 @@ const NewProduct = ({}) => {
     other: "",
     image: "",
   });
-  const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
   const [checkboxes, setCheckboxes] = useState([
