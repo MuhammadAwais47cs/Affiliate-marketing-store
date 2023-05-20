@@ -53,7 +53,6 @@ const NewProduct = ({}) => {
 
     if (success) {
       alert.success("Product Created Successfully");
-      // history.push("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
   }, [dispatch, alert, error, success]);
@@ -103,8 +102,7 @@ const NewProduct = ({}) => {
     };
 
     console.log("product :>> ", product, images);
-    // console.log("myForm :>> ", myForm);
-    // return;
+
     dispatch(createProduct(data, images));
   };
 

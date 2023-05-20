@@ -3,9 +3,7 @@ import "./newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, createBrand } from "../../actions/brandAction";
 import { useAlert } from "react-alert";
-import { FaSpellCheck, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import MetaData from "../layout/MetaData";
-
 import { NEW_BRAND_RESET } from "../../constant/brandConstant";
 import { addBrandCheckBox, addBrandFields, languages } from "./data";
 import Loader from "../layout/Loader/Loader";
@@ -39,15 +37,7 @@ const NewProduct = () => {
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = [
-    "Nike",
-    "Adidas",
-    "Dell",
-    "Hp",
-    // "",
-    // "Camera",
-    // "SmartPhones",
-  ];
+  const categories = ["Nike", "Adidas", "Dell", "Hp"];
 
   useEffect(() => {
     if (error) {
@@ -57,7 +47,6 @@ const NewProduct = () => {
 
     if (success) {
       alert.success("Product Created Successfully");
-      // history.push("/admin/dashboard");
       dispatch({ type: NEW_BRAND_RESET });
     }
   }, [dispatch, alert, error, success]);
@@ -92,22 +81,10 @@ const NewProduct = () => {
       popular: checkboxes[1].isChecked,
       other: checkboxes[2].isChecked,
       checkboxes,
-      images,
     };
-    // images.forEach((image) => {
-    //   console.log("image :>> ", image);
-    //   myForm.append("images", image);
-    // });
-    // console.log(data, myForm, "data");
-    // return;
-    // const config = {
-    //   headers: { "Content-Type": "application/json" },
-    // };
-
-    // const { res } = await axios.post(`${baseurl}/api/v1/brand/new`, data, config);
 
     console.log("myForm :>> ", data);
-    dispatch(createBrand(data));
+    dispatch(createBrand(data, images));
   };
   const handleCheckboxChange = (id) => {
     const updatedCheckboxes = checkboxes.map((checkbox) => {

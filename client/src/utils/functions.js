@@ -1,10 +1,10 @@
-export const uploadImage = async (image, folderName) => {
+export const uploadImage = async (image, upload_preset) => {
   console.log("image :>> ", image[0]);
   const cloudinaryApi =
     "https://api.cloudinary.com/v1_1/dicm4zjvb/image/upload";
   const formData = new FormData();
   formData.append("file", image[0]);
-  formData.append("upload_preset", "ssbwpm0g");
+  formData.append("upload_preset", upload_preset);
   formData.append("cloud_name", "dicm4zjvb");
   let imageUrl = "";
   try {

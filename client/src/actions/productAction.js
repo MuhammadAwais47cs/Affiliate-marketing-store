@@ -86,7 +86,7 @@ export const createProduct = (productData, images) => async (dispatch) => {
     dispatch({ type: NEW_PRODUCT_REQUEST });
     console.log(productData, images);
 
-    const image = await uploadImage(images, "Products");
+    const image = await uploadImage(images, "ssbwpm0g");
     console.log(image);
 
     let product = productData;

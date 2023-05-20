@@ -17,10 +17,10 @@ const Product = ({ product }) => {
   //   };
   return (
     <Link
-      className="productCard position-relative"
+      className="productCard position-relative col-md-2"
       to={`/product/${product?._id}`}
     >
-      <img src={hp} alt={product?.name} />
+      <img src={product?.images?.url} alt={product?.name} />
       <p>{product?.name}</p>
       <div>
         {/*
@@ -31,7 +31,7 @@ const Product = ({ product }) => {
        </span>
       */}
       </div>
-      <span>{`Rs :${product?.price}`}</span>
+
       <p className="shareIcon position-absolute top-0 end-0 me-4 text-danger ">
         <FaRegShareSquare />
       </p>

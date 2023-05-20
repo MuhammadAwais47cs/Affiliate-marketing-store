@@ -17,6 +17,7 @@ function Home() {
   const { loading, error, products, productsCount } = useSelector(
     (state) => state.products
   );
+  const { brands, brandsCount } = useSelector((state) => state.brands);
   const [category, setCategory] = useState("");
 
   useEffect(() => {
@@ -158,32 +159,32 @@ function Home() {
           <h2 className="container">
             Double Cash Back Hot Stores | April 2023
           </h2>
-          <div className="container">
-            {products &&
-              products.map((product) => (
-                <Product key={product._id} product={product} />
+          <div className="d-flex flex-row justify-content-center mx-5 sroller ">
+            {brands &&
+              brands.map((brand) => (
+                <Product key={brand._id} product={brand} />
               ))}
           </div>
         </div>
         <div id="container">
           <h2 className="container">Popular coupons and coupons</h2>
           <div className="container">
-            {products &&
-              products.map((product) => (
-                <div className="col-md-3 shadow-lg">
+            {brands &&
+              brands.map(({ images, name }) => (
+                <div className="col-md-3 shadow landscapeCard rounded m-2">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="w-25 d-flex justify-content-center aling-items-center ">
                       <img
-                        src="https://admin.diesparen.de/admin/panel/pages/images/store/image_1578300036.jpg"
+                        className="landscapeCardImg"
+                        src={images?.url}
                         alt=""
                       />
                     </div>
-                    <div className="col-md-8">
-                      <h4>10% discount on everything</h4>
-                      <p className="text-truncate text-muted">
-                        10% discount on everything The 10% discount applies to a
-                        minimum order value of €25.{" "}
-                      </p>
+                    <div className="w-75  d-flex flex-column justify-content-center  px-2 ">
+                      <h6>10% discount on everything</h6>
+                      <span className="text-truncate text-muted">
+                        10% discount on everything minimum order value of €25.{" "}
+                      </span>
                     </div>
                   </div>
                 </div>

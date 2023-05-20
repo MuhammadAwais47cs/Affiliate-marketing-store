@@ -12,7 +12,7 @@ import {
   BRAND_DETAILS_FAIL,
   CLEAR_ERROR,
 } from "../constant/brandConstant";
-
+import { uploadImage } from "../utils/functions";
 export const getBrand =
   (
     keyword = "",
@@ -80,10 +80,20 @@ export const clearErrors = () => async (dispatch) => {
 };
 
 // Create Brand
-export const createBrand = (brand) => async (dispatch) => {
+export const createBrand = (brandData, images) => async (dispatch) => {
   try {
     dispatch({ type: NEW_BRAND_REQUEST });
-    console.log(brand, "data");
+    console.log(brandData, "data");
+    console.log(images, "images");
+    const image = await uploadImage(images, "kcfbvaww");
+    console.log(image);
+
+    let brand = brandData;
+    brand = {
+      ...brand,
+      images: image,
+    };
+    console.log("proda", brand);
 
     const config = {
       headers: { "Content-Type": "application/json" },

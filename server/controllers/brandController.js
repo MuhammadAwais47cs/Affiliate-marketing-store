@@ -6,18 +6,7 @@ const cloudinary = require("cloudinary");
 
 // // Create brand
 exports.createBrand = tryCatchAsyncError(async (req, res, next) => {
-  console.log("brand :>> ", req.body);
-  const myCloud = await cloudinary.v2.uploader.upload(req.body.images[0], {
-    folder: "Brands",
-    width: 300,
-    crop: "scale",
-  });
-  console.log("myCloud :>> ", myCloud);
-  req.body.images = {
-    public_id: myCloud.public_id,
-    url: myCloud.url,
-  };
-
+  console.log("req.body :>> ", req.body);
   const brand = await Brand.create(req.body);
   return res.status(201).json({
     success: true,
@@ -45,8 +34,8 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   const brandsCount = await Brand.countDocuments();
   const apiFeatures = new ApiFeatures(Brand.find(), req.query)
     .search()
-    .filter()
     .pagination(resultPerPage);
+  // .filter()
 
   const result = await apiFeatures.query;
 
