@@ -167,6 +167,17 @@ function Home() {
           </div>
         </div>
         <div id="container">
+          <h2 className="container">
+            Double Cash Back Hot Stores | April 2023
+          </h2>
+          <div className="container">
+            {brands &&
+              brands.map((brand) => (
+                <Product key={brand._id} product={brand} />
+              ))}
+          </div>
+        </div>
+        <div id="container">
           <h2 className="container">Popular coupons and coupons</h2>
           <div className="container">
             {brands &&
