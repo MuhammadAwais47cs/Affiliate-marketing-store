@@ -83,78 +83,76 @@ function Home() {
   ];
   return (
     <>
-      {/* // {loading ? (
-      //   <Loader />
-      // ) : (
-  // )} */}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <MetaData title={"Ecommerce"} />
+          <div className="container-fluid mt-5 mx-md-5 ">
+            <div className="d-flex flex-row pt-5 px-md-5">
+              <div className="col-xl-9 col-lg-12">
+                <div
+                  id="carouselExample"
+                  className="carousel slide pointer-event"
+                >
+                  <div className="carousel-inner">
+                    <div className="carousel-item active">
+                      {/*  <img src='https://images.priceoye.pk/pakistan-priceoye-slider-hwg39.jpg' width="1600px"/>  */}
+                      <img src={banner1} />
+                    </div>
 
-      <>
-        <MetaData title={"Ecommerce"} />
-        <div className="container-fluid mt-5 mx-md-5 ">
-          <div className="d-flex flex-row pt-5 px-md-5">
-            <div className="col-xl-9 col-lg-12">
-              <div
-                id="carouselExample"
-                className="carousel slide pointer-event"
-              >
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-                    {/*  <img src='https://images.priceoye.pk/pakistan-priceoye-slider-hwg39.jpg' width="1600px"/>  */}
-                    <img src={banner1} />
+                    <div className="carousel-item">
+                      <img src={banner2} />
+                    </div>
+                    <div className="carousel-item">
+                      <img src={banner3} />
+                    </div>
                   </div>
-
-                  <div className="carousel-item">
-                    <img src={banner2} />
-                  </div>
-                  <div className="carousel-item">
-                    <img src={banner3} />
-                  </div>
+                  <button
+                    className="carousel-control-prev "
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      className="carousel-control-prev-icon bg-dark"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      className="carousel-control-next-icon bg-dark"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
                 </div>
-                <button
-                  className="carousel-control-prev "
-                  type="button"
-                  data-bs-target="#carouselExample"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    className="carousel-control-prev-icon bg-dark"
-                    aria-hidden="true"
-                  ></span>
-                  <span className="visually-hidden">Previous</span>
-                </button>
-                <button
-                  className="carousel-control-next"
-                  type="button"
-                  data-bs-target="#carouselExample"
-                  data-bs-slide="next"
-                >
-                  <span
-                    className="carousel-control-next-icon bg-dark"
-                    aria-hidden="true"
-                  ></span>
-                  <span className="visually-hidden">Next</span>
-                </button>
+              </div>
+              <div className="col-xl-3 col-lg-0 carousel-item-right ms-1">
+                <img
+                  src={
+                    "https://fatcoupon.com/_next/image?url=https%3A%2F%2Fd3itvsmwj0r86k.cloudfront.net%2Fimages%2F6935fd0e-7448-4ee6-b033-d31f895b610d.webp&w=1920&q=75"
+                  }
+                  className=""
+                  alt=""
+                />
+                <img
+                  src={
+                    "https://fatcoupon.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F1.3eacb62b.png&w=1920&q=100"
+                  }
+                  className="pt-2"
+                  alt=""
+                />
               </div>
             </div>
-            <div className="col-xl-3 col-lg-0 carousel-item-right ms-1">
-              <img
-                src={
-                  "https://fatcoupon.com/_next/image?url=https%3A%2F%2Fd3itvsmwj0r86k.cloudfront.net%2Fimages%2F6935fd0e-7448-4ee6-b033-d31f895b610d.webp&w=1920&q=75"
-                }
-                className=""
-                alt=""
-              />
-              <img
-                src={
-                  "https://fatcoupon.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F1.3eacb62b.png&w=1920&q=100"
-                }
-                className="pt-2"
-                alt=""
-              />
-            </div>
           </div>
-        </div>
-        {/*
+          {/*
         <div id="container">
           <h2 className="container">
             Double Cash Back Hot Stores | April 2023
@@ -166,46 +164,49 @@ function Home() {
               ))}
           </div>
               </div> */}
-        <div id="container">
-          <div className="mx-5 my-5 px-4">
-            <h2 className="text-start shadow  my-3 mx-3 p-2 rounded-3">
-              Double Cash Back Hot Stores | April 2023
+          <div id="container">
+            <div className="mx-5 my-5 px-4">
+              <h2 className="text-start shadow  my-3 mx-3 p-2 rounded-3">
+                Double Cash Back Hot Stores | April 2023
+              </h2>
+              <div className="row">
+                {brands &&
+                  brands.map((brand) => (
+                    <Product key={brand._id} product={brand} />
+                  ))}
+              </div>
+            </div>
+          </div>
+          <div id="container">
+            <h2 className="container text-start">
+              Popular coupons and coupons
             </h2>
-            <div className="row">
-              {brands &&
-                brands.map((brand) => (
-                  <Product key={brand._id} product={brand} />
+            <div className="container">
+              {products &&
+                products.map(({ images, name, description }) => (
+                  <div className="col-md-3 shadow landscapeCard rounded m-2">
+                    <div className="row">
+                      <div className="w-25 d-flex justify-content-center aling-items-center ">
+                        <img
+                          className="landscapeCardImg"
+                          src={images?.url}
+                          alt=""
+                        />
+                      </div>
+                      <div className="w-75  d-flex flex-column justify-content-center  px-2 ">
+                        <h6>{name}</h6>
+                        <span className="text-truncate text-muted">
+                          10% discount on everything minimum order value of €25.
+                          {description}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 ))}
             </div>
           </div>
-        </div>
-        <div id="container">
-          <h2 className="container text-start">Popular coupons and coupons</h2>
-          <div className="container">
-            {products &&
-              products.map(({ images, name, description }) => (
-                <div className="col-md-3 shadow landscapeCard rounded m-2">
-                  <div className="row">
-                    <div className="w-25 d-flex justify-content-center aling-items-center ">
-                      <img
-                        className="landscapeCardImg"
-                        src={images?.url}
-                        alt=""
-                      />
-                    </div>
-                    <div className="w-75  d-flex flex-column justify-content-center  px-2 ">
-                      <h6>{name}</h6>
-                      <span className="text-truncate text-muted">
-                        10% discount on everything minimum order value of €25.
-                        {description}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-      </>
+        </>
+      )}
     </>
   );
 }
