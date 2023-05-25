@@ -139,14 +139,14 @@ function Home() {
             <div className="col-xl-3 col-lg-0 carousel-item-right ms-1">
               <img
                 src={
-                  "https://fatcoupon.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F3.3818bea2.png&w=1920&q=100"
+                  "https://fatcoupon.com/_next/image?url=https%3A%2F%2Fd3itvsmwj0r86k.cloudfront.net%2Fimages%2F6935fd0e-7448-4ee6-b033-d31f895b610d.webp&w=1920&q=75"
                 }
                 className=""
                 alt=""
               />
               <img
                 src={
-                  "https://fatcoupon.com/_next/image?url=https%3A%2F%2Fd3itvsmwj0r86k.cloudfront.net%2Fimages%2F38b5ac57-2942-4336-9eaf-a799390df322.jpg&w=1920&q=75"
+                  "https://fatcoupon.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F1.3eacb62b.png&w=1920&q=100"
                 }
                 className="pt-2"
                 alt=""
@@ -154,7 +154,7 @@ function Home() {
             </div>
           </div>
         </div>
-
+        {/*
         <div id="container">
           <h2 className="container">
             Double Cash Back Hot Stores | April 2023
@@ -165,10 +165,10 @@ function Home() {
                 <Product key={brand._id} product={brand} />
               ))}
           </div>
-        </div>
+              </div> */}
         <div id="container">
-          <div className="mx-5 my-3 px-4">
-            <h2 className="text-start shadow  my-3 p-2 rounded-3">
+          <div className="mx-5 my-5 px-4">
+            <h2 className="text-start shadow  my-3 mx-3 p-2 rounded-3">
               Double Cash Back Hot Stores | April 2023
             </h2>
             <div className="row">
