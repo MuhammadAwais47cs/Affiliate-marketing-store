@@ -167,21 +167,23 @@ function Home() {
           </div>
         </div>
         <div id="container">
-          <h2 className="container">
-            Double Cash Back Hot Stores | April 2023
-          </h2>
-          <div className="container">
-            {brands &&
-              brands.map((brand) => (
-                <Product key={brand._id} product={brand} />
-              ))}
+          <div className="mx-5 my-3 px-4">
+            <h2 className="text-start shadow  my-3 p-2 rounded-3">
+              Double Cash Back Hot Stores | April 2023
+            </h2>
+            <div className="row">
+              {brands &&
+                brands.map((brand) => (
+                  <Product key={brand._id} product={brand} />
+                ))}
+            </div>
           </div>
         </div>
         <div id="container">
-          <h2 className="container">Popular coupons and coupons</h2>
+          <h2 className="container text-start">Popular coupons and coupons</h2>
           <div className="container">
-            {brands &&
-              brands.map(({ images, name }) => (
+            {products &&
+              products.map(({ images, name, description }) => (
                 <div className="col-md-3 shadow landscapeCard rounded m-2">
                   <div className="row">
                     <div className="w-25 d-flex justify-content-center aling-items-center ">
@@ -192,9 +194,10 @@ function Home() {
                       />
                     </div>
                     <div className="w-75  d-flex flex-column justify-content-center  px-2 ">
-                      <h6>10% discount on everything</h6>
+                      <h6>{name}</h6>
                       <span className="text-truncate text-muted">
-                        10% discount on everything minimum order value of €25.{" "}
+                        10% discount on everything minimum order value of €25.
+                        {description}
                       </span>
                     </div>
                   </div>

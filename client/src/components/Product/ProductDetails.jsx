@@ -5,12 +5,17 @@ import { getProductDetails, getProduct } from "../../actions/productAction";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import "./ProductDetails.css";
+import { getBrandDetails } from "../../actions/brandAction";
 function ProductDetails() {
   const { product, error } = useSelector((state) => state.productDetails);
   const { loading, products, resultPerPage, productsCount } = useSelector(
     (state) => state.products
   );
-  console.log("products :>> ", products);
+  // const { brand } = useSelector((state) => state.Brands);
+  console.log(
+    "useSelector((state) => state.Brands); :>> ",
+    useSelector((state) => state.Brands)
+  );
   let pushDataArray = [];
   // console.table(products)
   if (products) {
@@ -38,6 +43,7 @@ function ProductDetails() {
     }
 
     dispatch(getProductDetails(id));
+    dispatch(getBrandDetails(id));
     // console.log('products.lenght < 1 :>> ',!products?.name,products, products.lenght < 1);
     if (!products?.name) {
       let proName = product?.name;
@@ -55,13 +61,13 @@ function ProductDetails() {
         <Loader />
       ) : (
         <>
-          <MetaData title={`${product.name} -- ECOMMERCE`} />
+          <MetaData title={`${product?.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
             <div>
               <div className="CarouselImage">
                 <img
                   className="CarouselImage"
-                  src={product.imgUrl}
+                  src={product?.imgUrl}
                   alt={` Slide`}
                 />
               </div>
@@ -69,14 +75,14 @@ function ProductDetails() {
 
             <div>
               <div className="detailsBlock-1">
-                <h2>{product.name}</h2>
-                <p>Product # {product._id}</p>
+                <h2>{product?.name}</h2>
+                <p>Product # {product?._id}</p>
               </div>
               <div className="detailsBlock-2">
                 <span className="detailsBlock-2-span ">
                   {" "}
                   <span className="h5">Brand :</span>{" "}
-                  <span className="h6 text-muted">{product.brand}</span>
+                  <span className="h6 text-muted">{product?.brand}</span>
                 </span>
               </div>
               <div className="detailsBlock-2">
@@ -91,9 +97,9 @@ function ProductDetails() {
                   <p>
                     Status:
                     <b
-                      className={product.Stock < 1 ? "redColor" : "greenColor"}
+                      className={product?.Stock < 1 ? "redColor" : "greenColor"}
                     >
-                      {product.Stock < 1 ? " OutOfStock" : " InStock"}
+                      {product?.Stock < 1 ? " OutOfStock" : " InStock"}
                     </b>
                   </p>
                 </div>
