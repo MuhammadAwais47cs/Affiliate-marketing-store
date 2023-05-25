@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/2.png";
 import { FaSearch, FaPowerOff, FaUserCircle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector, useDispatch } from "react-redux";
@@ -136,6 +136,12 @@ function Header() {
       ],
     },
   ];
+  const redirectToAdmin = () => {
+    navigate("/admin");
+    window.location.reload();
+
+    // setOpen(true); // for  rerender page
+  };
   const searchToggle = () => {
     setOpenModel(!openModel);
   };
@@ -233,14 +239,19 @@ function Header() {
           >
             <NavDropdown.Item eventKey="4.4">Profile</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item eventKey="4.1">{userName}</NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.1">
+              <p className="text-dark"> {userName}</p>
+            </NavDropdown.Item>
             {userName === "admin" && (
               <NavDropdown.Item eventKey="4.1">
-                <Link to="/admin"> Dashboard </Link>
+                <p className="text-dark" onClick={redirectToAdmin}>
+                  {" "}
+                  Dashboard{" "}
+                </p>
               </NavDropdown.Item>
             )}
             <NavDropdown.Item eventKey="4.2" onClick={handleLogout}>
-              LogOut
+              <p className="text-dark"> LogOut</p>
             </NavDropdown.Item>
           </NavDropdown>
         ) : (
