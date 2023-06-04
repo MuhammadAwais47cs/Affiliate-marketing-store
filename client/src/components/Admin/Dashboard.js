@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar.js";
 import AddBrand from "./AddBrand.js";
 import AddProduct from "./AddProduct.js";
@@ -13,13 +13,19 @@ const Dashboard = () => {
   const [isMenuActive, setMenuActive] = useState(false);
   const [switchComponent, setSwitchComponent] = useState("");
   const [whichComponent, setWhichComponent] = useState("Dashboard");
-
+  const navigate = useNavigate();
   const handleMouseOver = (e) => {
     const list = document.querySelectorAll(".navigation li");
     list.forEach((item) => {
       item.classList.remove("hovered");
     });
     e.target.classList.add("hovered");
+  };
+  const handleLogout = () => {
+    localStorage.clear(); // clear the localStorage
+    // perform other logout tasks, such as redirecting to the login page
+    navigate("/");
+    window.location.reload();
   };
 
   const showOverview = (title) => {
@@ -45,6 +51,14 @@ const Dashboard = () => {
               </Link>
             </li>
           ))}
+          <li onClick={() => handleLogout()}>
+            <Link to={"/"}>
+              <span className="icon">
+                <span />
+              </span>
+              <span className="title"> Sign Out</span>
+            </Link>
+          </li>
         </ul>
       </div>
       {/* <!-- ========================= Main ==================== --> */}

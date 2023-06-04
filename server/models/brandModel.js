@@ -36,6 +36,10 @@ const brandSchema = mongoose.Schema({
     type: String,
     // required: [true, "Please Enter product Description"],
   },
+  category: {
+    type: String,
+    // required: [true, "Please Enter product Description"],
+  },
   published: {
     type: Boolean,
   },

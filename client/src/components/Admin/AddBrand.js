@@ -3,10 +3,13 @@ import "./newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, createBrand } from "../../actions/brandAction";
 import { useAlert } from "react-alert";
+import Select from "react-select";
 import MetaData from "../layout/MetaData";
 import { NEW_BRAND_RESET } from "../../constant/brandConstant";
 import { addBrandCheckBox, addBrandFields, languages } from "./data";
 import Loader from "../layout/Loader/Loader";
+import axios from "axios";
+import { baseurl } from "../../baseurl";
 const NewProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -22,6 +25,7 @@ const NewProduct = () => {
     link: "",
     description: "",
     relatedBrand: "",
+    category: "",
     language: "",
     Published: "",
     Popular: "",
@@ -33,20 +37,23 @@ const NewProduct = () => {
     { id: 3, label: "Other", isChecked: false },
   ]);
   const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState([]);
+  const [relatedBrands, setRelatedBrands] = useState([]);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = ["Nike", "Adidas", "Dell", "Hp"];
+  // const categories = ["Nike", "Adidas", "Dell", "Hp"];
 
   useEffect(() => {
+    getAllCategories();
+    getAllBrands();
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
 
     if (success) {
-      alert.success("Product Created Successfully");
+      alert.success("Brand Created Successfully");
       dispatch({ type: NEW_BRAND_RESET });
     }
   }, [dispatch, alert, error, success]);
@@ -61,7 +68,8 @@ const NewProduct = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, sName, link, relatedBrand, language, description } = brand;
+    const { name, sName, link, relatedBrand, category, language, description } =
+      brand;
     console.log("brand :>> ", brand);
     const myForm = new FormData();
     myForm.set("name", name);
@@ -74,7 +82,8 @@ const NewProduct = () => {
       name,
       sName,
       link,
-      relatedBrand,
+      category: category?.id,
+      relatedBrand: relatedBrand?.id,
       language,
       description,
       published: checkboxes[0].isChecked,
@@ -97,6 +106,22 @@ const NewProduct = () => {
       return checkbox;
     });
     setCheckboxes(updatedCheckboxes);
+  };
+  const getAllCategories = async () => {
+    const link = `${baseurl}/api/v1/categories`;
+    const { data } = await axios.get(link);
+    let categories = data.categories.map(({ _id, label }) => {
+      return { id: _id, label };
+    });
+    setCategory(categories);
+  };
+  const getAllBrands = async () => {
+    const link = `${baseurl}/api/v1/brands`;
+    const { data } = await axios.get(link);
+    let brands = data?.brands?.map(({ _id, name }) => {
+      return { id: _id, label: name };
+    });
+    setRelatedBrands(brands);
   };
 
   const createProductImagesChange = (e) => {
@@ -128,86 +153,139 @@ const NewProduct = () => {
           {loading ? (
             <Loader />
           ) : (
-            <form
-              className="createProductForm"
-              encType="multipart/form-data"
-              onSubmit={handleSubmit}
-            >
-              <h1>Add Brand</h1>
-              {addBrandFields.map(({ label, type, id, name, className }) => (
-                <div className={``}>
-                  <input
-                    placeholder={label}
-                    type={type}
-                    id={id}
-                    name={name}
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-              ))}
+            <div className="row ">
+              <div className="col-md-2"> </div>
+              <div className="col-md-8 border rounded-4 shadow">
+                <form
+                  className="m-4"
+                  encType="multipart/form-data"
+                  onSubmit={handleSubmit}
+                >
+                  <h1 className="px-auto">Add Brand</h1>
+                  <div className="row">
+                    {addBrandFields.map(
+                      ({ label, type, id, name, className }) => (
+                        <div class="mb-3 col-md-6">
+                          <label
+                            for="exampleFormControlInput1"
+                            className="form-label"
+                          >
+                            {label}
+                          </label>
+                          <input
+                            type={type}
+                            class="form-control"
+                            id={id}
+                            placeholder={label}
+                            onChange={handleChange}
+                            required
+                            name={name}
+                          />
+                        </div>
+                      )
+                    )}
 
-              <div>
-                <select onChange={handleChange} name="relatedBrand">
-                  <option value={relatedBrand}> Related Brand</option>
-                  {categories.map((cate) => (
-                    <option key={cate} value={cate}>
-                      {cate}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <select onChange={handleChange} name="language">
-                  <option value={language}> languages</option>
-                  {languages.map((cate) => (
-                    <option key={cate} value={cate}>
-                      {cate}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div id="createProductFormFile">
-                <input
-                  type="file"
-                  placeholder="Add Images"
-                  name="avatar"
-                  accept="image/*"
-                  onChange={createProductImagesChange}
-                  multiple
-                />
-              </div>
-
-              <div id="createProductFormImage">
-                {imagesPreview.map((image, index) => (
-                  <img key={index} src={image} alt="Product Preview" />
-                ))}
-              </div>
-              <div className="d-flex   mt-3 pt-1">
-                {checkboxes.map((checkbox, index) => (
-                  <div className="d-flex  mx-1 w-50" key={index}>
-                    <label className=" font-bold mx-2">
-                      <input
-                        type="checkbox"
-                        key={checkbox.id}
-                        checked={checkbox.isChecked}
-                        onChange={() => handleCheckboxChange(checkbox.id)}
+                    <div className="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Categories
+                      </label>
+                      <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        onChange={(e) => setBrand({ ...brand, category: e })}
+                        isClearable
+                        name="color"
+                        options={category}
                       />
-                      {checkbox.label}
-                    </label>
+                    </div>
+                    <div className="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Related Brands
+                      </label>
+                      <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        onChange={(e) =>
+                          setBrand({ ...brand, relatedBrand: e })
+                        }
+                        isClearable
+                        name="color"
+                        options={relatedBrands}
+                      />
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <select
+                        onChange={handleChange}
+                        name="language"
+                        class="form-select"
+                      >
+                        <option value={language}> languages</option>
+                        {languages.map((cate) => (
+                          <option key={cate} value={cate}>
+                            {cate}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6">
+                      <input
+                        type="file"
+                        placeholder="Add Images"
+                        name="avatar"
+                        required
+                        accept="image/*"
+                        class="form-control"
+                        onChange={createProductImagesChange}
+                      />
+                    </div>
+                    <div className="col-md-6 h-50 w-50">
+                      {imagesPreview.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          style={{ maxWidth: "40px" }}
+                          className=""
+                          alt="Product Preview"
+                        />
+                      ))}
+                    </div>
+                    <div className="d-flex   mt-3 pt-1">
+                      {checkboxes.map((checkbox, index) => (
+                        <div className="d-flex  mx-1 w-50" key={index}>
+                          <label className=" font-bold mx-2">
+                            <input
+                              type="checkbox"
+                              className="mx-2"
+                              key={checkbox.id}
+                              checked={checkbox.isChecked}
+                              onChange={() => handleCheckboxChange(checkbox.id)}
+                            />
+                            {checkbox.label}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="row">
+                      <button
+                        className="w-50 mx-auto  mt-4  "
+                        id="createProductBtn"
+                        type="submit"
+                        disabled={loading ? true : false}
+                      >
+                        Create
+                      </button>
+                    </div>
                   </div>
-                ))}
+                </form>
               </div>
-
-              <button
-                id="createProductBtn"
-                type="submit"
-                disabled={loading ? true : false}
-              >
-                Create
-              </button>
-            </form>
+              <div className="col-md-2"></div>
+            </div>
           )}
         </div>
       </div>

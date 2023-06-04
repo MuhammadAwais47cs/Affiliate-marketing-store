@@ -77,7 +77,7 @@ module.exports.navigationItems = [
     id: 1,
     title: "Admin",
     icon: "logo-apple",
-    link: "/admin",
+    link: "/",
   },
   {
     id: 2,
@@ -99,27 +99,33 @@ module.exports.navigationItems = [
   },
   {
     id: 5,
-    title: "Add Slider",
-    icon: "help-outline",
-    link: "/admin",
+    title: "Back to Home",
+    icon: "chatbubble-outline",
+    link: "/",
   },
-  {
-    id: 6,
-    title: "Settings",
-    icon: "settings-outline",
-    link: "/admin",
-  },
-  {
-    id: 7,
-    title: "Password",
-    icon: "lock-closed-outline",
-    link: "/admin",
-  },
-  {
-    id: 8,
-    title: "Sign Out",
-    icon: "log-out-outline",
-    link: "/admin",
-  },
+  // {
+  //   id: 5,
+  //   title: "Add Slider",
+  //   icon: "help-outline",
+  //   link: "/admin",
+  // },
+  // {
+  //   id: 6,
+  //   title: "Settings",
+  //   icon: "settings-outline",
+  //   link: "/admin",
+  // },
+  // {
+  //   id: 7,
+  //   title: "Password",
+  //   icon: "lock-closed-outline",
+  //   link: "/admin",
+  // },
+  // {
+  //   id: 8,
+  //   title: "Sign Out",
+  //   icon: "log-out-outline",
+  //   link: "/admin",
+  // },
 ];
 module.exports.languages = ["English", "Urdu"];
