@@ -97,12 +97,7 @@ module.exports.navigationItems = [
     icon: "chatbubble-outline",
     link: "/addProduct",
   },
-  {
-    id: 5,
-    title: "Back to Home",
-    icon: "chatbubble-outline",
-    link: "/",
-  },
+
   // {
   //   id: 5,
   //   title: "Add Slider",

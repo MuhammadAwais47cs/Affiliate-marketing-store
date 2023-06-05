@@ -171,9 +171,12 @@ function Home() {
               </h2>
               <div className="row">
                 {brands &&
-                  brands.map((brand) => (
-                    <Product key={brand._id} product={brand} />
-                  ))}
+                  brands.map(
+                    (brand) =>
+                      brand.published && (
+                        <Product key={brand._id} product={brand} />
+                      )
+                  )}
               </div>
             </div>
           </div>
@@ -183,26 +186,30 @@ function Home() {
             </h2>
             <div className="container">
               {products &&
-                products.map(({ images, name, description }) => (
-                  <div className="col-md-3 shadow landscapeCard rounded m-2">
-                    <div className="row">
-                      <div className="w-25 d-flex justify-content-center aling-items-center ">
-                        <img
-                          className="landscapeCardImg"
-                          src={images?.url}
-                          alt=""
-                        />
+                products.map(
+                  ({ images, name, description, published }) =>
+                    published && (
+                      <div className="col-md-3 shadow landscapeCard rounded m-2">
+                        <div className="row">
+                          <div className="w-25 d-flex justify-content-center aling-items-center ">
+                            <img
+                              className="landscapeCardImg"
+                              src={images?.url}
+                              alt=""
+                            />
+                          </div>
+                          <div className="w-75  d-flex flex-column justify-content-center  px-2 ">
+                            <h6>{name}</h6>
+                            <span className="text-truncate text-muted">
+                              10% discount on everything minimum order value of
+                              €25.
+                              {description}
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-75  d-flex flex-column justify-content-center  px-2 ">
-                        <h6>{name}</h6>
-                        <span className="text-truncate text-muted">
-                          10% discount on everything minimum order value of €25.
-                          {description}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                    )
+                )}
             </div>
           </div>
         </>

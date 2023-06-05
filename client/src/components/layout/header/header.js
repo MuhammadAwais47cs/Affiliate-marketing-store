@@ -30,15 +30,19 @@ function Header() {
       name: "Home",
       value: "Mobiles",
       icon: "cui-dollar",
+      link: "/",
     },
     {
-      name: "All Store",
+      name: "All Brands",
       value: "allStores",
+      link: "/products",
     },
     {
       name: "Categories",
       value: "categories",
       icon: "cui-dollar",
+      link: "/",
+
       children: [
         { id: 1, label: "Mobile" },
         { id: 2, label: "Clothing" },
@@ -108,36 +112,39 @@ function Header() {
 
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul className="navbar-nav mx-auto justify-content-center flex-grow-1 pe-3">
-              {catogary?.map(({ name, value, children }) => (
+              {catogary?.map(({ name, value, children, link }) => (
                 <>
                   <li className="nav-item dropdown ms-3" key={name}>
-                    <a
+                    <Link
+                      to={link}
                       className="nav-link dropdown-toggle text-white"
-                      href="/"
                       role="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                       key={name}
                     >
                       {name}
-                    </a>
-                    <ul className="dropdown-menu">
-                      {children?.map(({ label: childrenName }) => (
-                        <li>
-                          <p
-                            className="dropdown-item"
-                            onClick={() =>
-                              navigate(`/products/${childrenName}`, {
-                                state: { category: value },
-                              })
-                            }
-                            key={childrenName}
-                          >
-                            {childrenName}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
+                    </Link>
+
+                    {children && (
+                      <ul className="dropdown-menu ">
+                        {children?.map(({ label: childrenName }) => (
+                          <li>
+                            <p
+                              className="dropdown-item"
+                              onClick={() =>
+                                navigate(`/products/${childrenName}`, {
+                                  state: { category: value },
+                                })
+                              }
+                              key={childrenName}
+                            >
+                              {childrenName}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 </>
               ))}
