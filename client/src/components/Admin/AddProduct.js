@@ -18,6 +18,7 @@ const NewProduct = ({}) => {
   const alert = useAlert();
 
   const { loading, error, success } = useSelector((state) => state.newProduct);
+  const [relatedBrands, setRelatedBrands] = useState([]);
   const [product, setProduct] = useState({
     name: "",
     code: "",
@@ -26,6 +27,7 @@ const NewProduct = ({}) => {
     category: "",
     description: "",
     relatedProduct: "",
+    relatedBrand: "",
     language: "",
     Published: "",
     Popular: "",
@@ -45,6 +47,7 @@ const NewProduct = ({}) => {
   useEffect(() => {
     getAllCategories();
     getAllProducts();
+    getAllBrands();
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -75,6 +78,14 @@ const NewProduct = ({}) => {
     });
     setCategories(categories);
   };
+  const getAllBrands = async () => {
+    const link = `${baseurl}/api/v1/brands`;
+    const { data } = await axios.get(link);
+    let brands = data?.brands?.map(({ _id, name }) => {
+      return { id: _id, label: name };
+    });
+    setRelatedBrands(brands);
+  };
   const getAllProducts = async () => {
     const link = `${baseurl}/api/v1/products`;
     const { data } = await axios.get(link);
@@ -93,6 +104,7 @@ const NewProduct = ({}) => {
       category,
       description,
       relatedProduct,
+      relatedBrand,
       language,
       Published,
       Popular,
@@ -107,6 +119,7 @@ const NewProduct = ({}) => {
       sName,
       link,
       relatedProduct: relatedProduct?.id,
+      relatedBrand: relatedBrand?.id,
       language,
       description,
       published: checkboxes[0].isChecked,
@@ -213,6 +226,24 @@ const NewProduct = ({}) => {
                         for="exampleFormControlInput1"
                         className="form-label"
                       >
+                        Related Brands
+                      </label>
+                      <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        onChange={(e) =>
+                          setProduct({ ...product, relatedBrand: e })
+                        }
+                        isClearable
+                        name="color"
+                        options={relatedBrands}
+                      />
+                    </div>
+                    <div className="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
                         Related Products
                       </label>
                       <Select
@@ -226,6 +257,7 @@ const NewProduct = ({}) => {
                         options={relatedProducts}
                       />
                     </div>
+
                     <div class="mb-3 col-md-6">
                       <label
                         for="exampleFormControlInput1"

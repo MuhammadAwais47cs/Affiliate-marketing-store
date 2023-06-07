@@ -21,8 +21,8 @@ const Dashboard = () => {
     });
     e.target.classList.add("hovered");
   };
-  const handleLogout = () => {
-    localStorage.clear(); // clear the localStorage
+  const handleLogout = (isLogOut) => {
+    isLogOut === "logOut" && localStorage.clear(); // clear the localStorage
     // perform other logout tasks, such as redirecting to the login page
     navigate("/");
     window.location.reload();
@@ -51,12 +51,20 @@ const Dashboard = () => {
               </Link>
             </li>
           ))}
-          <li onClick={() => handleLogout()}>
+          <li onClick={() => handleLogout("logOut")}>
             <Link to={"/"}>
               <span className="icon">
                 <span />
               </span>
               <span className="title"> Sign Out</span>
+            </Link>
+          </li>
+          <li onClick={handleLogout}>
+            <Link to={"/"}>
+              <span className="icon">
+                <span />
+              </span>
+              <span className="title"> Go Home</span>
             </Link>
           </li>
         </ul>

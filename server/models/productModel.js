@@ -12,6 +12,10 @@ const productSchema = mongoose.Schema({
     type: String,
     trim: true,
   },
+  relatedBrand: {
+    type: String,
+    trim: true,
+  },
   code: {
     type: String,
     trim: true,
