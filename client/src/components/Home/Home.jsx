@@ -11,6 +11,7 @@ import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import banner3 from "./Asset/banner3.png";
 import rightBanner1 from "./Asset/banner3.png";
+import { categories } from "./data";
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -152,24 +153,15 @@ function Home() {
               </div>
             </div>
           </div>
-          {/*
-        <div id="container">
-          <h2 className="container">
-            Double Cash Back Hot Stores | April 2023
-          </h2>
-          <div className="d-flex flex-row justify-content-center mx-5 sroller ">
-            {brands &&
-              brands.map((brand) => (
-                <Product key={brand._id} product={brand} />
-              ))}
-          </div>
-              </div> */}
-          <div id="container">
-            <div className="mx-5 my-5 px-4">
-              <h2 className="text-start shadow  my-3 mx-3 p-2 rounded-3">
-                Double Cash Back Hot Stores | April 2023
-              </h2>
-              <div className="row">
+
+          <div id="" className="mt-5 pt-5 ">
+            <div className="mx-5 my-5 px-auto">
+              <div className="row ustify-content-center    ">
+                <div className="col-11 h1 text-warning  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
+                  Double Cash Back Hot Stores | April 2023
+                </div>
+              </div>
+              <div className="row justify-content-center ">
                 {brands &&
                   brands.map(
                     (brand) =>
@@ -178,38 +170,85 @@ function Home() {
                       )
                   )}
               </div>
-            </div>
-          </div>
-          <div id="container">
-            <h2 className="container text-start">
-              Popular coupons and coupons
-            </h2>
-            <div className="container">
-              {products &&
-                products.map(
-                  ({ images, name, description, published }) =>
-                    published && (
-                      <div className="col-md-3 shadow landscapeCard rounded m-2">
-                        <div className="row">
-                          <div className="w-25 d-flex justify-content-center aling-items-center ">
-                            <img
-                              className="landscapeCardImg"
-                              src={images?.url}
-                              alt=""
-                            />
+              <div className="row justfy-content-center    ">
+                <div className="col-11 h1 text-start text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
+                  Current coupon codes and offers
+                </div>
+              </div>
+              <div className="row justify-content-center ">
+                {products &&
+                  products.map(
+                    (product) =>
+                      product.published && (
+                        <div className="col-md-4">
+                          <div class="card border-0 shadow rounded-3 mb-3">
+                            <div class="row  g-0">
+                              <div class="col-4 my-auto d-flex justify-content-center   ">
+                                <img
+                                  src={product.images.url}
+                                  alt="coupon"
+                                  class="bd-placeholder-img img-fluid rounded "
+                                  width="50"
+                                  height="75"
+                                />
+                              </div>
+                              <div class="col-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">{product?.name}</h5>
+                                  <p class="card-text text-truncate text-body-secondary">
+                                    {product?.description}{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div className="w-75  d-flex flex-column justify-content-center  px-2 ">
-                            <h6>{name}</h6>
-                            <span className="text-truncate text-muted">
-                              10% discount on everything minimum order value of
-                              €25.
-                              {description}
-                            </span>
+                        </div>
+                      )
+                  )}
+              </div>
+              <div className="row     ">
+                <div className="col-10 h1  text-start text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
+                  Top categories
+                </div>
+              </div>
+              <div className="row justify-content-center ">
+                {categories &&
+                  categories.map(({ id, label }) => (
+                    <div className="col-md-4" key={id}>
+                      <div class="card border-0 shadow rounded-4 w-75 mb-3">
+                        <div class="row  g-0">
+                          <div class="col-4 my-auto d-flex justify-content-center   ">
+                            <svg
+                              class="bd-placeholder-img img-fluid rounded "
+                              width="40%"
+                              height="50"
+                              xmlns="http://www.w3.org/2000/svg"
+                              role="img"
+                              aria-label="Placeholder: Image"
+                              preserveAspectRatio="xMidYMid slice"
+                              focusable="false"
+                            >
+                              <title>Placeholder</title>
+                              <rect
+                                width="100%"
+                                height="100%"
+                                fill="#868e96"
+                              ></rect>
+                              <text x="20%" y="50%" fill="#dee2e6" dy=".2em">
+                                Image
+                              </text>
+                            </svg>
+                          </div>
+                          <div class="col-8">
+                            <div class="card-body">
+                              <h6 class="card-title text-warning">{label} </h6>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    )
-                )}
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
         </>

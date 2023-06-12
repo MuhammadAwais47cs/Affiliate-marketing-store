@@ -35,13 +35,13 @@ function Header() {
     {
       name: "All Brands",
       value: "allStores",
-      link: "/products",
+      link: "/brands",
     },
     {
       name: "Categories",
       value: "categories",
       icon: "cui-dollar",
-      link: "/",
+      link: "/categories",
 
       children: [
         { id: 1, label: "Mobile" },
@@ -91,12 +91,18 @@ function Header() {
   useEffect(() => {
     // if (cat)   navigate(`/products/${cat}`, { state:  });
   }, [cat]);
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-danger text-white  fixed-top">
+      <nav className="navbar navbar-expand-lg bg-white shadow text-white  fixed-top">
         <div className="container-fluid ">
           <Link to="/" className="navbar-brand">
-            <img src={logo} alt="Bootstrap" width="180vmax" />
+            <img
+              src={""}
+              className="text-warning fs-3 fw-4"
+              alt="Fatcoupon"
+              width="180vmax"
+            />
           </Link>
           <button
             className="navbar-toggler"
@@ -111,22 +117,18 @@ function Header() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul className="navbar-nav mx-auto justify-content-center flex-grow-1 pe-3">
+            <ul className="navbar-nav  justify-content-center flex-grow-1 pe-3">
               {catogary?.map(({ name, value, children, link }) => (
                 <>
-                  <li className="nav-item dropdown ms-3" key={name}>
+                  <li className="nav-item   ms-3" key={name}>
                     <Link
-                      to={link}
-                      className="nav-link dropdown-toggle text-white"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      to={`${link}`}
+                      className="nav-link text-warning"
                       key={name}
                     >
                       {name}
                     </Link>
-
-                    {children && (
+                    {/* {children && (
                       <ul className="dropdown-menu ">
                         {children?.map(({ label: childrenName }) => (
                           <li>
@@ -145,6 +147,7 @@ function Header() {
                         ))}
                       </ul>
                     )}
+                            */}{" "}
                   </li>
                 </>
               ))}
@@ -167,7 +170,7 @@ function Header() {
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          <Link to="/search" className="text-white">
+          <Link to="/search" className="text-warning">
             <FaSearch />
           </Link>
         </button>
@@ -195,11 +198,7 @@ function Header() {
             </NavDropdown.Item>
           </NavDropdown>
         ) : (
-          <button className="btn  text-white" type="submit">
-            <Link to="/login" className="text-white">
-              <FaPowerOff />
-            </Link>
-          </button>
+          ""
         )}
       </nav>
       {openModel && <Search />}

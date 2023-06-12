@@ -10,13 +10,17 @@ import AboutUs from "./components/AboutUs/AboutUs.jsx";
 import Privacy from "./components/Privacy/Privacy.jsx";
 import ProductDetails from "./components/Product/ProductDetails";
 import Products from "./components/Product/Products.jsx";
+import Brands from "./components/Brand/Brands";
+import BrandDetails from "./components/Brand/BrandDetails";
 import AddBrand from "./components/Admin/AddBrand";
 import AddProduct from "./components/Admin/AddProduct";
+import AddCategory from "./components/Admin/AddCategory";
 import Search from "./components/layout/search/Search";
 import LoginSignUp from "./components/User/LoginSignUp";
 import store from "./store";
 import Dashboard from "./components/Admin/Dashboard";
 import Sidebar from "./components/Admin/Sidebar";
+import Categories from "./components/Categories/Categories";
 function App() {
   const currentPath = window.location.pathname;
   console.log("currentPath :>> ", currentPath);
@@ -32,6 +36,9 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/product/:id" element={<ProductDetails />} />
           <Route exact path="/products" element={<Products />} />
+          <Route exact path="/brands" element={<Brands />} />
+          <Route exact path="/brand/:id" element={<BrandDetails />} />
+          <Route exact path="/categories" element={<Categories />} />
           <Route path="/products/:keyword" element={<Products />} />
           <Route exact path="/ContactUs" element={<ContactUs />} />
           <Route exact path="/AboutUs" element={<AboutUs />} />
@@ -40,6 +47,7 @@ function App() {
           <Route exact path="/login" element={<LoginSignUp />} />
           <Route exact path="/addBrand" element={<AddBrand />} />
           <Route exact path="/addProduct" element={<AddProduct />} />
+          <Route exact path="/addCategory" element={<AddCategory />} />
           <Route exact path="/admins" element={<Sidebar />} />
           <Route
             path="/admin"

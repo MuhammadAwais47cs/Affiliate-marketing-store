@@ -97,6 +97,12 @@ module.exports.navigationItems = [
     icon: "chatbubble-outline",
     link: "/addProduct",
   },
+  {
+    id: 4,
+    title: "Add Category",
+    icon: "chatbubble-outline",
+    link: "/addCategory",
+  },
 
   // {
   //   id: 5,

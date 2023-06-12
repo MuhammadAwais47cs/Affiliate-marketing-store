@@ -17,8 +17,8 @@ const Product = ({ product }) => {
   //   };
   return (
     <Link
-      className="productCard position-relative col-md-2"
-      to={`/product/${product?._id}`}
+      className="productCard position-relative col-md-3"
+      to={`/brand/${product?._id}`}
     >
       <img src={product?.images?.url} alt={product?.name} />
       <p>{product?.name}</p>

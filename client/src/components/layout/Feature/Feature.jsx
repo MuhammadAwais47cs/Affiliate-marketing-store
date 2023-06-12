@@ -16,19 +16,17 @@ const svg = [
  ]
 const Footer = () => {
   return (
-    <div id="" className="bg-light py-2">
+    <div id="" className="bg-white shadow py-2">
       <div className="d-flex flex-row justify-content-evenly">
-        {svg.map(({img ,heading , para }, i) => (
+        {svg.map(({ img, heading, para }, i) => (
           <div className="feature-box col-md-3 d-flex flex-column align-items-center justify-content-center my-2">
-           <img src={img} key={i} alt=""  className="" />
-         
-          <h3>{heading}</h3>
-           <p>{para}</p>
-      
-           </div>
+            <img src={img} key={i} alt="" className="" />
+
+            <h3>{heading}</h3>
+            <p>{para}</p>
+          </div>
         ))}
       </div>
-
     </div>
   );
 };

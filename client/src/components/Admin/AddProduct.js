@@ -259,12 +259,6 @@ const NewProduct = ({}) => {
                     </div>
 
                     <div class="mb-3 col-md-6">
-                      <label
-                        for="exampleFormControlInput1"
-                        className="form-label"
-                      >
-                        languages
-                      </label>
                       <select
                         onChange={handleChange}
                         name="language"
@@ -279,7 +273,7 @@ const NewProduct = ({}) => {
                       </select>
                     </div>
 
-                    <div id="createProductFormFile" className="col-md-6">
+                    <div className="col-md-6">
                       <input
                         type="file"
                         placeholder="Add Images"

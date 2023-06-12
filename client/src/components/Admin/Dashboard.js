@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar.js";
 import AddBrand from "./AddBrand.js";
 import AddProduct from "./AddProduct.js";
+import AddCategory from "./AddCategory.js";
 import "./dashboard.css";
 import { FaAlignJustify } from "react-icons/fa";
 
@@ -248,6 +249,8 @@ const Dashboard = () => {
                     return <AddBrand />;
                   case "Add Product":
                     return <AddProduct />;
+                  case "Add Category":
+                    return <AddCategory />;
 
                   default:
                     return null;
