@@ -2,12 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, createProduct } from "../../actions/productAction.js";
 import Select from "react-select";
-import "./newProduct.css";
 import { baseurl } from "../../baseurl";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useAlert } from "react-alert";
 import axios from "axios";
 
-import { FaSpellCheck, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import MetaData from "../layout/MetaData";
 import { NEW_PRODUCT_RESET } from "../../constant/productConstant";
 import {
@@ -34,6 +34,7 @@ const NewProduct = ({}) => {
     relatedProduct: "",
     relatedBrand: "",
     language: "",
+    expireDate: new Date(),
     couponType: "",
     Published: "",
     Popular: "",
@@ -61,6 +62,7 @@ const NewProduct = ({}) => {
 
     if (success) {
       alert.success("Product Created Successfully");
+      setImagesPreview([]);
       dispatch({ type: NEW_PRODUCT_RESET });
     }
   }, [dispatch, alert, error, success]);
@@ -112,6 +114,7 @@ const NewProduct = ({}) => {
       relatedProduct,
       relatedBrand,
       language,
+      expireDate,
       couponType,
     } = product;
 
@@ -124,8 +127,9 @@ const NewProduct = ({}) => {
       relatedProduct: relatedProduct?.id,
       relatedBrand: relatedBrand?.id,
       language,
+      expireDate,
       description,
-      couponType,
+      couponType: couponType?.label,
       published: checkboxes[0].isChecked,
       popular: checkboxes[1].isChecked,
       other: checkboxes[2].isChecked,
@@ -163,7 +167,7 @@ const NewProduct = ({}) => {
       reader.readAsDataURL(file);
     });
   };
-  const { language } = product;
+  const { language, expireDate } = product;
 
   return (
     <Fragment>
@@ -181,7 +185,6 @@ const NewProduct = ({}) => {
                   encType="multipart/form-data"
                   onSubmit={createProductSubmitHandler}
                 >
-                  <h3>Add Product</h3>
                   <div className="row">
                     {addProductFields.map(
                       ({ label, type, id, name, className }) => (
@@ -209,6 +212,22 @@ const NewProduct = ({}) => {
                         for="exampleFormControlInput1"
                         className="form-label"
                       >
+                        Expire Date
+                      </label>
+                      <DatePicker
+                        wrapperClassName="datePicker"
+                        className="form-control"
+                        selected={expireDate}
+                        onChange={(date) =>
+                          setProduct({ ...product, expireDate: date })
+                        }
+                      />
+                    </div>
+                    <div className="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
                         Categories
                       </label>
                       <Select
@@ -222,6 +241,7 @@ const NewProduct = ({}) => {
                         options={Categories}
                       />
                     </div>
+
                     <div className="mb-3 col-md-6">
                       <label
                         for="exampleFormControlInput1"

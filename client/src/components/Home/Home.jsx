@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../layout/Loader/Loader";
 import Product from "./Product.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import moment from "moment";
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +13,7 @@ import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import banner3 from "./Asset/banner3.png";
 import { categories } from "./data";
+import Coupon from "./components/Coupon";
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,17 +21,17 @@ function Home() {
     (state) => state.products
   );
   const { brands, brandsCount } = useSelector((state) => state.brands);
-  const [category, setCategory] = useState("");
-  const [isOpenModal, setIsOpenModal] = useState(true);
+  const [modalData, setmodalData] = useState("");
+  const [isOpenModal, setIsOpenModal] = useState(false);
   useEffect(() => {
-    console.log("objec :>> ", error);
     if (error) return alert.error(error);
 
     dispatch(getProduct());
     dispatch(getBrand());
   }, [dispatch, error]);
 
-  const modalToggle = () => {
+  const modalToggle = (product) => {
+    setmodalData(product);
     setIsOpenModal(!isOpenModal);
   };
 
@@ -105,8 +107,8 @@ function Home() {
             </div>
           </div>
 
-          <div id="" className="mt-5 pt-5 ">
-            <div className="mx-5 my-5 px-auto">
+          <div id="" className="mt-5  ">
+            <div className="mx-5   px-auto">
               <div className="row ustify-content-center    ">
                 <div className="col-11 h1 text-warning  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Popular Coupon
@@ -115,9 +117,19 @@ function Home() {
               <div className="row justify-content-center ">
                 {products &&
                   products.map(
-                    ({ images, popular, name }) =>
-                      popular && (
-                        <div className="col-md-3">
+                    (product) =>
+                      product.popular && (
+                        <Coupon
+                          product={product}
+                          callBack={() => modalToggle(product)}
+                        />
+                      )
+                  )}
+                {/*  <Link
+                          to=""
+                          className="col-md-3 pe-auto "
+                          onClick={modalToggle}
+                        >
                           <div class="m-2 p-3 rounded-2 shadow d-flex flex-column align-items-center ">
                             <img
                               src={images.url}
@@ -138,9 +150,7 @@ function Home() {
                               somewhere
                             </button>
                           </div>
-                        </div>
-                      )
-                  )}
+                      </Link> */}
               </div>
               <div className="row ustify-content-center    ">
                 <div className="col-11 h1 text-warning  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
@@ -237,20 +247,43 @@ function Home() {
               </div>
             </div>
             <Modal show={isOpenModal} size="lg" onHide={modalToggle}>
-              <Modal.Body className="mt-n4">
+              <Modal.Body className="mt-n4 bg-warning bg-gradient rounded-3">
                 <div class=" p-4  h-75    d-flex flex-column align-items-center ">
                   <img
-                    src=""
+                    src={modalData?.images?.url}
                     alt=""
-                    class="border-3 bg-danger bg-opacity-75 rounded-pill"
+                    class="border-3   rounded-pill"
                     height="100"
                     width="100"
                   />
-                  <h5 class="card-title my-2">Card title</h5>
-                  <p class="card-text">Some card's content.</p>
-                  <a href="#" class="btn btn-primary">
-                    Go somewhere
-                  </a>
+                  <h4 class="fs-2  my-2">{modalData?.name}</h4>
+                  <h5 class="fs-5 my-1 text-light">{modalData?.description}</h5>
+                  <p class="fs-5 text-center">
+                    Your Voucher Code is :{" "}
+                    <span className="text-secondary my-1">
+                      {modalData?.code}{" "}
+                    </span>
+                  </p>
+                  <p class=" my-1">
+                    Date of Expiry :{" "}
+                    <span className="text-light">
+                      {" "}
+                      {moment(modalData?.expireDate).format("DD-MM-YYYY")}{" "}
+                    </span>
+                  </p>
+                  <Link
+                    to={`${
+                      modalData?.couponType === "Code" ? "" : modalData?.link
+                    }`}
+                    target={`${
+                      modalData?.couponType === "Code" ? "" : "_blank"
+                    }`}
+                    className="btn btn-danger opacity-75 text-white w-25 rounded-pill   "
+                  >
+                    {modalData?.couponType === "Code"
+                      ? modalData?.code
+                      : "To the provider"}
+                  </Link>
                 </div>
               </Modal.Body>
             </Modal>

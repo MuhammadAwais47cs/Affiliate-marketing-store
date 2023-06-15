@@ -1,20 +1,9 @@
 import React from "react";
+import "./Home.css";
 import { Link } from "react-router-dom";
-import hp from "./Asset/hp.png";
-import {
-  FaSearch,
-  FaPowerOff,
-  FaUserCircle,
-  FaRegShareSquare,
-} from "react-icons/fa";
-// import { Rating } from "@material-ui/lab";
+import { FaRegShareSquare } from "react-icons/fa";
 
 const Product = ({ product }) => {
-  //   const options = {
-  //     value: product.ratings,
-  //     readOnly: true,
-  //     precision: 0.5,
-  //   };
   return (
     <Link
       className="productCard position-relative col-md-3"
