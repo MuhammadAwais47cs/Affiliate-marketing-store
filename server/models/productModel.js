@@ -24,11 +24,18 @@ const productSchema = mongoose.Schema({
     type: String,
     trim: true,
   },
+  couponType: {
+    type: String,
+    trim: true,
+  },
   description: {
     type: String,
   },
   category: {
     type: String,
+  },
+  expireDate: {
+    type: Date,
   },
   language: {
     type: String,

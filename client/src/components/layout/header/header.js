@@ -94,7 +94,7 @@ function Header() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-white shadow text-white  fixed-top">
+      <nav className="navbar navbar-expand-sm bg-white shadow text-white  fixed-top">
         <div className="container-fluid ">
           <Link to="/" className="navbar-brand">
             <img
@@ -121,11 +121,7 @@ function Header() {
               {catogary?.map(({ name, value, children, link }) => (
                 <>
                   <li className="nav-item   ms-3" key={name}>
-                    <Link
-                      to={`${link}`}
-                      className="nav-link text-warning"
-                      key={name}
-                    >
+                    <Link to={`${link}`} className="nav-link  " key={name}>
                       {name}
                     </Link>
                     {/* {children && (
@@ -176,7 +172,7 @@ function Header() {
         </button>
         {token ? (
           <NavDropdown
-            className="btn text-white"
+            className="btn  "
             title={<FaUserCircle />}
             id="nav-dropdown"
           >

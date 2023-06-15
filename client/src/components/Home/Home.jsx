@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
+import { Modal } from "react-bootstrap";
 import { getProduct } from "../../actions/productAction.js";
 import { getBrand } from "../../actions/brandAction";
 import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import banner3 from "./Asset/banner3.png";
-import rightBanner1 from "./Asset/banner3.png";
 import { categories } from "./data";
 function Home() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Home() {
   );
   const { brands, brandsCount } = useSelector((state) => state.brands);
   const [category, setCategory] = useState("");
-
+  const [isOpenModal, setIsOpenModal] = useState(true);
   useEffect(() => {
     console.log("objec :>> ", error);
     if (error) return alert.error(error);
@@ -29,59 +29,10 @@ function Home() {
     dispatch(getBrand());
   }, [dispatch, error]);
 
-  const catgory = [
-    {
-      name: "Mobiles",
-      category: "Mobiles",
-      url: "https://static.priceoye.pk/images/home/mobiles.svg",
-    },
-    {
-      name: "Smart Watches",
-      category: "Smart-Watches",
-      url: "https://static.priceoye.pk/images/home/smart-watches.svg",
-    },
-    {
-      name: "Wireless Earbuds",
-      category: "Wireless-Earbuds",
-      url: "https://static.priceoye.pk/images/home/wireless-earbuds.svg",
-    },
-    {
-      name: "Bluetooth Speakers",
-      category: "Bluetooth-Speakers",
-      url: "https://static.priceoye.pk/images/home/bluetooth-speakers.svg",
-    },
-    {
-      name: "Power Banks",
-      category: "Power-Banks",
-      url: "https://static.priceoye.pk/images/home/power-banks.svg",
-    },
-    {
-      name: "Laptops",
-      category: "Laptops",
-      url: "https://static.priceoye.pk/images/home/laptops.svg",
-      height: "90px",
-    },
-    {
-      name: "Tablets",
-      category: "Tablets",
-      url: "https://static.priceoye.pk/images/home/tablets.svg",
-      height: "90px",
-    },
-    //  {  name :'TV',                 category:'TV', url:'https://static.priceoye.pk/images/home/tablets.svg'}
-  ];
+  const modalToggle = () => {
+    setIsOpenModal(!isOpenModal);
+  };
 
-  const product = [
-    {
-      name: "Product",
-      images: [
-        {
-          url: " https://images.priceoye.pk/apple-iphone-14-pro-max-pakistan-priceoye-zhf5g-500x500.webp",
-        },
-      ],
-      price: "300",
-      _id: "01",
-    },
-  ];
   return (
     <>
       {loading ? (
@@ -156,6 +107,41 @@ function Home() {
 
           <div id="" className="mt-5 pt-5 ">
             <div className="mx-5 my-5 px-auto">
+              <div className="row ustify-content-center    ">
+                <div className="col-11 h1 text-warning  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
+                  Popular Coupon
+                </div>
+              </div>
+              <div className="row justify-content-center ">
+                {products &&
+                  products.map(
+                    ({ images, popular, name }) =>
+                      popular && (
+                        <div className="col-md-3">
+                          <div class="m-2 p-3 rounded-2 shadow d-flex flex-column align-items-center ">
+                            <img
+                              src={images.url}
+                              alt=""
+                              height="100"
+                              width="100"
+                            />
+                            <span
+                              class=" my-2 w-100 "
+                              style={{ "border-top": "2px grey dashed " }}
+                            ></span>
+                            <h5 class="card-title py-1">{name}</h5>
+                            <p class="card-text py-1">Some card's content.</p>
+                            <button
+                              onClick={modalToggle}
+                              class="btn btn-primary"
+                            >
+                              somewhere
+                            </button>
+                          </div>
+                        </div>
+                      )
+                  )}
+              </div>
               <div className="row ustify-content-center    ">
                 <div className="col-11 h1 text-warning  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Double Cash Back Hot Stores | April 2023
@@ -250,6 +236,24 @@ function Home() {
                   ))}
               </div>
             </div>
+            <Modal show={isOpenModal} size="lg" onHide={modalToggle}>
+              <Modal.Body className="mt-n4">
+                <div class=" p-4  h-75    d-flex flex-column align-items-center ">
+                  <img
+                    src=""
+                    alt=""
+                    class="border-3 bg-danger bg-opacity-75 rounded-pill"
+                    height="100"
+                    width="100"
+                  />
+                  <h5 class="card-title my-2">Card title</h5>
+                  <p class="card-text">Some card's content.</p>
+                  <a href="#" class="btn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </Modal.Body>
+            </Modal>
           </div>
         </>
       )}

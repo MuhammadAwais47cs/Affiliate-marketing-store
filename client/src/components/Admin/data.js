@@ -14,6 +14,11 @@ module.exports.addProductCheckBox = [
   { id: 2, label: "Popular", isChecked: false },
   { id: 3, label: "Other", isChecked: false },
 ];
+module.exports.couponTypes = [
+  { id: 1, label: "Redirect", isChecked: false },
+  { id: 2, label: "Code", isChecked: false },
+  { id: 3, label: "Other", isChecked: false },
+];
 module.exports.addProductFields = [
   {
     label: "Name",

@@ -10,7 +10,12 @@ import axios from "axios";
 import { FaSpellCheck, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import MetaData from "../layout/MetaData";
 import { NEW_PRODUCT_RESET } from "../../constant/productConstant";
-import { addProductCheckBox, addProductFields, languages } from "./data";
+import {
+  addProductCheckBox,
+  addProductFields,
+  couponTypes,
+  languages,
+} from "./data";
 import Loader from "../layout/Loader/Loader";
 
 const NewProduct = ({}) => {
@@ -29,6 +34,7 @@ const NewProduct = ({}) => {
     relatedProduct: "",
     relatedBrand: "",
     language: "",
+    couponType: "",
     Published: "",
     Popular: "",
     other: "",
@@ -106,10 +112,7 @@ const NewProduct = ({}) => {
       relatedProduct,
       relatedBrand,
       language,
-      Published,
-      Popular,
-      other,
-      image,
+      couponType,
     } = product;
 
     const data = {
@@ -122,14 +125,13 @@ const NewProduct = ({}) => {
       relatedBrand: relatedBrand?.id,
       language,
       description,
+      couponType,
       published: checkboxes[0].isChecked,
       popular: checkboxes[1].isChecked,
       other: checkboxes[2].isChecked,
       checkboxes,
       images,
     };
-
-    console.log("product :>> ", product, images);
 
     dispatch(createProduct(data, images));
   };
@@ -161,8 +163,7 @@ const NewProduct = ({}) => {
       reader.readAsDataURL(file);
     });
   };
-  const { name, sName, link, category, language, relatedProduct, description } =
-    product;
+  const { language } = product;
 
   return (
     <Fragment>
@@ -237,6 +238,24 @@ const NewProduct = ({}) => {
                         isClearable
                         name="color"
                         options={relatedBrands}
+                      />
+                    </div>
+                    <div className="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Coupon Type
+                      </label>
+                      <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        onChange={(e) =>
+                          setProduct({ ...product, couponType: e })
+                        }
+                        isClearable
+                        name="color"
+                        options={couponTypes}
                       />
                     </div>
                     <div className="mb-3 col-md-6">
