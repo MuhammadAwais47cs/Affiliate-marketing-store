@@ -30,7 +30,6 @@ exports.getProductDetails = tryCatchAsyncError(async (req, res, next) => {
   });
 });
 exports.getAllProducts = tryCatchAsyncError(async (req, res, next) => {
-  // return next(new ErrorHandler('template error'))
   const resultPerPage = 100;
   const productsCount = await Product.countDocuments();
   const apiFeatures = new ApiFeatures(Product.find(), req.query)
@@ -43,9 +42,7 @@ exports.getAllProducts = tryCatchAsyncError(async (req, res, next) => {
   if (!result) {
     return next(new ErrorHandler(`Product not found`, 404));
   }
-  // console.log("else products :>> ", products);
   res
     .status(200)
     .json({ success: true, products: result, productsCount, resultPerPage });
-  
 });
