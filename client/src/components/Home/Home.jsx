@@ -179,7 +179,7 @@ function Home() {
                       product.published && (
                         <div className="col-md-4">
                           <div class="card border-0 shadow rounded-3 mb-3">
-                            <div class="row  g-0">
+                            <div class="row  g-0 py-3">
                               <div
                                 class="col-4 my-auto d-flex justify-content-center   "
                                 style={{ borderRight: "1px dashed gray" }}
@@ -192,21 +192,23 @@ function Home() {
                                     width="50"
                                     height="75"
                                   />
-                                  <h5 class="card-title text-center text-truncate pt-1">
+                                  <h5 class="w-100 overflow-x-auto text-break my-1   text-center text-truncate text-break py-1">
                                     {product?.name}
                                   </h5>
                                 </div>
                               </div>
                               <div class="col-8">
                                 <div class="card-body">
-                                  <h5 class="card-title text-truncate ">
+                                  <h5 class="w-100 overflow-x-auto text-break my-1 ">
                                     {" "}
                                     {product?.description}
                                   </h5>
                                   <p class="card-text PromoCode text-truncate text-body-secondary text-end">
                                     Promo code:{" "}
-                                    <span className="bg-danger rounded-pill bg-opacity-25 px-3 py-1 text-danger">
-                                      {product?.code}
+                                    <span className=" rounded-pill  px-3 py-1 text-danger">
+                                      {moment(modalData?.expireDate).format(
+                                        "DD-MM-YYYY"
+                                      )}{" "}
                                     </span>
                                   </p>
                                 </div>
@@ -226,9 +228,9 @@ function Home() {
                 {categories &&
                   categories.map(({ id, label }) => (
                     <div className="col-md-4 py-2" key={id}>
-                      <div class="card border-0 shadow rounded-4 w-75 mb-3">
+                      <div class="card border-0 shadow rounded-4 py-2 bg-info bg-opacity-25 mb-1">
                         <div class="row  g-0">
-                          <div class="col-4 my-auto d-flex justify-content-center text-info text-opacity-75 fs-5  ">
+                          <div class="col-4 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
                             <FaPlaneDeparture />
                           </div>
                           <div class="col-8">
@@ -280,6 +282,18 @@ function Home() {
                 </div>
               </Modal.Body>
             </Modal>
+          </div>
+          <div className="bg-white shadow container">
+            <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
+              {brands &&
+                brands.map((brand) =>
+                  brand.published && brand.popular ? (
+                    <Product key={brand._id} product={brand} />
+                  ) : (
+                    ""
+                  )
+                )}
+            </div>
           </div>
         </>
       )}

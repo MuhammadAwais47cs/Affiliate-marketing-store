@@ -14,13 +14,14 @@ const NewCategory = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { loading, error, success } = useSelector((state) => state?.newBrand);
+  const { error, success } = useSelector((state) => state?.newBrand);
   console.log(
     "useSelector((state)=>state) :>> ",
     useSelector((state) => state)
   );
 
   const [category, setCategory] = useState(null);
+  const [loading, setloading] = useState(false);
 
   // const categories = ["Nike", "Adidas", "Dell", "Hp"];
 
@@ -38,6 +39,7 @@ const NewCategory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setloading(true);
 
     const data = {
       label: category,
@@ -47,12 +49,13 @@ const NewCategory = () => {
       headers: { "Content-Type": "application/json" },
     };
 
-    const { result } = await axios.post(
+    const { result, success } = await axios.post(
       `${baseurl}/api/v1/category/new`,
       data,
       config
     );
     console.log(result);
+    setloading(false);
   };
 
   return (
@@ -71,7 +74,6 @@ const NewCategory = () => {
                   encType="multipart/form-data"
                   onSubmit={handleSubmit}
                 >
-                  <h1 className="px-auto">Add Brand</h1>
                   <div className="row">
                     <div class="mb-3 col-md-6">
                       <label
@@ -95,7 +97,7 @@ const NewCategory = () => {
                         className="w-50 mx-auto  mt-4  "
                         id="createProductBtn"
                         type="submit"
-                        disabled={loading ? true : false}
+                        disabled={loading}
                       >
                         Create
                       </button>

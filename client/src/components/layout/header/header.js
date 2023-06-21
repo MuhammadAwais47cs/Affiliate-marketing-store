@@ -102,6 +102,7 @@ function Header() {
               className="text-warning fs-3 fw-4"
               alt="Fatcoupon"
               width="180vmax"
+              style={{ color: "#37ee1b" }}
             />
           </Link>
           <button
