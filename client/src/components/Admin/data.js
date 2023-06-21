@@ -39,8 +39,8 @@ module.exports.addProductFields = [
   {
     label: "Badge Text",
     type: "text",
-    id: "Badge",
-    name: "Badge",
+    id: "badge",
+    name: "badge",
     className: "w-1/3",
   },
   {

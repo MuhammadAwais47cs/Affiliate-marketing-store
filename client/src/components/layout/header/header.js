@@ -159,7 +159,7 @@ function Header() {
             />
               </form>
               onClick={()=>searchToggle()}
-            */}
+           
         <button
           type="button"
           className="btn text-white "
@@ -170,6 +170,7 @@ function Header() {
             <FaSearch />
           </Link>
         </button>
+         */}
         {token ? (
           <NavDropdown
             className="btn  "

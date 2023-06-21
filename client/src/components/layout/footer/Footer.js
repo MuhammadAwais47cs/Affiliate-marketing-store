@@ -86,7 +86,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="d-flex flex-row justify-content-center   border-top border-warning py-4 bg-light bg-gradient   ">
-        <p className="text-white">Copyrights 2021 &copy; Muhammad Yahya</p>
+        <p className="text-white">Copyrights 2021 &copy; </p>
       </div>
     </>
   );

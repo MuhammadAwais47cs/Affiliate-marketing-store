@@ -40,8 +40,9 @@ const productSchema = mongoose.Schema({
   language: {
     type: String,
   },
-  Badge: {
-    type: Number,
+  badge: {
+    type: String,
+    trim: true,
   },
   images: {
     public_id: {

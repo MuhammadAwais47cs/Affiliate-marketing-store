@@ -60,7 +60,7 @@ function App() {
             }
           />
         </Routes>
-        {user === "admin" && currentPath === "/admin" ? "" : <Features />}
+        {/*user === "admin" && currentPath === "/admin" ? "" : <Features />*/}
         {user === "admin" && currentPath === "/admin" ? "" : <Footer />}
       </Router>
     </>

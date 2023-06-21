@@ -3,6 +3,7 @@ import Loader from "../layout/Loader/Loader";
 import Product from "./Product.jsx";
 import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
+import { FaCar, FaPlaneDeparture } from "react-icons/fa";
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -110,7 +111,7 @@ function Home() {
           <div id="" className="mt-5  ">
             <div className="mx-5   px-auto">
               <div className="row ustify-content-center    ">
-                <div className="col-11 h1 text-warning  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
+                <div className="col-11 h1 gridHeading text-warning gridHeading  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Popular Coupon
                 </div>
               </div>
@@ -167,7 +168,7 @@ function Home() {
                   )}
               </div>
               <div className="row justfy-content-center    ">
-                <div className="col-11 h1 text-start text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
+                <div className="col-11 h1 text-start gridHeading text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
                   Current coupon codes and offers
                 </div>
               </div>
@@ -179,20 +180,34 @@ function Home() {
                         <div className="col-md-4">
                           <div class="card border-0 shadow rounded-3 mb-3">
                             <div class="row  g-0">
-                              <div class="col-4 my-auto d-flex justify-content-center   ">
-                                <img
-                                  src={product.images.url}
-                                  alt="coupon"
-                                  class="bd-placeholder-img img-fluid rounded "
-                                  width="50"
-                                  height="75"
-                                />
+                              <div
+                                class="col-4 my-auto d-flex justify-content-center   "
+                                style={{ borderRight: "1px dashed gray" }}
+                              >
+                                <div className="mx-auto ">
+                                  <img
+                                    src={product.images.url}
+                                    alt="coupon"
+                                    class="bd-placeholder-img img-fluid rounded-pill  "
+                                    width="50"
+                                    height="75"
+                                  />
+                                  <h5 class="card-title text-center text-truncate pt-1">
+                                    {product?.name}
+                                  </h5>
+                                </div>
                               </div>
                               <div class="col-8">
                                 <div class="card-body">
-                                  <h5 class="card-title">{product?.name}</h5>
-                                  <p class="card-text text-truncate text-body-secondary">
-                                    {product?.description}{" "}
+                                  <h5 class="card-title text-truncate ">
+                                    {" "}
+                                    {product?.description}
+                                  </h5>
+                                  <p class="card-text PromoCode text-truncate text-body-secondary text-end">
+                                    Promo code:{" "}
+                                    <span className="bg-danger rounded-pill bg-opacity-25 px-3 py-1 text-danger">
+                                      {product?.code}
+                                    </span>
                                   </p>
                                 </div>
                               </div>
@@ -210,34 +225,15 @@ function Home() {
               <div className="row justify-content-center ">
                 {categories &&
                   categories.map(({ id, label }) => (
-                    <div className="col-md-4" key={id}>
+                    <div className="col-md-4 py-2" key={id}>
                       <div class="card border-0 shadow rounded-4 w-75 mb-3">
                         <div class="row  g-0">
-                          <div class="col-4 my-auto d-flex justify-content-center   ">
-                            <svg
-                              class="bd-placeholder-img img-fluid rounded "
-                              width="40%"
-                              height="50"
-                              xmlns="http://www.w3.org/2000/svg"
-                              role="img"
-                              aria-label="Placeholder: Image"
-                              preserveAspectRatio="xMidYMid slice"
-                              focusable="false"
-                            >
-                              <title>Placeholder</title>
-                              <rect
-                                width="100%"
-                                height="100%"
-                                fill="#868e96"
-                              ></rect>
-                              <text x="20%" y="50%" fill="#dee2e6" dy=".2em">
-                                Image
-                              </text>
-                            </svg>
+                          <div class="col-4 my-auto d-flex justify-content-center text-info text-opacity-75 fs-5  ">
+                            <FaPlaneDeparture />
                           </div>
                           <div class="col-8">
                             <div class="card-body">
-                              <h6 class="card-title text-warning">{label} </h6>
+                              <h5 class=" text-secondary">{label} </h5>
                             </div>
                           </div>
                         </div>
@@ -246,8 +242,8 @@ function Home() {
                   ))}
               </div>
             </div>
-            <Modal show={isOpenModal} size="lg" onHide={modalToggle}>
-              <Modal.Body className="mt-n4 bg-warning bg-gradient rounded-3">
+            <Modal show={isOpenModal} size="md" onHide={modalToggle}>
+              <Modal.Body className="mt-n4   rounded-3">
                 <div class=" p-4  h-75    d-flex flex-column align-items-center ">
                   <img
                     src={modalData?.images?.url}
@@ -256,17 +252,14 @@ function Home() {
                     height="100"
                     width="100"
                   />
-                  <h4 class="fs-2  my-2">{modalData?.name}</h4>
-                  <h5 class="fs-5 my-1 text-light">{modalData?.description}</h5>
-                  <p class="fs-5 text-center">
-                    Your Voucher Code is :{" "}
-                    <span className="text-secondary my-1">
-                      {modalData?.code}{" "}
-                    </span>
-                  </p>
+                  <h5 class="fs-5 my-1 ">{modalData?.description}</h5>
+                  <p class="fs-5 text-center">Voucher Code is : </p>
+                  <span className="btn btn-outline-info   my-1 w-75">
+                    {modalData?.code}{" "}
+                  </span>
                   <p class=" my-1">
                     Date of Expiry :{" "}
-                    <span className="text-light">
+                    <span className=" ">
                       {" "}
                       {moment(modalData?.expireDate).format("DD-MM-YYYY")}{" "}
                     </span>
@@ -278,11 +271,11 @@ function Home() {
                     target={`${
                       modalData?.couponType === "Code" ? "" : "_blank"
                     }`}
-                    className="btn btn-danger opacity-75 text-white w-25 rounded-pill   "
+                    className="btn btn-danger opacity-75 text-white w-md-25 w-sm-50 rounded-pill px-2  "
                   >
                     {modalData?.couponType === "Code"
                       ? modalData?.code
-                      : "To the provider"}
+                      : "Provider"}
                   </Link>
                 </div>
               </Modal.Body>
