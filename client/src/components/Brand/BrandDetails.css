@@ -2,7 +2,7 @@
   background-color: rgb(255, 255, 255);
   width: 100vw;
   max-width: 100%;
-  padding: 7vmax;
+  padding: 7rem 7rem 2rem;
   box-sizing: border-box;
   display: flex;
 }
@@ -245,6 +245,7 @@
     flex-direction: column;
     height: unset;
     margin-top: 8rem;
+    padding: 0;
   }
 
   .ProductDetails>div:last-child {

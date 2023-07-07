@@ -9,6 +9,8 @@ import { FaAlignJustify } from "react-icons/fa";
 
 import MetaData from "../layout/MetaData";
 import { navigationItems } from "./data.js";
+import Products from "./DataTables/Products.js";
+import Brands from "./DataTables/Brands.js";
 // import { CiMenuBurger } from "react-icons/ci";
 const Dashboard = () => {
   const [isMenuActive, setMenuActive] = useState(false);
@@ -156,92 +158,20 @@ const Dashboard = () => {
                 {whichComponent}
               </button>
             </div>
-            {!switchComponent && (
-              <table>
-                <thead>
-                  <tr>
-                    <td>Name</td>
-                    <td>Price</td>
-                    <td>Payment</td>
-                    <td>Status</td>
-                  </tr>
-                </thead>
+            {whichComponent &&
+              (() => {
+                switch (whichComponent) {
+                  case "Add Brand":
+                    return <Brands />;
+                  case "Add Product":
+                    return <Products />;
+                  case "Add Category":
+                    return <AddCategory />;
 
-                <tbody>
-                  <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td>
-                      <span class="status delivered">Delivered</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td>
-                      <span class="status pending">Pending</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td>
-                      <span class="status return">Return</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td>
-                      <span class="status inProgress">In Progress</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td>
-                      <span class="status delivered">Delivered</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td>
-                      <span class="status pending">Pending</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td>
-                      <span class="status return">Return</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td>
-                      <span class="status inProgress">In Progress</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            )}
+                  default:
+                    return null;
+                }
+              })()}
             {switchComponent &&
               (() => {
                 switch (switchComponent) {

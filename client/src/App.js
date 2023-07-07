@@ -23,7 +23,6 @@ import Sidebar from "./components/Admin/Sidebar";
 import Categories from "./components/Categories/Categories";
 function App() {
   const currentPath = window.location.pathname;
-  console.log("currentPath :>> ", currentPath);
   useEffect(() => {
     // store.dispatch(loadUser());
   }, []);

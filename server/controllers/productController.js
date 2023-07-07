@@ -30,7 +30,17 @@ exports.getProductDetails = tryCatchAsyncError(async (req, res, next) => {
   });
 });
 exports.getAllProducts = tryCatchAsyncError(async (req, res, next) => {
-  const resultPerPage = 100;
+  const resultPerPage = 1000;
+  const brandId = req.query.id;
+  console.log("req.query, req.query.id :>> ", brandId, req.query, req.query.id);
+  // const productsCount = await Product.countDocuments({ relatedBrand: brandId });
+
+  // const apiFeatures = new ApiFeatures(
+  //   Product.find({ relatedBrand: brandId }),
+  //   req.query
+  // )
+  //   .search()
+  //   .pagination(resultPerPage);
   const productsCount = await Product.countDocuments();
   const apiFeatures = new ApiFeatures(Product.find(), req.query)
     .search()

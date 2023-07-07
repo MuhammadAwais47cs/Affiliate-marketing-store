@@ -9,6 +9,7 @@ import Product from "../Home/Product";
 import { useLocation } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
+import { alphabet } from "./data";
 function Brands() {
   const params = useParams();
   const navigate = useNavigate();
@@ -21,9 +22,6 @@ function Brands() {
   const [price, setPrice] = useState(500000);
 
   const noProduct = { name: "No Product Found" };
-
-  // const { loading, error, products, resultPerPage, productsCount } =
-  // useSelector((state) => state.products);
   const { loading, error, brands, resultPerPage, brandsCount } = useSelector(
     (state) => state.brands
   );
@@ -34,14 +32,20 @@ function Brands() {
 
   useEffect(() => {
     if (error) return alert.error(error);
-    // dispatch(getProduct(keyword, currentPage, price, state));
     dispatch(getBrand());
   }, [dispatch, keyword, currentPage, price, state, error]);
   return (
     <>
       <>
-        <div className="productsPage pt-5 mt-5">
+        <div className="productsPage pt-5 bg-light  ">
           <MetaData title="PRODUCTS -- ECOMMERCE" />
+          <div className="container d-flex rounded-4 bg-white shadow px-auto py-2 ">
+            {alphabet.map((name) => (
+              <button className="btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1  ">
+                {name}
+              </button>
+            ))}
+          </div>
           {}
           <h2 className="productsHeading fs-3 fw-3">All Brands</h2>
           {loading ? (

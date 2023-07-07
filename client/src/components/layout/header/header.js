@@ -176,7 +176,7 @@ function Header() {
           <NavDropdown
             className="btn  "
             title={<FaUserCircle />}
-            id="nav-dropdown"
+            id="nav-dropdown dropdown-menu"
           >
             <p className="text-dark pe-none" eventKey="4.4">
               Profile
