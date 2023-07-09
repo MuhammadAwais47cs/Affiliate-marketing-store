@@ -11,6 +11,7 @@ import MetaData from "../layout/MetaData";
 import { navigationItems } from "./data.js";
 import Products from "./DataTables/Products.js";
 import Brands from "./DataTables/Brands.js";
+import Categories from "./DataTables/Categories.js";
 // import { CiMenuBurger } from "react-icons/ci";
 const Dashboard = () => {
   const [isMenuActive, setMenuActive] = useState(false);
@@ -166,7 +167,7 @@ const Dashboard = () => {
                   case "Add Product":
                     return <Products />;
                   case "Add Category":
-                    return <AddCategory />;
+                    return <Categories />;
 
                   default:
                     return null;
