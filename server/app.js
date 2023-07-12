@@ -19,10 +19,12 @@ app.use(errorMiddleware);
 
 const category = require("./routes/categoryRoutes");
 const brands = require("./routes/brandRoutes");
+const sliders = require("./routes/sliderRoutes");
 const products = require("./routes/productsRoutes");
 const user = require("./routes/userRoute");
 app.use("/api/v1", category);
 app.use("/api/v1", products);
 app.use("/api/v1", brands);
+app.use("/api/v1", sliders);
 app.use("/api/v1", user);
 module.exports = app;

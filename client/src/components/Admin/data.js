@@ -103,10 +103,16 @@ module.exports.navigationItems = [
     link: "/addProduct",
   },
   {
-    id: 4,
+    id: 5,
     title: "Add Category",
     icon: "chatbubble-outline",
     link: "/addCategory",
+  },
+  {
+    id: 6,
+    title: "Add Slider",
+    icon: "chatbubble-outline",
+    link: "/addSlider",
   },
 
   // {

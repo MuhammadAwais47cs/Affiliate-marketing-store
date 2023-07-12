@@ -1,17 +1,17 @@
 import axios from "axios";
 import { baseurl } from "../baseurl";
 import {
-  ALL_BRAND_REQUEST,
-  ALL_BRAND_SUCCESS,
-  ALL_BRAND_FAIL,
-  NEW_BRAND_REQUEST,
-  NEW_BRAND_SUCCESS,
-  NEW_BRAND_FAIL,
-  BRAND_DETAILS_REQUEST,
-  BRAND_DETAILS_SUCCESS,
-  BRAND_DETAILS_FAIL,
+  ALL_SLIDER_REQUEST,
+  ALL_SLIDER_SUCCESS,
+  ALL_SLIDER_FAIL,
+  NEW_SLIDER_REQUEST,
+  NEW_SLIDER_SUCCESS,
+  NEW_SLIDER_FAIL,
+  SLIDER_DETAILS_REQUEST,
+  SLIDER_DETAILS_SUCCESS,
+  SLIDER_DETAILS_FAIL,
   CLEAR_ERROR,
-} from "../constant/brandConstant";
+} from "../constant/sliderConstant";
 import { uploadImage } from "../utils/functions";
 export const getBrand =
   (
@@ -24,7 +24,7 @@ export const getBrand =
   ) =>
   async (dispatch) => {
     try {
-      dispatch({ type: ALL_BRAND_REQUEST });
+      dispatch({ type: ALL_SLIDER_REQUEST });
       let link = `${baseurl}/api/v1/brands?keyword=${keyword}&page=${currentPage}&price[gte]=''&price[lte]=''`;
 
       //   let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}`;
@@ -47,12 +47,12 @@ export const getBrand =
 
       console.log("data :>> ", data);
       dispatch({
-        type: ALL_BRAND_SUCCESS,
+        type: ALL_SLIDER_SUCCESS,
         payload: data,
       });
     } catch (error) {
       dispatch({
-        type: ALL_BRAND_FAIL,
+        type: ALL_SLIDER_FAIL,
         payload: error.response.data.message,
       });
     }
@@ -60,15 +60,15 @@ export const getBrand =
 export const getBrandDetails = (id) => async (dispatch) => {
   try {
     console.log("id :>> ", id);
-    dispatch({ type: BRAND_DETAILS_REQUEST });
+    dispatch({ type: SLIDER_DETAILS_REQUEST });
     const { data } = await axios.get(`${baseurl}/api/v1/brand/${id}`);
     dispatch({
-      type: BRAND_DETAILS_SUCCESS,
+      type: SLIDER_DETAILS_SUCCESS,
       payload: data.brand,
     });
   } catch (error) {
     dispatch({
-      type: BRAND_DETAILS_FAIL,
+      type: SLIDER_DETAILS_FAIL,
       payload: error.response.data.message,
     });
   }
@@ -80,20 +80,23 @@ export const clearErrors = () => async (dispatch) => {
 };
 
 // Create Brand
-export const createBrand = (brandData, images) => async (dispatch) => {
+export const createSlider = (images) => async (dispatch) => {
   try {
-    dispatch({ type: NEW_BRAND_REQUEST });
-    console.log(brandData, "data");
-    console.log(images, "images");
-    const image = await uploadImage(images[0], "kcfbvaww");
-    console.log(image);
+    dispatch({ type: NEW_SLIDER_REQUEST });
+    console.log(images, "images........");
 
-    let brand = brandData;
+    const imagesUrls = await Promise.all(
+      images.map(async (file) => await uploadImage(file, "kcfbvaww"))
+    );
+    console.log("imagesUrls :>> ", imagesUrls);
+    // const image = await uploadImage(images[0], "kcfbvaww");
+    // console.log(image);
+    return;
+    let brand = "";
     brand = {
       ...brand,
-      images: image,
+      // images: image,
     };
-    console.log("proda", brand);
 
     const config = {
       headers: { "Content-Type": "application/json" },
@@ -106,12 +109,12 @@ export const createBrand = (brandData, images) => async (dispatch) => {
     );
 
     dispatch({
-      type: NEW_BRAND_SUCCESS,
+      type: NEW_SLIDER_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: NEW_BRAND_FAIL,
+      type: NEW_SLIDER_FAIL,
       payload: error.response?.data.message,
     });
   }

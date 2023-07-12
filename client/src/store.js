@@ -19,13 +19,21 @@ import {
   brandReducer,
   brandDetailsReducer,
 } from "./reducer/brandReducer";
+import {
+  newSliderReducer,
+  sliderDetailsReducer,
+  sliderReducer,
+} from "./reducer/sliderReducer";
 const reducer = combineReducers({
   products: productReducer,
   brands: brandReducer,
+  sliders: sliderReducer,
   productDetails: productDetailsReducer,
   brandDetails: brandDetailsReducer,
+  sliderDetails: sliderDetailsReducer,
   newProduct: newProductReducer,
   newBrand: newBrandReducer,
+  newSlider: newSliderReducer,
   user: userReducer,
 });
 let initialState = {};

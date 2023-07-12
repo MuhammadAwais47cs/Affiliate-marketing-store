@@ -1,9 +1,9 @@
 export const uploadImage = async (image, upload_preset) => {
-  console.log("image :>> ", image[0]);
+  console.log("image :>> ", image);
   const cloudinaryApi =
     "https://api.cloudinary.com/v1_1/dicm4zjvb/image/upload";
   const formData = new FormData();
-  formData.append("file", image[0]);
+  formData.append("file", image);
   formData.append("upload_preset", upload_preset);
   formData.append("cloud_name", "dicm4zjvb");
   let imageUrl = "";

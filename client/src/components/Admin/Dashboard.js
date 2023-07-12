@@ -12,6 +12,7 @@ import { navigationItems } from "./data.js";
 import Products from "./DataTables/Products.js";
 import Brands from "./DataTables/Brands.js";
 import Categories from "./DataTables/Categories.js";
+import AddSlider from "./AddSlider.js";
 // import { CiMenuBurger } from "react-icons/ci";
 const Dashboard = () => {
   const [isMenuActive, setMenuActive] = useState(false);
@@ -154,7 +155,9 @@ const Dashboard = () => {
               <h2> {whichComponent.replace("Add", "")}</h2>
               <button
                 class="btn btn-danger rounded-pill"
-                onClick={() => setSwitchComponent(whichComponent)}
+                onClick={() =>
+                  setWhichComponent(whichComponent.replace("Add", ""))
+                }
               >
                 {whichComponent}
               </button>
@@ -166,8 +169,16 @@ const Dashboard = () => {
                     return <Brands />;
                   case "Add Product":
                     return <Products />;
+                  case "Add Slider":
+                    return <AddSlider />;
                   case "Add Category":
                     return <Categories />;
+                  case " Brand":
+                    return <AddBrand />;
+                  case " Product":
+                    return <AddProduct />;
+                  case " Category":
+                    return <AddCategory />;
 
                   default:
                     return null;
@@ -177,6 +188,8 @@ const Dashboard = () => {
               (() => {
                 switch (switchComponent) {
                   case "Add Brand":
+                    return <AddBrand />;
+                  case " Brand":
                     return <AddBrand />;
                   case "Add Product":
                     return <AddProduct />;
