@@ -4,8 +4,11 @@ import "./index.css";
 import { baseurl } from "../../../baseurl.js";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { deleteRow } from "./data";
 function Products() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -49,6 +52,19 @@ function Products() {
         value: products?.length,
       },
     ],
+  };
+  const actions = (cell, row) => {
+    // console.log("row :>> ", row);
+    return (
+      <>
+        <button
+          className="btn btn-sm btn-danger rounded-pill fs-6 mx-3 "
+          onClick={(cell) => deleteRow(row, "brand")}
+        >
+          Delete
+        </button>
+      </>
+    );
   };
   const cellEditProp = {
     mode: "click",
@@ -95,7 +111,7 @@ function Products() {
         <TableHeaderColumn dataField="popular" width="10%">
           Popular
         </TableHeaderColumn>
-        <TableHeaderColumn width="20%" dataField="COUNTRY">
+        <TableHeaderColumn width="20%" dataFormat={actions} dataField="COUNTRY">
           Actions
         </TableHeaderColumn>
       </BootstrapTable>

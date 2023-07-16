@@ -4,16 +4,35 @@ import "./index.css";
 import { baseurl } from "../../../baseurl.js";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { deleteRow } from "./data";
+import Loader from "../../layout/Loader/Loader";
+
 function Brands() {
   const [brands, setBrands] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
     getAllBrands();
   }, []);
   const getAllBrands = async () => {
+    setisLoading(true);
     const link = `${baseurl}/api/v1/brands`;
     const { data } = await axios.get(link);
     let brands = data?.brands;
     setBrands(brands);
+    setisLoading(false);
+  };
+  const actions = (cell, row) => {
+    // console.log("row :>> ", row);
+    return (
+      <>
+        <button
+          className="btn btn-sm btn-danger rounded-pill fs-6 mx-3 "
+          onClick={(cell) => deleteRow(row, "brand")}
+        >
+          Delete
+        </button>
+      </>
+    );
   };
 
   const options = {
@@ -58,23 +77,26 @@ function Brands() {
   };
   return (
     <>
-      <BootstrapTable
-        data={brands}
-        striped
-        pagination
-        hover
-        // cellEdit={cellEditProp}
-        search
-        tableHeaderClass="rpr_header"
-        tableBodyClass="rpr_body"
-        containerClass="rpr_container"
-        options={options}
-      >
-        <TableHeaderColumn width="20%" isKey={true} dataField="name">
-          Name
-        </TableHeaderColumn>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <BootstrapTable
+          data={brands}
+          striped
+          pagination
+          hover
+          // cellEdit={cellEditProp}
+          search
+          tableHeaderClass="rpr_header"
+          tableBodyClass="rpr_body"
+          containerClass="rpr_container"
+          options={options}
+        >
+          <TableHeaderColumn width="20%" isKey={true} dataField="name">
+            Name
+          </TableHeaderColumn>
 
-        {/*  <TableHeaderColumn width="15%" dataField="category">
+          {/*  <TableHeaderColumn width="15%" dataField="category">
           Category
         </TableHeaderColumn>
 
@@ -85,17 +107,23 @@ function Brands() {
           Link
           </TableHeaderColumn>
         */}
-        <TableHeaderColumn width="10%" dataField="published">
-          Published
-        </TableHeaderColumn>
+          <TableHeaderColumn width="10%" dataField="published">
+            Published
+          </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="popular" width="10%">
-          Popular
-        </TableHeaderColumn>
-        <TableHeaderColumn width="20%" dataField="COUNTRY">
-          Actions
-        </TableHeaderColumn>
-      </BootstrapTable>
+          <TableHeaderColumn dataField="popular" width="10%">
+            Popular
+          </TableHeaderColumn>
+          <TableHeaderColumn
+            width="20%"
+            dataAlign="right"
+            dataFormat={actions}
+            dataField="COUNTRY"
+          >
+            Actions
+          </TableHeaderColumn>
+        </BootstrapTable>
+      )}
     </>
   );
 }

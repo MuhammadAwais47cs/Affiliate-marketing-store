@@ -43,9 +43,9 @@ function Home() {
       ) : (
         <>
           <MetaData title={"Ecommerce"} />
-          <div className="container-fluid mt-5 mx-md-5 ">
+          <div className="container-fluid mt-5 ">
             <div className="d-flex flex-row pt-5 px-md-5">
-              <div className="col-xl-9 col-lg-12">
+              <div className=" col-lg-12">
                 <div
                   id="carouselExample"
                   className="carousel slide pointer-event"
@@ -89,26 +89,22 @@ function Home() {
                   </button>
                 </div>
               </div>
-              <div className="col-xl-3 col-lg-0 carousel-item-right ms-1">
-                <img
-                  src={
-                    "https://fatcoupon.com/_next/image?url=https%3A%2F%2Fd3itvsmwj0r86k.cloudfront.net%2Fimages%2F6935fd0e-7448-4ee6-b033-d31f895b610d.webp&w=1920&q=75"
-                  }
-                  className=""
-                  alt=""
-                />
-                <img
-                  src={
-                    "https://fatcoupon.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F1.3eacb62b.png&w=1920&q=100"
-                  }
-                  className="pt-2"
-                  alt=""
-                />
-              </div>
             </div>
           </div>
 
           <div id="" className="mt-5  ">
+            <div className="bg-white shadow container">
+              <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
+                {brands &&
+                  brands.map((brand) =>
+                    brand.published && brand.popular ? (
+                      <Product key={brand._id} product={brand} />
+                    ) : (
+                      ""
+                    )
+                  )}
+              </div>
+            </div>
             <div className="mx-5   px-auto">
               <div className="row ustify-content-center    ">
                 <div className="col-11 h1 gridHeading text-warning gridHeading  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
@@ -192,7 +188,11 @@ function Home() {
                                     width="50"
                                     height="75"
                                   />
-                                  <h5 class="w-100 overflow-x-auto text-break my-1   text-center text-truncate text-break py-1">
+                                  <h5
+                                    class="    text-center text-truncate  py-1"
+                                    style={{ maxWidth: "5rem" }}
+                                    title={product?.name}
+                                  >
                                     {product?.name}
                                   </h5>
                                 </div>
@@ -227,8 +227,8 @@ function Home() {
               <div className="row justify-content-center ">
                 {categories &&
                   categories.map(({ id, label }) => (
-                    <div className="col-md-4 py-2" key={id}>
-                      <div class="card border-0 shadow rounded-4 py-2 bg-info bg-opacity-25 mb-1">
+                    <div className="col-md-3 py-2" key={id}>
+                      <div class="card border-0 shadow rounded-2 py-2 bg-success bg-opacity-25 mb-1">
                         <div class="row  g-0">
                           <div class="col-4 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
                             <FaPlaneDeparture />

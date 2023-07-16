@@ -32,20 +32,25 @@ exports.getProductDetails = tryCatchAsyncError(async (req, res, next) => {
 exports.getAllProducts = tryCatchAsyncError(async (req, res, next) => {
   const resultPerPage = 1000;
   const brandId = req.query.id;
-  console.log("req.query, req.query.id :>> ", brandId, req.query, req.query.id);
+  console.log("brandId , req.query.id :>> ", brandId, req.query, req.query.id);
   // const productsCount = await Product.countDocuments({ relatedBrand: brandId });
+  let apiFeatures = "";
+  if (brandId) {
+    apiFeatures = new ApiFeatures(
+      Product.find({ relatedBrand: brandId }),
+      req.query
+    )
+      .search()
+      .pagination(resultPerPage);
+  } else {
+    apiFeatures = new ApiFeatures(Product.find(), req.query)
+      .search()
+      .pagination(resultPerPage);
+    // .filter()
+  }
 
-  // const apiFeatures = new ApiFeatures(
-  //   Product.find({ relatedBrand: brandId }),
-  //   req.query
-  // )
-  //   .search()
-  //   .pagination(resultPerPage);
   const productsCount = await Product.countDocuments();
-  const apiFeatures = new ApiFeatures(Product.find(), req.query)
-    .search()
-    .pagination(resultPerPage);
-  // .filter()
+ 
 
   const result = await apiFeatures.query;
 

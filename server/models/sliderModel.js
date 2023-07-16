@@ -1,15 +1,17 @@
 const mongoose = require("mongoose");
 const sliderSchema = mongoose.Schema({
-  images: {
-    public_id: {
-      type: String,
-      required: true,
+  images: [
+    {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
     },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
+  ],
 });
 
-module.exports = mongoose.model("Brand", sliderSchema);
+module.exports = mongoose.model("Slider", sliderSchema);

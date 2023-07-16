@@ -11,34 +11,8 @@ const AddSlider = () => {
   const alert = useAlert();
 
   const { loading, error, success } = useSelector((state) => state?.newSlider);
-  console.log(
-    "useSelector((state)=>state) :>> ",
-    useSelector((state) => state)
-  );
-  const [brand, setBrand] = useState({
-    name: "",
-    sName: "",
-    link: "",
-    description: "",
-    relatedBrand: "",
-    category: "",
-    language: "",
-    Published: "",
-    Popular: "",
-    other: "",
-  });
-  const [checkboxes, setCheckboxes] = useState([
-    { id: 1, label: "Published", isChecked: false },
-    { id: 2, label: "Popular", isChecked: false },
-    { id: 3, label: "Other", isChecked: false },
-  ]);
-  const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState([]);
-  const [relatedBrands, setRelatedBrands] = useState([]);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-
-  // const categories = ["Nike", "Adidas", "Dell", "Hp"];
 
   useEffect(() => {
     if (error) {
@@ -47,37 +21,15 @@ const AddSlider = () => {
     }
 
     if (success) {
-      alert.success("Brand Created Successfully");
+      alert.success("Slider Created Successfully");
       dispatch({ type: NEW_SLIDER_RESET });
     }
   }, [dispatch, alert, error, success]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, sName, link, relatedBrand, category, language, description } =
-      brand;
-
-    const myForm = new FormData();
-    myForm.set("name", name);
-    myForm.set("sName", sName);
-    myForm.set("link", link);
-    myForm.set("relatedBrand", relatedBrand);
-    myForm.set("language", language);
-    myForm.set("description", description);
 
     dispatch(createSlider(images));
-  };
-  const handleCheckboxChange = (id) => {
-    const updatedCheckboxes = checkboxes.map((checkbox) => {
-      if (checkbox.id === id) {
-        return {
-          ...checkbox,
-          isChecked: !checkbox.isChecked,
-        };
-      }
-      return checkbox;
-    });
-    setCheckboxes(updatedCheckboxes);
   };
 
   const createProductImagesChange = (e) => {
@@ -102,7 +54,7 @@ const AddSlider = () => {
 
   return (
     <Fragment>
-      <MetaData title="Create Brand" />
+      <MetaData title="Create Slider" />
       <div className="dashboard">
         <div className=" ">
           {loading ? (

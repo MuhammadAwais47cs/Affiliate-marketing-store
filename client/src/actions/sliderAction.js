@@ -89,13 +89,12 @@ export const createSlider = (images) => async (dispatch) => {
       images.map(async (file) => await uploadImage(file, "kcfbvaww"))
     );
     console.log("imagesUrls :>> ", imagesUrls);
-    // const image = await uploadImage(images[0], "kcfbvaww");
-    // console.log(image);
-    return;
-    let brand = "";
-    brand = {
-      ...brand,
-      // images: image,
+    
+   
+    let slider = "";
+    slider = {
+      ...slider,
+      images: imagesUrls,
     };
 
     const config = {
@@ -103,8 +102,8 @@ export const createSlider = (images) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${baseurl}/api/v1/brand/new`,
-      brand,
+      `${baseurl}/api/v1/slider/new`,
+      slider,
       config
     );
 
