@@ -10,11 +10,11 @@ import { useLocation } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { alphabet } from "./data";
-function Brands() {
+function Brands({ withCate }) {
   const params = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { keyword } = params;
+  const { keyword, id } = params;
   const { state } = location;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,7 +32,9 @@ function Brands() {
 
   useEffect(() => {
     if (error) return alert.error(error);
-    dispatch(getBrand());
+    withCate
+      ? dispatch(getBrand("", "", "", "", "", id))
+      : dispatch(getBrand());
   }, [dispatch, keyword, currentPage, price, state, error]);
   return (
     <>

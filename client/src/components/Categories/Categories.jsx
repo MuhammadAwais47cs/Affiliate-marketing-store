@@ -12,23 +12,21 @@ import axios from "axios";
 import { baseurl } from "../../baseurl";
 
 import Loader from "../layout/Loader/Loader";
-function Categories() {
-  const params = useParams();
+function Categories({ withId }) {
+  // alert(withId);
+
+  const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { keyword } = params;
   const { state } = location;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
 
   const noProduct = { name: "No Product Found" };
 
-  // const { loading, error, products, resultPerPage, productsCount } =
-  // useSelector((state) => state.products);
-  const { loading, error, brands, resultPerPage, brandsCount } = useSelector(
-    (state) => state.brands
-  );
   const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [brandOrCate, setBrandOrCate] = useState("categories");
   const [isloading, setLoading] = useState(true);
 
   const setCurrentPageNo = (e) => {
@@ -43,11 +41,17 @@ function Categories() {
     setCategories(categories);
     setLoading(false);
   };
+  const getAllBrands = async () => {
+    const link = `${baseurl}/api/v1/brands/${id}`;
+    const { data } = await axios.get(link);
+    let brands = data?.brands?.map(({ _id, name }) => {
+      return { id: _id, label: name };
+    });
+    setBrands(brands);
+  };
 
   useEffect(() => {
-    if (error) return alert.error(error);
-    // dispatch(getProduct(keyword, currentPage, price, state));
-    getAllCategories();
+    withId ? getAllBrands() : getAllCategories();
   }, []);
   return (
     <>
@@ -55,7 +59,9 @@ function Categories() {
         <div className="productsPage pt-5 mt-5">
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           {}
-          <h2 className="productsHeading fs-3 fw-3">All Category</h2>
+          <h2 className="productsHeading fs-3 fw-3">
+            {brandOrCate === "brand" ? "names" : "All Category"}
+          </h2>
           {isloading ? (
             <Loader />
           ) : (
@@ -63,7 +69,10 @@ function Categories() {
               {categories &&
                 categories.map(({ id, label }) => (
                   <div className="col-md-4" key={id}>
-                    <div class="card border-0 shadow rounded-4 mb-3 w-75">
+                    <Link
+                      to={`/categories/brands/${id}`}
+                      class="card border-0 shadow rounded-4 mb-3 w-75"
+                    >
                       <div class="row  g-0">
                         <div class="col-4 my-auto d-flex justify-content-center   ">
                           <svg
@@ -93,7 +102,7 @@ function Categories() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
 
@@ -110,7 +119,7 @@ function Categories() {
             </div>
           )}
 
-          {resultPerPage < brandsCount && brands.lenght > 0 && (
+          {/*  {resultPerPage < brandsCount && brands.lenght > 0 && (
             <>
               <div className="paginationBox">
                 <Pagination
@@ -129,7 +138,8 @@ function Categories() {
                 />
               </div>
             </>
-          )}
+        )}
+      */}
         </div>
       </>
     </>

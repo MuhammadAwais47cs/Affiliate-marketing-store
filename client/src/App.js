@@ -36,8 +36,22 @@ function App() {
           <Route exact path="/product/:id" element={<ProductDetails />} />
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/brands" element={<Brands />} />
+          <Route
+            exact
+            path="/categories/brands/:id"
+            element={<Brands withCate={true} />}
+          />
           <Route exact path="/brand/:id" element={<BrandDetails />} />
-          <Route exact path="/categories" element={<Categories />} />
+          <Route
+            exact
+            path="/categories"
+            element={<Categories withId={false} />}
+          />
+          <Route
+            exact
+            path="/categories/:id"
+            element={<Categories withId={true} />}
+          />
           <Route path="/products/:keyword" element={<Products />} />
           <Route exact path="/ContactUs" element={<ContactUs />} />
           <Route exact path="/AboutUs" element={<AboutUs />} />

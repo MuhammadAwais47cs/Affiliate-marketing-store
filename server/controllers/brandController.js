@@ -55,20 +55,24 @@ exports.getBrandDetails = tryCatchAsyncError(async (req, res, next) => {
 });
 exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   // return next(new ErrorHandler('template error'))
+  const { id } = req.params;
   const resultPerPage = 100;
   const brandsCount = await Brand.countDocuments();
-  const apiFeatures = new ApiFeatures(Brand.find(), req.query)
-    .search()
-    .pagination(resultPerPage);
-  // .filter()
+  let apiFeatures = "";
+  console.log("id :>> ", id);
+  if (id) {
+    apiFeatures = new ApiFeatures(Brand.find({ category: id }), req.query)
+      .search()
+      .pagination(resultPerPage);
+  } else {
+    apiFeatures = new ApiFeatures(Brand.find(), req.query)
+      .search()
+      .pagination(resultPerPage);
+    // .filter()
+  }
 
   const result = await apiFeatures.query;
-
-  const key = "name";
-  // const brands = [
-  //   ...new Map(filteredResult?.map((item) => [item[key], item])).values(),
-  // ];
-
+  
   if (!result) {
     return next(new ErrorHandler(`Brand not found`, 404));
   }
