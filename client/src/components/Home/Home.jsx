@@ -13,8 +13,11 @@ import { getBrand } from "../../actions/brandAction";
 import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import banner3 from "./Asset/banner3.png";
-import { categories } from "./data";
+// import { categories } from "./data";
 import Coupon from "./components/Coupon";
+import { baseurl } from "../../baseurl";
+import axios from "axios";
+
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,14 +26,23 @@ function Home() {
   );
   const { brands, brandsCount } = useSelector((state) => state.brands);
   const [modalData, setmodalData] = useState("");
+  const [categories, setCategories] = useState([]);
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   useEffect(() => {
     if (error) return alert.error(error);
-
+    getAllCategories()
     dispatch(getProduct());
     dispatch(getBrand());
   }, [dispatch, error]);
-
+  const getAllCategories = async () => {
+    const link = `${baseurl}/api/v1/categories`;
+    const { data } = await axios.get(link);
+    let categories = data.categories.map(({ _id, label }) => {
+      return { id: _id, label };
+    });
+    setCategories(categories);
+  };
   const modalToggle = (product) => {
     setmodalData(product);
     setIsOpenModal(!isOpenModal);
@@ -94,6 +106,9 @@ function Home() {
 
           <div id="" className="mt-5  ">
             <div className="bg-white shadow container">
+              <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">
+                Top Brands
+              </p>
               <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
                 {brands &&
                   brands.map((brand) =>
@@ -226,9 +241,9 @@ function Home() {
               </div>
               <div className="row justify-content-center ">
                 {categories &&
-                  categories.map(({ id, label }) => (
+                  categories.slice(0, 18).map(({ id, label }) => (
                     <div className="col-md-3 py-2" key={id}>
-                      <div class="card border-0 shadow rounded-2 py-2 bg-success bg-opacity-25 mb-1">
+                      <Link to={`/categories/brands/${id}`} class="card border-0 shadow rounded-2 py-2 bg-success bg-opacity-25 mb-1">
                         <div class="row  g-0">
                           <div class="col-4 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
                             <FaPlaneDeparture />
@@ -239,7 +254,7 @@ function Home() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                   ))}
               </div>
@@ -284,6 +299,9 @@ function Home() {
             </Modal>
           </div>
           <div className="bg-white shadow container">
+            <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">
+              Top Categories
+            </p>
             <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
               {brands &&
                 brands.map((brand) =>
