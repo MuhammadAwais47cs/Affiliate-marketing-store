@@ -109,16 +109,14 @@ function Home() {
                 Top Brands
               </p>
               <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
-                <Slider {...multiItems}>
-                  {brands &&
-                    brands.map((brand) =>
-                      brand.published && brand.popular ? (
-                        <Product key={brand._id} product={brand} />
-                      ) : (
-                        ""
-                      )
-                    )}
-                </Slider>
+                {brands &&
+                  brands.map((brand) =>
+                    brand.published && brand.popular ? (
+                      <Product key={brand._id} product={brand} />
+                    ) : (
+                      ""
+                    )
+                  )}
               </div>
             </div>
             <div className="mx-5   px-auto">
