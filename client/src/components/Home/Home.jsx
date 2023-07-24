@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../layout/Loader/Loader";
 import Product from "./Product.jsx";
+import Slider from "react-slick";
 import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
-import { FaCar, FaPlaneDeparture } from "react-icons/fa";
+import { FaPlaneDeparture } from "react-icons/fa";
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,11 +13,19 @@ import { getProduct } from "../../actions/productAction.js";
 import { getBrand } from "../../actions/brandAction";
 import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
-import banner3 from "./Asset/banner3.png";
-// import { categories } from "./data";
 import Coupon from "./components/Coupon";
 import { baseurl } from "../../baseurl";
 import axios from "axios";
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return <div className={className} onClick={onClick} />;
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return <div className={className} onClick={onClick} />;
+}
 
 function Home() {
   const navigate = useNavigate();
@@ -31,7 +40,7 @@ function Home() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   useEffect(() => {
     if (error) return alert.error(error);
-    getAllCategories()
+    getAllCategories();
     dispatch(getProduct());
     dispatch(getBrand());
   }, [dispatch, error]);
@@ -47,6 +56,27 @@ function Home() {
     setmodalData(product);
     setIsOpenModal(!isOpenModal);
   };
+  const settings = {
+    dots: true,
+    infinite: true,
+    fade: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    // speed: 500,
+    pauseOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+  const multiItems = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   return (
     <>
@@ -57,49 +87,18 @@ function Home() {
           <MetaData title={"Ecommerce"} />
           <div className="container-fluid mt-5 ">
             <div className="d-flex flex-row pt-5 px-md-5">
-              <div className=" col-lg-12">
-                <div
-                  id="carouselExample"
-                  className="carousel slide pointer-event"
-                >
-                  <div className="carousel-inner">
-                    <div className="carousel-item active">
-                      {/*  <img src='https://images.priceoye.pk/pakistan-priceoye-slider-hwg39.jpg' width="1600px"/>  */}
-                      <img src={banner1} />
-                    </div>
-
-                    <div className="carousel-item">
-                      <img src={banner2} />
-                    </div>
-                    <div className="carousel-item">
-                      <img src={banner3} />
-                    </div>
+              <div className="col-12">
+                <Slider {...settings}>
+                  <div>
+                    <img src={banner1} alt="Slider" />{" "}
                   </div>
-                  <button
-                    className="carousel-control-prev "
-                    type="button"
-                    data-bs-target="#carouselExample"
-                    data-bs-slide="prev"
-                  >
-                    <span
-                      className="carousel-control-prev-icon bg-dark"
-                      aria-hidden="true"
-                    ></span>
-                    <span className="visually-hidden">Previous</span>
-                  </button>
-                  <button
-                    className="carousel-control-next"
-                    type="button"
-                    data-bs-target="#carouselExample"
-                    data-bs-slide="next"
-                  >
-                    <span
-                      className="carousel-control-next-icon bg-dark"
-                      aria-hidden="true"
-                    ></span>
-                    <span className="visually-hidden">Next</span>
-                  </button>
-                </div>
+                  <div>
+                    <img src={banner2} alt="Slider" />{" "}
+                  </div>
+                  <div>
+                    <img src={banner1} alt="Slider" />{" "}
+                  </div>
+                </Slider>
               </div>
             </div>
           </div>
@@ -110,14 +109,16 @@ function Home() {
                 Top Brands
               </p>
               <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
-                {brands &&
-                  brands.map((brand) =>
-                    brand.published && brand.popular ? (
-                      <Product key={brand._id} product={brand} />
-                    ) : (
-                      ""
-                    )
-                  )}
+                <Slider {...multiItems}>
+                  {brands &&
+                    brands.map((brand) =>
+                      brand.published && brand.popular ? (
+                        <Product key={brand._id} product={brand} />
+                      ) : (
+                        ""
+                      )
+                    )}
+                </Slider>
               </div>
             </div>
             <div className="mx-5   px-auto">
@@ -243,7 +244,10 @@ function Home() {
                 {categories &&
                   categories.slice(0, 18).map(({ id, label }) => (
                     <div className="col-md-3 py-2" key={id}>
-                      <Link to={`/categories/brands/${id}`} class="card border-0 shadow rounded-2 py-2 bg-success bg-opacity-25 mb-1">
+                      <Link
+                        to={`/categories/brands/${id}`}
+                        class="card border-0 shadow rounded-2 py-2 bg-success bg-opacity-25 mb-1"
+                      >
                         <div class="row  g-0">
                           <div class="col-4 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
                             <FaPlaneDeparture />
