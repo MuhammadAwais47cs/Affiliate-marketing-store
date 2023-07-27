@@ -52,3 +52,15 @@ exports.getAllSliders = tryCatchAsyncError(async (req, res, next) => {
     .status(200)
     .json({ success: true, sliders: result, slidersCount, resultPerPage });
 });
+// delete Slider by Id
+exports.deleteSlider = tryCatchAsyncError(async (req, res, next) => {
+  const slider = await Slider.findById(req.params.id);
+  if (!slider) {
+    return next(new ErrorHandler(`Slider not found`, 404));
+  }
+  await slider.remove();
+  return res.status(200).json({
+    success: true,
+    message: "Slider deleted successfully",
+  });
+});

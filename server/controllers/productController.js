@@ -61,3 +61,16 @@ exports.getAllProducts = tryCatchAsyncError(async (req, res, next) => {
     .status(200)
     .json({ success: true, products: result, productsCount, resultPerPage });
 });
+
+// delete Product by Id
+exports.deleteProduct = tryCatchAsyncError(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) {
+    return next(new ErrorHandler(`Product not found`, 404));
+  }
+  await product.remove();
+  return res.status(200).json({
+    success: true,
+    message: "Product deleted successfully",
+  });
+});

@@ -5,31 +5,6 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const cloudinary = require("cloudinary");
 
 // // Create brand
-exports.deleteBrand = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.params :>> ", req.params.id);
-  const Brand = await Brand.findById(req.params.id);
-
-  if (!Brand) {
-    return next(new ErrorHandler("Product not found", 404));
-  }
-
-  // Deleting Images From Cloudinary
-  // for (let i = 0; i < Brand.images.length; i++) {
-  //   await cloudinary.v2.uploader.destroy(Brand.images[i].public_id);
-  // }
-
-  await Brand.remove();
-
-  res.status(200).json({
-    success: true,
-    message: "Product Delete Successfully",
-  });
-  return res.status(201).json({
-    success: true,
-    message: "Brand created successfully",
-    brand,
-  });
-});
 exports.createBrand = tryCatchAsyncError(async (req, res, next) => {
   console.log("req.body :>> ", req.body);
   const brand = await Brand.create(req.body);
@@ -81,3 +56,18 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
     .status(200)
     .json({ success: true, brands: result, brandsCount, resultPerPage });
 });
+
+// delete Brand by Id 
+exports.deleteBrand = tryCatchAsyncError(async (req, res, next) => {
+  const brand = await Brand.findById(req.params.id);
+  if (!brand) {
+    return next(new ErrorHandler(`Brand not found`, 404));
+  }
+  await brand.remove();
+  res.status(200).json({
+    success: true,
+    message: "Brand Delete Successfully",
+  });
+});
+
+
