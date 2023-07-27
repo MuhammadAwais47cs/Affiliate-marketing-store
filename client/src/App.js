@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import Header from "./components/layout/header/header.js";
 import Footer from "./components/layout/footer/Footer.js";
@@ -21,6 +26,18 @@ import store from "./store";
 import Dashboard from "./components/Admin/Dashboard";
 import Sidebar from "./components/Admin/Sidebar";
 import Categories from "./components/Categories/Categories";
+
+// ScrollToTop component to scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   const currentPath = window.location.pathname;
   useEffect(() => {
@@ -30,6 +47,7 @@ function App() {
   return (
     <>
       <Router>
+        <ScrollToTop />
         {user === "admin" && currentPath === "/admin" ? "" : <Header />}
         <Routes>
           <Route exact path="/" element={<Home />} />
