@@ -4,7 +4,7 @@ import "./index.css";
 import { baseurl } from "../../../baseurl.js";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import { deleteRow } from "./data";
+
 function Products() {
   const [products, setProducts] = useState([]);
   const [isLoading, setisLoading] = useState(false);
@@ -52,6 +52,28 @@ function Products() {
         value: products?.length,
       },
     ],
+  };
+  const deleteRow = async (row, type) => {
+    // first confirm the user to delete the row
+    const isDelete = window.confirm(
+      "Are you sure to delete this Coupon? Or Product"
+    );
+    if (!isDelete) return;
+    setisLoading(true);
+    const { _id: id } = row;
+    const link = `${baseurl}/api/v1/product/${id}`;
+    axios
+      .delete(link)
+      .then(({ data }) => {
+        data?.success &&
+          setProducts(products.filter((product) => product._id !== id));
+        setisLoading(false);
+      })
+      .catch((error) => {
+        alert.error(error);
+
+        setisLoading(false);
+      });
   };
   const actions = (cell, row) => {
     // console.log("row :>> ", row);
@@ -111,7 +133,12 @@ function Products() {
         <TableHeaderColumn dataField="popular" width="10%">
           Popular
         </TableHeaderColumn>
-        <TableHeaderColumn width="20%" dataFormat={actions} dataField="COUNTRY">
+        <TableHeaderColumn
+          width="20%"
+          dataAlign="right"
+          dataFormat={actions}
+          dataField="COUNTRY"
+        >
           Actions
         </TableHeaderColumn>
       </BootstrapTable>

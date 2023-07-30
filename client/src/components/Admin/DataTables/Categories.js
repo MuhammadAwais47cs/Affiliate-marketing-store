@@ -4,8 +4,12 @@ import "./index.css";
 import { baseurl } from "../../../baseurl.js";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import Loader from "../../layout/Loader/Loader";
+import { useAlert } from "react-alert";
 function Categories() {
+  const alert = useAlert();
   const [Categories, setCategories] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
     getAllCategories();
   }, []);
@@ -15,6 +19,40 @@ function Categories() {
     console.log("data :>> ", data, data.categories);
     let Categories = data?.categories;
     setCategories(Categories);
+  };
+  const actions = (cell, row) => {
+    // console.log("row :>> ", row);
+    return (
+      <>
+        <button
+          className="btn btn-sm btn-danger rounded-pill fs-6 mx-3 "
+          disabled={isLoading}
+          onClick={(cell) => deleteRow(row, "Category")}
+        >
+          Delete
+        </button>
+      </>
+    );
+  };
+  const deleteRow = async (row, type) => {
+    // confirm from the user first before deleting
+    const isDelete = window.confirm(`Are you sure to delete this ${type}?`);
+    if (!isDelete) return;
+    // delete the row
+    setisLoading(true);
+    const { _id: id } = row;
+    const link = `${baseurl}/api/v1/category/${id}`;
+    axios
+      .delete(link)
+      .then(({ data }) => {
+        data?.success &&
+          setCategories(Categories.filter((category) => category._id !== id));
+        setisLoading(false);
+      })
+      .catch((error) => {
+        alert.error(error);
+        setisLoading(false);
+      });
   };
 
   const options = {
@@ -59,38 +97,35 @@ function Categories() {
   };
   return (
     <>
-      <BootstrapTable
-        data={Categories}
-        striped
-        pagination
-        hover
-        // cellEdit={cellEditProp}
-        search
-        tableHeaderClass="rpr_header"
-        tableBodyClass="rpr_body"
-        containerClass="rpr_container"
-        options={options}
-      >
-        <TableHeaderColumn width="60%" isKey={true} dataField="label">
-          Name
-        </TableHeaderColumn>
-
-        {/*  <TableHeaderColumn width="15%" dataField="category">
-          Category
-        </TableHeaderColumn>
-
-        <TableHeaderColumn width="15%" dataField="relatedProduct">
-          Related Product
-        </TableHeaderColumn>
-        <TableHeaderColumn width="20%" dataField="link">
-          Link
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <BootstrapTable
+          data={Categories}
+          striped
+          pagination
+          hover
+          // cellEdit={cellEditProp}
+          search
+          tableHeaderClass="rpr_header"
+          tableBodyClass="rpr_body"
+          containerClass="rpr_container"
+          options={options}
+        >
+          <TableHeaderColumn width="60%" isKey={true} dataField="label">
+            Name
           </TableHeaderColumn>
-        */}
 
-        <TableHeaderColumn width="40%" dataField="COUNTRY">
-          Actions
-        </TableHeaderColumn>
-      </BootstrapTable>
+          <TableHeaderColumn
+            width="40%"
+            dataAlign="right"
+            dataFormat={actions}
+            dataField="COUNTRY"
+          >
+            Actions
+          </TableHeaderColumn>
+        </BootstrapTable>
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-export const alphabet = [
+export const alphabets = [
   "A",
   "B",
   "C",

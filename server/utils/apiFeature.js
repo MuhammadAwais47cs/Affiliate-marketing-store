@@ -24,6 +24,20 @@ class ApiFeatures {
     this.query = this.query.find({ ...keyword });
     return this;
   }
+  // get brands whose name start with alphabet ( capital or small both r possible) )
+  alphabet() {
+    const alphabet = this.queryStr.alphabet
+      ? {
+          name: {
+            $regex: `^${this.queryStr.alphabet}`,
+            $options: "i",
+          },
+        }
+      : {};
+    console.log("this :>> ", alphabet);
+    this.query = this.query.find({ ...alphabet });
+    return this;
+  }
 
   // filter() {
   //   const queryCopy = { ...this.queryStr };

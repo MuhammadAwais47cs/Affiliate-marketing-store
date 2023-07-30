@@ -4,10 +4,11 @@ import "./index.css";
 import { baseurl } from "../../../baseurl.js";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import { deleteRow } from "./data";
 import Loader from "../../layout/Loader/Loader";
+import { useAlert } from "react-alert";
 
 function Brands() {
+  const alert = useAlert();
   const [brands, setBrands] = useState([]);
   const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
@@ -21,13 +22,37 @@ function Brands() {
     setBrands(brands);
     setisLoading(false);
   };
-  const actions = (cell, row) => {
+  const deleteRow = async (row, type) => {
+    console.log("row :>> ", row);
+    // first ask for confirmation from the user
+    const isDelete = window.confirm("Are you sure to delete this brand?");
+    if (!isDelete) return;
+
+    setisLoading(true);
+    const { _id: id } = row;
+    const link = `${baseurl}/api/v1/brand/${id}`;
+    axios
+      .delete(link)
+      .then(({ data }) => {
+        console.log("response :>> ", data, data?.success);
+        data?.success && setBrands(brands.filter((brand) => brand._id !== id));
+        setisLoading(false);
+      })
+      .catch((error) => {
+        console.log("error :>> ", error);
+        alert.error(error);
+
+        setisLoading(false);
+      });
+
     // console.log("row :>> ", row);
+  };
+  const actions = (cell, row) => {
     return (
       <>
         <button
           className="btn btn-sm btn-danger rounded-pill fs-6 mx-3 "
-          onClick={(cell) => deleteRow(row, "brand")}
+          onClick={(cell) => deleteRow(row)}
         >
           Delete
         </button>

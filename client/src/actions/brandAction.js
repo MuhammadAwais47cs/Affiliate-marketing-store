@@ -14,7 +14,14 @@ import {
 } from "../constant/brandConstant";
 import { uploadImage } from "../utils/functions";
 export const getBrand =
-  (keyword = "", currentPage = 1, price = "", state, ratings = 0, id = false) =>
+  (
+    keyword = "",
+    currentPage = 1,
+    price = "",
+    state,
+    alphabet = "",
+    id = false
+  ) =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_BRAND_REQUEST });
@@ -28,6 +35,9 @@ export const getBrand =
       }
       if (id) {
         link = `${baseurl}/api/v1/brands/${id}`;
+      }
+      if (alphabet) {
+        link = `${baseurl}/api/v1/brands?alphabet=${alphabet}`;
       }
       if (state?.category) {
         link = `${baseurl}/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${state?.category}&price[gte]=1000&price[lte]=${price}`;

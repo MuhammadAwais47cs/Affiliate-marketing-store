@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
 import { FaPlaneDeparture } from "react-icons/fa";
+import Carousel, { consts } from "react-elastic-carousel";
+
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,13 +32,10 @@ function SamplePrevArrow(props) {
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, error, products, productsCount } = useSelector(
-    (state) => state.products
-  );
-  const { brands, brandsCount } = useSelector((state) => state.brands);
+  const { loading, error, products } = useSelector((state) => state.products);
+  const { brands } = useSelector((state) => state.brands);
   const [modalData, setmodalData] = useState("");
   const [categories, setCategories] = useState([]);
-
   const [isOpenModal, setIsOpenModal] = useState(false);
   useEffect(() => {
     if (error) return alert.error(error);
@@ -66,17 +65,17 @@ function Home() {
     autoplaySpeed: 2000,
     // speed: 500,
     pauseOnHover: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
   };
-  const multiItems = {
-    dots: true,
-    fade: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+  const breakPoints = [
+    { width: 300, itemsToShow: 1, pagination: false },
+    { width: 550, itemsToShow: 3, itemsToScroll: 2, pagination: false },
+    { width: 850, itemsToShow: 3, pagination: false },
+    { width: 1150, itemsToShow: 4, pagination: false, itemsToScroll: 2 },
+    { width: 1450, itemsToShow: 5, pagination: false },
+    { width: 1750, itemsToShow: 6, pagination: false },
+  ];
 
   return (
     <>
@@ -108,16 +107,20 @@ function Home() {
               <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">
                 Top Brands
               </p>
-              <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
-                {brands &&
-                  brands.map((brand) =>
-                    brand.published && brand.popular ? (
-                      <Product key={brand._id} product={brand} />
-                    ) : (
-                      ""
-                    )
-                  )}
-              </div>
+              {brands && (
+                <Carousel
+                  itemPosition={consts.CENTER}
+                  breakPoints={breakPoints}
+                >
+                  {brands &&
+                    brands.map(
+                      (brand) =>
+                        brand.published && (
+                          <Product key={brand._id} product={brand} />
+                        )
+                    )}
+                </Carousel>
+              )}
             </div>
             <div className="mx-5   px-auto">
               <div className="row ustify-content-center    ">
@@ -187,7 +190,11 @@ function Home() {
                   products.map(
                     (product) =>
                       product.published && (
-                        <div className="col-md-4">
+                        <Link
+                          to=""
+                          className="col-md-4"
+                          onClick={() => modalToggle(product)}
+                        >
                           <div class="card border-0 shadow rounded-3 mb-3">
                             <div class="row  g-0 py-3">
                               <div
@@ -229,7 +236,7 @@ function Home() {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       )
                   )}
               </div>
@@ -304,16 +311,15 @@ function Home() {
             <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">
               Top Categories
             </p>
-            <div className="d-flex flex-row  justify-content-center  overflow-x-scroll  m-5 ">
+            <Carousel itemPosition={consts.CENTER} breakPoints={breakPoints}>
               {brands &&
-                brands.map((brand) =>
-                  brand.published && brand.popular ? (
-                    <Product key={brand._id} product={brand} />
-                  ) : (
-                    ""
-                  )
+                brands.map(
+                  (brand) =>
+                    brand.published && (
+                      <Product key={brand._id} product={brand} />
+                    )
                 )}
-            </div>
+            </Carousel>
           </div>
         </>
       )}

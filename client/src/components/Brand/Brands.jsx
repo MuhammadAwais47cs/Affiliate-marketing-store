@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Brands.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { getProductDetails, getProduct } from "../../actions/productAction";
+import { useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { getBrand } from "../../actions/brandAction";
 import Product from "../Home/Product";
 import { useLocation } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
-import { alphabet } from "./data";
+import { alphabets } from "./data";
 function Brands({ withCate }) {
   const params = useParams();
-  const navigate = useNavigate();
   const location = useLocation();
   const { keyword, id } = params;
   const { state } = location;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+  const [alphabet, setAlphabet] = useState(null);
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(500000);
 
@@ -29,21 +28,31 @@ function Brands({ withCate }) {
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
+  const getBrandByAlphabet = (e, name) => {
+    e.preventDefault();
+    setAlphabet(name);
+    dispatch(getBrand("", "", "", "", name, ""));
+  };
 
   useEffect(() => {
     if (error) return alert.error(error);
     withCate
       ? dispatch(getBrand("", "", "", "", "", id))
       : dispatch(getBrand());
-  }, [dispatch, keyword, currentPage, price, state, error]);
+  }, [dispatch, keyword, currentPage, id, withCate, state, error]);
   return (
     <>
       <>
         <div className="productsPage pt-5 bg-light  ">
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           <div className="container d-flex rounded-4 bg-white shadow px-auto py-2 ">
-            {alphabet.map((name) => (
-              <button className="btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1  ">
+            {alphabets.map((name) => (
+              <button
+                className={`btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1 ${
+                  alphabet === name && "active"
+                }`}
+                onClick={(e) => getBrandByAlphabet(e, name)}
+              >
                 {name}
               </button>
             ))}
@@ -64,9 +73,9 @@ function Brands({ withCate }) {
 
               {brands[0] === undefined && (
                 <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
-                  <h2 className="text-center">No Product Found</h2>
+                  <h2 className="text-center">No Brand Found</h2>
                   <p className="px-4 text-center text-secondary my-3">
-                    Sorry, we couldn't find any products matching your search
+                    Sorry, we couldn't find any Brand matching your search
                     criteria. Please try again with a different search term or
                     refine your filters.
                   </p>

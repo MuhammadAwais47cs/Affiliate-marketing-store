@@ -30,11 +30,10 @@ exports.getBrandDetails = tryCatchAsyncError(async (req, res, next) => {
 });
 exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   // return next(new ErrorHandler('template error'))
-  const { id } = req.params;
+  const { id, alphabet } = req.params;
   const resultPerPage = 100;
   const brandsCount = await Brand.countDocuments();
   let apiFeatures = "";
-  console.log("id :>> ", id);
   if (id) {
     apiFeatures = new ApiFeatures(Brand.find({ category: id }), req.query)
       .search()
@@ -42,6 +41,7 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   } else {
     apiFeatures = new ApiFeatures(Brand.find(), req.query)
       .search()
+      .alphabet()
       .pagination(resultPerPage);
     // .filter()
   }
