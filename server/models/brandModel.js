@@ -32,10 +32,9 @@ const brandSchema = mongoose.Schema({
     type: String,
     // required: [true, "Please Enter product Description"],
   },
-  relatedBrand: {
-    type: String,
-    // required: [true, "Please Enter product Description"],
-  },
+  // relatedBrands array of ids
+  relatedBrand: [{ type: mongoose.Schema.Types.ObjectId, ref: "Brand" }],
+
   category: {
     type: String,
     // required: [true, "Please Enter product Description"],

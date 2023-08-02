@@ -211,6 +211,7 @@ const NewProduct = () => {
                       <Select
                         className="basic-single"
                         classNamePrefix="select"
+                        isMulti
                         onChange={(e) =>
                           setBrand({ ...brand, relatedBrand: e })
                         }
