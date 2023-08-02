@@ -18,6 +18,7 @@ import banner2 from "./Asset/adidas.png";
 import Coupon from "./components/Coupon";
 import { baseurl } from "../../baseurl";
 import axios from "axios";
+import CouponPopUp from "./components/CouponPopUp";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -268,7 +269,14 @@ function Home() {
                   ))}
               </div>
             </div>
-            <Modal show={isOpenModal} size="md" onHide={modalToggle}>
+            {
+              <CouponPopUp
+                modalData={modalData}
+                isOpenModal={isOpenModal}
+                modalToggle={modalToggle}
+              />
+            }
+            {/*  <Modal show={isOpenModal} size="md" onHide={modalToggle}>
               <Modal.Body className="mt-n4   rounded-3">
                 <div class=" p-4  h-75    d-flex flex-column align-items-center ">
                   <img
@@ -305,7 +313,7 @@ function Home() {
                   </Link>
                 </div>
               </Modal.Body>
-            </Modal>
+                  </Modal>*/}
           </div>
           <div className="bg-white shadow container">
             <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">

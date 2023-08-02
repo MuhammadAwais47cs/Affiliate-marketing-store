@@ -1,36 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getBrand, getBrandDetails } from "../../actions/brandAction";
+import { getBrandDetails } from "../../actions/brandAction";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import "./BrandDetails.css";
 import { getProduct } from "../../actions/productAction";
+import ProductCard from "./components/ProductCard";
 function ProductDetails() {
   const { loading, brand, error } = useSelector((state) => state.brandDetails);
   const { products, resultPerPage, productsCount } = useSelector(
     (state) => state.products
   );
-  // const { brand } = useSelector((state) => state.Brands);
-  console.log(
-    "useSelector((state) => state.Brands);  ",
-    useSelector((state) => state.Brands),
-    products
-  );
-  let pushDataArray = [];
-  console.table(products);
-  // if (products) {
-  //   for (let i = 1; i < products.length; i++) {
-  //     if (products[i]?.store !== products[i + 1]?.store) {
-  //       pushDataArray.push({
-  //         ...products[i],
-  //         //
-  //         store: products[i]["store"],
-  //       });
-  //     }
-  //     // console.log("pushDataArray", pushDataArray); // Output: ['ali', 'asad', 'john']
-  //   }
-  // }
+
   const key = "store";
   const arrayUniqueByKey = [
     ...new Map(products?.map((item) => [item[key], item])).values(),
@@ -44,23 +26,11 @@ function ProductDetails() {
     }
 
     dispatch(getBrandDetails(id));
-    // dispatch(getProductDetails(id));
-    // console.log(
-    // "!brand?.name, brand, brand.lenght < 1:>> ",
-    // !brand?._id,
-    // brand,
-    // brand.lenght < 1
-    // );
-    // if (brand?._id) {
-    // let id = brand?._id;
-    console.log(" id if =----------= :>> ", id);
+
     dispatch(getProduct("", "", "", "", "", id));
     // }
   }, [dispatch, id, brand?.name, error, alert]);
 
-  const handleLinkClick = (url) => {
-    window.open(url, "_blank");
-  };
   return (
     <>
       {loading ? (
@@ -100,41 +70,9 @@ function ProductDetails() {
             </div>
           </section>
           <section className=" ">
-            {products?.map(
-              ({ images, description, name, code, expireDate, badge }) => (
-                <>
-                  <div className="d-flex justify-content-center">
-                    <div class="col-md-8 card border-0       mb-3 shadow">
-                      <div class="row  g-0 ">
-                        <div class="col-3 d-flex flex-column align-items-center p-3  ">
-                          <img
-                            src={images?.url}
-                            alt="coupon"
-                            class="bd-placeholder-img img-fluid rounded "
-                            width="100"
-                            height="100"
-                          />
-                        </div>
-                        <div class="col-6">
-                          <div class="card-body">
-                            <h5 class="card-title ">{brand?.name}</h5>
-                            <p class="card-text   ">{description}</p>
-                            <p class="card-text">
-                              <small class="text-body-secondary">
-                                {expireDate}
-                              </small>
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-3 d-flex flex-column justify-content-center align-items-center  ">
-                          <button class="btn btn-success w-75">Get Deal</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )
-            )}
+            {products?.map((product) => (
+              <ProductCard product={product} />
+            ))}
           </section>
         </>
       )}
