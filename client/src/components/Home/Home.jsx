@@ -112,6 +112,8 @@ function Home() {
                 <Carousel
                   itemPosition={consts.CENTER}
                   breakPoints={breakPoints}
+                  enableAutoPlay
+                  autoPlaySpeed={1500}
                 >
                   {brands &&
                     brands.map(

@@ -119,7 +119,7 @@ const NewProduct = () => {
     const link = `${baseurl}/api/v1/brands`;
     const { data } = await axios.get(link);
     let brands = data?.brands?.map(({ _id, name }) => {
-      return { id: _id, label: name };
+      return { id: _id, label: name, value: _id };
     });
     setRelatedBrands(brands);
   };
