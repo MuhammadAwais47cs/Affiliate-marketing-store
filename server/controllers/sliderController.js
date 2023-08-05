@@ -36,18 +36,10 @@ exports.getAllSliders = tryCatchAsyncError(async (req, res, next) => {
     .search()
     .pagination(resultPerPage);
   // .filter()
-
   const result = await apiFeatures.query;
-
-  const key = "name";
-  // const sliders = [
-  //   ...new Map(filteredResult?.map((item) => [item[key], item])).values(),
-  // ];
-
   if (!result) {
     return next(new ErrorHandler(`Slider not found`, 404));
   }
-  // console.log("else sliders :>> ", sliders);
   res
     .status(200)
     .json({ success: true, sliders: result, slidersCount, resultPerPage });

@@ -23,7 +23,7 @@ export const sliderReducer = (state = { sliders: [] }, action) => {
     case ALL_SLIDER_SUCCESS:
       return {
         loading: false,
-        sliders: action.payload.sliders,
+        sliders: action.payload.sliders[0],
         slidersCount: action.payload.slidersCount,
         resultPerPage: action.payload.resultPerPage,
       };

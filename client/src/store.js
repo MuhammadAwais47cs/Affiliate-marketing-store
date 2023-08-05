@@ -8,10 +8,10 @@ import {
   newProductReducer,
 } from "./reducer/productReducer";
 import {
-  allUsersReducer,
-  forgotPasswordReducer,
-  profileReducer,
-  userDetailsReducer,
+  // allUsersReducer,
+  // forgotPasswordReducer,
+  // profileReducer,
+  // userDetailsReducer,
   userReducer,
 } from "./reducer/userReducer";
 import {

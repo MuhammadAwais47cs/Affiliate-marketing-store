@@ -6,13 +6,12 @@ import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
 import { FaPlaneDeparture } from "react-icons/fa";
 import Carousel, { consts } from "react-elastic-carousel";
-
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal } from "react-bootstrap";
 import { getProduct } from "../../actions/productAction.js";
 import { getBrand } from "../../actions/brandAction";
+import { getSlider } from "../../actions/sliderAction";
 import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import Coupon from "./components/Coupon";
@@ -35,6 +34,8 @@ function Home() {
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
   const { brands } = useSelector((state) => state.brands);
+  const { sliders } = useSelector((state) => state.sliders);
+  console.log("sliders :>> ", sliders);
   const [modalData, setmodalData] = useState("");
   const [categories, setCategories] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -43,6 +44,7 @@ function Home() {
     getAllCategories();
     dispatch(getProduct());
     dispatch(getBrand());
+    dispatch(getSlider());
   }, [dispatch, error]);
   const getAllCategories = async () => {
     const link = `${baseurl}/api/v1/categories`;

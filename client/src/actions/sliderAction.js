@@ -13,50 +13,25 @@ import {
   CLEAR_ERROR,
 } from "../constant/sliderConstant";
 import { uploadImage } from "../utils/functions";
-export const getBrand =
-  (
-    keyword = "",
-    currentPage = 1,
-    price = "",
-    state,
-    ratings = 0,
-    proName = ""
-  ) =>
-  async (dispatch) => {
-    try {
-      dispatch({ type: ALL_SLIDER_REQUEST });
-      let link = `${baseurl}/api/v1/brands?keyword=${keyword}&page=${currentPage}&price[gte]=''&price[lte]=''`;
+export const getSlider = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_SLIDER_REQUEST });
+    let link = `${baseurl}/api/v1/slider`;
 
-      //   let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}`;
-      //   let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+    const { data } = await axios.get(link);
 
-      if (state?.category) {
-        link = `${baseurl}/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${state?.category}&price[gte]=1000&price[lte]=${price}`;
-      }
-      if (proName) {
-        link = `${baseurl}/api/v1/products?keyword=${keyword}&name=${proName}`;
-      }
-      if (state?.category) {
-        link = `${baseurl}/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${state?.category}&price[gte]=1000&price[lte]=${price}`;
-      }
-      if (state?.brand) {
-        link = `${baseurl}/api/v1/products?keyword=${keyword}&page=${currentPage}&brand=${state?.brand}&price[gte]=1000&price[lte]=${price}`;
-      }
-
-      const { data } = await axios.get(link);
-
-      console.log("data :>> ", data);
-      dispatch({
-        type: ALL_SLIDER_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: ALL_SLIDER_FAIL,
-        payload: error.response.data.message,
-      });
-    }
-  };
+    console.log("data :>> ", data);
+    dispatch({
+      type: ALL_SLIDER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_SLIDER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 export const getBrandDetails = (id) => async (dispatch) => {
   try {
     console.log("id :>> ", id);
