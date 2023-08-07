@@ -78,12 +78,14 @@ const NewProduct = () => {
     myForm.set("relatedBrand", relatedBrand);
     myForm.set("language", language);
     myForm.set("description", description);
+    // only push the ids of related brands to the array
+    const relatedBrandIds = relatedBrand?.map((brand) => brand?.id);
     const data = {
       name,
       sName,
       link,
       category: category?.id,
-      relatedBrand,
+      relatedBrand: relatedBrandIds,
       language,
       description,
       published: checkboxes[0].isChecked,

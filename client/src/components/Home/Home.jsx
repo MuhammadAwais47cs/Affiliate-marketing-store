@@ -41,10 +41,10 @@ function Home() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   useEffect(() => {
     if (error) return alert.error(error);
+    dispatch(getSlider());
     getAllCategories();
     dispatch(getProduct());
     dispatch(getBrand());
-    dispatch(getSlider());
   }, [dispatch, error]);
   const getAllCategories = async () => {
     const link = `${baseurl}/api/v1/categories`;

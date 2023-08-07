@@ -7,6 +7,8 @@ import Loader from "../layout/Loader/Loader";
 import "./BrandDetails.css";
 import { getProduct } from "../../actions/productAction";
 import ProductCard from "./components/ProductCard";
+import axios from "axios";
+import { baseurl } from "../../baseurl";
 function ProductDetails() {
   const { loading, brand, error } = useSelector((state) => state.brandDetails);
   const { products, resultPerPage, productsCount } = useSelector(
@@ -26,11 +28,20 @@ function ProductDetails() {
     }
 
     dispatch(getBrandDetails(id));
-
     dispatch(getProduct("", "", "", "", "", id));
-    // }
+    // get similar brands by brand.realtedBrand ids array
+    brand?.length > 0 && getSimilarBrands(brand?.relatedBrands);
+    
   }, [dispatch, id, brand?.name, error, alert]);
+  
 
+  const getSimilarBrands = async (relatedBrands) => {
+    console.log("relatedBrands :>> ", relatedBrands);
+    
+    // write a post api to get similar brands by brand.realtedBrand ids array
+     const { data } = await axios.post(`${baseurl}/api/v1/getSimilarBrands`, { relatedBrands }, { headers: { "Content-Type": "application/json" } });
+  console.log("data :>> ", data);
+  }
   return (
     <>
       {loading ? (

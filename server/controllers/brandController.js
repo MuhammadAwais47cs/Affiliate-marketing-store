@@ -70,4 +70,18 @@ exports.deleteBrand = tryCatchAsyncError(async (req, res, next) => {
   });
 });
 
+// get similar brands by brand.relatedbrands with ids array of related brands ids 
+exports.getSimilarBrands = tryCatchAsyncError(async (req, res, next) => {
+  const { ids } = req.body;
+  console.log("ids :>> ", ids);
+  const brands = await Brand.find({ _id: { $in: ids } });
+  if (!brands) {
+    return next(new ErrorHandler(`Brands not found`, 404));
+  }
+  res.status(200).json({
+    success: true,
+    brands,
+  });
+});
+
 
