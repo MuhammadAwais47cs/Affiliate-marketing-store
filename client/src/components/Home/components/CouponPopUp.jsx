@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { Modal, Tooltip } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 // it is a modal component which is used to show the coupon details
 function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
@@ -22,7 +22,6 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
               ? "Voucher Code is :"
               : "Provider is :"}
           </p>
-          {/* when click on the button it will copy the coupon code and show the message code is copied */}
 
           <span
             className="btn btn-outline-info my-1 w-75 text-truncate"
