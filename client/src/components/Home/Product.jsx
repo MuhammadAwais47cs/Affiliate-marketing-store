@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./index.css";
 import { Link } from "react-router-dom";
 import { FaRegShareSquare } from "react-icons/fa";
 
@@ -21,7 +21,7 @@ const Product = ({ product }) => {
       */}
       </div>
 
-      <p className="shareIcon position-absolute top-0 end-0 me-4 text-danger ">
+      <p className="shareIcon position-absolute top-0 end-0 me-md-2 me-lg-4 text-danger ">
         <FaRegShareSquare />
       </p>
     </Link>

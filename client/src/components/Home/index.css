@@ -1,0 +1,238 @@
+.banner {
+  /* background-image: url("../../images/cover.jfif"); */
+  /* background-color: #00b2ff; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vmin;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.carousel-item > img {
+  width: 100vmax;
+  height: 44vmin;
+}
+.carousel-item-right > img {
+  width: 19vmax;
+  /* height: 50vmin; */
+}
+.banner > h1 {
+  margin: 5vmax;
+
+  font: 600 2.5vmax "Roboto";
+}
+
+.banner > p {
+  font: 300 1.4vmax "Lucida Sans";
+}
+.modal-content {
+  top: 10rem;
+}
+
+.sroller {
+  overflow-x: auto;
+}
+
+.sroller::-webkit-scrollbar {
+  width: 0;
+}
+
+.sroller {
+  transform: translate3d(-1740px, 0px, 0px);
+  transition: all 1s ease 0s;
+  width: 5219.99px;
+}
+
+.banner::after {
+  content: "";
+  width: 100vw;
+  height: 76vmin;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0%;
+  left: 0;
+  clip-path: polygon(100% 100%, 0 100%, 100% 100%);
+  max-width: 100%;
+}
+
+.homeHeading {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 1.4vmax;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+  width: 20vmax;
+  padding: 1vmax;
+  margin: 5vmax auto;
+  color: rgb(0, 0, 0, 0.7);
+}
+
+.container {
+  display: flex;
+  margin: 4vmax auto;
+  width: 80vw;
+  /* background-color: rgba(233, 172, 102, 0.745); */
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.landscapeCardImg {
+  width: 5vmax;
+  height: 10vmin;
+  padding: 10px;
+}
+
+.productCard {
+  width: 15vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(48, 48, 48);
+  margin: 1vmax;
+  padding: 1vmax;
+  background-color: rgb(255, 255, 255);
+  transition: all 0.5s;
+  padding-bottom: 0.5vmax;
+  border: #ffffff 0px solid;
+  border-radius: 3%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
+.Coupon {
+  width: 15vmax;
+}
+
+.productCard > img {
+  width: 6vmax;
+  height: 11vmin;
+}
+.category-link > span {
+  font-size: 1.2vmax;
+}
+
+.productCard > div {
+  margin: 0.5vmax;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.productCardSpan {
+  margin: 0.5vmax;
+  font: 300 0.7vmax "Roboto";
+}
+
+.productCard > p {
+  font-family: "Roboto";
+  font-size: 1vmax;
+  margin: 1vmax 0.5vmax;
+  margin-bottom: 0;
+  color: rgb(110, 69, 6);
+}
+
+.productCard > span {
+  margin: 0.5vmax;
+  color: tomato;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1vmax;
+}
+
+.productCard:hover {
+  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+
+  transform: translateY(-1vmax);
+}
+.PromoCode {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.PromoCode > span {
+  background: rgba(247, 190, 190, 0.959);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 600px) {
+  .carousel-item > img {
+    width: 42vmax;
+  }
+  .productCard > p {
+    font-size: 1.8vmax;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .Coupon {
+    width: 20vmax;
+  }
+
+  .Coupon > div > p {
+    font-size: 0.9vmax;
+  }
+
+  .Coupon > div > img {
+    width: 8vmax;
+    height: auto;
+  }
+
+  /* .productCard>img {
+        width: 4vmax;
+        height: 8vmin;
+      */
+  .categoryBar {
+    overflow-y: auto;
+  }
+  .categoryImg > img {
+    width: 8vmax;
+  }
+
+  .productCard > div {
+    margin: 0vmax;
+    display: block;
+  }
+
+  .productCard > span {
+    font-size: 1.5vmax;
+  }
+
+  .productCard {
+    width: 15vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+    margin: 1vmax;
+    padding: 1vmax;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+    border: #ffffff 0px solid;
+    border-radius: 3%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .productCard > img {
+    width: 7vmax;
+    height: 14vmin;
+  }
+  .productCard > div > span {
+    margin: 0 0.5vmax;
+    font: 300 1vmax "Roboto";
+  }
+  .gridHeading {
+    font-size: 16px !important;
+    font-weight: 700;
+  }
+
+  .PromoCode {
+    font-size: 10px;
+  }
+}

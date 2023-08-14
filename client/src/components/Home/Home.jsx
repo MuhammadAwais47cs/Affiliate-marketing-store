@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { FaPlaneDeparture } from "react-icons/fa";
 import Carousel, { consts } from "react-elastic-carousel";
-import "./Home.css";
+import "./index.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
@@ -14,26 +14,16 @@ import { getBrand } from "../../actions/brandAction";
 import { getSlider } from "../../actions/sliderAction";
 import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
-import Coupon from "./components/Coupon";
+import CouponList from "./components/CouponList.jsx";
 import { baseurl } from "../../baseurl";
 import axios from "axios";
 import CouponPopUp from "./components/CouponPopUp";
-
-// function SampleNextArrow(props) {
-//   const { className, style, onClick } = props;
-//   return <div className={className} onClick={onClick} />;
-// }
-
-// function SamplePrevArrow(props) {
-//   const { className, style, onClick } = props;
-//   return <div className={className} onClick={onClick} />;
-// }
 
 function Home() {
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
   const { brands } = useSelector((state) => state.brands);
-  const { sliders } = useSelector((state) => state.sliders);
+  const { sliders } = useSelector((state) => state);
   console.log("sliders :>> ", sliders);
   const [modalData, setmodalData] = useState("");
   const [categories, setCategories] = useState([]);
@@ -41,9 +31,9 @@ function Home() {
   useEffect(() => {
     if (error) return alert.error(error);
     dispatch(getSlider());
-    getAllCategories();
     dispatch(getProduct());
     dispatch(getBrand());
+    getAllCategories();
   }, [dispatch, error]);
   const getAllCategories = async () => {
     const link = `${baseurl}/api/v1/categories`;
@@ -57,6 +47,7 @@ function Home() {
     setmodalData(product);
     setIsOpenModal(!isOpenModal);
   };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -67,11 +58,9 @@ function Home() {
     autoplaySpeed: 2000,
     // speed: 500,
     pauseOnHover: true,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
   };
   const breakPoints = [
-    { width: 300, itemsToShow: 1, pagination: false },
+    { width: 300, itemsToShow: 2, pagination: false },
     { width: 550, itemsToShow: 3, itemsToScroll: 2, pagination: false },
     { width: 850, itemsToShow: 3, pagination: false },
     { width: 1150, itemsToShow: 5, pagination: false, itemsToScroll: 2 },
@@ -126,26 +115,17 @@ function Home() {
                 </Carousel>
               )}
             </div>
-            <div className="mx-5   px-auto">
+            <div className="mx-4    px-auto">
               <div className="row ustify-content-center    ">
                 <div className="col-11 h1 gridHeading text-warning gridHeading  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Popular Coupon
                 </div>
               </div>
-              <div className="row justify-content-center ">
-                {products &&
-                  products.map(
-                    (product) =>
-                      product.popular && (
-                        <Coupon
-                          product={product}
-                          callBack={() => modalToggle(product)}
-                        />
-                      )
-                  )}
-              </div>
+
+              <CouponList Coupons={products} />
+
               <div className="row ustify-content-center    ">
-                <div className="col-11 h1 text-warning  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
+                <div className="col-11 h1 text-warning gridHeading text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Double Cash Back Hot Stores | April 2023
                 </div>
               </div>
@@ -173,22 +153,22 @@ function Home() {
                           className="col-md-4"
                           onClick={() => modalToggle(product)}
                         >
-                          <div class="card border-0 shadow rounded-3 mb-3">
-                            <div class="row  g-0 py-3">
+                          <div className="card border-0 shadow rounded-3 mb-3">
+                            <div className="row  g-0 py-3">
                               <div
-                                class="col-4 my-auto d-flex justify-content-center   "
+                                className="col-4 my-auto d-flex justify-content-center   "
                                 style={{ borderRight: "1px dashed gray" }}
                               >
                                 <div className="mx-auto ">
                                   <img
                                     src={product.images.url}
                                     alt="coupon"
-                                    class="bd-placeholder-img img-fluid rounded-pill  "
+                                    className="bd-placeholder-img img-fluid rounded-pill  "
                                     width="50"
                                     height="75"
                                   />
                                   <h5
-                                    class="    text-center text-truncate  py-1"
+                                    className="    text-center text-truncate  py-1"
                                     style={{ maxWidth: "5rem" }}
                                     title={product?.name}
                                   >
@@ -196,13 +176,13 @@ function Home() {
                                   </h5>
                                 </div>
                               </div>
-                              <div class="col-8">
-                                <div class="card-body">
-                                  <h5 class="w-100 overflow-x-auto text-break my-1 ">
+                              <div className="col-8">
+                                <div className="card-body">
+                                  <h5 className="w-100 overflow-x-auto text-break my-1 ">
                                     {" "}
                                     {product?.description}
                                   </h5>
-                                  <p class="card-text PromoCode text-truncate text-body-secondary text-end">
+                                  <p className="card-text PromoCode text-truncate text-body-secondary text-end">
                                     Promo code:{" "}
                                     <span className=" rounded-pill  px-3 py-1 text-danger">
                                       {moment(modalData?.expireDate).format(
@@ -229,15 +209,15 @@ function Home() {
                     <div className="col-md-3 py-2" key={id}>
                       <Link
                         to={`/categories/brands/${id}`}
-                        class="card border-0 shadow rounded-2 py-2 bg-success bg-opacity-25 mb-1"
+                        className="card border-0 shadow rounded-2 py-2 bg-success bg-opacity-25 mb-1"
                       >
-                        <div class="row  g-0">
-                          <div class="col-4 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
+                        <div className="row  g-0">
+                          <div className="col-4 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
                             <FaPlaneDeparture />
                           </div>
-                          <div class="col-8">
-                            <div class="card-body">
-                              <h5 class=" text-secondary">{label} </h5>
+                          <div className="col-8">
+                            <div className="card-body">
+                              <h5 className=" text-secondary">{label} </h5>
                             </div>
                           </div>
                         </div>
