@@ -16,7 +16,7 @@ import { uploadImage } from "../utils/functions";
 export const getSlider = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_SLIDER_REQUEST });
-    let link = `${baseurl}/api/v1/slider`;
+    let link = `${baseurl}/api/v1/sliders`;
 
     const { data } = await axios.get(link);
 

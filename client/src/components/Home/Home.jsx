@@ -23,8 +23,7 @@ function Home() {
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
   const { brands } = useSelector((state) => state.brands);
-  const { sliders } = useSelector((state) => state);
-  console.log("sliders :>> ", sliders);
+  const { sliders } = useSelector((state) => state.sliders);
   const [modalData, setmodalData] = useState("");
   const [categories, setCategories] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -55,7 +54,7 @@ function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     // speed: 500,
     pauseOnHover: true,
   };
@@ -82,12 +81,19 @@ function Home() {
                   <div>
                     <img src={banner1} alt="Slider" />{" "}
                   </div>
+                  {sliders?.images?.map(({ url, _id }) => (
+                    <div key={_id}>
+                      <img src={url} alt="Slider" />{" "}
+                    </div>
+                  ))}
+
+                  {/*
                   <div>
                     <img src={banner2} alt="Slider" />{" "}
                   </div>
                   <div>
                     <img src={banner1} alt="Slider" />{" "}
-                  </div>
+                  </div> */}
                 </Slider>
               </div>
             </div>
