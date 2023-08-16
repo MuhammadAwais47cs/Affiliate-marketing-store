@@ -4,6 +4,13 @@ import "./Categories.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { getProductDetails, getProduct } from "../../actions/productAction";
 import Pagination from "react-js-pagination";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMusic,
+  faCheck,
+  faMobileScreenButton,
+} from "@fortawesome/free-solid-svg-icons";
 import { getBrand } from "../../actions/brandAction";
 import Product from "../Home/Product";
 import { useLocation } from "react-router-dom";
@@ -75,26 +82,18 @@ function Categories({ withId }) {
                     >
                       <div class="row  g-0">
                         <div class="col-4 my-auto d-flex justify-content-center   ">
-                          <svg
-                            class="bd-placeholder-img img-fluid rounded "
-                            width="40%"
-                            height="50"
-                            xmlns="http://www.w3.org/2000/svg"
-                            role="img"
-                            aria-label="Placeholder: Image"
-                            preserveAspectRatio="xMidYMid slice"
-                            focusable="false"
-                          >
-                            <title>Placeholder</title>
-                            <rect
-                              width="100%"
-                              height="100%"
-                              fill="#868e96"
-                            ></rect>
-                            <text x="20%" y="50%" fill="#dee2e6" dy=".2em">
-                              Image
-                            </text>
-                          </svg>
+                          {/* <FontAwesomeIcon icon={faMusic} style={{color: "#f4d50b",}} /> */}
+                          {/* <FontAwesomeIcon icon={faCheck} /> */}
+                          <FontAwesomeIcon
+                            icon={faMobileScreenButton}
+                            style={{ color: "#f0cb14" }}
+                            size="lg"
+                          />
+
+                          {/* <FontAwesomeIcon icon={faEnvelope} /> */}
+                          {/* icon  */}
+                          {/* <FontAwesomeIcon icon="fa-brands fa-twitter" /> */}
+                          {/* <i class="fas fa-utensils-alt fa-3x text-warning"></i> */}
                         </div>
                         <div class="col-8">
                           <div class="card-body">

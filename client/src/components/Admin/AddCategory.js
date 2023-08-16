@@ -101,6 +101,7 @@ const NewCategory = () => {
                       >
                         Icon
                       </label>
+                      <i className="fas fa-camera" />
                       <input
                         type="text"
                         class="form-control"
