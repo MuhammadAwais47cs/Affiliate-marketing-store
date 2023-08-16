@@ -20,7 +20,10 @@ const NewCategory = () => {
     useSelector((state) => state)
   );
 
-  const [category, setCategory] = useState(null);
+  const [data, setData] = useState({
+    category: "",
+    icon: "",
+  });
   const [loading, setloading] = useState(false);
 
   // const categories = ["Nike", "Adidas", "Dell", "Hp"];
@@ -41,8 +44,9 @@ const NewCategory = () => {
     e.preventDefault();
     setloading(true);
 
-    const data = {
-      label: category,
+    const formdata = {
+      label: data.category,
+      icon: data.icon,
     };
 
     const config = {
@@ -51,13 +55,12 @@ const NewCategory = () => {
 
     const { result, success } = await axios.post(
       `${baseurl}/api/v1/category/new`,
-      data,
+      { data: formdata },
       config
     );
     console.log(result);
     setloading(false);
   };
-
   return (
     <Fragment>
       <MetaData title="Create Brand" />
@@ -86,9 +89,25 @@ const NewCategory = () => {
                         type="text"
                         class="form-control"
                         id="category"
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e) => setData({ category: e.target.value })}
                         required
                         name="category"
+                      />
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Icon
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="icon"
+                        onChange={(e) => setData({ icon: e.target.value })}
+                        required
+                        name="icon"
                       />
                     </div>
 

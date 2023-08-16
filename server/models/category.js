@@ -5,6 +5,11 @@ const categorySchema = mongoose.Schema({
     required: [true, "Please Enter Category"],
     trim: true,
   },
+  icon: {
+    type: String,
+    required: [true, "Please Enter Icon"],
+    trim: true,
+  },
 });
 
 module.exports = mongoose.model("category", categorySchema);
