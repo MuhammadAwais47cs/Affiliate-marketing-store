@@ -82,18 +82,11 @@ function Categories({ withId }) {
                     >
                       <div class="row  g-0">
                         <div class="col-4 my-auto d-flex justify-content-center   ">
-                          {/* <FontAwesomeIcon icon={faMusic} style={{color: "#f4d50b",}} /> */}
-                          {/* <FontAwesomeIcon icon={faCheck} /> */}
                           <FontAwesomeIcon
                             icon={faMobileScreenButton}
                             style={{ color: "#f0cb14" }}
                             size="lg"
                           />
-
-                          {/* <FontAwesomeIcon icon={faEnvelope} /> */}
-                          {/* icon  */}
-                          {/* <FontAwesomeIcon icon="fa-brands fa-twitter" /> */}
-                          {/* <i class="fas fa-utensils-alt fa-3x text-warning"></i> */}
                         </div>
                         <div class="col-8">
                           <div class="card-body">
