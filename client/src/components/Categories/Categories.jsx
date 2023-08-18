@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./Categories.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { getProductDetails, getProduct } from "../../actions/productAction";
 import Pagination from "react-js-pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -11,17 +10,12 @@ import {
   faCheck,
   faMobileScreenButton,
 } from "@fortawesome/free-solid-svg-icons";
-import { getBrand } from "../../actions/brandAction";
-import Product from "../Home/Product";
 import { useLocation } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import axios from "axios";
 import { baseurl } from "../../baseurl";
-
 import Loader from "../layout/Loader/Loader";
 function Categories({ withId }) {
-  // alert(withId);
-
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();

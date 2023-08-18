@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../assets/2.png";
 import { FaSearch, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import { Link, redirect, useNavigate } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
+// import Nav from "react-bootstrap/Nav";
+// import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import Search from "../search/Search";
 import Button from "react-bootstrap/Button";
@@ -25,7 +29,7 @@ function Header() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const [cat, setCat] = useState(false);
-  const catogary = [
+  const pagesTabs = [
     {
       name: "Home",
       value: "Mobiles",
@@ -94,7 +98,24 @@ function Header() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm bg-white shadow text-white  fixed-top">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        className="bg-body-white shadow text-white fixed-top "
+      >
+        <Container>
+          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mx-auto">
+              {pagesTabs?.map(({ name, value, children, link }) => (
+                <Nav.Link href={link}>{name}</Nav.Link>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      {/* <nav className="navbar navbar-expand-sm bg-white shadow text-white  fixed-top">
         <div className="container-fluid ">
           <Link to="/" className="navbar-brand">
             <img
@@ -125,33 +146,14 @@ function Header() {
                     <Link to={`${link}`} className="nav-link  " key={name}>
                       {name}
                     </Link>
-                    {/* {children && (
-                      <ul className="dropdown-menu ">
-                        {children?.map(({ label: childrenName }) => (
-                          <li>
-                            <p
-                              className="dropdown-item"
-                              onClick={() =>
-                                navigate(`/products/${childrenName}`, {
-                                  state: { category: value },
-                                })
-                              }
-                              key={childrenName}
-                            >
-                              {childrenName}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                            */}{" "}
+                   
                   </li>
                 </>
               ))}
             </ul>
           </div>
         </div>
-        {/* <form className="d-flex mt-2 flex-end " role="search">
+       <form className="d-flex mt-2 flex-end " role="search">
             <input
               className="form-control me-2 px-5 rounded-pill "
               type="search"
@@ -171,7 +173,7 @@ function Header() {
             <FaSearch />
           </Link>
         </button>
-         */}
+        
         {token ? (
           <NavDropdown
             className="btn  "
@@ -199,7 +201,7 @@ function Header() {
           ""
         )}
       </nav>
-      {openModel && <Search />}
+      {openModel && <Search />} */}
     </>
   );
 }
