@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import logo from "../assets/2.png";
-import { FaSearch, FaPowerOff, FaUserCircle } from "react-icons/fa";
+// import NavDropdown from "react-bootstrap/NavDropdown";
+// import logo from "../assets/2.png";
+// import { FaSearch, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import { Link, redirect, useNavigate } from "react-router-dom";
 // import Nav from "react-bootstrap/Nav";
 // import NavDropdown from "react-bootstrap/NavDropdown";
@@ -86,12 +86,12 @@ function Header() {
   const searchToggle = () => {
     setOpenModel(!openModel);
   };
-  const handleLogout = () => {
-    localStorage.clear(); // clear the localStorage
-    // perform other logout tasks, such as redirecting to the login page
-    navigate("/");
-    window.location.reload();
-  };
+  // const handleLogout = () => {
+  //   localStorage.clear(); // clear the localStorage
+  //   // perform other logout tasks, such as redirecting to the login page
+  //   navigate("/");
+  //   window.location.reload();
+  // };
   useEffect(() => {
     // if (cat)   navigate(`/products/${cat}`, { state:  });
   }, [cat]);
