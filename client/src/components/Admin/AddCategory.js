@@ -53,12 +53,14 @@ const NewCategory = () => {
       headers: { "Content-Type": "application/json" },
     };
 
-    const { result, success } = await axios.post(
+    const res = await axios.post(
       `${baseurl}/api/v1/category/new`,
       { data: formdata },
       config
     );
-    console.log(result);
+    console.log("data :>> ", res.data);
+    alert.success(res.data.message);
+
     setloading(false);
   };
   return (
@@ -89,7 +91,9 @@ const NewCategory = () => {
                         type="text"
                         class="form-control"
                         id="category"
-                        onChange={(e) => setData({ category: e.target.value })}
+                        onChange={(e) =>
+                          setData({ ...data, category: e.target.value })
+                        }
                         required
                         name="category"
                       />
@@ -106,7 +110,9 @@ const NewCategory = () => {
                         type="text"
                         class="form-control"
                         id="icon"
-                        onChange={(e) => setData({ icon: e.target.value })}
+                        onChange={(e) =>
+                          setData({ ...data, icon: e.target.value })
+                        }
                         required
                         name="icon"
                       />

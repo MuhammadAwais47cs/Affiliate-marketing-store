@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faMusic,
+  faBottleWater,
   faCheck,
   faMobileScreenButton,
 } from "@fortawesome/free-solid-svg-icons";
@@ -68,7 +69,7 @@ function Categories({ withId }) {
           ) : (
             <div className="products ms-3 ">
               {categories &&
-                categories.map(({ id, label }) => (
+                categories.map(({ id, label, icon }) => (
                   <div className="col-md-4" key={id}>
                     <Link
                       to={`/categories/brands/${id}`}
@@ -77,7 +78,7 @@ function Categories({ withId }) {
                       <div class="row  g-0">
                         <div class="col-4 my-auto d-flex justify-content-center   ">
                           <FontAwesomeIcon
-                            icon={faMobileScreenButton}
+                            icon={`${icon ? icon : faMobileScreenButton}}`}
                             style={{ color: "#f0cb14" }}
                             size="lg"
                           />

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import NavDropdown from "react-bootstrap/NavDropdown";
+import NavDropdown from "react-bootstrap/NavDropdown";
 // import logo from "../assets/2.png";
-// import { FaSearch, FaPowerOff, FaUserCircle } from "react-icons/fa";
+import { FaSearch, FaPowerOff, FaUserCircle } from "react-icons/fa";
 import { Link, redirect, useNavigate } from "react-router-dom";
 // import Nav from "react-bootstrap/Nav";
 // import NavDropdown from "react-bootstrap/NavDropdown";
@@ -86,12 +86,12 @@ function Header() {
   const searchToggle = () => {
     setOpenModel(!openModel);
   };
-  // const handleLogout = () => {
-  //   localStorage.clear(); // clear the localStorage
-  //   // perform other logout tasks, such as redirecting to the login page
-  //   navigate("/");
-  //   window.location.reload();
-  // };
+  const handleLogout = () => {
+    localStorage.clear(); // clear the localStorage
+    // perform other logout tasks, such as redirecting to the login page
+    navigate("/");
+    window.location.reload();
+  };
   useEffect(() => {
     // if (cat)   navigate(`/products/${cat}`, { state:  });
   }, [cat]);
@@ -101,18 +101,49 @@ function Header() {
       <Navbar
         collapseOnSelect
         expand="lg"
-        className="bg-body-white shadow text-white fixed-top "
+        sticky="top"
+        className="bg-white shadow text-white  "
       >
-        <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Container className="my-2">
+          <Navbar.Brand href="/" className="text-warning">
+            Fatcoupon
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               {pagesTabs?.map(({ name, value, children, link }) => (
-                <Nav.Link href={link}>{name}</Nav.Link>
+                <Nav.Link href={link} className="text-warning">
+                  {name}
+                </Nav.Link>
               ))}
             </Nav>
           </Navbar.Collapse>
+          {token ? (
+            <NavDropdown
+              className="btn  "
+              title={<FaUserCircle />}
+              id="nav-dropdown dropdown-menu"
+            >
+              <p className="text-dark pe-none" eventKey="4.4">
+                Profile
+              </p>
+              <NavDropdown.Divider />
+
+              {userName === "admin" && (
+                <NavDropdown.Item eventKey="4.1">
+                  <p className="text-dark" onClick={redirectToAdmin}>
+                    {" "}
+                    Admin{" "}
+                  </p>
+                </NavDropdown.Item>
+              )}
+              <NavDropdown.Item eventKey="4.2" onClick={handleLogout}>
+                <p className="text-dark"> LogOut</p>
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            ""
+          )}
         </Container>
       </Navbar>
       {/* <nav className="navbar navbar-expand-sm bg-white shadow text-white  fixed-top">

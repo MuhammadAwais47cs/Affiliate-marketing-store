@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary");
 // // Create category
 exports.createCategory = tryCatchAsyncError(async (req, res, next) => {
   console.log("req.body :>> ", req.body);
-  const result = await category.create(req.body);
+  const result = await category.create(req.body.data);
   return res.status(201).json({
     success: true,
     message: "category created successfully",
