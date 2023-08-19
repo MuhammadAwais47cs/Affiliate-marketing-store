@@ -15,6 +15,7 @@ import { getSlider } from "../../actions/sliderAction";
 import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import CouponList from "./components/CouponList.jsx";
+import BrandList from "./components/BrandList.jsx";
 import { baseurl } from "../../baseurl";
 import axios from "axios";
 import CouponPopUp from "./components/CouponPopUp";
@@ -135,7 +136,9 @@ function Home() {
                   Double Cash Back Hot Stores | April 2023
                 </div>
               </div>
-              <div className="row justify-content-center ">
+              {/* Making a brand list component here  */}
+              <BrandList brands={brands} />
+              {/* <div className="row justify-content-center ">
                 {brands &&
                   brands.map(
                     (brand) =>
@@ -143,7 +146,7 @@ function Home() {
                         <Product key={brand._id} product={brand} />
                       )
                   )}
-              </div>
+              </div> */}
               <div className="row justfy-content-center    ">
                 <div className="col-11 h1 text-start gridHeading text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
                   Current coupon codes and offers

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../index.css";
 import Coupon from "./Coupon";
 import CouponPopUp from "./CouponPopUp";
-const ProductList = ({ Coupons }) => {
+const CouponList = ({ Coupons }) => {
   const [showAll, setShowAll] = useState(false);
   const [modalData, setmodalData] = useState({});
   const [coupons, setCoupons] = useState([]);
@@ -46,6 +46,14 @@ const ProductList = ({ Coupons }) => {
             />
           )
       )}
+      {console.log(
+        "!isDesktop && Coupons.length > 6 && !showAll",
+        isDesktop,
+        !isDesktop,
+        Coupons.length > 6,
+        showAll,
+        !showAll
+      )}
       {!isDesktop && Coupons.length > 6 && !showAll && (
         <button
           className="show-all-button btn btn-outline-warning rounded-pill w-50  "
@@ -65,4 +73,4 @@ const ProductList = ({ Coupons }) => {
   );
 };
 
-export default ProductList;
+export default CouponList;
