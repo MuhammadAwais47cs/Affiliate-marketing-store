@@ -73,19 +73,21 @@ function Categories({ withId }) {
                   <div className="col-md-4" key={id}>
                     <Link
                       to={`/categories/brands/${id}`}
-                      class="card border-0 shadow rounded-4 mb-3 w-75"
+                      className="card border-0 shadow rounded-4 mb-3 w-75"
                     >
-                      <div class="row  g-0">
-                        <div class="col-4 my-auto d-flex justify-content-center   ">
+                      <div className="row  g-0">
+                        <div className="col-4 my-auto d-flex justify-content-center   ">
                           <FontAwesomeIcon
                             icon={`${icon ? icon : faMobileScreenButton}}`}
                             style={{ color: "#f0cb14" }}
                             size="lg"
                           />
                         </div>
-                        <div class="col-8">
-                          <div class="card-body">
-                            <h6 class="card-title text-warning">{label} </h6>
+                        <div className="col-8">
+                          <div className="card-body">
+                            <h6 className="card-title text-warning">
+                              {label}{" "}
+                            </h6>
                           </div>
                         </div>
                       </div>

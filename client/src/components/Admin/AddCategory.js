@@ -80,7 +80,7 @@ const NewCategory = () => {
                   onSubmit={handleSubmit}
                 >
                   <div className="row">
-                    <div class="mb-3 col-md-6">
+                    <div className="mb-3 col-md-6">
                       <label
                         for="exampleFormControlInput1"
                         className="form-label"
@@ -89,7 +89,7 @@ const NewCategory = () => {
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="category"
                         onChange={(e) =>
                           setData({ ...data, category: e.target.value })
@@ -98,7 +98,7 @@ const NewCategory = () => {
                         name="category"
                       />
                     </div>
-                    <div class="mb-3 col-md-6">
+                    <div className="mb-3 col-md-6">
                       <label
                         for="exampleFormControlInput1"
                         className="form-label"
@@ -108,7 +108,7 @@ const NewCategory = () => {
                       <i className="fas fa-camera" />
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="icon"
                         onChange={(e) =>
                           setData({ ...data, icon: e.target.value })

@@ -191,7 +191,7 @@ const NewProduct = ({}) => {
                   <div className="row">
                     {addProductFields.map(
                       ({ label, type, id, name, className }) => (
-                        <div class="mb-3 col-md-6">
+                        <div className="mb-3 col-md-6">
                           <label
                             for="exampleFormControlInput1"
                             className="form-label"
@@ -203,7 +203,7 @@ const NewProduct = ({}) => {
                             type={type}
                             id={id}
                             required
-                            class="form-control"
+                            className="form-control"
                             name={name}
                             onChange={handleChange}
                           />
@@ -300,11 +300,11 @@ const NewProduct = ({}) => {
                       />
                     </div>
 
-                    <div class="mb-3 col-md-6">
+                    <div className="mb-3 col-md-6">
                       <select
                         onChange={handleChange}
                         name="language"
-                        class="form-select"
+                        className="form-select"
                       >
                         <option value={language}> languages</option>
                         {languages.map((cate) => (
@@ -319,7 +319,7 @@ const NewProduct = ({}) => {
                       <input
                         type="file"
                         placeholder="Add Images"
-                        class="form-control"
+                        className="form-control"
                         name="avatar"
                         required
                         accept="image/*"

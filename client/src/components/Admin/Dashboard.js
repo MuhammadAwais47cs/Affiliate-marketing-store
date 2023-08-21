@@ -43,7 +43,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div class="dashboardRow ">
+    <div className="dashboardRow ">
       <div className="navigation">
         <ul>
           {navigationItems.map(({ id, link, icon, title }) => (
@@ -75,70 +75,70 @@ const Dashboard = () => {
         </ul>
       </div>
       {/* <!-- ========================= Main ==================== --> */}
-      <div class="main">
+      <div className="main">
         {/*   
       // <Sidebar callback={(e) => console.log("e :>> ", e)} />
 
-          <div class="topbar">
+          <div className="topbar">
             <div className={`toggle ${isMenuActive ? "active" : ""}`}>
            <FaAlignJustify onClick={handleToggle}
           </div> /> 
 
-          <div class="search">
+          <div className="search">
             <label>
               <input type="text" placeholder="Search here" />
               <ion-icon name="search-outline"></ion-icon>
             </label>
           </div>
 
-          <div class="user">
+          <div className="user">
             <img src="assets/imgs/customer01.jpg" alt="" />
           </div>
         </div>*/}
 
         {/*        <!-- ======================= Cards ================== --> */}
         {whichComponent === "Dashboard" && (
-          <div class="cardBox">
-            <div class="card">
+          <div className="cardBox">
+            <div className="card">
               <div>
-                <div class="numbers">1,504</div>
-                <div class="cardName">Daily Views</div>
+                <div className="numbers">1,504</div>
+                <div className="cardName">Daily Views</div>
               </div>
 
-              <div class="iconBx">
+              <div className="iconBx">
                 <ion-icon name="eye-outline"></ion-icon>
               </div>
             </div>
 
-            <div class="card">
+            <div className="card">
               <div>
-                <div class="numbers">80</div>
-                <div class="cardName">Sales</div>
+                <div className="numbers">80</div>
+                <div className="cardName">Sales</div>
               </div>
 
-              <div class="iconBx">
+              <div className="iconBx">
                 <ion-icon name="cart-outline"></ion-icon>
               </div>
             </div>
 
-            <div class="card">
+            <div className="card">
               <div>
-                <div class="numbers">284</div>
-                <div class="cardName">Comments</div>
+                <div className="numbers">284</div>
+                <div className="cardName">Comments</div>
               </div>
 
-              <div class="iconBx">
+              <div className="iconBx">
                 <ion-icon name="chatbubbles-outline"></ion-icon>
               </div>
             </div>
 
-            <div class="card">
+            <div className="card">
               <div>
-                <div class="numbers">$7,842</div>
-                <div class="cardName">Earning</div>
+                <div className="numbers">$7,842</div>
+                <div className="cardName">Earning</div>
               </div>
 
-              <div class="iconBx">
+              <div className="iconBx">
                 <ion-icon name="cash-outline"></ion-icon>
               </div>
             </div>
@@ -149,12 +149,12 @@ const Dashboard = () => {
 
   <!-- ================ Order Details List ================= -->
 */}
-        <div class="details">
-          <div class="recentOrders">
-            <div class="cardHeader">
+        <div className="details">
+          <div className="recentOrders">
+            <div className="cardHeader">
               <h2> {whichComponent.replace("Add", "")}</h2>
               <button
-                class="btn btn-danger rounded-pill"
+                className="btn btn-danger rounded-pill"
                 onClick={() =>
                   setWhichComponent(whichComponent.replace("Add", ""))
                 }
@@ -204,15 +204,15 @@ const Dashboard = () => {
           {/*
 <!-- ================= New Customers ================ -->
 
-          <div class="recentCustomers">
-            <div class="cardHeader">
+          <div className="recentCustomers">
+            <div className="cardHeader">
               <h2>Recent Customers</h2>
             </div>
 
             <table>
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer02.jpg" alt="" />
                   </div>
                 </td>
@@ -225,7 +225,7 @@ const Dashboard = () => {
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer01.jpg" alt="" />
                   </div>
                 </td>
@@ -238,7 +238,7 @@ const Dashboard = () => {
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer02.jpg" alt="" />
                   </div>
                 </td>
@@ -251,7 +251,7 @@ const Dashboard = () => {
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer01.jpg" alt="" />
                   </div>
                 </td>
@@ -264,7 +264,7 @@ const Dashboard = () => {
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer02.jpg" alt="" />
                   </div>
                 </td>
@@ -277,7 +277,7 @@ const Dashboard = () => {
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer01.jpg" alt="" />
                   </div>
                 </td>
@@ -290,7 +290,7 @@ const Dashboard = () => {
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer01.jpg" alt="" />
                   </div>
                 </td>
@@ -303,7 +303,7 @@ const Dashboard = () => {
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx">
+                  <div className="imgBx">
                     <img src="assets/imgs/customer02.jpg" alt="" />
                   </div>
                 </td>

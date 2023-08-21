@@ -78,7 +78,7 @@ const AddSlider = () => {
                         required
                         multiple
                         accept="image/*"
-                        class="form-control"
+                        className="form-control"
                         onChange={createProductImagesChange}
                       />
                     </div>

@@ -8,16 +8,16 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
   return (
     <Modal show={isOpenModal} size="md" onHide={modalToggle}>
       <Modal.Body className="mt-n4   rounded-3">
-        <div class=" p-4  h-75    d-flex flex-column align-items-center ">
+        <div className=" p-4  h-75    d-flex flex-column align-items-center ">
           <img
             src={modalData?.images?.url}
             alt=""
-            class="border-3   rounded-pill"
+            className="border-3   rounded-pill"
             height="100"
             width="100"
           />
-          <h5 class="fs-5 my-1 ">{modalData?.description}</h5>
-          <p class="fs-5 text-center text-muted">
+          <h5 className="fs-5 my-1 ">{modalData?.description}</h5>
+          <p className="fs-5 text-center text-muted">
             {modalData?.couponType === "Code"
               ? "Voucher Code is :"
               : "Provider is :"}
@@ -43,7 +43,7 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
               ? modalData?.code
               : modalData?.link}
           </span>
-          <p class=" my-1">
+          <p className=" my-1">
             Date of Expiry :{" "}
             <span className=" ">
               {" "}

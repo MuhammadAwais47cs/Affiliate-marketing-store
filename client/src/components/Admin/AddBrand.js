@@ -167,7 +167,7 @@ const NewProduct = () => {
                   <div className="row">
                     {addBrandFields.map(
                       ({ label, type, id, name, className }) => (
-                        <div class="mb-3 col-md-6">
+                        <div className="mb-3 col-md-6">
                           <label
                             for="exampleFormControlInput1"
                             className="form-label"
@@ -176,7 +176,7 @@ const NewProduct = () => {
                           </label>
                           <input
                             type={type}
-                            class="form-control"
+                            className="form-control"
                             id={id}
                             placeholder={label}
                             onChange={handleChange}
@@ -222,11 +222,11 @@ const NewProduct = () => {
                         options={relatedBrands}
                       />
                     </div>
-                    <div class="mb-3 col-md-6">
+                    <div className="mb-3 col-md-6">
                       <select
                         onChange={handleChange}
                         name="language"
-                        class="form-select"
+                        className="form-select"
                       >
                         <option value={language}> languages</option>
                         {languages.map((cate) => (
@@ -243,7 +243,7 @@ const NewProduct = () => {
                         name="avatar"
                         required
                         accept="image/*"
-                        class="form-control"
+                        className="form-control"
                         onChange={createProductImagesChange}
                       />
                     </div>

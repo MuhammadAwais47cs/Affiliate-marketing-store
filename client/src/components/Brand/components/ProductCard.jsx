@@ -13,31 +13,31 @@ function ProductCard({ product }) {
   const { images, brand, description, expireDate } = product;
   return (
     <div className="d-flex justify-content-center">
-      <div class="col-md-8 card border-0       mb-3 shadow">
-        <div class="row  g-0 ">
-          <div class="col-3 d-flex flex-column align-items-center p-3  ">
+      <div className="col-md-8 card border-0       mb-3 shadow">
+        <div className="row  g-0 ">
+          <div className="col-3 d-flex flex-column align-items-center p-3  ">
             <img
               src={images?.url}
               alt="coupon"
-              class="bd-placeholder-img img-fluid rounded "
+              className="bd-placeholder-img img-fluid rounded "
               width="100"
               height="100"
             />
           </div>
-          <div class="col-6">
-            <div class="card-body">
-              <h5 class="card-title ">{brand?.name}</h5>
-              <p class="card-text   ">{description}</p>
-              <p class="card-text">
-                <small class="text-body-secondary">
+          <div className="col-6">
+            <div className="card-body">
+              <h5 className="card-title ">{brand?.name}</h5>
+              <p className="card-text   ">{description}</p>
+              <p className="card-text">
+                <small className="text-body-secondary">
                   Last updated : {moment(expireDate).format("DD-MM-YYYY")}{" "}
                 </small>
               </p>
             </div>
           </div>
-          <div class="col-3 d-flex flex-column justify-content-center align-items-center  ">
+          <div className="col-3 d-flex flex-column justify-content-center align-items-center  ">
             <button
-              class="btn btn-success w-75"
+              className="btn btn-success w-75"
               onClick={() => modalToggle(product)}
             >
               Get Deal
