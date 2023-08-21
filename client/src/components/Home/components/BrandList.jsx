@@ -9,7 +9,7 @@ const BrandList = ({ brand }) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
 
   useEffect(() => {
-    brand && setBrands(brand.filter((brand) => brand.popular));
+    // brand && setBrands(brand.filter((brand) => brand.popular));
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 1024);
     };
@@ -24,15 +24,24 @@ const BrandList = ({ brand }) => {
   return (
     <>
       <div className="row justify-content-center ">
-        {brands &&
-          brands.map(
+        {brand &&
+          brand.map(
             (brand, index) =>
-              brand.published &&
-              brand.popular &&
-              (index < 6 || showAll || isDesktop) && (
-                <Product key={brand._id} product={brand} />
+              brand.published && (
+                //   (index < 6 || showAll || isDesktop) && (
+                <h1> weeew</h1>
               )
+            // <Product key={brand._id} product={brand} />
+            //   )
           )}
+        {/* {!isDesktop && brands.length > 6 && !showAll && (
+          <button
+            className="show-all-button btn btn-outline-warning rounded-pill w-50  "
+            onClick={() => setShowAll(true)}
+          >
+            Show All
+          </button>
+        )} */}
       </div>
     </>
   );
