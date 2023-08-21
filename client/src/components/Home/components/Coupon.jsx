@@ -14,7 +14,7 @@ const Coupon = ({ product, callBack }) => {
 
         <span
           className=" mt-3 w-100 "
-          style={{ "border-top": "2px green dashed " }}
+          style={{ borderTop: "2px green dashed " }}
         ></span>
         <button className="btn btn-sm mt-2 fs-6 btn-outline-success rounded-pill ">
           Show
