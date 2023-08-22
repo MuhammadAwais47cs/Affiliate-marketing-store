@@ -137,7 +137,13 @@ function Home() {
                 </div>
               </div>
               {/* Making a brand list component here  */}
-              <BrandList brands={brands} />
+              {brands && (
+                <BrandList
+                  data={brands.filter(
+                    (brand) => brand.popular && brand.published
+                  )}
+                />
+              )}
               {/* <div className="row justify-content-center ">
                 {brands &&
                   brands.map(

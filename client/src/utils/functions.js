@@ -27,3 +27,14 @@ export const uploadImage = async (image, upload_preset) => {
   }
   return imageUrl;
 };
+
+export const calculateVisibleBrands = (
+  data,
+  isDesktop,
+  desktopDataSize,
+  mobileDataSize
+) => {
+  return isDesktop >= 1024
+    ? data.slice(0, desktopDataSize)
+    : data.slice(0, mobileDataSize);
+};
