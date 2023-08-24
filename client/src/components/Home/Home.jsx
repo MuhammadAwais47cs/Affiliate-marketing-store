@@ -16,6 +16,7 @@ import banner1 from "./Asset/nike.png";
 import banner2 from "./Asset/adidas.png";
 import CouponList from "./components/CouponList.jsx";
 import BrandList from "./components/BrandList.jsx";
+import OfferList from "./components/OfferList.jsx";
 import { baseurl } from "../../baseurl";
 import axios from "axios";
 import CouponPopUp from "./components/CouponPopUp";
@@ -75,8 +76,8 @@ function Home() {
       ) : (
         <>
           <MetaData title={"Ecommerce"} />
-          <div className="container-fluid mt-5 ">
-            <div className="d-flex flex-row pt-5 px-md-5">
+          <div className="container-fluid mt-4 ">
+            <div className="d-flex flex-row  px-md-5">
               <div className="col-12">
                 <Slider {...settings}>
                   <div>
@@ -87,14 +88,6 @@ function Home() {
                       <img src={url} alt="Slider" />{" "}
                     </div>
                   ))}
-
-                  {/*
-                  <div>
-                    <img src={banner2} alt="Slider" />{" "}
-                  </div>
-                  <div>
-                    <img src={banner1} alt="Slider" />{" "}
-                  </div> */}
                 </Slider>
               </div>
             </div>
@@ -129,7 +122,11 @@ function Home() {
                 </div>
               </div>
 
-              <CouponList Coupons={products} />
+              <CouponList
+                Coupons={products.filter(
+                  (product) => product.popular && product.published
+                )}
+              />
 
               <div className="row ustify-content-center    ">
                 <div className="col-11 h1 text-warning gridHeading text-start shadow-sm bg-white  my-3  p-3 rounded-3">
@@ -158,7 +155,12 @@ function Home() {
                   Current coupon codes and offers
                 </div>
               </div>
-              <div className="row justify-content-center ">
+              <OfferList
+                Coupons={products.filter(
+                  (product) => product.popular && product.published
+                )}
+              />
+              {/* <div className="row justify-content-center ">
                 {products &&
                   products.map(
                     (product) =>
@@ -212,7 +214,7 @@ function Home() {
                         </Link>
                       )
                   )}
-              </div>
+              </div> */}
               <div className="row     ">
                 <div className="col-10 h1  text-start text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
                   Top categories
@@ -249,7 +251,7 @@ function Home() {
               />
             }
           </div>
-          <div className="bg-white shadow container">
+          {/* <div className="bg-white shadow container">
             <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">
               Top Categories
             </p>
@@ -262,7 +264,7 @@ function Home() {
                     )
                 )}
             </Carousel>
-          </div>
+          </div> */}
         </>
       )}
     </>

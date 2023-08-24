@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "../index.css";
-import Coupon from "./Coupon";
+import Offers from "./Offers.jsx";
 import CouponPopUp from "./CouponPopUp";
 import { calculateVisibleBrands } from "../../../utils/functions";
 const CouponList = ({ Coupons }) => {
@@ -11,7 +11,7 @@ const CouponList = ({ Coupons }) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth);
 
   useMemo(() => {
-    const list = calculateVisibleBrands(Coupons, isDesktop, 12, 6);
+    const list = calculateVisibleBrands(Coupons, isDesktop, 9, 3);
     setCoupons(list);
   }, [Coupons, isDesktop]);
   // make a fun in useeffect to check if the screen is mobile or not and then set the showall to false
@@ -45,7 +45,7 @@ const CouponList = ({ Coupons }) => {
           (product, index) => (
             // product.popular &&
             // (index < 6 || showAll || isDesktop) && (
-            <Coupon
+            <Offers
               key={product._id}
               product={product}
               callBack={() => modalToggle(product)}
