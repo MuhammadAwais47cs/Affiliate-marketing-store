@@ -58,7 +58,7 @@ const CouponList = ({ Coupons }) => {
       <div className="row justify-content-center my-1">
         {!showAll && (
           <button
-            className="col-4 show-all-button btn btn-outline-warning rounded-pill "
+            className="col-4 col-lg-1 show-all-button btn btn-outline-warning rounded-pill "
             // onClick={toggleShowAll}
             onClick={() => {
               setShowAll(true);
