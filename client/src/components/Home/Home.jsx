@@ -12,9 +12,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
 import { getBrand } from "../../actions/brandAction";
 import { getSlider } from "../../actions/sliderAction";
-import banner1 from "./Asset/nike.png";
-import banner2 from "./Asset/adidas.png";
+// import banner1 from "../Asset/Un.png";
+import banner1 from "./Asset/co.png";
+import banner2 from "../Asset/Un.png";
 import CouponList from "./components/CouponList.jsx";
+import CategoriesList from "./components/CategoriesList.jsx";
 import BrandList from "./components/BrandList.jsx";
 import OfferList from "./components/OfferList.jsx";
 import { baseurl } from "../../baseurl";
@@ -63,7 +65,7 @@ function Home() {
   const breakPoints = [
     { width: 300, itemsToShow: 2, pagination: false },
     { width: 550, itemsToShow: 3, itemsToScroll: 2, pagination: false },
-    { width: 850, itemsToShow: 3, pagination: false },
+    { width: 850, itemsToShow: 5, pagination: false },
     { width: 1150, itemsToShow: 5, pagination: false, itemsToScroll: 2 },
     { width: 1450, itemsToShow: 5, pagination: false },
     { width: 1750, itemsToShow: 6, pagination: false },
@@ -80,6 +82,9 @@ function Home() {
             <div className="d-flex flex-row  px-md-5">
               <div className="col-12">
                 <Slider {...settings}>
+                  <div>
+                    <img src={banner2} alt="Slider" />{" "}
+                  </div>
                   <div>
                     <img src={banner1} alt="Slider" />{" "}
                   </div>
@@ -220,7 +225,8 @@ function Home() {
                   Top categories
                 </div>
               </div>
-              <div className="row justify-content-center ">
+              <CategoriesList data={categories} />
+              {/* <div className="row justify-content-center ">
                 {categories &&
                   categories.slice(0, 18).map(({ id, label }) => (
                     <div className="col-md-3 py-2" key={id}>
@@ -241,7 +247,7 @@ function Home() {
                       </Link>
                     </div>
                   ))}
-              </div>
+              </div> */}
             </div>
             {
               <CouponPopUp
