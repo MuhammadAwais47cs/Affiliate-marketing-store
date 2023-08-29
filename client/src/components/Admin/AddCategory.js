@@ -117,8 +117,8 @@ const NewCategory = () => {
                         name="icon"
                       />
                     </div>
-                    {/* add one more filed to upload svg's  */}
 
+                    {/* add one more filed to upload svg's  */}
                     <div className="row">
                       <button
                         className="w-50 mx-auto  mt-4  "
