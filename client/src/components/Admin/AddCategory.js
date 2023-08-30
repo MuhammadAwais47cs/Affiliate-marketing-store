@@ -107,7 +107,7 @@ const NewCategory = () => {
                       </label>
                       <i className="fas fa-camera" />
                       <input
-                        type="text"
+                        type="file"
                         className="form-control"
                         id="icon"
                         onChange={(e) =>
@@ -119,6 +119,7 @@ const NewCategory = () => {
                     </div>
 
                     {/* add one more filed to upload svg's  */}
+                    <div></div>
                     <div className="row">
                       <button
                         className="w-50 mx-auto  mt-4  "
