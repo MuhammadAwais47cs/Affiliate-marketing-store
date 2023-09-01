@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-import { FaRegShareSquare } from "react-icons/fa";
+// import { FaRegShareSquare } from "react-icons/fa";
 
 const Product = ({ product }) => {
   return (
@@ -10,7 +10,7 @@ const Product = ({ product }) => {
       to={`/brand/${product?._id}`}
     >
       <img src={product?.images?.url} alt={product?.name} />
-      <p>{product?.name}</p>
+      {/* <p>{product?.name}</p> */}
       <div>
         {/*
        <Rating {...options} />{" "}
@@ -21,9 +21,9 @@ const Product = ({ product }) => {
       */}
       </div>
 
-      <p className="shareIcon position-absolute top-0 end-0 me-md-2 me-lg-4 text-danger ">
+      {/* <p className="shareIcon position-absolute top-0 end-0 me-md-2 me-lg-4 text-danger ">
         <FaRegShareSquare />
-      </p>
+      </p> */}
     </Link>
   );
 };
