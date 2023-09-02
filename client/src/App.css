@@ -1,7 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 * {
+    font-family: "Ubuntu", sans-serif;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     scroll-behavior: smooth;
  }
+ :root {
+    /* --blue: #2a2185; */
+    /* --blue:rgb(220,53,69); */
+      --blue: #ff5200;
+    --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+  }
