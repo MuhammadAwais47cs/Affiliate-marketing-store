@@ -40,6 +40,10 @@ const NewCategory = () => {
     }
   }, [dispatch, alert, error, success]);
 
+  const iconHandleChange = (event) => {
+    const icon = event.target.files[0];
+    setData({ ...data, icon });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setloading(true);
@@ -105,16 +109,13 @@ const NewCategory = () => {
                       >
                         Icon
                       </label>
-                      <i className="fas fa-camera" />
                       <input
                         type="file"
                         className="form-control"
                         id="icon"
-                        onChange={(e) =>
-                          setData({ ...data, icon: e.target.value })
-                        }
-                        required
                         name="icon"
+                        onChange={iconHandleChange}
+                        required
                       />
                     </div>
 
