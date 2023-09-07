@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Loader from "../layout/Loader/Loader";
 import Product from "./Product.jsx";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
-import moment from "moment";
-import { FaPlaneDeparture } from "react-icons/fa";
+// import { Link } from "react-router-dom";
+// import moment from "moment";
+// import { FaPlaneDeparture } from "react-icons/fa";
 import Carousel, { consts } from "react-elastic-carousel";
-import "./index.css";
+// import "./index.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
@@ -14,7 +14,7 @@ import { getBrand } from "../../actions/brandAction";
 import { getSlider } from "../../actions/sliderAction";
 // import banner1 from "../Asset/Un.png";
 import banner1 from "./Asset/co.png";
-import banner2 from "../Asset/Un.png";
+// import banner2 from "../Asset/Un.png";
 import CouponList from "./components/CouponList.jsx";
 import CategoriesList from "./components/CategoriesList.jsx";
 import BrandList from "./components/BrandList.jsx";
@@ -83,9 +83,6 @@ function Home() {
               <div className="col-12">
                 <Slider {...settings}>
                   <div>
-                    <img src={banner2} alt="Slider" />{" "}
-                  </div>
-                  <div>
                     <img src={banner1} alt="Slider" />{" "}
                   </div>
                   {sliders?.images?.map(({ url, _id }) => (
@@ -121,7 +118,7 @@ function Home() {
               )}
             </div>
             <div className="mx-4    px-auto">
-              <div className="row ustify-content-center    ">
+              <div className="row justify-content-center    ">
                 <div className="col-11 h1 gridHeading text-warning gridHeading  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Popular Coupon
                 </div>
@@ -133,7 +130,7 @@ function Home() {
                 )}
               />
 
-              <div className="row ustify-content-center    ">
+              <div className="row justify-content-center    ">
                 <div className="col-11 h1 text-warning gridHeading text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Double Cash Back Hot Stores | April 2023
                 </div>

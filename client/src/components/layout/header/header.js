@@ -102,17 +102,17 @@ function Header() {
         collapseOnSelect
         expand="lg"
         sticky="top"
-        className="bg-white shadow text-white  "
+        className="bg-danger shadow text-light  "
       >
         <Container className="my-2">
-          <Navbar.Brand href="/" className="text-warning">
+          <Navbar.Brand href="/" className="text-light">
             Fatcoupon
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               {pagesTabs?.map(({ name, value, children, link }) => (
-                <Nav.Link href={link} className="text-warning">
+                <Nav.Link href={link} className="text-light">
                   {name}
                 </Nav.Link>
               ))}
@@ -146,12 +146,12 @@ function Header() {
           )}
         </Container>
       </Navbar>
-      {/* <nav className="navbar navbar-expand-sm bg-white shadow text-white  fixed-top">
+      {/* <nav className="navbar navbar-expand-sm bg-white shadow text-light  fixed-top">
         <div className="container-fluid ">
           <Link to="/" className="navbar-brand">
             <img
               src={""}
-              className="text-warning fs-3 fw-4"
+              className=" fs-3 fw-4"
               alt="Fatcoupon"
               width="180vmax"
               style={{ color: "#37ee1b" }}
@@ -196,11 +196,11 @@ function Header() {
            
         <button
           type="button"
-          className="btn text-white "
+          className="btn text-light "
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          <Link to="/search" className="text-warning">
+          <Link to="/search" className="">
             <FaSearch />
           </Link>
         </button>

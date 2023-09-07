@@ -10,7 +10,7 @@ const Product = ({ product }) => {
       to={`/brand/${product?._id}`}
     >
       <img src={product?.images?.url} alt={product?.name} />
-      {/* <p>{product?.name}</p> */}
+      <p>{product?.name}</p>
       <div>
         {/*
        <Rating {...options} />{" "}
