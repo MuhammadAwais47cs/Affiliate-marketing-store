@@ -2,19 +2,14 @@ import React, { useState, useEffect } from "react";
 import Loader from "../layout/Loader/Loader";
 import Product from "./Product.jsx";
 import Slider from "react-slick";
-// import { Link } from "react-router-dom";
-// import moment from "moment";
-// import { FaPlaneDeparture } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Carousel, { consts } from "react-elastic-carousel";
-// import "./index.css";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
 import { getBrand } from "../../actions/brandAction";
 import { getSlider } from "../../actions/sliderAction";
-// import banner1 from "../Asset/Un.png";
 import banner1 from "./Asset/co.png";
-// import banner2 from "../Asset/Un.png";
 import CouponList from "./components/CouponList.jsx";
 import CategoriesList from "./components/CategoriesList.jsx";
 import BrandList from "./components/BrandList.jsx";
@@ -41,8 +36,8 @@ function Home() {
   const getAllCategories = async () => {
     const link = `${baseurl}/api/v1/categories`;
     const { data } = await axios.get(link);
-    let categories = data.categories.map(({ _id, label }) => {
-      return { id: _id, label };
+    let categories = data.categories.map(({ _id, label, icon }) => {
+      return { id: _id, label, icon };
     });
     setCategories(categories);
   };
@@ -82,9 +77,6 @@ function Home() {
             <div className="d-flex flex-row  px-md-5">
               <div className="col-12">
                 <Slider {...settings}>
-                  <div>
-                    <img src={banner1} alt="Slider" />{" "}
-                  </div>
                   {sliders?.images?.map(({ url, _id }) => (
                     <div key={_id}>
                       <img src={url} alt="Slider" />{" "}
@@ -96,9 +88,9 @@ function Home() {
           </div>
 
           <div id="" className="mt-5  ">
-            <div className="bg-white shadow container">
-              <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">
-                Top Brands
+            <div className="bg-secondary bg-opacity-25 shadow container">
+              <p className="col-11 h1 gridHeading  gridHeading  text-center my-1  p-3 rounded-3">
+                Popular Brands
               </p>
               {brands && (
                 <Carousel
@@ -111,7 +103,12 @@ function Home() {
                     brands.map(
                       (brand) =>
                         brand.published && (
-                          <Product key={brand._id} product={brand} />
+                          <Link
+                            className="productCard position-relative col-md-3"
+                            to={`/brand/${brand?._id}`}
+                          >
+                            <img src={brand?.images?.url} alt={brand?.name} />
+                          </Link>
                         )
                     )}
                 </Carousel>
@@ -130,19 +127,18 @@ function Home() {
                 )}
               />
 
-              <div className="row justify-content-center    ">
+              {/* <div className="row justify-content-center    ">
                 <div className="col-11 h1 text-warning gridHeading text-start shadow-sm bg-white  my-3  p-3 rounded-3">
                   Double Cash Back Hot Stores | April 2023
                 </div>
               </div>
-              {/* Making a brand list component here  */}
               {brands && (
                 <BrandList
                   data={brands.filter(
                     (brand) => brand.popular && brand.published
                   )}
                 />
-              )}
+              )} */}
               {/* <div className="row justify-content-center ">
                 {brands &&
                   brands.map(

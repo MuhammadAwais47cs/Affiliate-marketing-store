@@ -26,8 +26,6 @@ const NewCategory = () => {
   });
   const [loading, setloading] = useState(false);
 
-  // const categories = ["Nike", "Adidas", "Dell", "Hp"];
-
   useEffect(() => {
     if (error) {
       alert.error(error);

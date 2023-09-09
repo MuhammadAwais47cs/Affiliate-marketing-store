@@ -1,16 +1,17 @@
 import moment from "moment";
 import React from "react";
-import RightArrow from "../Asset/angleRight.svg";
-import { FaAngleRight } from "react-icons/fa";
-// import { FaRegShareSquare } from "react-icons/fa";
-import { SlArrowRight } from "react-icons/sl";
+import RightArrow from "../Asset/angleRight.png";
 // import { Link } from "react-router-dom";
 
 const Offers = ({ product, callBack }) => {
   console.log("Current coupon codes and offers", product);
   return (
     <>
-      <div to="" className="col-md-4" onClick={callBack}>
+      <div
+        className="col-md-4"
+        style={{ cursor: "pointer" }}
+        onClick={callBack}
+      >
         <div className="card border-0 shadow rounded-3 mb-3">
           <div className="row  g-0 py-1">
             <div
@@ -34,7 +35,7 @@ const Offers = ({ product, callBack }) => {
                 </h5> */}
               </div>
             </div>
-            <div className="col-8">
+            <div className="col-7">
               <div className="card-body">
                 <p className="card-text PromoCode text-truncate text-body-secondary my-0 ">
                   {moment(product?.expireDate).format("DD-MM-YYYY")}{" "}
@@ -57,8 +58,14 @@ const Offers = ({ product, callBack }) => {
               className="col-1 my-auto d-flex justify-content-center   "
               // style={{ borderRight: "1px dashed gray" }}
             >
-              <div className="mx-auto ">
-                <FaAngleRight className="fa-2x shareIcon position-absolute top-50 end-0 me-md-2 me-lg-4 text-danger " />
+              <div className="me-2 ">
+                <img
+                  src={RightArrow}
+                  alt="Right Arrow"
+                  height="40px"
+                  width="25px"
+                  className=" shareIcon   text-danger "
+                />
               </div>
             </div>
           </div>
