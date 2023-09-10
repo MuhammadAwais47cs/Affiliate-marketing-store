@@ -13,6 +13,7 @@ import Search from "../search/Search";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import "./header.css";
+import "../../../App.css";
 let bootstrap;
 const tooltipTriggerList = document.querySelectorAll(
   '[data-bs-toggle="tooltip"]'
@@ -102,17 +103,17 @@ function Header() {
         collapseOnSelect
         expand="lg"
         sticky="top"
-        className="bg-danger shadow text-light  "
+        className="bg-theame shadow text-color  "
       >
         <Container className="my-2">
-          <Navbar.Brand href="/" className="text-light">
+          <Navbar.Brand href="/" className="text-color ">
             Fatcoupon
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               {pagesTabs?.map(({ name, value, children, link }) => (
-                <Nav.Link href={link} className="text-light">
+                <Nav.Link href={link} className="text-color">
                   {name}
                 </Nav.Link>
               ))}
@@ -146,7 +147,7 @@ function Header() {
           )}
         </Container>
       </Navbar>
-      {/* <nav className="navbar navbar-expand-sm bg-white shadow text-light  fixed-top">
+      {/* <nav className="navbar navbar-expand-sm bg-white shadow text-color  fixed-top">
         <div className="container-fluid ">
           <Link to="/" className="navbar-brand">
             <img
@@ -196,7 +197,7 @@ function Header() {
            
         <button
           type="button"
-          className="btn text-light "
+          className="btn text-color "
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >

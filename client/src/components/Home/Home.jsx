@@ -16,6 +16,7 @@ import BrandList from "./components/BrandList.jsx";
 import OfferList from "./components/OfferList.jsx";
 import { baseurl } from "../../baseurl";
 import axios from "axios";
+import "./index.css";
 import CouponPopUp from "./components/CouponPopUp";
 
 function Home() {
@@ -58,12 +59,12 @@ function Home() {
     pauseOnHover: true,
   };
   const breakPoints = [
-    { width: 300, itemsToShow: 2, pagination: false },
+    { width: 300, itemsToShow: 3, pagination: false },
     { width: 550, itemsToShow: 3, itemsToScroll: 2, pagination: false },
-    { width: 850, itemsToShow: 5, pagination: false },
-    { width: 1150, itemsToShow: 5, pagination: false, itemsToScroll: 2 },
-    { width: 1450, itemsToShow: 5, pagination: false },
-    { width: 1750, itemsToShow: 6, pagination: false },
+    { width: 850, itemsToShow: 6, pagination: false },
+    { width: 1024, itemsToShow: 9, pagination: false, itemsToScroll: 2 },
+    { width: 1440, itemsToShow: 10, pagination: false },
+    { width: 1750, itemsToShow: 12, pagination: false },
   ];
 
   return (
@@ -79,7 +80,7 @@ function Home() {
                 <Slider {...settings}>
                   {sliders?.images?.map(({ url, _id }) => (
                     <div key={_id}>
-                      <img src={url} alt="Slider" />{" "}
+                      <img src={banner1} alt="Slider" className="img-fluid" />{" "}
                     </div>
                   ))}
                 </Slider>
@@ -89,7 +90,7 @@ function Home() {
 
           <div id="" className="mt-5  ">
             <div className="bg-secondary bg-opacity-25 shadow container">
-              <p className="col-11 h1 gridHeading  gridHeading  text-center my-1  p-3 rounded-3">
+              <p className="col-11 h1 gridHeading  gridHeading  text-center my-1 fw-bold p-3 rounded-3">
                 Popular Brands
               </p>
               {brands && (
@@ -104,10 +105,16 @@ function Home() {
                       (brand) =>
                         brand.published && (
                           <Link
-                            className="productCard position-relative col-md-3"
+                            className="d-flex flex-row justify-content-center bg-white shadow-lg p-lg-2 p-md-1 border-0 rounded mb-2"
                             to={`/brand/${brand?._id}`}
                           >
-                            <img src={brand?.images?.url} alt={brand?.name} />
+                            <img
+                              src={brand?.images?.url}
+                              alt={brand?.name}
+                              width={75}
+                              className="mx-2"
+                              height={50}
+                            />
                           </Link>
                         )
                     )}
@@ -116,16 +123,17 @@ function Home() {
             </div>
             <div className="mx-4    px-auto">
               <div className="row justify-content-center    ">
-                <div className="col-11 h1 gridHeading text-warning gridHeading  text-start shadow-sm bg-white  my-3  p-3 rounded-3">
+                <div className="col-11 h1 gridHeading fw-bold gridHeading  text-center shadow-sm bg-white  my-3  p-3 rounded-3">
                   Popular Coupon
                 </div>
               </div>
-
-              <CouponList
-                Coupons={products.filter(
-                  (product) => product.popular && product.published
-                )}
-              />
+              {brands && (
+                <CouponList
+                  Coupons={brands.filter(
+                    (brands) => brands.popular && brands.published
+                  )}
+                />
+              )}
 
               {/* <div className="row justify-content-center    ">
                 <div className="col-11 h1 text-warning gridHeading text-start shadow-sm bg-white  my-3  p-3 rounded-3">
@@ -149,15 +157,18 @@ function Home() {
                   )}
               </div> */}
               <div className="row justfy-content-center    ">
-                <div className="col-11 h1 text-start gridHeading text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
-                  Current coupon codes and offers
+                <div className="col-11 h1 text-center gridHeading fw-bold shadow-sm bg-white  my-3  p-3 rounded-3">
+                  Featured Coupons
+                  {/* Current coupon codes and offers */}
                 </div>
               </div>
-              <OfferList
-                Coupons={products.filter(
-                  (product) => product.popular && product.published
-                )}
-              />
+              {products && (
+                <OfferList
+                  Coupons={products.filter(
+                    (product) => product.popular && product.published
+                  )}
+                />
+              )}
               {/* <div className="row justify-content-center ">
                 {products &&
                   products.map(
@@ -214,7 +225,7 @@ function Home() {
                   )}
               </div> */}
               <div className="row     ">
-                <div className="col-10 h1  text-start text-warning shadow-sm bg-white  my-3  p-3 rounded-3">
+                <div className="col-11 h1 text-center gridHeading fw-bold shadow-sm bg-white  my-3  p-3 rounded-3">
                   Top categories
                 </div>
               </div>

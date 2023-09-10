@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { alphabets } from "./data";
+import Coupon from "../Home/components/Coupon";
 function Brands({ withCate }) {
   const params = useParams();
   const location = useLocation();
@@ -43,9 +44,9 @@ function Brands({ withCate }) {
   return (
     <>
       <>
-        <div className="productsPage pt-5 bg-light  ">
+        <div className="  pt-5 bg-light  ">
           <MetaData title="PRODUCTS -- ECOMMERCE" />
-          <div className="container d-flex rounded-4 bg-white shadow px-auto py-2 ">
+          <div className=" d-flex flex-row flex-wrap justify-content-center rounded-4 bg-white shadow mx-5 px-auto py-2 ">
             {alphabets.map((name) => (
               <button
                 className={`btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1 ${
@@ -62,12 +63,19 @@ function Brands({ withCate }) {
           {loading ? (
             <Loader />
           ) : (
-            <div className="products ms-3 ">
+            <div className="row justify-content-center ">
               {brands &&
                 brands.map(
                   (brand) =>
                     brand.published && (
-                      <Product key={brand._id} product={brand} />
+                      <>
+                        <Coupon
+                          key={brand._id}
+                          product={brand}
+                          // callBack={() => modalToggle(brand)}
+                        />
+                        {/* <Product key={brand._id} product={brand} /> */}
+                      </>
                     )
                 )}
 

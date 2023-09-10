@@ -1,3 +1,31 @@
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+:root {
+ --blue: #ff5200;
+ --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+.rec-arrow {
+  background-color: var(--blue) !important;
+  transition: all 0.3s ease;
+  font-size: 1rem !important;
+  color: white !important;
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  min-width: 1rem !important;
+  line-height: 1.2rem !important;
+}
+.rec-arrow:hover:not(:disabled) {
+  transform: scale(1.2);
+  background-color: #10223c !important;
+}
 .banner {
   /* background-image: url("../../images/cover.jfif"); */
   /* background-color: #00b2ff; */
@@ -11,6 +39,10 @@
   align-items: center;
   justify-content: center;
   color: white;
+}
+.sliderImage {
+  width: 100vmax;
+  height: 44vmin;
 }
 
 .carousel-item > img {
@@ -88,7 +120,7 @@
 }
 
 .productCard {
-  width: 15vmax;
+  width: 17vmax;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -168,6 +200,7 @@
     overflow: hidden;
     white-space: nowrap;
   }
+  
 
   .Coupon {
     width: 20vmax;

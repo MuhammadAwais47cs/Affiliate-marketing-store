@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Coupon = ({ product, callBack }) => {
-  const { images, description, badge } = product;
+  const { images, description, badge, name } = product;
   return (
     <Link
       className="productCard position-relative col-md-3"
@@ -10,7 +10,10 @@ const Coupon = ({ product, callBack }) => {
       onClick={callBack}
     >
       <img src={images?.url} alt={description} />
-      <p className="text-truncate py-1 w-100 text-center">{description}</p>
+      <p className="text-truncate py-1 w-100 fw-bold text-center">{name}</p>
+      <span className="text-truncate  w-100 text-theame text-center">
+        {description}
+      </span>
       <div>
         {/*
      <Rating {...options} />{" "}

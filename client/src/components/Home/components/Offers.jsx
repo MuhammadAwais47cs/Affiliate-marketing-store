@@ -1,6 +1,7 @@
 import moment from "moment";
 import React from "react";
 import RightArrow from "../Asset/angleRight.png";
+import "../../../App.css";
 // import { Link } from "react-router-dom";
 
 const Offers = ({ product, callBack }) => {
@@ -42,13 +43,13 @@ const Offers = ({ product, callBack }) => {
                   {/* <span className=" rounded-pill  px-3 py-1 text-danger">
                   </span> */}
                 </p>
-                <h5 className="w-100 text-truncate  text-break my-1 ">
+                <h5 className="w-100 text-truncate  text-break my-1 text-theame ">
                   {" "}
                   {product?.description}
                 </h5>
-                <p className="card-text PromoCode text-truncate text-body-secondary ">
+                <p className="card-text PromoCode text-truncate  text-body-secondary ">
                   {/* {moment(product?.expireDate).format("DD-MM-YYYY")}{" "} */}
-                  product.badge
+                  {`${product.name} Voucher`}
                   {/* <span className=" rounded-pill  px-3 py-1 text-danger">
                   </span> */}
                 </p>

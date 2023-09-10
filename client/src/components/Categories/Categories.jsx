@@ -16,6 +16,7 @@ import MetaData from "../layout/MetaData";
 import axios from "axios";
 import { baseurl } from "../../baseurl";
 import Loader from "../layout/Loader/Loader";
+import Category from "../Home/components/Category";
 function Categories({ withId }) {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,8 +38,8 @@ function Categories({ withId }) {
   const getAllCategories = async () => {
     const link = `${baseurl}/api/v1/categories`;
     const { data } = await axios.get(link);
-    let categories = data.categories.map(({ _id, label }) => {
-      return { id: _id, label };
+    let categories = data.categories.map(({ _id, label, icon }) => {
+      return { id: _id, label, icon };
     });
     setCategories(categories);
     setLoading(false);
@@ -67,10 +68,13 @@ function Categories({ withId }) {
           {isloading ? (
             <Loader />
           ) : (
-            <div className="products ms-3 ">
+            <div className="row  ">
               {categories &&
-                categories.map(({ id, label, icon }) => (
-                  <div className="col-md-4" key={id}>
+                categories.map((categories) => (
+                  <>
+                    <Category key={categories.id} category={categories} />
+
+                    {/* <div className="col-md-4" key={id}>
                     <Link
                       to={`/categories/brands/${id}`}
                       className="card border-0 shadow rounded-4 mb-3 w-75"
@@ -81,18 +85,19 @@ function Categories({ withId }) {
                             icon={`${icon ? icon : faMobileScreenButton}}`}
                             style={{ color: "#f0cb14" }}
                             size="lg"
-                          />
-                        </div>
+                            />
+                            </div>
                         <div className="col-8">
                           <div className="card-body">
                             <h6 className="card-title text-warning">
                               {label}{" "}
                             </h6>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
+                            </div>
+                            </div>
+                            </div>
+                            </Link>
+                          </div>*/}
+                  </>
                 ))}
 
               {categories[0] === undefined && (

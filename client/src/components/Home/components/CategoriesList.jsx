@@ -9,7 +9,7 @@ const CategoriesList = ({ data }) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth);
 
   useMemo(() => {
-    const categoriesList = calculateVisibleBrands(data, isDesktop, 10, 4);
+    const categoriesList = calculateVisibleBrands(data, isDesktop, 12, 4);
     console.log("data...........", data);
     console.log("categoriesList...........", categoriesList);
     setCategories(categoriesList);
