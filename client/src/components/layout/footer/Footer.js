@@ -24,7 +24,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer id="footer" className="bg-light   ">
+      <footer id="footer" className="bg-secondary   ">
         <div className="leftFooter">
           <img src={logo} alt="" />
           <p>
@@ -85,7 +85,7 @@ const Footer = () => {
 */}
         </div>
       </footer>
-      <div className="d-flex flex-row justify-content-center   border-top border-warning py-4 bg-light bg-gradient   ">
+      <div className="d-flex flex-row justify-content-center   border-top border-warning py-4 bg-secondary bg-gradient   ">
         <p className="text-white">Copyrights 2021 &copy; </p>
       </div>
     </>

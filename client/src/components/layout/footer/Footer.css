@@ -3,9 +3,9 @@
   /* --black1:rgb(220,53,69); */
   --blue: #ff5200;
   --white: #fff;
-  --gray: #f5f5f5;
-  --black1: #222;
-  --black2: #999;
+  --gray: #ff5200;
+  --black1: #ff5200;
+  --black2: #ff5200;
 }
 footer {
     margin-top: 2vmax;
