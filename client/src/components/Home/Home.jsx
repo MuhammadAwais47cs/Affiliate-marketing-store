@@ -62,8 +62,8 @@ function Home() {
     { width: 300, itemsToShow: 3, pagination: false },
     { width: 550, itemsToShow: 3, itemsToScroll: 2, pagination: false },
     { width: 850, itemsToShow: 6, pagination: false },
-    { width: 1024, itemsToShow: 9, pagination: false, itemsToScroll: 2 },
-    { width: 1440, itemsToShow: 10, pagination: false },
+    { width: 1024, itemsToShow: 7, pagination: false, itemsToScroll: 2 },
+    { width: 1440, itemsToShow: 7, pagination: false },
     { width: 1750, itemsToShow: 12, pagination: false },
   ];
 
