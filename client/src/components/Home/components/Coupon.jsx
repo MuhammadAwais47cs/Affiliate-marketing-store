@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Coupon = ({ product, callBack }) => {
-  const { images, description, badge, name } = product;
+const Coupon = ({ product, callBack, hitFromBrandPage }) => {
+  const { images, description, badge, name, link, _id } = product;
   return (
     <Link
       className="productCard position-relative col-md-3"
-      to=""
+      to={`${hitFromBrandPage ? `/brand/${_id}` : link}`}
+      // to={`${modalData?.couponType === "Code" ? "" : modalData?.link}`}
+      target={`${!hitFromBrandPage && "_blank"}`}
       onClick={callBack}
     >
       <img src={images?.url} alt={description} />

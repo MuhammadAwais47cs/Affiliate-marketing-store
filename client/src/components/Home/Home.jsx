@@ -90,7 +90,7 @@ function Home() {
 
           <div id="" className="mt-5  ">
             <div className="bg-secondary bg-opacity-25 shadow container">
-              <p className="col-11 h1 gridHeading  gridHeading  text-center my-1 fw-bold p-3 rounded-3">
+              <p className="col-11 h3   gridHeading  text-center my-1 fw-bold p-3 rounded-3">
                 Popular Brands
               </p>
               {brands && (
@@ -105,15 +105,15 @@ function Home() {
                       (brand) =>
                         brand.published && (
                           <Link
-                            className="d-flex flex-row justify-content-center bg-white shadow-lg p-lg-2 p-md-1 border-0 rounded mb-2"
+                            className="d-flex flex-row justify-content-center bg-white shadow-lg p-lg-2 p-md-1 border-0 rounded mb-2 mx-2"
                             to={`/brand/${brand?._id}`}
                           >
                             <img
                               src={brand?.images?.url}
                               alt={brand?.name}
-                              width={75}
+                              width={70}
                               className="mx-2"
-                              height={50}
+                              height={45}
                             />
                           </Link>
                         )
@@ -123,7 +123,7 @@ function Home() {
             </div>
             <div className="mx-4    px-auto">
               <div className="row justify-content-center    ">
-                <div className="col-11 h1 gridHeading fw-bold gridHeading  text-center shadow-sm bg-white  my-3  p-3 rounded-3">
+                <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">
                   Popular Coupon
                 </div>
               </div>
@@ -156,10 +156,10 @@ function Home() {
                       )
                   )}
               </div> */}
-              <div className="row justfy-content-center    ">
-                <div className="col-11 h1 text-center gridHeading fw-bold shadow-sm bg-white  my-3  p-3 rounded-3">
+
+              <div className="row justify-content-center    ">
+                <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">
                   Featured Coupons
-                  {/* Current coupon codes and offers */}
                 </div>
               </div>
               {products && (
@@ -224,8 +224,13 @@ function Home() {
                       )
                   )}
               </div> */}
-              <div className="row     ">
+              {/* <div className="row     ">
                 <div className="col-11 h1 text-center gridHeading fw-bold shadow-sm bg-white  my-3  p-3 rounded-3">
+                  Top categories
+                </div>
+              </div> */}
+              <div className="row justify-content-center    ">
+                <div className="col-11 h3 fw-bold gridHeading  text-center shadow-sm bg-white  my-3  p-3 rounded-3">
                   Top categories
                 </div>
               </div>
