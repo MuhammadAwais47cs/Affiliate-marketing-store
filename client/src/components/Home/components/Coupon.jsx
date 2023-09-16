@@ -2,6 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Coupon = ({ product, callBack, hitFromBrandPage }) => {
+
+  const handleLinkClick = (event) => {
+    // Prevent the default behavior of the link
+    event.preventDefault();
+
+    // Get the link's URL from the "href" attribute
+    const linkUrl = event.currentTarget.getAttribute("href");
+
+    // Open the link in a new tab in the background
+    const newTab = window.open(linkUrl, "_blank");
+    newTab.blur(); // Move focus to the new tab
+    window.focus(); // Move focus back to the current tab
+  };
   const { images, description, badge, name, link, _id } = product;
   return (
     <Link
@@ -9,7 +22,7 @@ const Coupon = ({ product, callBack, hitFromBrandPage }) => {
       to={`${hitFromBrandPage ? `/brand/${_id}` : link}`}
       // to={`${modalData?.couponType === "Code" ? "" : modalData?.link}`}
       target={`${!hitFromBrandPage && "_blank"}`}
-      onClick={callBack}
+      onClick={hitFromBrandPage ? handleLinkClick : callBack}
     >
       <img src={images?.url} alt={description} />
       <p className="text-truncate py-1 w-100 fw-bold text-center">{name}</p>
