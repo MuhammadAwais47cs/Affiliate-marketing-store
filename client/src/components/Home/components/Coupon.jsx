@@ -1,28 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Coupon = ({ product, callBack, hitFromBrandPage }) => {
+  const navigate = useNavigate();
+  const handleLinkClick = (e, link) => {
+    console.log("handleLinkClick-------");
+    if (e.ctrlKey || e.metaKey) {
+      // If Ctrl (or Cmd on Mac) is held while clicking the link, open in a new tab
+      return;
+    }
+    e.preventDefault();
 
-  const handleLinkClick = (event) => {
-    // Prevent the default behavior of the link
-    event.preventDefault();
-
-    // Get the link's URL from the "href" attribute
-    const linkUrl = event.currentTarget.getAttribute("href");
-
-    // Open the link in a new tab in the background
-    const newTab = window.open(linkUrl, "_blank");
-    newTab.blur(); // Move focus to the new tab
-    window.focus(); // Move focus back to the current tab
+    // Open the URL in a new tab
+    window.open(link, "_blank");
+    window.focus();
+    // Handle the navigation in your own way, for example using history.push
+    // history.push('');
+    // navigate(link);
   };
   const { images, description, badge, name, link, _id } = product;
   return (
     <Link
+      // onClick={hitFromBrandPage ? handleLinkClick : callBack}
+      onClick={(e) => {
+        handleLinkClick(e, link);
+        callBack();
+      }}
       className="productCard position-relative col-md-3"
       to={`${hitFromBrandPage ? `/brand/${_id}` : link}`}
       // to={`${modalData?.couponType === "Code" ? "" : modalData?.link}`}
       target={`${!hitFromBrandPage && "_blank"}`}
-      onClick={hitFromBrandPage ? handleLinkClick : callBack}
     >
       <img src={images?.url} alt={description} />
       <p className="text-truncate py-1 w-100 fw-bold text-center">{name}</p>
