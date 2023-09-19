@@ -12,8 +12,8 @@ const Coupon = ({ product, callBack, hitFromBrandPage }) => {
     e.preventDefault();
 
     // Open the URL in a new tab
-    window.open(link, "_blank");
-    window.focus();
+    // window.open(link, "_blank");
+    // window.focus();
     // Handle the navigation in your own way, for example using history.push
     // history.push('');
     // navigate(link);
@@ -22,14 +22,14 @@ const Coupon = ({ product, callBack, hitFromBrandPage }) => {
   return (
     <Link
       // onClick={hitFromBrandPage ? handleLinkClick : callBack}
-      onClick={(e) => {
-        handleLinkClick(e, link);
-        callBack();
-      }}
+      // onClick={(e) => {
+      //   handleLinkClick(e, link);
+      //   callBack();
+      // }}
       className="productCard position-relative col-md-3"
       to={`${hitFromBrandPage ? `/brand/${_id}` : link}`}
       // to={`${modalData?.couponType === "Code" ? "" : modalData?.link}`}
-      target={`${!hitFromBrandPage && "_blank"}`}
+      // target={`${!hitFromBrandPage && "_blank"}`}
     >
       <img src={images?.url} alt={description} />
       <p className="text-truncate py-1 w-100 fw-bold text-center">{name}</p>

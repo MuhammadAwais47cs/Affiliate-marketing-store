@@ -73,7 +73,7 @@ function Brands({ withCate }) {
                           key={brand._id}
                           product={brand}
                           // callBack={() => modalToggle(brand)}
-                          hitFromBrandPage
+                          hitFromBrandPage={true}
                         />
                         {/* <Product key={brand._id} product={brand} /> */}
                       </>
