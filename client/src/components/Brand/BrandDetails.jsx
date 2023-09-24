@@ -81,9 +81,11 @@ function ProductDetails() {
             </div>
           </section>
           <section className=" ">
-            {products?.map((product) => (
-              <ProductCard product={product} />
-            ))}
+            {products ? (
+              products?.map((product) => <ProductCard product={product} />)
+            ) : (
+              <Loader />
+            )}
           </section>
         </>
       )}

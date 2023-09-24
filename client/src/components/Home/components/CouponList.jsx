@@ -49,6 +49,7 @@ const CouponList = ({ Coupons }) => {
               key={product._id}
               product={product}
               callBack={() => modalToggle(product)}
+              goToBrandDetailPage={true}
             />
           )
           // )
