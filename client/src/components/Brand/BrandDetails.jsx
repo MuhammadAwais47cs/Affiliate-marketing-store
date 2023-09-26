@@ -82,7 +82,9 @@ function ProductDetails() {
           </section>
           <section className=" ">
             {products ? (
-              products?.map((product) => <ProductCard product={product} />)
+              products?.map((product) => (
+                <ProductCard product={product} brandId={brand?._id} />
+              ))
             ) : (
               <Loader />
             )}
