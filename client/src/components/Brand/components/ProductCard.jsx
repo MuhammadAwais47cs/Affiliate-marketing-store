@@ -19,26 +19,24 @@ function ProductCard({ product , brandId }) {
 
   useScrollTo(scrollPositionFromQueryParameter || scrollPosition);
   const handleClick = (link, history, product) => {
-    alert('history' , history)
-        // Get the URL for the first new tab from an anchor tag
-        // const firstTabURL = document.getElementById(link).href;
-    
-        // Store scroll position and other relevant state information
-        const scrollPosition = window.scrollY;
-        // Add more state variables as needed
-     // Close the current tab
-     window.close();
-        // Use window.open to open the first new tab with the specified URL
-        window.open(link, "_blank");
-    
-        // Open the second new tab and pass state information as query parameters
-        const secondTabURL = `/brand/${brandId}?scrollPosition=${scrollPosition}`;
-        window.open(secondTabURL, "_blank");
-        // window.onload = function () {
-        //   modalToggle(product);
-        // };
-       
-      };
+    // Get the URL for the first new tab from an anchor tag
+    // const firstTabURL = document.getElementById(link).href;
+
+    // Store scroll position and other relevant state information
+    const scrollPosition = window.scrollY;
+    // Add more state variables as needed
+    // Close the current tab
+    window.close();
+    // Use window.open to open the first new tab with the specified URL
+    window.open(link, "_blank");
+
+    // Open the second new tab and pass state information as query parameters
+    const secondTabURL = `/brand/${brandId}?scrollPosition=${scrollPosition}`;
+    window.open(secondTabURL, "_blank");
+    // window.onload = function () {
+    //   modalToggle(product);
+    // };
+  };
 
   // const handleClick = (link, history, product) => {
   //   // modalToggle(product);
