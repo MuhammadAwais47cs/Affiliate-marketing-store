@@ -26,13 +26,19 @@ function ProductCard({ product , brandId }) {
     const scrollPosition = window.scrollY;
     // Add more state variables as needed
     // Close the current tab
-    window.close();
+    // window.close();
     // Use window.open to open the first new tab with the specified URL
     window.open(link, "_blank");
 
     // Open the second new tab and pass state information as query parameters
     const secondTabURL = `/brand/${brandId}?scrollPosition=${scrollPosition}`;
-    window.open(secondTabURL, "_blank");
+    const popup = window.open(
+      secondTabURL,
+      "_blank",
+      "noopener,noreferrer"
+      // "toolbar=0,location=0,directories=0,status=1,menubar=0,titlebar=0,scrollbars=1,resizable=1,width=500,height=500"
+    );
+    return popup !== null && typeof popup !== "undefined";
     // window.onload = function () {
     //   modalToggle(product);
     // };
