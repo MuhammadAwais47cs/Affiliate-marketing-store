@@ -83,7 +83,11 @@ function ProductDetails() {
           <section className=" ">
             {products ? (
               products?.map((product) => (
-                <ProductCard product={product} brandId={brand?._id} />
+                <ProductCard
+                  key={product._id}
+                  product={product}
+                  brandId={brand?._id}
+                />
               ))
             ) : (
               <Loader />

@@ -1,61 +1,54 @@
 import React, { useState, useEffect, useMemo } from "react";
 import CouponPopUp from "../../Home/components/CouponPopUp";
 import moment from "moment";
-import useScrollTo from "../../../hooks/useScrollTo";
+import axios from "axios";
+import { baseurl } from "../../../baseurl";
 
-function ProductCard({ product , brandId }) {
-  const [modalData, setModalData] = useState("");
+// import useScrollTo from "../../../hooks/useScrollTo";
+
+function ProductCard({ product, brandId }) {
+  console.log("ProductCardComponent Called");
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [modalData, setmodalData] = useState("");
 
   const modalToggle = (product) => {
-    setModalData(product);
+    setmodalData(product);
     setIsOpenModal(!isOpenModal);
   };
-
   const scrollPosition = useMemo(() => window.scrollY, []);
   const queryParameters = new URLSearchParams(window.location.search);
   const scrollPositionFromQueryParameter =
     queryParameters.get("scrollPosition");
+  const popId = queryParameters.get("popId");
 
-  useScrollTo(scrollPositionFromQueryParameter || scrollPosition);
+  // useScrollTo(scrollPositionFromQueryParameter || scrollPosition);
+
+  useEffect(() => {
+    console.log("useEffect");
+
+    if (popId && popId === product._id) {
+      axios
+        .get(`${baseurl}/api/v1/product/${popId}`)
+        .then(({ data }) => {
+          console.log("res", data);
+          setmodalData(data.product);
+          setIsOpenModal(true);
+        })
+        .catch((error) => console.error(error));
+    }
+
+    if (scrollPositionFromQueryParameter || scrollPosition) {
+      window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
+    }
+  }, [popId, scrollPositionFromQueryParameter, product._id, scrollPosition]);
   const handleClick = (link, history, product) => {
-    // Get the URL for the first new tab from an anchor tag
-    // const firstTabURL = document.getElementById(link).href;
-
     // Store scroll position and other relevant state information
     const scrollPosition = window.scrollY;
-    // Add more state variables as needed
-    // Close the current tab
-    // window.close();
-    // Use window.open to open the first new tab with the specified URL
-    window.open(link, "_blank");
 
-    // Open the second new tab and pass state information as query parameters
-    const secondTabURL = `/brand/${brandId}?scrollPosition=${scrollPosition}`;
-    const popup = window.open(
-      secondTabURL,
-      "_blank",
-      "noopener,noreferrer"
-      // "toolbar=0,location=0,directories=0,status=1,menubar=0,titlebar=0,scrollbars=1,resizable=1,width=500,height=500"
-    );
-    return popup !== null && typeof popup !== "undefined";
-    // window.onload = function () {
-    //   modalToggle(product);
-    // };
+    const secondTabURL = `/brand/${brandId}?popId=${product?._id}&scrollPosition=${scrollPosition}`;
+    window.open(secondTabURL, "_blank");
+    window.location.href = link;
   };
-
-  // const handleClick = (link, history, product) => {
-  //   // modalToggle(product);
-  //   // Close the current tab
-  //   window.close();
-  //   // Open the first new tab with the specified URL
-  //   window.open(link, "_blank");
-
-  //   // Open the second new tab and pass state information as query parameters
-  //   const secondTabURL = `${history}?scrollPosition=${scrollPosition}`;
-  //   window.open(secondTabURL, "_blank");
-  // };
- 
 
   const { images, brand, description, expireDate, link } = product;
 
@@ -91,7 +84,11 @@ function ProductCard({ product , brandId }) {
               Get Deal
             </button>
             {isOpenModal && (
-              <CouponPopUp modalData={modalData} modalToggle={modalToggle} />
+              <CouponPopUp
+                modalData={modalData}
+                isOpenModal={isOpenModal}
+                modalToggle={modalToggle}
+              />
             )}
           </div>
         </div>
