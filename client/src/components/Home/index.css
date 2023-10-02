@@ -143,6 +143,10 @@
   width: 6vmax;
   height: 11vmin;
 }
+.brandSliderImg  {
+  width: 10vmax;
+  height: 10vmin;
+}
 .category-link > span {
   font-size: 1.2vmax;
 }
@@ -199,6 +203,10 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+  }
+  .brandSliderImg  {
+    width: 6vmax;
+    height: 6vmin;
   }
   
 

@@ -95,7 +95,7 @@ function Home() {
               </p>
               {brands && (
                 <Carousel
-                  itemPosition={consts.CENTER}
+                  itemposition={consts.CENTER}
                   breakPoints={breakPoints}
                   enableAutoPlay
                   autoPlaySpeed={1500}
@@ -111,9 +111,7 @@ function Home() {
                             <img
                               src={brand?.images?.url}
                               alt={brand?.name}
-                              width={70}
-                              className="mx-2"
-                              height={45}
+                              className="mx-2 brandSliderImg"
                             />
                           </Link>
                         )
@@ -270,7 +268,7 @@ function Home() {
             <p className="col-11 h1 gridHeading text-warning gridHeading  text-start my-1  p-3 rounded-3">
               Top Categories
             </p>
-            <Carousel itemPosition={consts.CENTER} breakPoints={breakPoints}>
+            <Carousel itemposition={consts.CENTER} breakPoints={breakPoints}>
               {brands &&
                 brands.map(
                   (brand) =>

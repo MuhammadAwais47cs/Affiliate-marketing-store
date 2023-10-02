@@ -37,15 +37,16 @@ function ProductCard({ product, brandId }) {
         .catch((error) => console.error(error));
     }
 
-    if (scrollPositionFromQueryParameter || scrollPosition) {
-      window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
-    }
+    // if (scrollPositionFromQueryParameter || scrollPosition) {
+    //   window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
+    // }
   }, [popId, scrollPositionFromQueryParameter, product._id, scrollPosition]);
   const handleClick = (link, history, product) => {
     // Store scroll position and other relevant state information
-    const scrollPosition = window.scrollY;
+    // const scrollPosition = window.scrollY;
+    //  &scrollPosition=${scrollPosition}`;
 
-    const secondTabURL = `/brand/${brandId}?popId=${product?._id}&scrollPosition=${scrollPosition}`;
+    const secondTabURL = `/brand/${brandId}?popId=${product?._id}`;
     window.open(secondTabURL, "_blank");
     window.location.href = link;
   };

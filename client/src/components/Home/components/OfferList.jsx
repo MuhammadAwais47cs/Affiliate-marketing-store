@@ -3,12 +3,17 @@ import "../index.css";
 import Offers from "./Offers.jsx";
 import CouponPopUp from "./CouponPopUp";
 import { calculateVisibleBrands } from "../../../utils/functions";
+import axios from "axios";
+import { baseurl } from "../../../baseurl";
 const CouponList = ({ Coupons }) => {
   const [showAll, setShowAll] = useState(false);
   const [modalData, setmodalData] = useState({});
   const [coupons, setCoupons] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth);
+
+  const queryParameters = new URLSearchParams(window.location.search);
+  const popId = queryParameters.get("popId");
 
   useMemo(() => {
     const list = calculateVisibleBrands(Coupons, isDesktop, 9, 3);
@@ -27,6 +32,32 @@ const CouponList = ({ Coupons }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, [Coupons]);
+
+  useEffect(() => {
+    console.log(
+      "popId && popId === coupons._id",
+      popId,
+      popId,
+      coupons._id,
+      popId === coupons._id,
+      coupons
+    );
+    console.log("useEffect", popId && popId === coupons._id);
+
+    if (popId) {
+      axios
+        .get(`${baseurl}/api/v1/product/${popId}`)
+        .then(({ data }) => {
+          setmodalData(data.product);
+          setIsOpenModal(true);
+        })
+        .catch((error) => console.error(error));
+    }
+
+    // if (scrollPositionFromQueryParameter || scrollPosition) {
+    //   window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
+    // }
+  }, [popId, coupons._id]);
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };

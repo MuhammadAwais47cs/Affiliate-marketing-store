@@ -48,69 +48,83 @@ function CountdownTimer({ expirationDate }) {
 }
 const Offers = ({ product, callBack }) => {
   console.log("Current coupon codes and offers", product);
- 
 
-return (
-  <>
-    <div className="col-md-4" style={{ cursor: "pointer" }} onClick={callBack}>
-      <div className="card border-0 shadow rounded-3 mb-3">
-        <div className="row  g-0 py-1">
-          <div
-            className="col-4 my-auto d-flex justify-content-center   "
-            // style={{ borderRight: "1px dashed gray" }}
-          >
-            <div className="mx-auto ">
-              <img
-                src={product.images.url}
-                alt="coupon"
-                className="bd-placeholder-img img-fluid rounded-pill  "
-                width="50"
-                height="75"
-              />
-              {/* <h5
+  
+
+  const handleClick = (link) => {
+    // Store scroll position and other relevant state information
+    // const scrollPosition = window.scrollY;
+    //  &scrollPosition=${scrollPosition}`;
+    const secondTabURL = `/?popId=${product?._id}`;
+    window.open(secondTabURL, "_blank");
+    window.location.href = link;
+  };
+
+  return (
+    <>
+      <div
+        className="col-md-4"
+        style={{ cursor: "pointer" }}
+        onClick={() => handleClick(product?.link)}
+      >
+        <div className="card border-0 shadow rounded-3 mb-3">
+          <div className="row  g-0 py-1">
+            <div
+              className="col-4 my-auto d-flex justify-content-center   "
+              // style={{ borderRight: "1px dashed gray" }}
+            >
+              <div className="mx-auto ">
+                <img
+                  src={product.images.url}
+                  alt="coupon"
+                  className="bd-placeholder-img img-fluid rounded-pill  "
+                  width="50"
+                  height="75"
+                />
+                {/* <h5
                   className="    text-center text-truncate  py-1"
                   style={{ maxWidth: "5rem" }}
                   title={product?.name}
                 >
                   {product?.name}
                 </h5> */}
+              </div>
             </div>
-          </div>
-          <div className="col-7">
-            <div className="card-body">
-                  <CountdownTimer expirationDate={product?.expireDate} />
-              {/* <p className="card-text PromoCode text-truncate text-body-secondary my-0 ">
+            <div className="col-7">
+              <div className="card-body">
+                <CountdownTimer expirationDate={product?.expireDate} />
+                {/* <p className="card-text PromoCode text-truncate text-body-secondary my-0 ">
               </p> */}
-              <h6 className="w-100 text-truncate  text-break my-1 text-theame ">
-                {" "}
-                {product?.description}
-              </h6>
-              <p className="card-text PromoCode text-truncate  text-body-secondary ">
-                {/* {moment(product?.expireDate).format("DD-MM-YYYY")}{" "} */}
-                {`${product.name} Voucher`}
-                {/* <span className=" rounded-pill  px-3 py-1 text-danger">
+                <h6 className="w-100 text-truncate  text-break my-1 text-theame ">
+                  {" "}
+                  {product?.description}
+                </h6>
+                <p className="card-text PromoCode text-truncate  text-body-secondary ">
+                  {/* {moment(product?.expireDate).format("DD-MM-YYYY")}{" "} */}
+                  {`${product.name} Voucher`}
+                  {/* <span className=" rounded-pill  px-3 py-1 text-danger">
                   </span> */}
-              </p>
+                </p>
+              </div>
             </div>
-          </div>
-          <div
-            className="col-1 my-auto d-flex justify-content-center   "
-            // style={{ borderRight: "1px dashed gray" }}
-          >
-            <div className="me-2 ">
-              <img
-                src={RightArrow}
-                alt="Right Arrow"
-                height="40px"
-                width="25px"
-                className=" shareIcon   text-danger "
-              />
+            <div
+              className="col-1 my-auto d-flex justify-content-center   "
+              // style={{ borderRight: "1px dashed gray" }}
+            >
+              <div className="me-2 ">
+                <img
+                  src={RightArrow}
+                  alt="Right Arrow"
+                  height="40px"
+                  width="25px"
+                  className=" shareIcon   text-danger "
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    {/* <Link to="" className="col-md-4" onClick={callBack}>
+      {/* <Link to="" className="col-md-4" onClick={callBack}>
         <div className="card border-0 shadow rounded-3 mb-3">
           <div className="row  g-0 py-3">
             <div
@@ -151,8 +165,8 @@ return (
           </div>
         </div>
       </Link> */}
-  </>
-);
+    </>
+  );
 };
 
 // export default CountdownTimer;
