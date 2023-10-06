@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Brands.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { getBrand } from "../../actions/brandAction";
 import Product from "../Home/Product";
@@ -39,7 +39,7 @@ function Brands({ withCate }) {
     if (error) return alert.error(error);
     withCate
       ? dispatch(getBrand("", "", "", "", "", id))
-      : dispatch(getBrand());
+      : dispatch(getBrand("", "", "", "", "", false, true)); // true means withAlphabet
   }, [dispatch, keyword, currentPage, id, withCate, state, error]);
   return (
     <>
@@ -63,7 +63,47 @@ function Brands({ withCate }) {
           {loading ? (
             <Loader />
           ) : (
-            <div className="row justify-content-center ">
+            <>
+              <div className="row justify-content-center mx-5 ">
+                {brands &&
+                  brands.map((brand, index) => (
+                    <>
+                      <div
+                        className="stores-cat panel row justify-content-center bg-danger bg-opacity-25 my-5  "
+                        key={index}
+                      >
+                        <h3 className="stores-cat-header text-center">
+                          <span className="bg-warning bg-opacity-100 border rounded-circle px-4 py-3 shadow-lg">
+                            {brand.alpabets}
+                          </span>
+                        </h3>
+                        {brand?.filterBrands?.slice(0, 4)?.map((item) => (
+                          <Coupon
+                            key={item._id}
+                            product={item}
+                            // callBack={() => modalToggle(brand)}
+                            goToBrandDetailPage={true}
+                          />
+                        ))}
+                      </div>
+                      {console.log("brand[index]", brand.alpabets)}
+                      {console.log("brand[index]", brand.filterBrands)}
+                      {/* <Product key={brand._id} product={brand} /> */}
+                    </>
+                  ))}
+
+                {brands[0] === undefined && (
+                  <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
+                    <h2 className="text-center">No Brand Found</h2>
+                    <p className="px-4 text-center text-secondary my-3">
+                      Sorry, we couldn't find any Brand matching your search
+                      criteria. Please try again with a different search term or
+                      refine your filters.
+                    </p>
+                  </div>
+                )}
+              </div>
+              {/* <div className="row justify-content-center ">
               {brands &&
                 brands.map(
                   (brand) =>
@@ -75,7 +115,6 @@ function Brands({ withCate }) {
                           // callBack={() => modalToggle(brand)}
                           goToBrandDetailPage={true}
                         />
-                        {/* <Product key={brand._id} product={brand} /> */}
                       </>
                     )
                 )}
@@ -90,7 +129,8 @@ function Brands({ withCate }) {
                   </p>
                 </div>
               )}
-            </div>
+            </div> */}
+            </>
           )}
 
           {resultPerPage < brandsCount && brands.lenght > 0 && (

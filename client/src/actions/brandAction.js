@@ -20,7 +20,8 @@ export const getBrand =
     price = "",
     state,
     alphabet = "",
-    id = false
+    id = false,
+    withAlphabet = false
   ) =>
   async (dispatch) => {
     try {
@@ -38,6 +39,9 @@ export const getBrand =
       }
       if (alphabet) {
         link = `${baseurl}/api/v1/brands?alphabet=${alphabet}`;
+      }
+      if (withAlphabet) {
+        link = `${baseurl}/api/v1/brands/withAlphabet`;
       }
       if (state?.category) {
         link = `${baseurl}/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${state?.category}&price[gte]=1000&price[lte]=${price}`;

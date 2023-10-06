@@ -47,15 +47,76 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   }
 
   const result = await apiFeatures.query;
-  
+
   if (!result) {
     return next(new ErrorHandler(`Brand not found`, 404));
   }
+
   // console.log("else brands :>> ", brands);
   res
     .status(200)
     .json({ success: true, brands: result, brandsCount, resultPerPage });
 });
+exports.getAllBrandsWithAlphabets = tryCatchAsyncError(
+  async (req, res, next) => {
+    // return next(new ErrorHandler('template error'))
+    const { id, alphabet } = req.params;
+    const resultPerPage = 100;
+    const brandsCount = await Brand.countDocuments();
+    let apiFeatures = "";
+    if (id) {
+      apiFeatures = new ApiFeatures(Brand.find({ category: id }), req.query)
+        .search()
+        .pagination(resultPerPage);
+    } else {
+      apiFeatures = new ApiFeatures(Brand.find(), req.query)
+        .search()
+        .alphabet()
+        .pagination(resultPerPage);
+      // .filter()
+    }
+
+    let result = await apiFeatures.query;
+
+    if (!result) {
+      return next(new ErrorHandler(`Brand not found`, 404));
+    }
+
+    // Function to create the alphabetically filtered result
+    function createAlphabetFilter(data) {
+      const alphabetFilter = [];
+      for (
+        let letter = "a".charCodeAt(0);
+        letter <= "z".charCodeAt(0);
+        letter++
+      ) {
+        const currentLetter = String.fromCharCode(letter);
+        const filterResult = data.filter((product) =>
+          product.name.toLowerCase().startsWith(currentLetter)
+        );
+        if (filterResult.length > 0) {
+          alphabetFilter.push({
+            // [currentLetter]: filterResult,
+            filterBrands: filterResult,
+            alpabets: [currentLetter.toUpperCase()],
+          });
+        }
+      }
+      return alphabetFilter;
+    }
+
+    const filteredResult = createAlphabetFilter(result);
+
+    // console.log("else brands :>> ", brands);
+    res.status(200).json({
+      success: true,
+      brands: filteredResult,
+      brandsCount,
+      resultPerPage,
+    });
+    // .json({ success: true, brands: result, brandsCount, resultPerPage });
+  }
+);
 
 // delete Brand by Id 
 exports.deleteBrand = tryCatchAsyncError(async (req, res, next) => {

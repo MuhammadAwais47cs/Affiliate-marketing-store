@@ -1,4 +1,5 @@
 export const alphabets = [
+  "0-9",
   "A",
   "B",
   "C",

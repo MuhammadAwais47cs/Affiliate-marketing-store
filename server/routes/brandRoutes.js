@@ -4,10 +4,12 @@ const {
   createBrand,
   getBrandDetails,
   deleteBrand,
-  getSimilarBrands
+  getSimilarBrands,
+  getAllBrandsWithAlphabets,
 } = require("../controllers/brandController");
 const router = express.Router();
 router.route("/brands").get(getAllBrands);
+router.route("/brands/withAlphabet").get(getAllBrandsWithAlphabets);
 router.route("/brands/:id").get(getAllBrands);
 router.route("/brand/new").post(createBrand);
 router.route("/brand/:id").get(getBrandDetails);
