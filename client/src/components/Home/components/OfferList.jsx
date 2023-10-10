@@ -34,16 +34,6 @@ const CouponList = ({ Coupons }) => {
   }, [Coupons]);
 
   useEffect(() => {
-    console.log(
-      "popId && popId === coupons._id",
-      popId,
-      popId,
-      coupons._id,
-      popId === coupons._id,
-      coupons
-    );
-    console.log("useEffect", popId && popId === coupons._id);
-
     if (popId) {
       axios
         .get(`${baseurl}/api/v1/product/${popId}`)
@@ -53,14 +43,8 @@ const CouponList = ({ Coupons }) => {
         })
         .catch((error) => console.error(error));
     }
-
-    // if (scrollPositionFromQueryParameter || scrollPosition) {
-    //   window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
-    // }
   }, [popId, coupons._id]);
-  const toggleShowAll = () => {
-    setShowAll(!showAll);
-  };
+
   const modalToggle = (product) => {
     setmodalData(product);
     setIsOpenModal(!isOpenModal);
@@ -72,18 +56,13 @@ const CouponList = ({ Coupons }) => {
         {/* here map the coupons on mobile view first 6  only then show all button when on click show all button show all coupons
          */}
 
-        {coupons.map(
-          (product, index) => (
-            // product.popular &&
-            // (index < 6 || showAll || isDesktop) && (
-            <Offers
-              key={product._id}
-              product={product}
-              callBack={() => modalToggle(product)}
-            />
-          )
-          // )
-        )}
+        {coupons.map((product, index) => (
+          <Offers
+            key={product._id}
+            product={product}
+            callBack={() => modalToggle(product)}
+          />
+        ))}
       </div>
 
       <div className="row justify-content-center my-1">

@@ -18,6 +18,8 @@ function Brands({ withCate }) {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [alphabet, setAlphabet] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(500000);
 
@@ -48,14 +50,15 @@ function Brands({ withCate }) {
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           <div className=" d-flex flex-row flex-wrap justify-content-center rounded-4 bg-white shadow mx-5 px-auto py-2 ">
             {alphabets.map((name) => (
-              <button
+              <a
                 className={`btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1 ${
                   alphabet === name && "active"
                 }`}
-                onClick={(e) => getBrandByAlphabet(e, name)}
+                href={`#${name}`}
+                // onClick={(e) => getBrandByAlphabet(e, name)}
               >
                 {name}
-              </button>
+              </a>
             ))}
           </div>
           {}
@@ -64,13 +67,18 @@ function Brands({ withCate }) {
             <Loader />
           ) : (
             <>
-              <div className="row justify-content-center mx-5 ">
+              <div
+                className="row justify-content-center mx-auto "
+                style={{ width: "90%" }}
+              >
                 {brands &&
                   brands.map((brand, index) => (
                     <>
                       <div
                         className="stores-cat panel row justify-content-center bg-danger bg-opacity-25 my-5  "
                         key={index}
+                        id={brand.alpabets}
+                        style={{ scrollMarginTop: "130px" }}
                       >
                         <h3 className="stores-cat-header text-center">
                           <span className="bg-warning bg-opacity-100 border rounded-circle px-4 py-3 shadow-lg">
@@ -85,10 +93,33 @@ function Brands({ withCate }) {
                             goToBrandDetailPage={true}
                           />
                         ))}
+                        {/* <div className="row justify-content-center my-1 pb-2 ">
+                          {!showAll &&    (
+                            <button
+                              className="col-4 col-lg-1 show-all-button btn btn-warning rounded-pill "
+                              onClick={() => {
+                                setShowAll(true);
+                                // setCoupons(Coupons.slice(0, 40));
+                              }}
+                            >
+                              Show All
+                            </button>
+                          )}
+                          {showAll &&
+                            brand?.filterBrands
+                              ?.slice(4)
+                              ?.map(({ _id, name }) => (
+                                <Link
+                                  className="productCard position-relative col-md-3 pt-1"
+                                  to={`/brand/${_id}`}
+                                >
+                                  <p className="text-truncate py-1 w-100 fw-bold text-center">
+                                    {name}
+                                  </p>
+                                </Link>
+                              ))}
+                        </div> */}
                       </div>
-                      {console.log("brand[index]", brand.alpabets)}
-                      {console.log("brand[index]", brand.filterBrands)}
-                      {/* <Product key={brand._id} product={brand} /> */}
                     </>
                   ))}
 

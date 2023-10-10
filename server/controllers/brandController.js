@@ -85,6 +85,20 @@ exports.getAllBrandsWithAlphabets = tryCatchAsyncError(
     // Function to create the alphabetically filtered result
     function createAlphabetFilter(data) {
       const alphabetFilter = [];
+
+      // Filter numbers 0-9
+      const filterResult = data.filter(
+        (product) => /^\d/.test(product.name)
+        // product.name.startsWith(num.toString())
+      );
+      if (filterResult.length > 0) {
+        alphabetFilter.push({
+          filterBrands: filterResult,
+          alpabets: "0-9",
+        });
+      }
+
+      // Filter Alpabets
       for (
         let letter = "a".charCodeAt(0);
         letter <= "z".charCodeAt(0);
@@ -102,6 +116,7 @@ exports.getAllBrandsWithAlphabets = tryCatchAsyncError(
           });
         }
       }
+
       return alphabetFilter;
     }
 

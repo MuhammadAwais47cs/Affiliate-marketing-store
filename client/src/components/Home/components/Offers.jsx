@@ -1,10 +1,7 @@
-import moment from "moment";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 import RightArrow from "../Asset/angleRight.png";
 import "../../../App.css";
 // import { Link } from "react-router-dom";
-
-
 
 function CountdownTimer({ expirationDate }) {
   const [timeRemaining, setTimeRemaining] = useState({
@@ -16,7 +13,7 @@ function CountdownTimer({ expirationDate }) {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const now = new Date();
-      const expiration = expirationDate ? new Date(expirationDate) : new Date() ;
+      const expiration = expirationDate ? new Date(expirationDate) : new Date();
 
       // Calculate the time difference in milliseconds
       const timeDifference = expiration - now;
@@ -28,9 +25,13 @@ function CountdownTimer({ expirationDate }) {
       } else {
         // Calculate days, hours, and minutes
         const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        
+        const hours = Math.floor(
+          (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+
         setTimeRemaining({ days, hours, minutes });
       }
     }, 1000);
@@ -40,22 +41,32 @@ function CountdownTimer({ expirationDate }) {
     };
   }, [expirationDate]);
 
+  const scrollPosition = useMemo(() => window.scrollY, []);
+  const queryParameters = new URLSearchParams(window.location.search);
+  const scrollPositionFromQueryParameter =
+    queryParameters.get("scrollPosition");
+  useEffect(() => {
+    console.log("useEffect");
+
+    if (scrollPositionFromQueryParameter || scrollPosition) {
+      window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
+    }
+  }, [scrollPositionFromQueryParameter, scrollPosition]);
+
   return (
     <p className="card-text PromoCode text-truncate text-body-secondary my-0 ">
-
-      {timeRemaining?.days} days {timeRemaining?.hours} hours {timeRemaining?.minutes} minutes</p>
+      {timeRemaining?.days} days {timeRemaining?.hours} hours{" "}
+      {timeRemaining?.minutes} minutes
+    </p>
   );
 }
 const Offers = ({ product, callBack }) => {
   console.log("Current coupon codes and offers", product);
 
-  
-
   const handleClick = (link) => {
     // Store scroll position and other relevant state information
-    // const scrollPosition = window.scrollY;
-    //  &scrollPosition=${scrollPosition}`;
-    const secondTabURL = `/?popId=${product?._id}`;
+    const scrollPosition = window.scrollY;
+    const secondTabURL = `/?popId=${product?._id}&scrollPosition=${scrollPosition}`;
     window.open(secondTabURL, "_blank");
     window.location.href = link;
   };
