@@ -56,6 +56,8 @@ function Brands({ withCate }) {
                 }`}
                 href={`#${name}`}
                 // onClick={(e) => getBrandByAlphabet(e, name)}
+
+                // onClick={() =>setAlphabet(name) }
               >
                 {name}
               </a>
@@ -93,19 +95,23 @@ function Brands({ withCate }) {
                             goToBrandDetailPage={true}
                           />
                         ))}
-                        {/* <div className="row justify-content-center my-1 pb-2 ">
-                          {!showAll &&    (
+                        <div className="row justify-content-center my-1 pb-2 ">
+                          {!showAll || brand.alpabets !== alphabet ? (
                             <button
                               className="col-4 col-lg-1 show-all-button btn btn-warning rounded-pill "
                               onClick={() => {
                                 setShowAll(true);
+                                setAlphabet(brand.alpabets);
                                 // setCoupons(Coupons.slice(0, 40));
                               }}
                             >
                               Show All
                             </button>
+                          ) : (
+                            <></>
                           )}
                           {showAll &&
+                            brand.alpabets === alphabet &&
                             brand?.filterBrands
                               ?.slice(4)
                               ?.map(({ _id, name }) => (
@@ -118,7 +124,7 @@ function Brands({ withCate }) {
                                   </p>
                                 </Link>
                               ))}
-                        </div> */}
+                        </div>
                       </div>
                     </>
                   ))}
