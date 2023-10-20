@@ -89,7 +89,7 @@ function Home() {
           </div>
 
           <div id="" className="mt-5  ">
-            <div className="bg-secondary bg-opacity-25 shadow container">
+            <div className="bg-secondary bg-opacity-25 shadow container pb-4">
               <p className="col-11 h3   gridHeading  text-center my-1 fw-bold p-3 rounded-3">
                 Popular Brands
               </p>

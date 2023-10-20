@@ -77,7 +77,7 @@ function Brands({ withCate }) {
                   brands.map((brand, index) => (
                     <>
                       <div
-                        className="stores-cat panel row justify-content-center bg-danger bg-opacity-25 my-5  "
+                        className="stores-cat panel row justify-content-center bg-white shadow my-5  "
                         key={index}
                         id={brand.alpabets}
                         style={{ scrollMarginTop: "130px" }}
@@ -98,14 +98,14 @@ function Brands({ withCate }) {
                         <div className="row justify-content-center my-1 pb-2 ">
                           {!showAll || brand.alpabets !== alphabet ? (
                             <button
-                              className="col-4 col-lg-1 show-all-button btn btn-warning rounded-pill "
+                              className="col-4 col-lg-2 show-all-button btn btn-warning rounded-pill "
                               onClick={() => {
                                 setShowAll(true);
                                 setAlphabet(brand.alpabets);
                                 // setCoupons(Coupons.slice(0, 40));
                               }}
                             >
-                              Show All
+                              Show More
                             </button>
                           ) : (
                             <></>

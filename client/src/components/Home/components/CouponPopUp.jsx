@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 
 // it is a modal component which is used to show the coupon details
 function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
+  const [copyMessage, setCopyMessage] = useState(false);
+  const copyCodeAndLink = (data) => {
+    navigator.clipboard.writeText(
+      `${data?.couponType === "Code" ? data?.code : data?.link}`
+    );
+    setCopyMessage(true);
+  };
   return (
     <Modal show={isOpenModal} size="md" onHide={modalToggle}>
       <Modal.Body className="mt-n4   rounded-3">
@@ -23,26 +30,20 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
               : "Provider is :"}
           </p>
 
-          <span
-            className="btn btn-outline-info my-1 w-75 text-truncate"
-            onClick={() =>
-              navigator.clipboard.writeText(
-                `${
-                  modalData?.couponType === "Code"
-                    ? modalData?.code
-                    : modalData?.link
-                }`
-              )
-            }
-            // show message code is copied when onClick the button
-            onClickCapture={() => {
-              alert("Copied");
-            }}
-          >
-            {modalData?.couponType === "Code"
-              ? modalData?.code
-              : modalData?.link}
-          </span>
+          {copyMessage ? (
+            <span className="btn btn-outline-info my-1 w-75 text-truncate">
+              Copied!
+            </span>
+          ) : (
+            <span
+              className="btn btn-outline-info my-1 w-75 text-truncate"
+              onClick={() => copyCodeAndLink(modalData)}
+            >
+              {modalData?.couponType === "Code"
+                ? modalData?.code
+                : modalData?.link}
+            </span>
+          )}
           <p className=" my-1">
             Date of Expiry :{" "}
             <span className=" ">
