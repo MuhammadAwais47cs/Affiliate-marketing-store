@@ -52,13 +52,20 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
             </span>
           </p>
           <Link
-            to={`${modalData?.couponType === "Code" ? "" : modalData?.link}`}
-            target={`${modalData?.couponType === "Code" ? "" : "_blank"}`}
+            // to={`${modalData?.couponType === "Code" ? "" : modalData?.link}`}
+            // target={`${modalData?.couponType === "Code" ? "" : "_blank"}`}
+            to={`${
+              modalData?.couponType === "Code"
+                ? modalData?.link
+                : modalData?.link
+            }`}
+            target={`${modalData?.couponType === "Code" ? "_blank" : "_blank"}`}
             className="btn btn-danger opacity-75 text-white w-md-25 w-sm-50 rounded-pill px-2  "
           >
-            {modalData?.couponType === "Code"
+            {/* {modalData?.couponType === "Code"
               ? modalData?.code
-              : "Go To Provider"}
+              : "Go To Provider"} */}
+            Go To Provider
           </Link>
         </div>
       </Modal.Body>
