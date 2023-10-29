@@ -50,6 +50,7 @@ const CouponList = ({ Coupons }) => {
               product={product}
               callBack={() => modalToggle(product)}
               goToBrandDetailPage={true}
+              goFromHomePage={true}
             />
           )
           // )

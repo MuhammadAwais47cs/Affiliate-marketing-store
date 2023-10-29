@@ -125,9 +125,9 @@ function Home() {
                   Popular Coupon
                 </div>
               </div>
-              {brands && (
+              {products && (
                 <CouponList
-                  Coupons={brands.filter(
+                  Coupons={products.filter(
                     (brands) => brands.popular && brands.published
                   )}
                 />

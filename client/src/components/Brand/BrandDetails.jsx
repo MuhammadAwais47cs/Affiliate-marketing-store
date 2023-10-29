@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getBrandDetails } from "../../actions/brandAction";
@@ -9,7 +9,19 @@ import { getProduct } from "../../actions/productAction";
 import ProductCard from "./components/ProductCard";
 import axios from "axios";
 import { baseurl } from "../../baseurl";
+import CouponPopUp from "../Home/components/CouponPopUp";
 function ProductDetails() {
+  const queryParameters = new URLSearchParams(window.location.search);
+  const popId = queryParameters.get("popId");
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [modalData, setmodalData] = useState("");
+
+  const modalToggle = (product) => {
+    setmodalData(product);
+    setIsOpenModal(!isOpenModal);
+  };
+
   const { loading, brand, error } = useSelector((state) => state.brandDetails);
   const { products, resultPerPage, productsCount } = useSelector(
     (state) => state.products
@@ -26,22 +38,40 @@ function ProductDetails() {
     if (error) {
       alert.error(error);
     }
-
     dispatch(getBrandDetails(id));
     dispatch(getProduct("", "", "", "", "", id));
     // get similar brands by brand.realtedBrand ids array
     brand?.length > 0 && getSimilarBrands(brand?.relatedBrands);
-    
+
+    if (popId) {
+      axios
+        .get(`${baseurl}/api/v1/product/${popId}`)
+        .then(({ data }) => {
+          console.log("res", data);
+          setmodalData(data.product);
+          setIsOpenModal(true);
+        })
+        .catch((error) => console.error(error));
+    }
   }, [dispatch, id, brand?.name, error, alert]);
-  
+
+  // here write code for if we come from home page thorugh a special coupon  when we prform all those activities
+  const scrollPosition = useMemo(() => window.scrollY, []);
+
+  // const scrollPositionFromQueryParameter =
+  // queryParameters.get("scrollPosition");
 
   const getSimilarBrands = async (relatedBrands) => {
     console.log("relatedBrands :>> ", relatedBrands);
-    
+
     // write a post api to get similar brands by brand.realtedBrand ids array
-     const { data } = await axios.post(`${baseurl}/api/v1/getSimilarBrands`, { relatedBrands }, { headers: { "Content-Type": "application/json" } });
-  console.log("data :>> ", data);
-  }
+    const { data } = await axios.post(
+      `${baseurl}/api/v1/getSimilarBrands`,
+      { relatedBrands },
+      { headers: { "Content-Type": "application/json" } }
+    );
+    console.log("data :>> ", data);
+  };
   return (
     <>
       {loading ? (
@@ -94,6 +124,13 @@ function ProductDetails() {
             )}
           </section>
         </>
+      )}
+      {isOpenModal && (
+        <CouponPopUp
+          modalData={modalData}
+          isOpenModal={isOpenModal}
+          modalToggle={modalToggle}
+        />
       )}
     </>
   );

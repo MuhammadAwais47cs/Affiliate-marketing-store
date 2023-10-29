@@ -16,25 +16,26 @@ function ProductCard({ product, brandId }) {
   };
   const scrollPosition = useMemo(() => window.scrollY, []);
   const queryParameters = new URLSearchParams(window.location.search);
+  const popId = queryParameters.get("popId");
+  console.log("popId", popId);
   const scrollPositionFromQueryParameter =
     queryParameters.get("scrollPosition");
-  const popId = queryParameters.get("popId");
 
   // useScrollTo(scrollPositionFromQueryParameter || scrollPosition);
 
   useEffect(() => {
     console.log("useEffect");
 
-    if (popId && popId === product._id) {
-      axios
-        .get(`${baseurl}/api/v1/product/${popId}`)
-        .then(({ data }) => {
-          console.log("res", data);
-          setmodalData(data.product);
-          setIsOpenModal(true);
-        })
-        .catch((error) => console.error(error));
-    }
+    // if (popId && popId === product._id) {
+    //   axios
+    //     .get(`${baseurl}/api/v1/product/${popId}`)
+    //     .then(({ data }) => {
+    //       console.log("res", data);
+    //       setmodalData(data.product);
+    //       setIsOpenModal(true);
+    //     })
+    //     .catch((error) => console.error(error));
+    // }
 
     // if (scrollPositionFromQueryParameter || scrollPosition) {
     //   window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
@@ -46,8 +47,9 @@ function ProductCard({ product, brandId }) {
     //  &scrollPosition=${scrollPosition}`;
 
     const secondTabURL = `/brand/${brandId}?popId=${product?._id}`;
-    window.open(secondTabURL, "_blank");
-    window.location.href = link;
+    // window.open(secondTabURL, "_blank");
+    window.location.href = secondTabURL;
+    // window.location.href = link;
   };
 
   const { images, brand, description, expireDate, link } = product;
