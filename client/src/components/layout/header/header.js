@@ -118,7 +118,11 @@ function Header() {
                 </Nav.Link>
               ))}
             </Nav>
+            <Nav>
+             <Search/>
+            </Nav>
           </Navbar.Collapse>
+
           {token ? (
             <NavDropdown
               className="btn  "

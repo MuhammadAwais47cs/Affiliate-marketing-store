@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../layout/Loader/Loader";
-import Product from "./Product.jsx";
+// import Product from "./Product.jsx";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Carousel, { consts } from "react-elastic-carousel";
+import Redeem from '../layout/Feature/Redeem.jsx';
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
@@ -12,7 +13,7 @@ import { getSlider } from "../../actions/sliderAction";
 import banner1 from "./Asset/co.png";
 import CouponList from "./components/CouponList.jsx";
 import CategoriesList from "./components/CategoriesList.jsx";
-import BrandList from "./components/BrandList.jsx";
+// import BrandList from "./components/BrandList.jsx";
 import OfferList from "./components/OfferList.jsx";
 import { baseurl } from "../../baseurl";
 import axios from "axios";
@@ -154,6 +155,7 @@ function Home() {
                       )
                   )}
               </div> */}
+            <Redeem />
 
               <div className="row justify-content-center    ">
                 <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">

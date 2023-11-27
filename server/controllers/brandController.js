@@ -1,5 +1,6 @@
 const tryCatchAsyncError = require("../middleware/tryCatchAsyncError");
 const Brand = require("../models/brandModel");
+const category = require("../models/category");
 const ApiFeatures = require("../utils/apiFeature");
 const ErrorHandler = require("../utils/ErrorHandler");
 const cloudinary = require("cloudinary");
@@ -34,10 +35,12 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   const resultPerPage = 100;
   const brandsCount = await Brand.countDocuments();
   let apiFeatures = "";
+  let cateName ='';
   if (id) {
     apiFeatures = new ApiFeatures(Brand.find({ category: id }), req.query)
       .search()
       .pagination(resultPerPage);
+  cateName = await category.findById(id);
   } else {
     apiFeatures = new ApiFeatures(Brand.find(), req.query)
       .search()
@@ -55,7 +58,13 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   // console.log("else brands :>> ", brands);
   res
     .status(200)
-    .json({ success: true, brands: result, brandsCount, resultPerPage });
+    .json({
+      success: true,
+      brands: result,
+      brandsCount,
+      cateName,
+      resultPerPage,
+    });
 });
 exports.getAllBrandsWithAlphabets = tryCatchAsyncError(
   async (req, res, next) => {

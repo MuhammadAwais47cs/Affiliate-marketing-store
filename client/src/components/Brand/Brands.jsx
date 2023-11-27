@@ -14,6 +14,7 @@ function Brands({ withCate }) {
   const params = useParams();
   const location = useLocation();
   const { keyword, id } = params;
+  console.log('params :>> ', params);
   const { state } = location;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,10 +25,9 @@ function Brands({ withCate }) {
   const [price, setPrice] = useState(500000);
 
   const noProduct = { name: "No Product Found" };
-  const { loading, error, brands, resultPerPage, brandsCount } = useSelector(
+  const { loading, error, brands,cateName, resultPerPage, brandsCount } = useSelector(
     (state) => state.brands
   );
-
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
@@ -41,6 +41,8 @@ function Brands({ withCate }) {
     if (error) return alert.error(error);
     withCate
       ? dispatch(getBrand("", "", "", "", "", id))
+      : keyword ? dispatch(getBrand( keyword,"", "", "", "", ""))
+
       : dispatch(getBrand("", "", "", "", "", false, true)); // true means withAlphabet
   }, [dispatch, keyword, currentPage, id, withCate, state, error]);
   return (
@@ -48,9 +50,10 @@ function Brands({ withCate }) {
       <>
         <div className="  pt-5 bg-light  ">
           <MetaData title="PRODUCTS -- ECOMMERCE" />
-          <div className=" d-flex flex-row flex-wrap justify-content-center rounded-4 bg-white shadow mx-5 px-auto py-2 ">
-            {alphabets.map((name) => (
-              <a
+        {(!withCate && !keyword) &&
+        <div className=" d-flex flex-row flex-wrap justify-content-center rounded-4 bg-white shadow mx-5 px-auto py-2 ">
+            {alphabets.map((name , i) => (
+              <a key={i}
                 className={`btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1 ${
                   alphabet === name && "active"
                 }`}
@@ -62,14 +65,43 @@ function Brands({ withCate }) {
                 {name}
               </a>
             ))}
-          </div>
-          {}
-          <h2 className="productsHeading fs-3 fw-3">All Brands</h2>
+          </div>}
+          {console.log('cateName >> ', cateName)}
+          <h2 className="productsHeading fs-3 fw-3">{withCate ? cateName?.label: ' All Brands'}</h2>
           {loading ? (
             <Loader />
           ) : (
             <>
-              <div
+            {withCate || keyword ? (
+                <div className="row justify-content-center ">
+              {brands &&
+                brands.map(
+                  (brand) =>
+                    brand.published && (
+                      <>
+                        <Coupon
+                          key={brand._id}
+                          product={brand}
+                          // callBack={() => modalToggle(brand)}
+                          goToBrandDetailPage={true}
+                        />
+                      </>
+                    )
+                )}
+
+              {brands[0] === undefined && (
+                <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
+                  <h2 className="text-center">No Brand Found</h2>
+                  <p className="px-4 text-center text-secondary my-3">
+                    Sorry, we couldn't find any Brand matching your search
+                    criteria. Please try again with a different search term or
+                    refine your filters.
+                  </p>
+                </div>
+              )}
+            </div>  
+            ):(
+ <div
                 className="row justify-content-center mx-auto "
                 style={{ width: "90%" }}
               >
@@ -118,6 +150,7 @@ function Brands({ withCate }) {
                                 <Link
                                   className="productCard position-relative col-md-3 pt-1"
                                   to={`/brand/${_id}`}
+                                  key={_id}
                                 >
                                   <p className="text-truncate py-1 w-100 fw-bold text-center">
                                     {name}
@@ -140,33 +173,9 @@ function Brands({ withCate }) {
                   </div>
                 )}
               </div>
-              {/* <div className="row justify-content-center ">
-              {brands &&
-                brands.map(
-                  (brand) =>
-                    brand.published && (
-                      <>
-                        <Coupon
-                          key={brand._id}
-                          product={brand}
-                          // callBack={() => modalToggle(brand)}
-                          goToBrandDetailPage={true}
-                        />
-                      </>
-                    )
-                )}
-
-              {brands[0] === undefined && (
-                <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
-                  <h2 className="text-center">No Brand Found</h2>
-                  <p className="px-4 text-center text-secondary my-3">
-                    Sorry, we couldn't find any Brand matching your search
-                    criteria. Please try again with a different search term or
-                    refine your filters.
-                  </p>
-                </div>
-              )}
-            </div> */}
+            )}
+             
+            
             </>
           )}
 

@@ -14,13 +14,13 @@ const Category = ({ category }) => {
         className="card border-0 shadow rounded-2 py-2   mb-1"
       >
         <div className="row  g-0">
-          <div className="col-4 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
+          <div className="col-3 my-auto d-flex justify-content-center text-secondary text-opacity-75 fs-5  ">
             {/* <FaPlaneDeparture /> */}
-            <i class={`fa ${icon} fa-lg text-theame  `} aria-hidden="true" />
+            <i className={`fa ${icon} fa-lg text-theame  `} aria-hidden="true" />
           </div>
-          <div className="col-8">
+          <div className="col-9">
             <div className="card-body">
-              <h6 className=" ">{label} </h6>
+              <h6 className="text-truncate " title={label}>{label} </h6>
             </div>
           </div>
         </div>

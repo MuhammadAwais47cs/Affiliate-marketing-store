@@ -83,7 +83,8 @@ function ProductCard({ product, brandId }) {
               className="btn btn-success w-75"
               onClick={() => handleClick(link, window.location.href, product)}
             >
-              Get Deal
+           {brand?.couponType === "Code"  ? 'Show Code': 'Show Deal'}
+             
             </button>
             {isOpenModal && (
               <CouponPopUp

@@ -9,7 +9,7 @@
 }
 footer {
     margin-top: 2vmax;
-    padding: 2vmax;
+    padding: 1.8vmax;
     /* background-color: rgb(34, 33, 33); */
   color: var(--black1);
     /* color: rgb(255, 255, 255); */
@@ -19,7 +19,7 @@ footer {
   }
   
   .leftFooter {
-    width: 26%;
+    width: 28%;
     display: flex;
   
     flex-direction: column;
@@ -29,6 +29,10 @@ footer {
     /* font-family: "Roboto"; */
     width: 20vmax;
   }
+     .leftFooter>h1 {
+       font-size: 1.8vmax;
+       color: var(--black1);
+     }
   .leftFooter > p {
     text-align: center;
   color: var(--black2);
@@ -58,7 +62,7 @@ footer {
   }
   
   .midFooter {
-    width: 55%;
+    width: 52%;
   
     text-align: center;
   }

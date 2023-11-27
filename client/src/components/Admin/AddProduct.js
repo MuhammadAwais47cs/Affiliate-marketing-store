@@ -32,8 +32,8 @@ const NewProduct = ({}) => {
     link: "",
     category: "",
     description: "",
-    relatedProduct: "",
-    relatedBrand: "",
+    relatedProduct: [],
+    relatedBrand: [],
     language: "",
     expireDate: new Date(),
     couponType: "",
@@ -91,7 +91,7 @@ const NewProduct = ({}) => {
     const link = `${baseurl}/api/v1/brands`;
     const { data } = await axios.get(link);
     let brands = data?.brands?.map(({ _id, name }) => {
-      return { id: _id, label: name };
+      return { id: _id, label: name, value: _id };
     });
     setRelatedBrands(brands);
   };
@@ -254,10 +254,11 @@ const NewProduct = ({}) => {
                       </label>
                       <Select
                         className="basic-single"
+                        isMulti
                         classNamePrefix="select"
-                        onChange={(e) =>
-                          setProduct({ ...product, relatedBrand: e })
-                        }
+                        // onChange={(e) =>
+                        //   setProduct({ ...product, relatedBrand: e })
+                        // }
                         isClearable
                         name="color"
                         options={relatedBrands}
@@ -290,6 +291,7 @@ const NewProduct = ({}) => {
                       </label>
                       <Select
                         className="basic-single"
+                        isMulti
                         classNamePrefix="select"
                         onChange={(e) =>
                           setProduct({ ...product, relatedProduct: e })

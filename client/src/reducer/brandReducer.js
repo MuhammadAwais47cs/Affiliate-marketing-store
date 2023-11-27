@@ -24,6 +24,7 @@ export const brandReducer = (state = { brands: [] }, action) => {
       return {
         loading: false,
         brands: action.payload.brands,
+        cateName: action.payload.cateName,
         brandsCount: action.payload.brandsCount,
         resultPerPage: action.payload.resultPerPage,
       };
