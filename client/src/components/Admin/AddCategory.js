@@ -10,6 +10,9 @@ import { addBrandCheckBox, addBrandFields, languages } from "./data";
 import Loader from "../layout/Loader/Loader";
 import axios from "axios";
 import { baseurl } from "../../baseurl";
+
+
+
 const NewCategory = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -19,14 +22,24 @@ const NewCategory = () => {
     "useSelector((state)=>state) :>> ",
     useSelector((state) => state)
   );
+  const [relatedBrands, setRelatedBrands] = useState([]);
+
+   const [checkboxes, setCheckboxes] = useState([
+     { id: 1, label: "Top", isChecked: false },
+    //  { id: 2, label: "Published", isChecked: false },
+    //  { id: 3, label: "Other", isChecked: false },
+   ]);
 
   const [data, setData] = useState({
     category: "",
     icon: "",
+    relatedBrand:[],
   });
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
+    getAllBrands();
+    
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -42,13 +55,38 @@ const NewCategory = () => {
     const icon = event.target.files[0];
     setData({ ...data, icon });
   };
+ const getAllBrands = async () => {
+   const link = `${baseurl}/api/v1/brands`;
+   const { data } = await axios.get(link);
+   let brands = data?.brands?.map(({ _id, name }) => {
+     return { id: _id, label: name, value: _id };
+   });
+   setRelatedBrands(brands);
+ };
+   const handleCheckboxChange = (id) => {
+     const updatedCheckboxes = checkboxes.map((checkbox) => {
+       if (checkbox.id === id) {
+         return {
+           ...checkbox,
+           isChecked: !checkbox.isChecked,
+         };
+       }
+       return checkbox;
+     });
+     setCheckboxes(updatedCheckboxes);
+   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setloading(true);
+    const relatedBrandIds = data.relatedBrand?.map((brand) => brand?.id);
 
     const formdata = {
       label: data.category,
       icon: data.icon,
+      relatedBrand: relatedBrandIds,
+
+      top: checkboxes[0].isChecked,
     };
 
     const config = {
@@ -108,13 +146,49 @@ const NewCategory = () => {
                         Icon
                       </label>
                       <input
-                        type="file"
+                        type="text"
                         className="form-control"
                         id="icon"
                         name="icon"
-                        onChange={iconHandleChange}
-                        required
+                        // onChange={iconHandleChange}
+                        onChange={(e) =>
+                          setData({ ...data, icon: e.target.value })
+                        }
+                        // required
                       />
+                    </div>
+                    <div className="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Related Brands
+                      </label>
+                      <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        isMulti
+                        onChange={(e) => setData({ ...data, relatedBrand: e })}
+                        isClearable
+                        name="color"
+                        options={relatedBrands}
+                      />
+                    </div>
+                    <div className="d-flex   mt-3 pt-1">
+                      {checkboxes.map((checkbox, index) => (
+                        <div className="d-flex  mx-1 w-50" key={index}>
+                          <label className=" font-bold mx-2">
+                            <input
+                              type="checkbox"
+                              className="mx-2"
+                              key={checkbox.id}
+                              checked={checkbox.isChecked}
+                              onChange={() => handleCheckboxChange(checkbox.id)}
+                            />
+                            {checkbox.label}
+                          </label>
+                        </div>
+                      ))}
                     </div>
 
                     {/* add one more filed to upload svg's  */}

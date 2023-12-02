@@ -10,6 +10,7 @@ import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { alphabets } from "./data";
 import Coupon from "../Home/components/Coupon";
+import { getAllTopBrands } from "../../utils/callsReturnData";
 function Brands({ withCate }) {
   const params = useParams();
   const location = useLocation();
@@ -21,7 +22,7 @@ function Brands({ withCate }) {
   const [alphabet, setAlphabet] = useState(null);
   const [showAll, setShowAll] = useState(false);
 
-  const [brand, setBrand] = useState("");
+  const [topBrands, setTopBrands] = useState([]);
   const [price, setPrice] = useState(500000);
 
   const noProduct = { name: "No Product Found" };
@@ -38,6 +39,10 @@ function Brands({ withCate }) {
   };
 
   useEffect(() => {
+     getAllTopBrands().then((topBrand)=>{
+      console.log('topBrand :>> ', topBrand);
+      setTopBrands(topBrand);
+    }).catch((error)=>console.log(error))
     if (error) return alert.error(error);
     withCate
       ? dispatch(getBrand("", "", "", "", "", id))
@@ -73,6 +78,9 @@ function Brands({ withCate }) {
           ) : (
             <>
             {withCate || keyword ? (
+              <div className="row" >
+              <div className="col-md-9" >
+
                 <div className="row justify-content-center ">
               {brands &&
                 brands.map(
@@ -99,7 +107,27 @@ function Brands({ withCate }) {
                   </p>
                 </div>
               )}
-            </div>  
+                </div>  
+                </div>  
+              <div className="col-md-3" >
+                  <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
+              <h5 className="text-danger text-center">Popular Brands</h5>
+              <ul className="categoryBox row justify-content-center">
+                {topBrands?.map(({_id , name}) => (
+                  <li
+                    className="category-link shadow-sm rounded col-5 "
+                    key={_id}
+                    // onClick={() => setBrand(category)}
+                    // onClick={() => navigate(`/products`, { state: { brand } })}
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+                </div>
+
+                </div>
             ):(
  <div
                 className="row justify-content-center mx-auto "

@@ -30,7 +30,7 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
               : "Provider is :"}
           </p>
 
-          {copyMessage ? (
+          {/* {copyMessage ? (
             <span className="btn btn-outline-info my-1 w-75 text-truncate">
               Copied!
             </span>
@@ -43,7 +43,24 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
                 ? modalData?.code
                 : modalData?.link}
             </span>
-          )}
+          )} */}
+          <p className='row w-75'>
+           <span
+              className="col-md-8 btn btn-outline-info my-1 me-2 text-truncate"
+              // onClick={() => copyCodeAndLink(modalData)}
+            >
+              {modalData?.couponType === "Code"
+                ? modalData?.code
+                : modalData?.link}
+            </span>
+              <span
+              onClick={() => copyCodeAndLink(modalData)}
+              
+              className=" col-md-3 btn btn-outline-info my-1 text-truncate">
+             {copyMessage ? 'Copied!' :'Copy'}
+            </span>
+                
+              </p>
           <p className=" my-1">
             Date of Expiry :{" "}
             <span className=" ">

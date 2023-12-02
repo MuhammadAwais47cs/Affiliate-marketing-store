@@ -6,7 +6,7 @@ const Category = ({ category }) => {
   const navigate = useNavigate();
   const { id, label, icon } = category;
   return (
-    <div className="col-md-3 py-2" key={id}>
+    <div className="col-md-4 py-2" key={id}>
       <div
         onClick={() => navigate(`/categories/brands/${id}`)}
         style={{ cursor: "pointer" }}

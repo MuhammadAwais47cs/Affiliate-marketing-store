@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./Categories.css";
+import { Brands, categories } from "../Product/Products";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +18,7 @@ import axios from "axios";
 import { baseurl } from "../../baseurl";
 import Loader from "../layout/Loader/Loader";
 import Category from "../Home/components/Category";
+import { getAllTopBrands } from "../../utils/callsReturnData";
 function Categories({ withId }) {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ function Categories({ withId }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const noProduct = { name: "No Product Found" };
+  const [topBrands, setTopBrands] = useState([]);
 
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -54,6 +57,10 @@ function Categories({ withId }) {
   };
 
   useEffect(() => {
+    getAllTopBrands().then((topBrand)=>{
+      
+      setTopBrands(topBrand);
+    }).catch((error)=>console.log(error))
     withId ? getAllBrands() : getAllCategories();
   }, []);
   return (
@@ -68,6 +75,9 @@ function Categories({ withId }) {
           {isloading ? (
             <Loader />
           ) : (
+            <div className="row"   >
+              <div className="col-md-9" >
+
             <div className="row  ">
               {categories &&
                 categories.map((categories) => (
@@ -100,7 +110,9 @@ function Categories({ withId }) {
                   </>
                 ))}
 
-              {categories[0] === undefined && (
+
+
+               {categories[0] === undefined && (
                 <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
                   <h2 className="text-center">No Category Found</h2>
                   <p className="px-4 text-center text-secondary my-3">
@@ -109,9 +121,32 @@ function Categories({ withId }) {
                     refine your filters.
                   </p>
                 </div>
-              )}
+               )}
+
+                </div>
+                </div>
+
+          <div className="  col-md-3 ">
+            <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
+              <h5 className="text-danger text-center">Popular Brands</h5>
+              <ul className="categoryBox row justify-content-center">
+                {topBrands ? topBrands.map(({_id, name}) => (
+                  <Link to={`/brand/${_id}`}
+                    className="category-link  shadow-sm rounded col-5 "
+                    key={_id}
+                    // onClick={() => setBrand(category)}
+                    // onClick={() => navigate(`/products`, { state: { brand } })}
+                  >
+                    {name}
+                  </Link>
+                )):"Loading..."}
+              </ul>
             </div>
+          </div>
+            </div>
+
           )}
+          
 
           {/*  {resultPerPage < brandsCount && brands.lenght > 0 && (
             <>

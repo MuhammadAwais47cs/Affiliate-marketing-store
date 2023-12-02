@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 // import playStore from "../../../images/playstore.png";
-import logo from '../assets/2.png'
+// import logo from '../assets/2.png'
 // import appStore from "../../../images/Appstore.png";
-import { FaFacebook ,FaInstagram ,FaPinterestP ,FaTwitterSquare,FaFacebookMessenger,FaRegEnvelope, FaPhoneSquare,FaWhatsapp,FaLocationArrow } from "react-icons/fa";
+import { FaFacebook ,FaInstagram ,FaPinterestP  ,FaRegEnvelope, FaPhoneSquare,FaWhatsapp,FaLocationArrow } from "react-icons/fa";
 import "./Footer.css";
 import { useAlert } from "react-alert";
+import axios from "axios";
+import { baseurl } from "../../../baseurl";
 
 const Footer = () => {
   const alert = useAlert();
-  const socialLinks = [
-    'Instagram',
-    'Facebook',
-    'Whatsapp',
-    'PinterestP',
-  ]
+  const [data , setData ] = useState({email:null})
+  // const socialLinks = [
+  //   'Instagram',
+  //   'Facebook',
+  //   'Whatsapp',
+  //   'PinterestP',
+  // ]
   const handleGmailClick = (email) => {
     // Redirect to the Gmail login page
     // window.location.href = 'https://mail.google.com/mail/u/0/#inbox?compose=new';
@@ -24,9 +27,20 @@ const Footer = () => {
     window.open(`https://api.whatsapp.com/send?phone=${312-4709123}&text=${'message'}`) ;
   }
 const handleSubmit=(e)=>{
-  e.preventdefault();
-  alert('e')
-  alert.success("Thanks for joining us! ");
+      e.preventDefault();
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+  axios
+    .post(`${baseurl}/api/v1/subscribe/new`, { email: data.email }, config)
+    .then((res) => {
+      res.data.success && alert.success("Subscribed , Thanks for joining us!");
+      setData({ ...data, email: null });
+    })
+    .catch((error) => {
+      console.log("error >> ", error);
+    });
 };
   return (
     <div className="">
@@ -70,7 +84,9 @@ const handleSubmit=(e)=>{
               <input
                 type="email"
                 class="form-control"
+                name="email"
                 id="exampleInputEmail1"
+                onChange={(e) => setData({ ...data, email: e.target.value })}
                 aria-describedby="emailHelp"
                 required
               />

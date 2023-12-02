@@ -78,9 +78,9 @@
 }
 
 .filterBox {
-  width: 10vmax;
+  width: 15vmax;
   position: absolute;
-  top: 10vmax;
+  top: 26vmax;
   left: 4vmax;
 }
 
@@ -90,9 +90,13 @@
 
 .category-link {
   list-style: none;
+  text-decoration: none;
   color: rgba(0, 0, 0, 0.61);
-  font: 400 0.8vmax "Roboto";
+  font: 400 1.2vmax "Roboto";
   margin: 0.4vmax;
+  padding: 6px;
+  background-color: white;
+  
   cursor: pointer;
   transition: all 0.5s;
 }

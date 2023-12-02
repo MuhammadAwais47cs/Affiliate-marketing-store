@@ -11,14 +11,13 @@ import axios from "axios";
 import MetaData from "../layout/MetaData";
 import { NEW_PRODUCT_RESET } from "../../constant/productConstant";
 import {
-  addProductCheckBox,
   addProductFields,
   couponTypes,
   languages,
 } from "./data";
 import Loader from "../layout/Loader/Loader";
 
-const NewProduct = ({}) => {
+const NewProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -33,7 +32,8 @@ const NewProduct = ({}) => {
     category: "",
     description: "",
     relatedProduct: [],
-    relatedBrand: [],
+    relatedBrand: '',
+    similarBrand: [],
     language: "",
     expireDate: new Date(),
     couponType: "",
@@ -99,7 +99,7 @@ const NewProduct = ({}) => {
     const link = `${baseurl}/api/v1/products`;
     const { data } = await axios.get(link);
     let products = data?.products?.map(({ _id, name }) => {
-      return { id: _id, label: name };
+      return { id: _id, label: name , value : _id };
     });
     setRelatedProducts(products);
   };
@@ -107,18 +107,21 @@ const NewProduct = ({}) => {
     e.preventDefault();
     const {
       name,
-      code,
+      code, 
       sName,
       badge,
       link,
       category,
       description,
       relatedProduct,
+      similarBrand,
       relatedBrand,
       language,
       expireDate,
       couponType,
     } = product;
+    const similarBrandIds = similarBrand?.map((brand) => brand?.id);
+    const relatedProductIds = relatedProducts?.map((product) => product?.id);
 
     const data = {
       name,
@@ -127,8 +130,10 @@ const NewProduct = ({}) => {
       sName,
       badge,
       link,
-      relatedProduct: relatedProduct?.id,
+      // relatedProduct: relatedProduct?.id,
       relatedBrand: relatedBrand?.id,
+      relatedProduct: relatedProductIds,
+      similarBrand: similarBrandIds,
       language,
       expireDate,
       description,
@@ -254,11 +259,30 @@ const NewProduct = ({}) => {
                       </label>
                       <Select
                         className="basic-single"
+                         
+                        classNamePrefix="select"
+                        onChange={(e) =>
+                          setProduct({ ...product, relatedBrand: e })
+                        }
+                        isClearable
+                        name="color"
+                        options={relatedBrands}
+                      />
+                    </div>
+                    <div className="mb-3 col-md-6">
+                      <label
+                        for="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Similar Brands
+                      </label>
+                      <Select
+                        className="basic-single"
                         isMulti
                         classNamePrefix="select"
-                        // onChange={(e) =>
-                        //   setProduct({ ...product, relatedBrand: e })
-                        // }
+                        onChange={(e) =>
+                          setProduct({ ...product, similarBrand: e })
+                        }
                         isClearable
                         name="color"
                         options={relatedBrands}

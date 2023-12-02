@@ -1,5 +1,7 @@
 const tryCatchAsyncError = require("../middleware/tryCatchAsyncError");
 const Brand = require("../models/brandModel");
+const Product = require("../models/productModel");
+
 const category = require("../models/category");
 const ApiFeatures = require("../utils/apiFeature");
 const ErrorHandler = require("../utils/ErrorHandler");
@@ -34,7 +36,7 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   const { id, alphabet } = req.params;
   const resultPerPage = 100;
   const brandsCount = await Brand.countDocuments();
-  let apiFeatures = "";
+  let apiFeatures = ""; let activeOffers = [];
   let cateName ='';
   if (id) {
     apiFeatures = new ApiFeatures(Brand.find({ category: id }), req.query)
@@ -47,6 +49,25 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
       .alphabet()
       .pagination(resultPerPage);
     // .filter()
+    activeOffers = await Brand.aggregate([
+      {
+        $lookup: {
+          from: "products", // Name of the product collection (case-sensitive)
+          localField: "_id",
+          foreignField: "relatedBrand",
+          as: "products",
+        },
+      },
+      {
+        $project: {
+          name: 1, // Include brand name in the result
+          productCount: { $size: "$products" }, // Count the number of products for each brand
+          // productCount: "$products" // Count the number of products for each brand
+        },
+      },
+    ]); 
+    console.log('activeOffers :>> ', activeOffers);
+    console.log('apiFeatures :>> ', apiFeatures);
   }
 
   const result = await apiFeatures.query;
@@ -56,15 +77,14 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   }
 
   // console.log("else brands :>> ", brands);
-  res
-    .status(200)
-    .json({
-      success: true,
-      brands: result,
-      brandsCount,
-      cateName,
-      resultPerPage,
-    });
+  res.status(200).json({
+    success: true,
+    brands: result,
+    brandsCount,
+    cateName,
+    resultPerPage,
+    activeOffers,
+  });
 });
 exports.getAllBrandsWithAlphabets = tryCatchAsyncError(
   async (req, res, next) => {

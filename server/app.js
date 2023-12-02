@@ -18,6 +18,8 @@ app.use(errorMiddleware);
 // Routes Imports
 
 const category = require("./routes/categoryRoutes");
+const subscriber = require("./routes/subscriber");
+
 const brands = require("./routes/brandRoutes");
 const sliders = require("./routes/sliderRoutes");
 const products = require("./routes/productsRoutes");
@@ -27,4 +29,5 @@ app.use("/api/v1", products);
 app.use("/api/v1", brands);
 app.use("/api/v1", sliders);
 app.use("/api/v1", user);
+app.use("/api/v1", subscriber);
 module.exports = app;

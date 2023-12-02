@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getBrandDetails } from "../../actions/brandAction";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
@@ -10,12 +10,14 @@ import ProductCard from "./components/ProductCard";
 import axios from "axios";
 import { baseurl } from "../../baseurl";
 import CouponPopUp from "../Home/components/CouponPopUp";
+import { getXnumOfCategories } from "../../utils/callsReturnData";
 function ProductDetails() {
   const queryParameters = new URLSearchParams(window.location.search);
   const popId = queryParameters.get("popId");
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [modalData, setmodalData] = useState("");
+  const [topCategories , setTopCategories] = useState([]);
 
   const modalToggle = (product) => {
     setmodalData(product);
@@ -35,6 +37,9 @@ function ProductDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
+     getXnumOfCategories(20 , false).then((categories)=>{
+      setTopCategories(categories);
+    }).catch((error)=>console.log(error))
     if (error) {
       alert.error(error);
     }
@@ -110,7 +115,10 @@ function ProductDetails() {
               </div>
             </div>
           </section>
-          <section className=" ">
+          <section className="row">
+            <div className="col-md-8">
+
+            
             {products ? (
               products?.map((product) => (
                 <ProductCard
@@ -122,6 +130,25 @@ function ProductDetails() {
             ) : (
               <Loader />
             )}
+            </div>
+             <div className="  col-md-3 ">
+            <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
+              <h5 className="text-danger text-center">Top Categories</h5>
+              <ul className="categoryBox row justify-content-center">
+                {topCategories ? topCategories.map(({_id, label}) => (
+                  <Link to={`/categories/brands/${_id}`}
+                    className="category-link text-truncate shadow-sm rounded col-5 "
+                    key={_id}
+                    // onClick={() => setBrand(category)}
+                    // onClick={() => navigate(`/products`, { state: { brand } })}
+                  >
+                    {label}
+                  </Link>
+                )):"Loading..."}
+              </ul>
+            </div>
+               
+          </div>
           </section>
         </>
       )}

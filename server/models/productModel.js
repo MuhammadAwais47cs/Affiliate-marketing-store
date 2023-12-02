@@ -8,14 +8,20 @@ const productSchema = mongoose.Schema({
     type: String,
     trim: true,
   },
-  relatedProduct: {
-    type: String,
-    trim: true,
-  },
+  // relatedProduct: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // relatedProduct array of ids
+  relatedProduct: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+
   relatedBrand: {
     type: String,
     trim: true,
   },
+  // relatedBrands array of ids
+  // similarBrand: [{ type: mongoose.Schema.Types.ObjectId, ref: "Brand" }],
+
   code: {
     type: String,
     trim: true,

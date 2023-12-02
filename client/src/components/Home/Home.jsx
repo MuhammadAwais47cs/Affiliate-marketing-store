@@ -65,7 +65,7 @@ function Home() {
     { width: 850, itemsToShow: 6, pagination: false },
     { width: 1024, itemsToShow: 7, pagination: false, itemsToScroll: 2 },
     { width: 1440, itemsToShow: 7, pagination: false },
-    { width: 1750, itemsToShow: 12, pagination: false },
+    { width: 1750, itemsToShow: 8, pagination: false },
   ];
 
   return (

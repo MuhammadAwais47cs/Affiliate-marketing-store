@@ -8,28 +8,9 @@ import Product from "../Home/Product";
 import { useLocation } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
-function ProductDetails() {
-  const params = useParams();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { keyword } = params;
-  const { state } = location;
-  const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [brand, setBrand] = useState("");
-  const [price, setPrice] = useState(500000);
-  const categories = [
-    { name: "Mobiles", value: "Mobiles" },
-    { name: "Tablets", value: "Tablets" },
-    { name: "Smart Watches", value: "Smart-Watches" },
-    { name: "Wireless Earbuds", value: "Wireless-Earbuds" },
-    { name: "Mobiles Accessories", value: "Mobiles-Accessories" },
-    { name: "Laptops", value: "Laptops" },
-    { name: "TV & Home Appliances", value: "TV-&-Home-Appliances" },
-    { name: "Motorcycle", value: "Motorcycle" },
-  ];
-  const noProduct = { name: "No Product Found" };
-  const Brands = [
+
+
+ export const Brands = [
     "Apple",
     "Samsung",
     "Realme",
@@ -40,6 +21,30 @@ function ProductDetails() {
     "Tecno",
     "Nokia",
   ];
+ export const categories = [
+    { name: "Mobiles", value: "Mobiles" },
+    { name: "Tablets", value: "Tablets" },
+    { name: "Smart Watches", value: "Smart-Watches" },
+    { name: "Wireless Earbuds", value: "Wireless-Earbuds" },
+    { name: "Mobiles Accessories", value: "Mobiles-Accessories" },
+    { name: "Laptops", value: "Laptops" },
+    { name: "TV & Home Appliances", value: "TV-&-Home-Appliances" },
+    { name: "Motorcycle", value: "Motorcycle" },
+  ];
+
+function ProductDetails() {
+  const params = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { keyword } = params;
+  const { state } = location;
+  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState(500000);
+
+  const noProduct = { name: "No Product Found" };
+ 
 
   const { loading, error, products, resultPerPage, productsCount } =
     useSelector((state) => state.products);

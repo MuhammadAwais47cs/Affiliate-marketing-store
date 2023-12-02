@@ -6,7 +6,7 @@ import { useAlert } from "react-alert";
 import Select from "react-select";
 import MetaData from "../layout/MetaData";
 import { NEW_BRAND_RESET } from "../../constant/brandConstant";
-import { addBrandCheckBox, addBrandFields, languages } from "./data";
+import {  addBrandFields, languages } from "./data";
 import Loader from "../layout/Loader/Loader";
 import axios from "axios";
 import { baseurl } from "../../baseurl";
@@ -36,7 +36,6 @@ const NewProduct = () => {
     { id: 2, label: "Popular", isChecked: false },
     { id: 3, label: "Other", isChecked: false },
   ]);
-  const [price, setPrice] = useState(0);
   const [category, setCategory] = useState([]);
   const [relatedBrands, setRelatedBrands] = useState([]);
   const [images, setImages] = useState([]);
@@ -145,7 +144,7 @@ const NewProduct = () => {
       reader.readAsDataURL(file);
     });
   };
-  const { name, sName, link, relatedBrand, language, description } = brand;
+  const { language } = brand;
 
   return (
     <Fragment>

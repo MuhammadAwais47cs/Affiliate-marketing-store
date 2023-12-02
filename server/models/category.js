@@ -7,8 +7,14 @@ const categorySchema = mongoose.Schema({
   },
   icon: {
     type: String,
-    required: [true, "Please Enter Icon"],
+    // required: [true, "Please Enter Icon"],
     trim: true,
+  },
+  // relatedBrands array of ids
+  relatedBrand: [{ type: mongoose.Schema.Types.ObjectId, ref: "Brand" }],
+
+  top: {
+    type: Boolean,
   },
 });
 

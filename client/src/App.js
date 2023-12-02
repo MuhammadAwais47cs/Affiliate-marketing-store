@@ -85,11 +85,11 @@ function App() {
           <Route
             path="/admin"
             element={
-              user === "admin" ? (
+              // user === "admin" ? (
                 <Dashboard />
-              ) : (
-                <h1 className="my-5 py-5">404: Not Found</h1>
-              )
+              // ) : (
+                // <h1 className="my-5 py-5">404: Not Found</h1>
+              // )
             }
           />
         </Routes>

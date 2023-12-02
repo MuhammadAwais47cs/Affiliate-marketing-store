@@ -55,10 +55,10 @@ function ProductCard({ product, brandId }) {
   const { images, brand, description, expireDate, link } = product;
 
   return (
-    <div className="d-flex justify-content-center">
-      <div className="col-md-8 card border-0 mb-3 shadow">
+    <div className="d-flex justify-content-center mx-2">
+      <div className="col-md-8 card border-0 mb-3 shadow pb-3">
         <div className="row  g-0 ">
-          <div className="col-3 d-flex flex-column align-items-center p-3  ">
+          <div className="col-md-3 d-flex flex-column align-items-center p-3  ">
             <img
               src={images?.url}
               alt="coupon"
@@ -67,9 +67,9 @@ function ProductCard({ product, brandId }) {
               height="100"
             />
           </div>
-          <div className="col-6">
+          <div className="col-md-6">
             <div className="card-body">
-              <h5 className="card-title ">{brand?.name}</h5>
+              {/* <h5 className="card-title ">{brand?.name}</h5> */}
               <p className="card-text">{description}</p>
               <p className="card-text">
                 <small className="text-body-secondary">
@@ -78,12 +78,12 @@ function ProductCard({ product, brandId }) {
               </p>
             </div>
           </div>
-          <div className="col-3 d-flex flex-column justify-content-center align-items-center  ">
+          <div className="col-md-3 d-flex flex-column justify-content-center align-items-center  ">
             <button
-              className="btn btn-success w-75"
+              className="btn btn-success "
               onClick={() => handleClick(link, window.location.href, product)}
             >
-           {brand?.couponType === "Code"  ? 'Show Code': 'Show Deal'}
+           {product?.couponType === "Code"  ? 'Show Code': 'Show Deal'}
              
             </button>
             {isOpenModal && (
