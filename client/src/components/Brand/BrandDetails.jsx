@@ -17,7 +17,7 @@ function ProductDetails() {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [modalData, setmodalData] = useState("");
-  const [topCategories , setTopCategories] = useState([]);
+  const [topCategories, setTopCategories] = useState([]);
 
   const modalToggle = (product) => {
     setmodalData(product);
@@ -37,9 +37,9 @@ function ProductDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-     getXnumOfCategories(20 , false).then((categories)=>{
+    getXnumOfCategories(20, false).then((categories) => {
       setTopCategories(categories);
-    }).catch((error)=>console.log(error))
+    }).catch((error) => console.log(error))
     if (error) {
       alert.error(error);
     }
@@ -84,71 +84,62 @@ function ProductDetails() {
       ) : (
         <>
           <MetaData title={`${brand?.name} -- ECOMMERCE`} />
-          <section className="ProductDetails ">
-            <div className="card border-bottom border-3     mb-3">
-              <div className="row  g-0 w-md-100 w-lg-75">
-                <div className="col-4 d-flex flex-column align-items-center   ">
-                  <img
-                    src={brand?.images?.url}
-                    alt="coupon"
-                    className="bd-placeholder-img img-fluid rounded "
-                    width="100"
-                    height="100"
-                  />
-                  <h5 className="card-title mt-4">{brand?.name}</h5>
-                </div>
-                <div className="col-8">
-                  <div className="card-body">
-                    <p className="card-text   ">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <p className="card-text">
-                      <small className="text-body-secondary">
-                        Last updated 3 mins ago
-                      </small>
-                    </p>
-                  </div>
-                </div>
+          <section className="my-5 ">
+            <div className=" d-flex d-flex flex-row align-items-center">
+              <div className="col-4 d-flex flex-column align-items-center   ">
+                <img
+                  src={brand?.images?.url}
+                  alt="coupon"
+                  className="bd-placeholder-img img-fluid rounded "
+                  width="100"
+                  height="100"
+                />
+                <h5 className="card-title mt-4">{brand?.name}</h5>
+              </div>
+              <div className="col-7">
+                <p>{brand.description} </p>
+                <p className="card-text">
+                  <small className="text-body-secondary">
+                    Last updated 3 mins ago
+                  </small>
+                </p>
               </div>
             </div>
           </section>
           <section className="row">
             <div className="col-md-8">
 
-            
-            {products ? (
-              products?.map((product) => (
-                <ProductCard
-                  key={product._id}
-                  product={product}
-                  brandId={brand?._id}
-                />
-              ))
-            ) : (
-              <Loader />
-            )}
+
+              {products ? (
+                products?.map((product) => (
+                  <ProductCard
+                    key={product._id}
+                    product={product}
+                    brandId={brand?._id}
+                  />
+                ))
+              ) : (
+                <Loader />
+              )}
             </div>
-             <div className="  col-md-3 ">
-            <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
-              <h5 className="text-danger text-center">Top Categories</h5>
-              <ul className="categoryBox row justify-content-center">
-                {topCategories ? topCategories.map(({_id, label}) => (
-                  <Link to={`/categories/brands/${_id}`}
-                    className="category-link text-truncate shadow-sm rounded col-5 "
-                    key={_id}
+            <div className="  col-md-3 ">
+              <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
+                <h5 className="text-danger text-center">Top Categories</h5>
+                <ul className="categoryBox row justify-content-center">
+                  {topCategories ? topCategories.map(({ _id, label }) => (
+                    <Link to={`/categories/brands/${_id}`}
+                      className="category-link text-truncate shadow-sm rounded col-5 "
+                      key={_id}
                     // onClick={() => setBrand(category)}
                     // onClick={() => navigate(`/products`, { state: { brand } })}
-                  >
-                    {label}
-                  </Link>
-                )):"Loading..."}
-              </ul>
+                    >
+                      {label}
+                    </Link>
+                  )) : "Loading..."}
+                </ul>
+              </div>
+
             </div>
-               
-          </div>
           </section>
         </>
       )}

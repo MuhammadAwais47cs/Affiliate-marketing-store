@@ -1,13 +1,9 @@
 import React from 'react'
-import Footer from '../layout/footer/Footer'
-import Header from '../layout/header/header'
-
 function ContactUs() {
     return (
         <>
         <section className='bg-light '>
-        <Header/>
-         <div className='bg-danger-subtle py-4 mt-5'>
+         <div className='bg-danger-subtle py-4 '>
          <h1 className='text-center pt-5 mt-2 text-danger'>Got any Questions? We’d love to hear.
 
          </h1>

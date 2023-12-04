@@ -47,12 +47,12 @@ function ProductCard({ product, brandId }) {
     //  &scrollPosition=${scrollPosition}`;
 
     const secondTabURL = `/brand/${brandId}?popId=${product?._id}`;
-    // window.open(secondTabURL, "_blank");
-    window.location.href = secondTabURL;
-    // window.location.href = link;
+    window.open(secondTabURL, "_blank");
+    // window.location.href = secondTabURL;
+    window.location.href = link;
   };
 
-  const { images, brand, description, expireDate, link } = product;
+  const { images, brand, badge, description, expireDate, link } = product;
 
   return (
     <div className="d-flex justify-content-center mx-2">
@@ -71,9 +71,11 @@ function ProductCard({ product, brandId }) {
             <div className="card-body">
               {/* <h5 className="card-title ">{brand?.name}</h5> */}
               <p className="card-text">{description}</p>
+              <p className="card-text my-0 py-0 "> {badge}</p>
+
               <p className="card-text">
                 <small className="text-body-secondary">
-                  Last updated : {moment(expireDate).format("DD-MM-YYYY")}
+                  Expiry Date : {moment(expireDate).format("DD-MM-YYYY")}
                 </small>
               </p>
             </div>
@@ -83,8 +85,10 @@ function ProductCard({ product, brandId }) {
               className="btn btn-success "
               onClick={() => handleClick(link, window.location.href, product)}
             >
-           {product?.couponType === "Code"  ? 'Show Code': 'Show Deal'}
-             
+              <small className="">
+
+                {product?.couponType === "Code" ? 'Show Code' : 'Show Deal'}
+              </small>
             </button>
             {isOpenModal && (
               <CouponPopUp
@@ -101,4 +105,3 @@ function ProductCard({ product, brandId }) {
 }
 
 export default ProductCard;
- 

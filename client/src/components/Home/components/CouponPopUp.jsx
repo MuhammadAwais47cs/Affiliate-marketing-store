@@ -24,11 +24,15 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
             width="100"
           />
           <h5 className="fs-5 my-1 ">{modalData?.description}</h5>
+             <p className="fs-5 text-center text-muted">
+            {modalData?.badge}
+          </p>
           <p className="fs-5 text-center text-muted">
             {modalData?.couponType === "Code"
               ? "Voucher Code is :"
               : "Provider is :"}
           </p>
+         
 
           {/* {copyMessage ? (
             <span className="btn btn-outline-info my-1 w-75 text-truncate">
@@ -46,7 +50,7 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
           )} */}
           <p className='row w-75'>
            <span
-              className="col-md-8 btn btn-outline-info my-1 me-2 text-truncate"
+              className="col-md-7 btn btn-outline-info my-1 me-2 text-truncate fs-5 pt-2"
               // onClick={() => copyCodeAndLink(modalData)}
             >
               {modalData?.couponType === "Code"
@@ -56,7 +60,7 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
               <span
               onClick={() => copyCodeAndLink(modalData)}
               
-              className=" col-md-3 btn btn-outline-info my-1 text-truncate">
+              className=" col-md-4 btn btn-outline-info my-1 text-truncate fs-5 pt-1">
              {copyMessage ? 'Copied!' :'Copy'}
             </span>
                 

@@ -9,9 +9,9 @@ import shipping from '../assets/feature-shipping.svg';
 import warranty from '../assets/feature-warranty.svg';
 // import appStore from "../../../images/Appstore.png";
 const svg = [
-  { img: approved, heading: 'PTA Approved', para: 'Find the voucher on the website and click on it. On the opened page, copy your coupon code and click the button (Go to store to redeem this coupon).' },
-  { img: warranty, heading: '1 Year', para: 'By clicking this button you will be redirected to the shop page of the desired product provider.' },
-  { img: delivery, heading: '24hr Delivery', para: `Then find the product you want on the store's website and enjoy your purchase by entering the coupon code on the payment page.` },
+  { img: approved, heading: 'PTA Approved', para: `Look for the voucher on the website. Click on it. Once the new page opens, copy the coupon code. Then, click the button that says 'Go to store' to use this coupon.` },
+  { img: warranty, heading: '1 Year', para: ' When you click this button, you will go to the store page of the product you want.' },
+  { img: delivery, heading: '24hr Delivery', para: `Next, go to the store's website and find the product you want. When you're ready to buy, enter the coupon code on the payment page to enjoy your purchase.` },
   //   { img : shipping, heading:'Free Delivery', para :'All Over Pakistan'},
 ]
 const Footer = () => {
