@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Search from "../search/Search";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
+import Logo from '../../Asset/logo.png'
 import "./header.css";
 import "../../../App.css";
 let bootstrap;
@@ -107,7 +108,7 @@ function Header() {
       >
         <Container className="my-2">
           <Navbar.Brand href="/" className="text-color ">
-            Fatcoupon
+          <img src={Logo} alt="Logo" width='260' height='40' />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
