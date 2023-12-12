@@ -108,7 +108,7 @@ function Header() {
       >
         <Container className="my-2">
           <Navbar.Brand href="/" className="text-color ">
-          <img src={Logo} alt="Logo" width='260' height='40' />
+          <img src={Logo} alt="Logo" width='200' height='30' />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
