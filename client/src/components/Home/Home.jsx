@@ -52,8 +52,8 @@ function Home() {
     dots: true,
     infinite: true,
     fade: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     autoplay: true,
     autoplaySpeed: 3000,
     // speed: 500,
@@ -81,7 +81,7 @@ function Home() {
                 <Slider {...settings}>
                   {sliders?.images?.map(({ url, _id }) => (
                     <div key={_id}>
-                      <img src={banner1} alt="Slider" className="img-fluid" />{" "}
+                      <img src={url} alt="Slider" className="img-fluid" />{" "}
                     </div>
                   ))}
                 </Slider>
@@ -155,7 +155,7 @@ function Home() {
                       )
                   )}
               </div> */}
-            <Redeem />
+              <Redeem />
 
               <div className="row justify-content-center    ">
                 <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">
