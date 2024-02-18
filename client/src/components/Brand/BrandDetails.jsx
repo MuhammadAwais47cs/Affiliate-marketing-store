@@ -26,7 +26,7 @@ function ProductDetails() {
 
   const { loading, brand, error } = useSelector((state) => state.brandDetails);
   const { products, resultPerPage, productsCount } = useSelector(
-    (state) => state.products
+    (state) => state.products,
   );
 
   const key = "store";
@@ -37,9 +37,11 @@ function ProductDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-    getXnumOfCategories(20, false).then((categories) => {
-      setTopCategories(categories);
-    }).catch((error) => console.log(error))
+    getXnumOfCategories(20, true)
+      .then((categories) => {
+        setTopCategories(categories);
+      })
+      .catch((error) => console.log(error));
     if (error) {
       alert.error(error);
     }
@@ -73,7 +75,7 @@ function ProductDetails() {
     const { data } = await axios.post(
       `${baseurl}/api/v1/getSimilarBrands`,
       { relatedBrands },
-      { headers: { "Content-Type": "application/json" } }
+      { headers: { "Content-Type": "application/json" } },
     );
     console.log("data :>> ", data);
   };
@@ -108,8 +110,6 @@ function ProductDetails() {
           </section>
           <section className="row">
             <div className="col-md-8">
-
-
               {products ? (
                 products?.map((product) => (
                   <ProductCard
@@ -126,19 +126,21 @@ function ProductDetails() {
               <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
                 <h5 className="text-danger text-center">Top Categories</h5>
                 <ul className="categoryBox row justify-content-center">
-                  {topCategories ? topCategories.map(({ _id, label }) => (
-                    <Link to={`/categories/brands/${_id}`}
-                      className="category-link text-truncate shadow-sm rounded col-5 "
-                      key={_id}
-                    // onClick={() => setBrand(category)}
-                    // onClick={() => navigate(`/products`, { state: { brand } })}
-                    >
-                      {label}
-                    </Link>
-                  )) : "Loading..."}
+                  {topCategories
+                    ? topCategories.map(({ _id, label }) => (
+                        <Link
+                          to={`/categories/brands/${_id}`}
+                          className="category-link text-truncate shadow-sm rounded col-5 "
+                          key={_id}
+                          // onClick={() => setBrand(category)}
+                          // onClick={() => navigate(`/products`, { state: { brand } })}
+                        >
+                          {label}
+                        </Link>
+                      ))
+                    : "Loading..."}
                 </ul>
               </div>
-
             </div>
           </section>
         </>

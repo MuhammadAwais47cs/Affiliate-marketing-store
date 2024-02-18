@@ -57,10 +57,11 @@ function Categories({ withId }) {
   };
 
   useEffect(() => {
-    getAllTopBrands().then((topBrand)=>{
-      
-      setTopBrands(topBrand);
-    }).catch((error)=>console.log(error))
+    getAllTopBrands()
+      .then((topBrand) => {
+        setTopBrands(topBrand);
+      })
+      .catch((error) => console.log(error));
     withId ? getAllBrands() : getAllCategories();
   }, []);
   return (
@@ -70,21 +71,20 @@ function Categories({ withId }) {
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           {}
           <h2 className="productsHeading fs-3 fw-3">
-            {brandOrCate === "brand" ? "names" : "All Category"}
+            {brandOrCate === "brand" ? "names" : "All Categories"}
           </h2>
           {isloading ? (
             <Loader />
           ) : (
-            <div className="row"   >
-              <div className="col-md-9" >
+            <div className="row">
+              <div className="col-md-9">
+                <div className="row  ">
+                  {categories &&
+                    categories.map((categories) => (
+                      <>
+                        <Category key={categories.id} category={categories} />
 
-            <div className="row  ">
-              {categories &&
-                categories.map((categories) => (
-                  <>
-                    <Category key={categories.id} category={categories} />
-
-                    {/* <div className="col-md-4" key={id}>
+                        {/* <div className="col-md-4" key={id}>
                     <Link
                       to={`/categories/brands/${id}`}
                       className="card border-0 shadow rounded-4 mb-3 w-75"
@@ -107,46 +107,44 @@ function Categories({ withId }) {
                             </div>
                             </Link>
                           </div>*/}
-                  </>
-                ))}
+                      </>
+                    ))}
 
-
-
-               {categories[0] === undefined && (
-                <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
-                  <h2 className="text-center">No Category Found</h2>
-                  <p className="px-4 text-center text-secondary my-3">
-                    Sorry, we couldn't find any Category matching your search
-                    criteria. Please try again with a different search term or
-                    refine your filters.
-                  </p>
+                  {categories[0] === undefined && (
+                    <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
+                      <h2 className="text-center">No Category Found</h2>
+                      <p className="px-4 text-center text-secondary my-3">
+                        Sorry, we couldn't find any Category matching your
+                        search criteria. Please try again with a different
+                        search term or refine your filters.
+                      </p>
+                    </div>
+                  )}
                 </div>
-               )}
+              </div>
 
+              <div className="  col-md-3 ">
+                <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
+                  <h5 className="text-danger text-center">Popular Brands</h5>
+                  <ul className="categoryBox row justify-content-center">
+                    {topBrands
+                      ? topBrands.map(({ _id, name }) => (
+                          <Link
+                            to={`/brand/${_id}`}
+                            className="category-link  shadow-sm rounded col-5 "
+                            key={_id}
+                            // onClick={() => setBrand(category)}
+                            // onClick={() => navigate(`/products`, { state: { brand } })}
+                          >
+                            {name}
+                          </Link>
+                        ))
+                      : "Loading..."}
+                  </ul>
                 </div>
-                </div>
-
-          <div className="  col-md-3 ">
-            <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
-              <h5 className="text-danger text-center">Popular Brands</h5>
-              <ul className="categoryBox row justify-content-center">
-                {topBrands ? topBrands.map(({_id, name}) => (
-                  <Link to={`/brand/${_id}`}
-                    className="category-link  shadow-sm rounded col-5 "
-                    key={_id}
-                    // onClick={() => setBrand(category)}
-                    // onClick={() => navigate(`/products`, { state: { brand } })}
-                  >
-                    {name}
-                  </Link>
-                )):"Loading..."}
-              </ul>
+              </div>
             </div>
-          </div>
-            </div>
-
           )}
-          
 
           {/*  {resultPerPage < brandsCount && brands.lenght > 0 && (
             <>

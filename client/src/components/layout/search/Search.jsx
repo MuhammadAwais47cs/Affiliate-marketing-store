@@ -31,74 +31,30 @@ const Search = () => {
         />
         <input type="submit" value="Search" />
       </form> */}
-       <form className="d-flex mt-2 flex-end " onSubmit={searchSubmitHandler} role="search">
-                <input
-                  className="form-control   rounded-pill "
-                  type="search"
+      <form
+        className="d-flex mt-2 flex-end "
+        onSubmit={searchSubmitHandler}
+        role="search"
+      >
+        <input
+          className="form-control   rounded-pill "
+          type="search"
           onChange={(e) => setKeyword(e.target.value)}
-
-                  placeholder="Search . . ."
-                  aria-label="Search"
-                />
-              <button
-                type="submit"
-                className="btn text-color me-3 "
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                // onClick={() => searchToggle()}
-              >
-                  <FaSearch />
-              </button>
-                </form>
+          // placeholder="Search . . ."
+          aria-label="Search"
+        />
+        <button
+          type="submit"
+          className="btn text-color me-3 "
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          // onClick={() => searchToggle()}
+        >
+          <FaSearch />
+        </button>
+      </form>
     </Fragment>
   );
 };
 
 export default Search;
-
-// import React, { useState, Fragment } from "react";
-// import MetaData from "../MetaData";
-// // import "./Search.css";
-
-// export  const Search = ({history}) => {
-
-// const [keyword, setKeyword] = useState("");
-
-// const searchSubmitHandler = (e) => {
-//   e.preventDefault();
-//   alert(keyword)
-//   if (keyword.trim()) {
-//     // history.push(`/products/${keyword}`);
-//   } else {
-//     // history.push("/products");
-//   }
-// };
-
-//      return (
-//         <>
-//         //  Button trigger modal
-
-// //  Modal
-// <MetaData title="Search A Product -- ECOMMERCE" />
-
-// <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-// <div className="modal-dialog">
-//   <div className="modal-content">
-
-//     <div className="modal-body">
-//     <form className="searchBox" onSubmit={searchSubmitHandler}>
-//     <input
-//       type="text"
-//       placeholder="Search a Product ..."
-//       onChange={(e) => setKeyword(e.target.value)}
-//     />
-//     <input type="submit" value="Search" />
-//   </form>
-//     </div>
-
-//   </div>
-// </div>
-// </div>
-//         </>
-//     )
-// }

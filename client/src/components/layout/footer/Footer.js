@@ -31,14 +31,24 @@ const Footer = () => {
     // window.location.href = 'https://mail.google.com/mail/u/0/#inbox?compose=new';
     window.open(
       `https://mail.google.com/mail/u/0/#inbox?compose=new&to=${email}`,
-      "_blank"
+      "_blank",
     );
   };
   const handleWhatsAppClick = () => {
     // Redirect to WhatsApp with a pre-populated message
     window.open(
-      `https://api.whatsapp.com/send?phone=${312 - 4709123}&text=${"message"}`
+      `https://api.whatsapp.com/send?phone=${312 - 4709123}&text=${"message"}`,
     );
+  };
+
+  const handleInstagramClick = () => {
+    // Redirect to Instagram
+    window.open("https://www.instagram.com/madcoupon.de/", "_blank");
+  };
+
+  const handleFacebookClick = () => {
+    // Redirect to Facebook
+    window.open("https://www.facebook.com/madcoupon.de/", "_blank");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,7 +121,7 @@ const Footer = () => {
               Subscribe
             </button>
           </form>
-          <div className="d-flex flex-row ">
+          {/* <div className="d-flex flex-row ">
             <a href="http://facebook.com" className="col-md-3 mx-1">
               <FaFacebook />
             </a>
@@ -124,7 +134,7 @@ const Footer = () => {
             <a href="http://whatsapp.com" className="col-md-3 mx-1">
               <FaWhatsapp />
             </a>
-          </div>
+          </div> */}
         </div>
 
         <div className="midFooter mt-4">
@@ -139,21 +149,21 @@ const Footer = () => {
           <h4>Follow Us</h4>
           <a
             className="h6  "
-            href="http://instagram.com/meabhisingh"
-            // onClick={handleInstagramClick}
+            // href="https://www.instagram.com/madcoupon.de"
+            onClick={handleInstagramClick}
           >
             <FaInstagram /> Instagram
           </a>
           <a
             className="h6   "
             href="#"
-            onClick={() =>
-              handleGmailClick("http://youtube.com/6packprogramemr")
-            }
+            // onClick={() =>
+            //   handleGmailClick("http://youtube.com/6packprogramemr")
+            // }
           >
             <FaYoutube /> Youtube
           </a>
-          <a className="h6  " href="http://facebook.com/meabhisingh">
+          <a className="h6" onClick={handleFacebookClick}>
             <FaFacebook /> Facebook
           </a>
 
@@ -166,7 +176,7 @@ const Footer = () => {
       </footer>
       <div className="d-flex flex-row justify-content-center   border-top border-warning py-4 bg-secondary bg-gradient   ">
         <p className="text-white">
-          Copyright (c) 2024 Madcoupon. All rights Resrved{" "}
+          Copyright (c) 2024 Madcoupon. All rights Reserved{" "}
         </p>
       </div>
     </div>
