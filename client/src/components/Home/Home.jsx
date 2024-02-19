@@ -4,7 +4,7 @@ import Loader from "../layout/Loader/Loader";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Carousel, { consts } from "react-elastic-carousel";
-import Redeem from '../layout/Feature/Redeem.jsx';
+import Redeem from "../layout/Feature/Redeem.jsx";
 import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
@@ -115,7 +115,7 @@ function Home() {
                               className="mx-2 brandSliderImg"
                             />
                           </Link>
-                        )
+                        ),
                     )}
                 </Carousel>
               )}
@@ -129,7 +129,7 @@ function Home() {
               {products && (
                 <CouponList
                   Coupons={products.filter(
-                    (brands) => brands.popular && brands.published
+                    (brands) => brands.popular && brands.published,
                   )}
                 />
               )}
@@ -155,7 +155,6 @@ function Home() {
                       )
                   )}
               </div> */}
-              <Redeem />
 
               <div className="row justify-content-center    ">
                 <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">
@@ -165,7 +164,7 @@ function Home() {
               {products && (
                 <OfferList
                   Coupons={products.filter(
-                    (product) => product.popular && product.published
+                    (product) => product.popular && product.published,
                   )}
                 />
               )}
@@ -235,6 +234,8 @@ function Home() {
                 </div>
               </div>
               <CategoriesList data={categories} />
+              <Redeem />
+
               {/* <div className="row justify-content-center ">
                 {categories &&
                   categories.slice(0, 18).map(({ id, label }) => (

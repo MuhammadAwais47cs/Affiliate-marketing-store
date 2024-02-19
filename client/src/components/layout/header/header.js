@@ -12,15 +12,15 @@ import { useSelector, useDispatch } from "react-redux";
 import Search from "../search/Search";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import Logo from '../../Asset/logo.png'
+import Logo from "../../Asset/logo.png";
 import "./header.css";
 import "../../../App.css";
 let bootstrap;
 const tooltipTriggerList = document.querySelectorAll(
-  '[data-bs-toggle="tooltip"]'
+  '[data-bs-toggle="tooltip"]',
 );
 const tooltipList = [...tooltipTriggerList].map(
-  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl),
 );
 function Header() {
   const token = localStorage.getItem("token");
@@ -108,7 +108,7 @@ function Header() {
       >
         <Container className="my-2">
           <Navbar.Brand href="/" className="text-color ">
-          <img src={Logo} alt="Logo" width='200' height='30' />
+            <img src={Logo} alt="Logo" width="150" height="24" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -120,7 +120,7 @@ function Header() {
               ))}
             </Nav>
             <Nav>
-             <Search/>
+              <Search />
             </Nav>
           </Navbar.Collapse>
 
