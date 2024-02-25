@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./Categories.css";
-import { Brands, categories } from "../Product/Products";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import Pagination from "react-js-pagination";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import {
-  faMusic,
-  faBottleWater,
-  faCheck,
-  faMobileScreenButton,
-} from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import axios from "axios";
@@ -141,6 +131,14 @@ function Categories({ withId }) {
                         ))
                       : "Loading..."}
                   </ul>
+                  <div className="d-flex justify-content-center">
+                    <Link
+                      to="/brands"
+                      className="show-all-button btn btn-outline-warning rounded-pill "
+                    >
+                      Show All Brands
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

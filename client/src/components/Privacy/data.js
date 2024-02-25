@@ -1,45 +1,74 @@
+import React from "react";
+
+const madcoupon = (
+  <>
+    <a className="link-underline-light" href="https://madcoupon.de">
+      {" "}
+      Madcoupon.de{" "}
+    </a>
+  </>
+);
+const handleGmailClick = (email) => {
+  // Redirect to the Gmail login page
+  // window.location.href = 'https://mail.google.com/mail/u/0/#inbox?compose=new';
+  window.open(
+    `https://mail.google.com/mail/u/0/#inbox?compose=new&to=${"Madcoupon01@gmail.com"}`,
+    "_blank"
+  );
+};
+
 export const contentData = [
   {
     id: 1,
     heading: "Privacy Policy Page",
-    para: "This Privacy Policy outlines how Madcoupon.de collects, uses, maintains, and discloses information gathered from users of the Madcoupon.de website.",
-
-    /*`At Shopping Mall, we are committed to protecting your privacy and ensuring that your personal information is kept secure. We understand the importance of privacy and take great care to ensure that your information is treated with the utmost respect and confidentiality.
-        ${<br/>} This privacy policy outlines how we collect, use, and share your personal information when you visit our website. Please read this policy carefully before using our website or submitting any personal information.
-        `,*/
+    para: (
+      <div>
+        {" "}
+        This Privacy Policy outlines how {madcoupon} collects, uses, maintains,
+        and discloses information gathered from users of the {madcoupon}{" "}
+        website.
+      </div>
+    ),
   },
   {
     id: 2,
     heading: "Information We Collection ",
-    para: `We collect various types of information to enhance your experience and provide you with the best services. This may include, but is not limited to,
-    ${(
-      <br />
-    )} Personal identification information (such as name, email address) provided voluntarily by Users,
-    ${(
-      <br />
-    )} Non-personal identification information, such as browser type, device information, and other technical details when Users interact with our Website.`,
-    /* We collect personal information from you when you use our website, including your name, email address, and any other information you provide through our contact forms or other forms on our website. This information is used to provide you with the services and information you have requested and to improve our website and services.
-        ${(<br />)}
-        We may also collect non-personal information such as your IP address, browser type, and the pages you visit on our website. This information is used to improve our website and to understand how our users interact with our website.
-        `,*/
+    para: (
+      <div>
+        `We collect various types of information to enhance your experience and
+        provide you with the best services. This may include, but is not limited
+        to,
+        <br />
+        Personal identification information (such as name, email address)
+        provided voluntarily by Users,
+        <br />
+        Non-personal identification information, such as browser type, device
+        information, and other technical details when Users interact with our
+        Website.`,
+      </div>
+    ),
   },
   {
     id: 3,
     heading: "How We Use Information",
-    para: `
-    Madcoupon.de may collect and use Users' personal information for the following purposes:,
-
-        ${(
-          <br />
-        )} To improve customer service: Information provided helps us respond to your customer service requests more efficiently.,
-        
-        ${(
-          <br />
-        )}   To personalize the user experience: We may use information in the aggregate to understand how our Users as a group use the services and resources provided on our Website.
-       
-        ${(
-          <br />
-        )}  To send periodic emails: We may use the email address to respond to inquiries, questions, and/or other requests.`,
+    para: (
+      <div>
+        {madcoupon}
+        may collect and use Users' personal information for the following
+        purposes:
+        <br />
+        <br />
+        To improve customer service: Information provided helps us respond to
+        your customer service requests more efficiently.
+        <br />
+        To personalize the user experience: We may use information in the
+        aggregate to understand how our Users as a group use the services and
+        resources provided on our Website.
+        <br />
+        To send periodic emails: We may use the email address to respond to
+        inquiries, questions, and/or other requests.
+      </div>
+    ),
   },
   {
     id: 4,
@@ -49,9 +78,14 @@ export const contentData = [
   {
     id: 5,
     heading: "Third-Party Links",
-    para: `
-           Madcoupon.de may contain links to third-party websites. These sites have their own privacy policies, and we are not responsible for the content or practices of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.
-    `,
+    para: (
+      <div>
+        {madcoupon} may contain links to third-party websites. These sites have
+        their own privacy policies, and we are not responsible for the content
+        or practices of these linked sites. Nonetheless, we seek to protect the
+        integrity of our site and welcome any feedback about these sites.
+      </div>
+    ),
   },
   {
     id: 6,
@@ -64,18 +98,37 @@ export const contentData = [
   {
     id: 7,
     heading: "Changes to this Privacy Policy",
-    para: `Madcoupon.de has the discretion to update this Privacy Policy at any time. We encourage Users to frequently check this page for any changes to stay informed. You acknowledge and agree that it is your responsibility to review this Privacy Policy periodically and become aware of modifications.
-
-         `,
+    para: (
+      <div>
+        {" "}
+        has the discretion to update this Privacy Policy at any time. We
+        encourage Users to frequently check this page for any changes to stay
+        informed. You acknowledge and agree that it is your responsibility to
+        review this Privacy Policy periodically and become aware of
+        modifications.
+      </div>
+    ),
   },
 
   {
     id: 7,
     heading: "Your Acceptance of these Terms",
-    para: `By using this Website, you signify your acceptance of this Privacy Policy. If you do not agree to this policy, please do not use our Website.
-
-     If you have any questions about this Privacy Policy, please contact us at Madcoupon01@gmail.com.
-     
-          `,
+    para: (
+      <div>
+        By using this Website, you signify your acceptance of this Privacy
+        Policy. If you do not agree to this policy, please do not use our
+        Website.
+        <br />
+        If you have any questions about this Privacy Policy, please contact us
+        at
+        <span
+          className="text-dark fw-bold pointer pe-auto"
+          onClick={handleGmailClick}
+        >
+          {" "}
+          Madcoupon01@gmail.com{" "}
+        </span>
+      </div>
+    ),
   },
 ];

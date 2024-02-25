@@ -55,31 +55,35 @@ function Brands({ withCate }) {
       <>
         <div className="  pt-5 bg-light  ">
           <MetaData title="PRODUCTS -- ECOMMERCE" />
-          {(!withCate && !keyword) &&
+          {!withCate && !keyword && (
             <div className=" d-flex flex-row flex-wrap justify-content-center rounded-4 bg-white shadow mx-5 px-auto py-2 ">
               {alphabets.map((name, i) => (
-                <a key={i}
-                  className={`btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1 ${alphabet === name && "active"
-                    }`}
+                <a
+                  key={i}
+                  className={`btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1 ${
+                    alphabet === name && "active"
+                  }`}
                   href={`#${name}`}
-                // onClick={(e) => getBrandByAlphabet(e, name)}
+                  // onClick={(e) => getBrandByAlphabet(e, name)}
 
-                // onClick={() =>setAlphabet(name) }
+                  // onClick={() =>setAlphabet(name) }
                 >
                   {name}
                 </a>
               ))}
-            </div>}
-          {console.log('cateName >> ', cateName)}
-          <h2 className="productsHeading fs-3 fw-3">{withCate ? cateName?.label : ' All Brands'}</h2>
+            </div>
+          )}
+          {console.log("cateName >> ", cateName)}
+          <h2 className="productsHeading fs-3 fw-3">
+            {withCate ? cateName?.label : " All Brands"}
+          </h2>
           {loading ? (
             <Loader />
           ) : (
             <>
               {withCate || keyword ? (
-                <div className="row" >
-                  <div className="col-md-9" >
-
+                <div className="row">
+                  <div className="col-md-9">
                     <div className="row justify-content-center ">
                       {brands &&
                         brands.map(
@@ -100,20 +104,23 @@ function Brands({ withCate }) {
                         <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
                           <h2 className="text-center">No Brand Found</h2>
                           <p className="px-4 text-center text-secondary my-3">
-                            Sorry, we couldn't find any Brand matching your search
-                            criteria. Please try again with a different search term or
-                            refine your filters.
+                            Sorry, we couldn't find any Brand matching your
+                            search criteria. Please try again with a different
+                            search term or refine your filters.
                           </p>
                         </div>
                       )}
                     </div>
                   </div>
-                  <div className="col-md-3" >
+                  <div className="col-md-3">
                     <div className=" mt-2 bg-white rounded-3  py-2 shadow-sm">
-                      <h5 className="text-danger text-center">All Categories</h5>
+                      <h5 className="text-danger text-center">
+                        All Categories
+                      </h5>
                       <ul className="categoryBox row justify-content-center">
                         {allCategories?.map(({ _id, label }) => (
-                          <Link to={`/categories/brands/${_id}`}
+                          <Link
+                            to={`/categories/brands/${_id}`}
                             className="category-link bg-light shadow-sm rounded col-5 "
                             key={_id}
                           >
@@ -121,13 +128,24 @@ function Brands({ withCate }) {
                           </Link>
                         ))}
                       </ul>
+                      <div className="d-flex justify-content-center">
+                        <Link
+                          to="/categories"
+                          className="show-all-button btn btn-outline-warning rounded-pill "
+                        >
+                          View All Categories
+                        </Link>
+                      </div>
                     </div>
                     <div className=" mt-2 bg-white rounded-3  py-2 shadow-sm">
-                      <h5 className="text-danger text-center">Related Brands</h5>
+                      <h5 className="text-danger text-center">
+                        Popular Brands
+                      </h5>
                       <ul className="categoryBox row justify-content-center">
                         {/* { cateName?.relatedBrand?.map(({ _id, name }) => ( */}
-                        { topBrands?.map(({ _id, name }) => (
-                  <Link to={`/brand/${_id}`}
+                        {topBrands?.map(({ _id, name }) => (
+                          <Link
+                            to={`/brand/${_id}`}
                             className="category-link bg-light shadow-sm rounded col-5 "
                             key={_id}
                           >
@@ -135,9 +153,16 @@ function Brands({ withCate }) {
                           </Link>
                         ))}
                       </ul>
+                      <div className="d-flex justify-content-center">
+                        <Link
+                          to="/brands"
+                          className="show-all-button btn btn-outline-warning rounded-pill "
+                        >
+                          View All Brands
+                        </Link>
+                      </div>
                     </div>
                   </div>
-
                 </div>
               ) : (
                 <div
@@ -206,15 +231,13 @@ function Brands({ withCate }) {
                       <h2 className="text-center">No Brand Found</h2>
                       <p className="px-4 text-center text-secondary my-3">
                         Sorry, we couldn't find any Brand matching your search
-                        criteria. Please try again with a different search term or
-                        refine your filters.
+                        criteria. Please try again with a different search term
+                        or refine your filters.
                       </p>
                     </div>
                   )}
                 </div>
               )}
-
-
             </>
           )}
 
