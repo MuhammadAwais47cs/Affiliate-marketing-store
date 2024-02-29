@@ -3,32 +3,34 @@ import React from "react";
 // import banner02 from "../Asset/5.png";
 import "./AboutUs.css";
 function AboutUs() {
-  const whyChooseUs = [
-    {
-      heading: "Best Price",
-      para: "Our Stress-Free Finance Department That Can Find Financial Solutions To Save You Money.",
-    },
-    {
-      heading: "Trusted By Thousands",
-      para: "NUMBER 1 PROVIDER OF THE GRIPPING DRIVING EXPERIENCES.",
-    },
-    {
-      heading: "Wide Range of Brands",
-      para: "We Have A Wide Range Of Different Car Brands.",
-    },
-  ];
+  // const whyChooseUs = [
+  //   {
+  //     heading: "Best Price",
+  //     para: "Our Stress-Free Finance Department That Can Find Financial Solutions To Save You Money.",
+  //   },
+  //   {
+  //     heading: "Trusted By Thousands",
+  //     para: "NUMBER 1 PROVIDER OF THE GRIPPING DRIVING EXPERIENCES.",
+  //   },
+  //   {
+  //     heading: "Wide Range of Brands",
+  //     para: "We Have A Wide Range Of Different Car Brands.",
+  //   },
+  // ];
   return (
     <>
       <section className="bg-light ">
-        <div className="d-flex flex-row  align-items-center bg-danger-subtle py-5 ">
+        {/*   <div className="d-flex flex-row  align-items-center bg-danger-subtle py-4 ">
           <div className="col-md-6 ps-5  ">
             <h1 className="text-start  text-danger">AboutUs</h1>
           </div>
           <div className="col-md-6 pe-5">
-            {/* <p className="text-end ">Home / AboutUs</p> */}
+           <p className="text-end ">Home / AboutUs</p>
           </div>
-        </div>
-        <div className="d-flex flex-row justify-content-center py-2 con container ">
+        </div>  */}
+        <div className="py-1 "></div>
+
+        <div className="d-flex flex-row justify-content-center container ">
           {/* <div className="col-md-6 mt-5">
             <div className="bannerImg">
               <img src={banner01} alt="" />
@@ -38,35 +40,24 @@ function AboutUs() {
             {/* <h2 className="py-5">Who we are</h2> */}
             <p className="text-secondary pe-md-5 me-lg-5">
               Welcome to{" "}
-              <a className="link-underline-light" href="https://madcoupon.de">
-                Madcoupon.de{" "}
-              </a>{" "}
-              - Your Ultimate Destination for Free Vouchers and Coupons in
-              Germany!
+              <span className="text-dark fw-bold">Madcoupon.de </span> - Your
+              Ultimate Destination for Free Vouchers and Coupons in Germany!
               <br />
               <br />
               Discover a world of savings at{" "}
-              <a className="link-underline-light" href="https://madcoupon.de">
-                Madcoupon.de{" "}
-              </a>{" "}
-              , your go-to source for exclusive free vouchers and coupon codes.
-              Unleash the power of discounts and enjoy incredible savings on
-              your favorite brands without spending a penny!
+              <span className="text-dark fw-bold">Madcoupon.de </span> , your
+              go-to source for exclusive free vouchers and coupon codes. Unleash
+              the power of discounts and enjoy incredible savings on your
+              favorite brands without spending a penny!
               <br />
               <br />
               <span className="text-dark fw-bold"> Why </span>
-              <a className="link-underline-light" href="https://madcoupon.de">
-                Madcoupon.de{" "}
-              </a>{" "}
-              ?
+              <span className="text-dark fw-bold">Madcoupon.de </span> ?
               <br />
               At
-              <a className="link-underline-light" href="https://madcoupon.de">
-                {" "}
-                Madcoupon.de{" "}
-              </a>{" "}
-              , we believe that saving money should be hassle-free. That's why
-              we offer a vast selection of free vouchers and coupon codes, all
+              <span className="text-dark fw-bold"> Madcoupon.de </span> , we
+              believe that saving money should be hassle-free. That's why we
+              offer a vast selection of free vouchers and coupon codes, all
               tailored to the German market. Say goodbye to registration forms
               and hidden fees – our deals are genuinely free for you to grab and
               use instantly!
@@ -106,9 +97,9 @@ function AboutUs() {
               perfect voucher for your needs
               <br />
               <br />
-              <span className="text-dark fw-bold">Redeem:</span>
-              Grab: Simply click on the voucher you want, and it's yours! No
-              strings attached.
+              <span className="text-dark fw-bold">Grab:</span>
+              Simply click on the voucher you want, and it's yours! No strings
+              attached.
               <br />
               <br />
               <span className="text-dark fw-bold"> Save:</span>
@@ -117,11 +108,9 @@ function AboutUs() {
               <br />
               <br />
               Start your savings journey today with
-              <a className="link-underline-light" href="https://madcoupon.de">
-                " Madcoupon.de{" "}
-              </a>{" "}
-              – where every voucher is a step towards smarter, more economical
-              shopping! Happy Saving!
+              <span className="text-dark fw-bold">" Madcoupon.de </span> – where
+              every voucher is a step towards smarter, more economical shopping!
+              Happy Saving!
             </p>
           </div>
         </div>
@@ -146,7 +135,7 @@ function AboutUs() {
               <img src={banner02} alt="" />
             </div>
         </div>
-          </div> */}
+          </div> 
 
         <div className="bg-danger-subtle py-2 ">
           <h1 className="text-center pt-5  text-danger">Why Choose Us?</h1>
@@ -158,8 +147,7 @@ function AboutUs() {
               </div>
             ))}
           </div>
-        </div>
-        {/*
+        </div> 
         <div className="d-flex flex-row justify-content-center py-2 con container ">
           <div className="col-md-11 pe-md-3">
             <h2 className="py-5">Our Vission</h2>

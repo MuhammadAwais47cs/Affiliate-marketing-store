@@ -2,10 +2,7 @@ import React from "react";
 
 const madcoupon = (
   <>
-    <a className="link-underline-light" href="https://madcoupon.de">
-      {" "}
-      Madcoupon.de{" "}
-    </a>
+    <span className="fw-bold text-dark"> Madcoupon.de </span>
   </>
 );
 const handleGmailClick = (email) => {
@@ -20,7 +17,7 @@ const handleGmailClick = (email) => {
 export const contentData = [
   {
     id: 1,
-    heading: "Privacy Policy Page",
+    heading: "Privacy Policy  ",
     para: (
       <div>
         {" "}
@@ -32,10 +29,10 @@ export const contentData = [
   },
   {
     id: 2,
-    heading: "Information We Collection ",
+    heading: "Information We Collect ",
     para: (
       <div>
-        `We collect various types of information to enhance your experience and
+        We collect various types of information to enhance your experience and
         provide you with the best services. This may include, but is not limited
         to,
         <br />
@@ -44,7 +41,7 @@ export const contentData = [
         <br />
         Non-personal identification information, such as browser type, device
         information, and other technical details when Users interact with our
-        Website.`,
+        Website.,
       </div>
     ),
   },
@@ -100,12 +97,11 @@ export const contentData = [
     heading: "Changes to this Privacy Policy",
     para: (
       <div>
-        {" "}
-        has the discretion to update this Privacy Policy at any time. We
-        encourage Users to frequently check this page for any changes to stay
-        informed. You acknowledge and agree that it is your responsibility to
-        review this Privacy Policy periodically and become aware of
-        modifications.
+        {madcoupon} has the discretion to update this Privacy Policy at any
+        time. We encourage Users to frequently check this page for any changes
+        to stay informed. You acknowledge and agree that it is your
+        responsibility to review this Privacy Policy periodically and become
+        aware of modifications.
       </div>
     ),
   },

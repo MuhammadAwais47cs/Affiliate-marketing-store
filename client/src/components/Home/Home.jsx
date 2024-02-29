@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productAction.js";
 import { getBrand } from "../../actions/brandAction";
 import { getSlider } from "../../actions/sliderAction";
-import banner1 from "./Asset/co.png";
 import CouponList from "./components/CouponList.jsx";
 import CategoriesList from "./components/CategoriesList.jsx";
 // import BrandList from "./components/BrandList.jsx";
@@ -104,7 +103,8 @@ function Home() {
                   {brands &&
                     brands.map(
                       (brand) =>
-                        brand.published && (
+                        brand.published &&
+                        brand.popular && (
                           <Link
                             className="d-flex flex-row justify-content-center bg-white shadow-lg p-lg-2 p-md-1 border-0 rounded mb-2 mx-2"
                             to={`/brand/${brand?._id}`}
@@ -115,7 +115,7 @@ function Home() {
                               className="mx-2 brandSliderImg"
                             />
                           </Link>
-                        ),
+                        )
                     )}
                 </Carousel>
               )}
@@ -129,7 +129,7 @@ function Home() {
               {products && (
                 <CouponList
                   Coupons={products.filter(
-                    (brands) => brands.popular && brands.published,
+                    (brands) => brands.published && brands.popular
                   )}
                 />
               )}
@@ -163,9 +163,7 @@ function Home() {
               </div>
               {products && (
                 <OfferList
-                  Coupons={products.filter(
-                    (product) => product.popular && product.published,
-                  )}
+                  Coupons={products.filter((product) => product.published)}
                 />
               )}
               {/* <div className="row justify-content-center ">

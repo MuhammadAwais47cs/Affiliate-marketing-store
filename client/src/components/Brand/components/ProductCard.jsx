@@ -52,7 +52,7 @@ function ProductCard({ product, brandId }) {
     window.location.href = link;
   };
 
-  const { images, brand, badge, description, expireDate, link } = product;
+  const { images, badge, description, expireDate, link } = product;
 
   return (
     <div className="d-flex justify-content-center mx-2">

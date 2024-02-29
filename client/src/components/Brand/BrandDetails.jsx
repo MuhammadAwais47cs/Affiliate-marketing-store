@@ -79,6 +79,9 @@ function ProductDetails() {
     );
     console.log("data :>> ", data);
   };
+  const handleLinkClick = (url) => {
+    window.open(url, "_blank");
+  };
   return (
     <>
       {loading ? (
@@ -88,7 +91,11 @@ function ProductDetails() {
           <MetaData title={`${brand?.name} -- ECOMMERCE`} />
           <section className="my-5 ">
             <div className=" d-flex d-flex flex-row align-items-center">
-              <div className="col-4 d-flex flex-column align-items-center   ">
+              <div
+                className="col-4 d-flex flex-column align-items-center"
+                onClick={() => handleLinkClick(brand?.link)}
+                role="button"
+              >
                 <img
                   src={brand?.images?.url}
                   alt="coupon"
