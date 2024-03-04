@@ -9,6 +9,7 @@ import "./App.css";
 import Header from "./components/layout/header/header.js";
 import Footer from "./components/layout/footer/Footer.js";
 import Features from "./components/layout/Feature/Feature";
+import Blogs from "./components/Blogs/Blogs.jsx";
 import Home from "./components/Home/Home";
 import ContactUs from "./components/ContactUs/ContactUs";
 import AboutUs from "./components/AboutUs/AboutUs.jsx";
@@ -74,6 +75,7 @@ function App() {
           <Route path="/brands/:keyword" element={<Brands />} />
 
           <Route exact path="/ContactUs" element={<ContactUs />} />
+          <Route exact path="/Blogs" element={<Blogs />} />
           <Route exact path="/AboutUs" element={<AboutUs />} />
           <Route exact path="/Privacy" element={<Privacy />} />
           <Route exact path="/search" element={<Search />} />

@@ -103,8 +103,8 @@ function Home() {
                   {brands &&
                     brands.map(
                       (brand) =>
-                        brand.published &&
-                        brand.popular && (
+                        brand?.published &&
+                        brand?.popular && (
                           <Link
                             className="d-flex flex-row justify-content-center bg-white shadow-lg p-lg-2 p-md-1 border-0 rounded mb-2 mx-2"
                             to={`/brand/${brand?._id}`}
@@ -128,8 +128,8 @@ function Home() {
               </div>
               {products && (
                 <CouponList
-                  Coupons={products.filter(
-                    (brands) => brands.published && brands.popular
+                  Coupons={products?.filter(
+                    (brands) => brands?.published && brands?.popular
                   )}
                 />
               )}
@@ -163,7 +163,7 @@ function Home() {
               </div>
               {products && (
                 <OfferList
-                  Coupons={products.filter((product) => product.published)}
+                  Coupons={products.filter((product) => product?.published)}
                 />
               )}
               {/* <div className="row justify-content-center ">

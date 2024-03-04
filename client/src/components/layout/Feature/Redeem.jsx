@@ -8,17 +8,17 @@ const svg = [
   {
     img: approved,
     heading: "PTA Approved",
-    para: `Look for the voucher on the website. Click on it. Once the new page opens, copy the coupon code. Then, click the button that says 'Go to store' to use this coupon.`,
+    para: `Suchen Sie auf der Website nach dem Gutschein. Klick es an. Sobald die neue Seite geöffnet wird, kopieren Sie den Gutscheincode. Klicken Sie dann auf die Schaltfläche „Zum Shop gehen“, um diesen Gutschein einzulösen.`,
   },
   {
     img: warranty,
     heading: "1 Year",
-    para: " When you click this button, you will go to the store page of the product you want.",
+    para: "Wenn Sie auf diese Schaltfläche klicken, gelangen Sie zur Store-Seite des gewünschten Produkts.",
   },
   {
     img: delivery,
     heading: "24hr Delivery",
-    para: `Next, go to the store's website and find the product you want. When you're ready to buy, enter the coupon code on the payment page to enjoy your purchase.`,
+    para: `Gehen Sie als Nächstes auf die Website des Shops und suchen Sie nach dem gewünschten Produkt. Wenn Sie zum Kauf bereit sind, geben Sie den Gutscheincode auf der Zahlungsseite ein, um Ihren Einkauf zu genießen.`,
   },
 ];
 const Footer = () => {
@@ -31,7 +31,7 @@ const Footer = () => {
               className={`fa fa-calendar fa-lg text-theame me-2  `}
               aria-hidden="true"
             />
-            How to Redeem a coupon.
+            So lösen Sie einen Gutschein ein.
           </h4>
         </div>
         <div class="col-md-7 w-50">

@@ -2,16 +2,9 @@ import React, { useState } from "react";
 // import playStore from "../../../images/playstore.png";
 // import logo from '../assets/2.png'
 // import appStore from "../../../images/Appstore.png";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaPinterestP,
-  FaRegEnvelope,
-  FaPhoneSquare,
-  FaWhatsapp,
-  FaLocationArrow,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaPinterest } from "react-icons/fa";
+
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import "./Footer.css";
 import { useAlert } from "react-alert";
 import axios from "axios";
@@ -31,19 +24,19 @@ const Footer = () => {
     // window.location.href = 'https://mail.google.com/mail/u/0/#inbox?compose=new';
     window.open(
       `https://mail.google.com/mail/u/0/#inbox?compose=new&to=${email}`,
-      "_blank",
+      "_blank"
     );
   };
   const handleWhatsAppClick = () => {
     // Redirect to WhatsApp with a pre-populated message
     window.open(
-      `https://api.whatsapp.com/send?phone=${312 - 4709123}&text=${"message"}`,
+      `https://api.whatsapp.com/send?phone=${312 - 4709123}&text=${"message"}`
     );
   };
 
-  const handleInstagramClick = () => {
+  const handleInstagramClick = (link) => {
     // Redirect to Instagram
-    window.open("https://www.instagram.com/madcoupon.de/", "_blank");
+    window.open(link, "_blank");
   };
 
   const handleFacebookClick = () => {
@@ -147,25 +140,32 @@ const Footer = () => {
 
         <div className="rightFooter mt-4">
           <h4>Follow Us</h4>
-          <a
+          <p
             className="h6  "
-            // href="https://www.instagram.com/madcoupon.de"
-            onClick={handleInstagramClick}
+            onClick={() =>
+              handleInstagramClick("https://www.instagram.com/madcoupon.de/")
+            }
           >
             <FaInstagram /> Instagram
-          </a>
-          <a
+          </p>
+          <p
             className="h6   "
-            href="#"
-            // onClick={() =>
-            //   handleGmailClick("http://youtube.com/6packprogramemr")
-            // }
+            onClick={() =>
+              handleInstagramClick("https://www.pinterest.de/madcoupon01/")
+            }
           >
-            <FaYoutube /> Youtube
-          </a>
-          <a className="h6" onClick={handleFacebookClick}>
+            <FaPinterest /> Pinterest
+          </p>
+          <p
+            className="h6"
+            onClick={() =>
+              handleInstagramClick(
+                "https://www.facebook.com/profile.php?id=61555546487458"
+              )
+            }
+          >
             <FaFacebook /> Facebook
-          </a>
+          </p>
 
           {/*   <h4>Follow Us</h4>
         <a href="http://instagram.com/meabhisingh">Instagram</a>
