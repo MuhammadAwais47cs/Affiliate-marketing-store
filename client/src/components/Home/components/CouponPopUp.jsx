@@ -24,15 +24,13 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
             width="100"
           />
           <h5 className="fs-5 my-1 ">{modalData?.description}</h5>
-             <p className="fs-5 text-center text-muted">
-            {modalData?.badge}
-          </p>
+          <p className="fs-5 text-center text-muted">{modalData?.badge}</p>
           <p className="fs-5 text-center text-muted">
+            {/* {modalData?.couponType === "Code" ? "Voucher Code is :"  : "Provider is :"} */}
             {modalData?.couponType === "Code"
-              ? "Voucher Code is :"
-              : "Provider is :"}
+              ? "Gutscheincode ist :"
+              : "Anbieter ist:"}
           </p>
-         
 
           {/* {copyMessage ? (
             <span className="btn btn-outline-info my-1 w-75 text-truncate">
@@ -48,8 +46,8 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
                 : modalData?.link}
             </span>
           )} */}
-          <p className='row w-75'>
-           <span
+          <p className="row w-75">
+            <span
               className="col-md-7 btn btn-outline-info my-1 me-2 text-truncate fs-5 pt-2"
               // onClick={() => copyCodeAndLink(modalData)}
             >
@@ -57,19 +55,19 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
                 ? modalData?.code
                 : modalData?.link}
             </span>
-              <span
+            <span
               onClick={() => copyCodeAndLink(modalData)}
-              
-              className=" col-md-4 btn btn-outline-info my-1 text-truncate fs-5 pt-1">
-             {copyMessage ? 'Copied!' :'Copy'}
+              className=" col-md-4 btn btn-outline-info my-1 text-truncate fs-5 pt-1"
+            >
+              {/* {copyMessage ? "Copied!" : "Copy"} */}
+              {copyMessage ? "Kopiert!" : "Kopieren"}
             </span>
-                
-              </p>
+          </p>
           <p className=" my-1">
-            Date of Expiry :{" "}
+            Ablaufdatum: {/* Date of Expiry :{" "} */}
             <span className=" ">
               {" "}
-              {moment(modalData?.expireDate).format("DD-MM-YYYY")}{" "}
+              {moment(modalData?.expireDate)?.format("DD-MM-YYYY")}{" "}
             </span>
           </p>
           <Link
@@ -86,7 +84,7 @@ function CouponPopUp({ modalData, isOpenModal, modalToggle }) {
             {/* {modalData?.couponType === "Code"
               ? modalData?.code
               : "Go To Provider"} */}
-            Go To Provider
+            Gehen Sie zum Anbieter {/* Go To Provider */}
           </Link>
         </div>
       </Modal.Body>

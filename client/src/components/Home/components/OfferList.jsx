@@ -56,9 +56,9 @@ const CouponList = ({ Coupons }) => {
         {/* here map the coupons on mobile view first 6  only then show all button when on click show all button show all coupons
          */}
 
-        {coupons.map((product, index) => (
+        {coupons?.map((product, index) => (
           <Offers
-            key={product._id}
+            key={product?._id}
             product={product}
             callBack={() => modalToggle(product)}
           />
@@ -72,10 +72,10 @@ const CouponList = ({ Coupons }) => {
             // onClick={toggleShowAll}
             onClick={() => {
               setShowAll(true);
-              setCoupons(Coupons.slice(0, 40));
+              setCoupons(Coupons?.slice(0, 40));
             }}
           >
-            Show All
+            Zeige Alles {/* Show All */}
           </button>
         )}
       </div>

@@ -61,7 +61,8 @@ function Categories({ withId }) {
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           {}
           <h2 className="productsHeading fs-3 fw-3">
-            {brandOrCate === "brand" ? "names" : "All Categories"}
+            {/* {brandOrCate === "brand" ? "names" : "All Categories"} */}
+            {brandOrCate === "brand" ? "Namen" : "Alle Kategorien"}
           </h2>
           {isloading ? (
             <Loader />
@@ -102,11 +103,18 @@ function Categories({ withId }) {
 
                   {categories[0] === undefined && (
                     <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
-                      <h2 className="text-center">No Category Found</h2>
+                      <h2 className="text-center">
+                        Keine Kategorie gefunden
+                        {/* No Category Found */}
+                      </h2>
                       <p className="px-4 text-center text-secondary my-3">
-                        Sorry, we couldn't find any Category matching your
+                        Leider konnten wir keine Kategorie finden, die Ihren
+                        Suchkriterien entspricht. Bitte versuchen Sie es erneut
+                        mit einem anderen Suchbegriff oder verfeinern Sie Ihre
+                        Filter.
+                        {/* Sorry, we couldn't find any Category matching your
                         search criteria. Please try again with a different
-                        search term or refine your filters.
+                        search term or refine your filters. */}
                       </p>
                     </div>
                   )}
@@ -115,7 +123,9 @@ function Categories({ withId }) {
 
               <div className="  col-md-3 ">
                 <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
-                  <h5 className="text-danger text-center">Popular Brands</h5>
+                  <h5 className="text-danger text-center">
+                    Beliebte Marken{/*Popular Brands*/}
+                  </h5>
                   <ul className="categoryBox row justify-content-center">
                     {topBrands
                       ? topBrands.map(({ _id, name }) => (
@@ -136,7 +146,7 @@ function Categories({ withId }) {
                       to="/brands"
                       className="show-all-button btn btn-outline-warning rounded-pill "
                     >
-                      Show All Brands
+                      Alle Marken anzeigen {/* Show All Brands */}
                     </Link>
                   </div>
                 </div>

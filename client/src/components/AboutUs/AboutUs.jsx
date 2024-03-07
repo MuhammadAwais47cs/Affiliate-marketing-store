@@ -39,78 +39,86 @@ function AboutUs() {
           <div className="col-md-11 pe-md-3">
             {/* <h2 className="py-5">Who we are</h2> */}
             <p className="text-secondary pe-md-5 me-lg-5">
-              Welcome to{" "}
-              <span className="text-dark fw-bold">Madcoupon.de </span> - Your
-              Ultimate Destination for Free Vouchers and Coupons in Germany!
+              Willkommen zu{" "}
+              <span className="text-dark fw-bold">Madcoupon.de </span> - Dein
+              Ultimate Ziel für kostenlose Gutscheine und Gutscheine in
+              Deutschland!
               <br />
               <br />
-              Discover a world of savings at{" "}
-              <span className="text-dark fw-bold">Madcoupon.de </span> , your
-              go-to source for exclusive free vouchers and coupon codes. Unleash
-              the power of discounts and enjoy incredible savings on your
-              favorite brands without spending a penny!
+              Entdecken Sie eine Welt der Ersparnisse bei {""}
+              <span className="text-dark fw-bold">Madcoupon.de </span>, dein
+              Quelle für exklusive kostenlose Gutscheine und
+              Gutscheincodes.Entfesseln Die Kraft der Rabatte und genießen Sie
+              unglaubliche Einsparungen bei Ihrem Lieblingsmarken, ohne einen
+              Cent auszugeben!
               <br />
               <br />
-              <span className="text-dark fw-bold"> Why </span>
+              <span className="text-dark fw-bold"> Warum </span>
               <span className="text-dark fw-bold">Madcoupon.de </span> ?
               <br />
-              At
-              <span className="text-dark fw-bold"> Madcoupon.de </span> , we
-              believe that saving money should be hassle-free. That's why we
-              offer a vast selection of free vouchers and coupon codes, all
-              tailored to the German market. Say goodbye to registration forms
-              and hidden fees – our deals are genuinely free for you to grab and
-              use instantly!
+              Bei
+              <span className="text-dark fw-bold"> Madcoupon.de </span> , Wir
+              Glauben Sie, dass das Sparen von Geld problemlos sein
+              sollte.Deshalb wir Bieten Sie eine große Auswahl an kostenlosen
+              Gutscheinen und Gutscheincodes an auf den deutschen Markt
+              zugeschnitten.Verabschieden Sie sich von Registrierungsformularen
+              und versteckte Gebühren - unsere Angebote sind wirklich kostenlos
+              für Sie zu greifen und sofort benutzen!
               <br />
               <br />
-              <span className="text-dark fw-bold"> What Sets Us Apart:</span>
+              <span className="text-dark fw-bold">Was unterscheidet uns:</span>
               <br />
-              Extensive Selection: Explore a diverse range of vouchers covering
-              everything from fashion and electronics to travel and dining.
-              We've got your favorite brands covered!
-              <br />
-              <br />
-              <span className="text-dark fw-bold">
-                User-Friendly Experience:
-              </span>
-              Our website is designed with you in mind. Easily navigate through
-              categories and find the best deals with just a few clicks.
+              Umfangreiche Auswahl: Erforschen Sie eine Vielzahl von
+              Gutscheinen, die abdecken Alles von Mode und Elektronik bis hin zu
+              Reisen und Essen. Wir haben Ihre Lieblingsmarken abgedeckt!
               <br />
               <br />
               <span className="text-dark fw-bold">
-                No Registration Required:
+                Benutzerfreundliche Erfahrung:
               </span>
-              Enjoy the freedom of accessing all our vouchers without any
-              mandatory sign-ups. Instantly access the savings you deserve.
+              Unsere Website ist im Sinn.Einfach durch die navigieren Kategorien
+              und finden Sie die besten Angebote mit nur wenigen Klicks.
               <br />
               <br />
-              <span className="text-dark fw-bold">Regular Updates:</span>
-              We keep our finger on the pulse of the latest deals. Visit
-              Madcoupon.de regularly to stay updated on fresh, exciting offers.
+              <span className="text-dark fw-bold">
+                Keine Registrierung erforderlich:
+              </span>
+              Genießen Sie die Freiheit, auf alle unsere Gutscheine zuzugreifen,
+              ohne welche Obligatorische Anmeldungen.Greifen Sie sofort auf die
+              Ersparnisse zu, die Sie verdienen.
               <br />
               <br />
-              <span className="text-dark fw-bold">How It Works:</span>
+              <span className="text-dark fw-bold">Regelmäßige Updates:</span>
+              Wir halten unseren Finger am Puls der neuesten Angebote.Besuchen
+              Madcoupon.de regelmäßig, um über frische, aufregende Angebote auf
+              dem Laufenden zu bleiben.
               <br />
               <br />
-              <span className="text-dark fw-bold"> Browse:</span>
-              Explore our categories or use our search function to find the
-              perfect voucher for your needs
+              <span className="text-dark fw-bold">Wie es funktioniert:</span>
               <br />
               <br />
-              <span className="text-dark fw-bold">Grab:</span>
-              Simply click on the voucher you want, and it's yours! No strings
-              attached.
+              <span className="text-dark fw-bold"> Durchsuche:</span>
+              Erforschen Sie unsere Kategorien oder verwenden Sie unsere
+              Suchfunktion, um die zu finden Perfekter Gutschein für Ihre
+              Bedürfnisse
               <br />
               <br />
-              <span className="text-dark fw-bold"> Save:</span>
-              Redeem your voucher at the respective store or website and enjoy
-              the savings. It's that easy!
+              <span className="text-dark fw-bold">Greifen:</span>
+              Klicken Sie einfach auf den gewünschten Gutschein und es gehört
+              Ihnen!Keine Saiten beigefügt.
               <br />
               <br />
-              Start your savings journey today with
-              <span className="text-dark fw-bold">" Madcoupon.de </span> – where
-              every voucher is a step towards smarter, more economical shopping!
-              Happy Saving!
+              <span className="text-dark fw-bold"> Speichern:</span>
+              Lösen Sie Ihren Gutschein im jeweiligen Geschäft oder der
+              jeweiligen Website und genießen Sie es die Ersparnisse.So einfach
+              ist das!
+              <br />
+              <br />
+              Beginnen Sie noch heute Ihre Sparreise mit
+              <span className="text-dark fw-bold"> Madcoupon.de </span> –Wo
+              Jeder Gutschein ist ein Schritt in Richtung intelligenterer und
+              wirtschaftlicherer Einkaufsmöglichkeiten! Viel Spaß beim
+              Speichern!
             </p>
           </div>
         </div>

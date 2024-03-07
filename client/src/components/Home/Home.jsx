@@ -91,7 +91,7 @@ function Home() {
           <div id="" className="mt-5  ">
             <div className="bg-secondary bg-opacity-25 shadow container pb-4">
               <p className="col-11 h3   gridHeading  text-center my-1 fw-bold p-3 rounded-3">
-                Popular Brands
+                Beliebte Marken {/* Popular Brands */}
               </p>
               {brands && (
                 <Carousel
@@ -123,7 +123,7 @@ function Home() {
             <div className="mx-4    px-auto">
               <div className="row justify-content-center    ">
                 <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">
-                  Popular Coupon
+                  Beliebter Gutschein {/* Popular Coupon */}
                 </div>
               </div>
               {products && (
@@ -158,7 +158,7 @@ function Home() {
 
               <div className="row justify-content-center    ">
                 <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">
-                  Featured Coupons
+                  Empfohlene Gutscheine {/* Featured Coupons */}
                 </div>
               </div>
               {products && (
@@ -228,7 +228,7 @@ function Home() {
               </div> */}
               <div className="row justify-content-center    ">
                 <div className="col-11 h3 fw-bold gridHeading  text-center shadow-sm bg-white  my-3  p-3 rounded-3">
-                  Top categories
+                  Top Kategorien {/* Top categories */}
                 </div>
               </div>
               <CategoriesList data={categories} />

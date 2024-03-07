@@ -75,7 +75,8 @@ function Brands({ withCate }) {
           )}
           {console.log("cateName >> ", cateName)}
           <h2 className="productsHeading fs-3 fw-3">
-            {withCate ? cateName?.label : " All Brands"}
+            {/* {withCate ? cateName?.label : "All Brands"} */}
+            {withCate ? cateName?.label : "Alle Marken"}
           </h2>
           {loading ? (
             <Loader />
@@ -102,11 +103,12 @@ function Brands({ withCate }) {
 
                       {brands[0] === undefined && (
                         <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
-                          <h2 className="text-center">No Brand Found</h2>
+                          <h2 className="text-center">Keine Marke gefunden</h2>
                           <p className="px-4 text-center text-secondary my-3">
-                            Sorry, we couldn't find any Brand matching your
-                            search criteria. Please try again with a different
-                            search term or refine your filters.
+                            Tut mir leid, wir konnten keine Marken finden, die
+                            zu Ihrem passt Suchkriterium.Bitte versuchen Sie es
+                            erneut mit einem anderen Suchen Sie den Begriff oder
+                            verfeinern Sie Ihre Filter.
                           </p>
                         </div>
                       )}
@@ -115,7 +117,8 @@ function Brands({ withCate }) {
                   <div className="col-md-3">
                     <div className=" mt-2 bg-white rounded-3  py-2 shadow-sm">
                       <h5 className="text-danger text-center">
-                        All Categories
+                        Alle Kategorien
+                        {/* All Categories */}
                       </h5>
                       <ul className="categoryBox row justify-content-center">
                         {allCategories?.map(({ _id, label }) => (
@@ -133,13 +136,13 @@ function Brands({ withCate }) {
                           to="/categories"
                           className="show-all-button btn btn-outline-warning rounded-pill "
                         >
-                          View All Categories
+                          Alle Kategorien anzeigen {/* View All Categories */}
                         </Link>
                       </div>
                     </div>
                     <div className=" mt-2 bg-white rounded-3  py-2 shadow-sm">
                       <h5 className="text-danger text-center">
-                        Popular Brands
+                        Beliebte Marken{/*Popular Brands*/}
                       </h5>
                       <ul className="categoryBox row justify-content-center">
                         {/* { cateName?.relatedBrand?.map(({ _id, name }) => ( */}
@@ -158,7 +161,8 @@ function Brands({ withCate }) {
                           to="/brands"
                           className="show-all-button btn btn-outline-warning rounded-pill "
                         >
-                          View All Brands
+                          Alle Marken anzeigen
+                          {/* View All Brands */}
                         </Link>
                       </div>
                     </div>
@@ -201,7 +205,7 @@ function Brands({ withCate }) {
                                   // setCoupons(Coupons.slice(0, 40));
                                 }}
                               >
-                                Show More
+                                Zeig mehr {/* Show More */}
                               </button>
                             ) : (
                               <></>
@@ -228,11 +232,17 @@ function Brands({ withCate }) {
 
                   {brands[0] === undefined && (
                     <div className="col-md-6 border rounded-5 shadow py-5 my-5 error-container ">
-                      <h2 className="text-center">No Brand Found</h2>
+                      <h2 className="text-center">
+                        Keine Marke gefunden{/*No Brand Found*/}
+                      </h2>
                       <p className="px-4 text-center text-secondary my-3">
-                        Sorry, we couldn't find any Brand matching your search
+                        {/* Sorry, we couldn't find any Brand matching your search
                         criteria. Please try again with a different search term
-                        or refine your filters.
+                        or refine your filters. */}
+                        Leider konnten wir keine Marke finden, die Ihrer Suche
+                        entspricht Kriterien. Bitte versuchen Sie es erneut mit
+                        einem anderen Suchbegriff oder verfeinern Sie Ihre
+                        Filter.
                       </p>
                     </div>
                   )}

@@ -75,7 +75,8 @@ function ProductCard({ product, brandId }) {
 
               <p className="card-text">
                 <small className="text-body-secondary">
-                  Expiry Date : {moment(expireDate).format("DD-MM-YYYY")}
+                  {/* Expiry Date : {moment(expireDate)?.format("DD-MM-YYYY")} */}
+                  Verfallsdatum : {moment(expireDate)?.format("DD-MM-YYYY")}
                 </small>
               </p>
             </div>
@@ -86,8 +87,8 @@ function ProductCard({ product, brandId }) {
               onClick={() => handleClick(link, window.location.href, product)}
             >
               <small className="">
-
-                {product?.couponType === "Code" ? 'Show Code' : 'Show Deal'}
+                {/* {product?.couponType === "Code" ? "Show Code" : "Show Deal"} */}
+                {product?.couponType === "Code" ? "Code anzeigen" : "showDeal"}
               </small>
             </button>
             {isOpenModal && (

@@ -17,106 +17,107 @@ const handleGmailClick = (email) => {
 export const contentData = [
   {
     id: 1,
-    heading: "Privacy Policy  ",
+    heading: "Datenschutzrichtlinie  ",
     para: (
       <div>
         {" "}
-        This Privacy Policy outlines how {madcoupon} collects, uses, maintains,
-        and discloses information gathered from users of the {madcoupon}{" "}
-        website.
+        Diese Datenschutzrichtlinie beschreibt, wie {madcoupon} sammelt,
+        verwendet, verwaltet, und, und gibt Informationen an, die von Nutzern
+        des {madcoupon} {""} gesammelt wurden Webseite.
       </div>
     ),
   },
   {
     id: 2,
-    heading: "Information We Collect ",
+    heading: "Informationen, die wir sammeln ",
     para: (
       <div>
-        We collect various types of information to enhance your experience and
-        provide you with the best services. This may include, but is not limited
-        to,
+        Wir sammeln verschiedene Arten von Informationen, um Ihre Erfahrungen zu
+        verbessern und Bieten Sie Ihnen die besten Dienstleistungen.Dies kann
+        beinhalten, aber nicht begrenzt ist Zu,
         <br />
-        Personal identification information (such as name, email address)
-        provided voluntarily by Users,
+        Persönliche Identifizierungsinformationen (z. B. Name, E -Mail -Adresse)
+        freiwillig von Benutzern bereitgestellt,
         <br />
-        Non-personal identification information, such as browser type, device
-        information, and other technical details when Users interact with our
-        Website.,
+        Nicht-persönliche Identifizierungsinformationen wie Browsertyp, Gerät
+        Informationen und andere technische Details, wenn Benutzer mit unserer
+        interagieren Webseite.,
       </div>
     ),
   },
   {
     id: 3,
-    heading: "How We Use Information",
+    heading: "Wie wir Informationen verwenden",
     para: (
       <div>
         {madcoupon}
-        may collect and use Users' personal information for the following
-        purposes:
+        kann die persönlichen Daten der Benutzer für die folgenden sammeln und
+        verwenden Zwecke:
         <br />
         <br />
-        To improve customer service: Information provided helps us respond to
-        your customer service requests more efficiently.
+        Um den Kundendienst zu verbessern: Die bereitgestellten Informationen
+        helfen uns, auf zu reagieren auf Ihr Kundendienst fordert effizienter.
         <br />
-        To personalize the user experience: We may use information in the
-        aggregate to understand how our Users as a group use the services and
-        resources provided on our Website.
+        Um die Benutzererfahrung zu personalisieren: Wir können Informationen in
+        der verwenden Aggregation zu verstehen, wie unsere Benutzer als Gruppe
+        die Dienste nutzen und Ressourcen auf unserer Website bereitgestellt.
         <br />
-        To send periodic emails: We may use the email address to respond to
-        inquiries, questions, and/or other requests.
+        Um periodische E -Mails zu senden: Wir können die E -Mail -Adresse
+        verwenden, um darauf zu antworten Anfragen, Fragen und/oder andere
+        Anfragen.
       </div>
     ),
   },
   {
     id: 4,
-    heading: "Sharing Your Personal Information",
-    para: `We do not sell, trade, or rent Users' personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers.`,
+    heading: "Teilen Sie Ihre persönlichen Daten weiter",
+    para: `Wir verkaufen, handeln oder vermieten die persönlichen Identifizierungsinformationen der Benutzer nicht an andere.Wir können generische aggregierte demografische Informationen teilen, die nicht mit Informationen zu persönlichen Identifizierungsinformationen zu Besuchern und Benutzern mit unseren Geschäftspartnern verknüpft sind, trusted affiliates, and advertisers.`,
   },
   {
     id: 5,
-    heading: "Third-Party Links",
+    heading: "linksVonDrittanbietern",
     para: (
       <div>
-        {madcoupon} may contain links to third-party websites. These sites have
-        their own privacy policies, and we are not responsible for the content
-        or practices of these linked sites. Nonetheless, we seek to protect the
-        integrity of our site and welcome any feedback about these sites.
+        {madcoupon} Kann Links zu Websites von Drittanbietern enthalten.Diese
+        Websites haben ihre eigenen Datenschutzrichtlinien, und wir sind nicht
+        für den Inhalt verantwortlich oder Praktiken dieser verknüpften
+        Websites.Trotzdem versuchen wir, die zu schützen Integrität unserer
+        Website und begrüßen Sie alle Feedback zu diesen Websites.
       </div>
     ),
   },
   {
     id: 6,
-    heading: "Security Measures",
+    heading: "Sicherheitsmaßnahmen",
     para: `
-    We adopt appropriate data collection, storage, and processing practices and security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information and data stored on our Website.
-
+   Wir verwenden geeignete Datenerfassung, Speicher- und Verarbeitungs- und Sicherheitsmaßnahmen, um vor nicht autorisierten Zugriff, Änderung, Offenlegung oder Zerstörung Ihrer auf unserer Website gespeicherten persönlichen Daten und Daten zu schützen.
              `,
   },
   {
     id: 7,
-    heading: "Changes to this Privacy Policy",
+    heading: "Änderungen an dieser Datenschutzrichtlinie",
     para: (
       <div>
-        {madcoupon} has the discretion to update this Privacy Policy at any
-        time. We encourage Users to frequently check this page for any changes
-        to stay informed. You acknowledge and agree that it is your
-        responsibility to review this Privacy Policy periodically and become
-        aware of modifications.
+        {madcoupon} hat den Ermessen Zeit.Wir ermutigen Benutzer, diese Seite
+        häufig auf Änderungen zu überprüfen auf dem Laufenden bleiben.Sie
+        erkennen an und stimmen zu, dass es Ihr ist Verantwortung, diese
+        Datenschutzrichtlinie regelmäßig zu überprüfen und zu werden
+        Veränderungen bewusst.
       </div>
     ),
   },
 
   {
     id: 7,
-    heading: "Your Acceptance of these Terms",
+    heading: "Ihre Akzeptanz dieser Begriffe",
     para: (
       <div>
-        By using this Website, you signify your acceptance of this Privacy
-        Policy. If you do not agree to this policy, please do not use our
-        Website.
+        Durch die Nutzung dieser Website bedeuten Sie Ihre Akzeptanz dieser
+        Privatsphäre Politik.Wenn Sie dieser Richtlinie nicht zustimmen,
+        verwenden Sie unsere bitte nicht unsere Webseite.
         <br />
-        If you have any questions about this Privacy Policy, please contact us
-        at
+        Wenn Sie Fragen zu diesen Datenschutzrichtlinien haben, kontaktieren Sie
+        uns bitte bei
         <span
           className="text-dark fw-bold pointer pe-auto"
           onClick={handleGmailClick}

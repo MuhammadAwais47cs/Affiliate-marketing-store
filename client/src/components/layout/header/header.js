@@ -33,18 +33,18 @@ function Header() {
   const [cat, setCat] = useState(false);
   const pagesTabs = [
     {
-      name: "Home",
+      name: "Heim", // Home
       value: "Mobiles",
       icon: "cui-dollar",
       link: "/",
     },
     {
-      name: "All Brands",
+      name: "Alle Marken ", // All Brands
       value: "allStores",
       link: "/brands",
     },
     {
-      name: "Categories",
+      name: "Kategorien", // Categories
       value: "categories",
       icon: "cui-dollar",
       link: "/categories",

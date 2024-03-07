@@ -109,7 +109,7 @@ function ProductDetails() {
                 <p>{brand.description} </p>
                 <p className="card-text">
                   <small className="text-body-secondary">
-                    Last updated 3 mins ago
+                    Letzte aktualisiert vor 3 Minuten
                   </small>
                 </p>
               </div>
@@ -131,7 +131,8 @@ function ProductDetails() {
             </div>
             <div className="  col-md-3 ">
               <div className=" mt-2 bg-light rounded-3  py-2 shadow-sm">
-                <h5 className="text-danger text-center">Top Categories</h5>
+                {/* <h5 className="text-danger text-center">Top Categories</h5> */}
+                <h5 className="text-danger text-center">Top Kategorien</h5>
                 <ul className="categoryBox row justify-content-center">
                   {topCategories
                     ? topCategories.map(({ _id, label }) => (
@@ -145,7 +146,7 @@ function ProductDetails() {
                           {label}
                         </Link>
                       ))
-                    : "Loading..."}
+                    : "Wird geladen..."}
                 </ul>
               </div>
             </div>

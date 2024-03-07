@@ -112,7 +112,8 @@ const Offers = ({ product, callBack }) => {
                 </h6>
                 <p className="card-text PromoCode text-truncate  text-body-secondary ">
                   {/* {moment(product?.expireDate).format("DD-MM-YYYY")}{" "} */}
-                  {`${product.name} Voucher`}
+                  {/* {`${product.name} Voucher`} */}
+                  {product?.badge}
                   {/* <span className=" rounded-pill  px-3 py-1 text-danger">
                   </span> */}
                 </p>

@@ -3,7 +3,7 @@ function ContactUs() {
     return (
       <>
         <section className="bg-light ">
-          <div className="bg-danger-subtle py-4 ">
+          {/* <div className="bg-danger-subtle py-4 ">
             <h1 className="text-center pt-5 mt-2 text-danger">
               Haben Sie Fragen? Wir würden es gerne hören.
             </h1>
@@ -11,7 +11,7 @@ function ContactUs() {
               Egal, ob Sie neugierig auf unseren Service, Ihren Bestellstatus
               oder … sind Retouren – wir beantworten gerne alle Fragen
             </p>
-          </div>
+          </div> */}
           <div className="d-flex flex-row justify-content-center py-2 ">
             {/* <div className="col-md-4 mt-5">
         <div className='px-5'>
@@ -47,7 +47,7 @@ function ContactUs() {
                     aria-label="First name"
                   />
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <label for="inputEmail4" className="form-label">
                     Familienname{" "}
                   </label>
@@ -58,7 +58,7 @@ function ContactUs() {
                     placeholder=""
                     aria-label="Last name"
                   />
-                </div>
+                </div> */}
                 <div className="col-md-6">
                   <label for="inputEmail4" className="form-label">
                     Email <span className="text-danger">*</span>
@@ -70,7 +70,7 @@ function ContactUs() {
                     id="inputEmail4"
                   />
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <label for="inputEmail4" className="form-label">
                     Nummer{" "}
                   </label>
@@ -79,7 +79,7 @@ function ContactUs() {
                     className="form-control"
                     id="inputEmail4"
                   />
-                </div>
+                </div> */}
 
                 <div className="col-md-12">
                   <label

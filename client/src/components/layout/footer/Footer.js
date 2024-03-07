@@ -92,7 +92,8 @@ const Footer = () => {
           <h1>News Letter</h1>
           <p className="  border-top border-dark">
             {" "}
-            You can subscribe to the newsletter here: :
+            Den Newsletter können Sie hier abonnieren:{" "}
+            {/* You can subscribe to the newsletter here: */}
           </p>
           <form onSubmit={handleSubmit}>
             <div class="mb-3">
@@ -111,7 +112,7 @@ const Footer = () => {
             </div>
 
             <button type="submit" class="btn btn-sm btn-warning bg-theame">
-              Subscribe
+              Abonnieren {/* Subscribe */}
             </button>
           </form>
           {/* <div className="d-flex flex-row ">
@@ -132,14 +133,14 @@ const Footer = () => {
 
         <div className="midFooter mt-4">
           <h1>Information</h1>
-
-          <a href="/ContactUs">Contact Us</a>
-          <a href="/AboutUs">About Us</a>
-          <a href="/Privacy">Privacy </a>
+          <a href="/ContactUs">Kontaktiere uns </a> {/* Contact Us */}
+          <a href="/AboutUs">Über uns</a> {/* About Us */}
+          <a href="/Privacy">Privatsphäre </a> {/*Privacy*/}
         </div>
 
         <div className="rightFooter mt-4">
-          <h4>Follow Us</h4>
+          {/* <h4>Follow Us</h4> */}
+          <h4>Folgen Sie uns</h4>
           <p
             className="h6  "
             onClick={() =>
@@ -176,7 +177,8 @@ const Footer = () => {
       </footer>
       <div className="d-flex flex-row justify-content-center   border-top border-warning py-4 bg-secondary bg-gradient   ">
         <p className="text-white">
-          Copyright (c) 2024 Madcoupon. All rights Reserved{" "}
+          Copyright (c) 2024 Madcoupon. Alle Rechte vorbehalten{" "}
+          {/* Copyright (c) 2024 Madcoupon. All rights Reserved{" "} */}
         </p>
       </div>
     </div>

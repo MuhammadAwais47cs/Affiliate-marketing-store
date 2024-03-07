@@ -8,7 +8,7 @@ import {
 import "./App.css";
 import Header from "./components/layout/header/header.js";
 import Footer from "./components/layout/footer/Footer.js";
-import Features from "./components/layout/Feature/Feature";
+// import Features from "./components/layout/Feature/Feature";
 import Blogs from "./components/Blogs/Blogs.jsx";
 import Home from "./components/Home/Home";
 import ContactUs from "./components/ContactUs/ContactUs";
