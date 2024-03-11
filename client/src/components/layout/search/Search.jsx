@@ -37,7 +37,7 @@ const Search = () => {
         role="search"
       >
         <input
-          className="form-control   rounded-pill "
+          className="form-control rounded-3 "
           type="search"
           onChange={(e) => setKeyword(e.target.value)}
           // placeholder="Search . . ."

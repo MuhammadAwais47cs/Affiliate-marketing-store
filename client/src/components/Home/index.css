@@ -142,8 +142,11 @@
 .productCard > img {
   width: 6vmax;
   height: 11vmin;
+  object-fit: contain;
+
 }
 .brandSliderImg  {
+  object-fit: contain;
   width: 8vmax;
   height: 9vmin;
 }
@@ -205,6 +208,7 @@
     white-space: nowrap;
   }
   .brandSliderImg  {
+  object-fit: contain;
     width: 6vmax;
     height: 12vmin;
   }
@@ -261,6 +265,8 @@
   }
 
   .productCard > img {
+  object-fit: contain;
+
     width: 7vmax;
     height: 14vmin;
   }
