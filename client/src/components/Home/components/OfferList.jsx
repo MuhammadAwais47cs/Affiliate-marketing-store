@@ -75,7 +75,7 @@ const CouponList = ({ Coupons }) => {
               setCoupons(Coupons?.slice(0, 40));
             }}
           >
-            Zeige Alles {/* Show All */}
+            Zeige Alle {/* Show All */}
           </button>
         )}
       </div>

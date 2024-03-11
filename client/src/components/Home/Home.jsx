@@ -123,7 +123,7 @@ function Home() {
             <div className="mx-4    px-auto">
               <div className="row justify-content-center    ">
                 <div className="col-11 h3 gridHeading fw-bold    text-center shadow-sm bg-white  my-3  p-3 rounded-3">
-                  Beliebter Gutschein {/* Popular Coupon */}
+                  Beliebt Coupon {/* Popular Coupon */}
                 </div>
               </div>
               {products && (

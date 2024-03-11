@@ -42,7 +42,7 @@ const BrandList = ({ data }) => {
               setBrands(data.slice(0, 40));
             }}
           >
-            Zeige Alles {/* Show All */}
+            Zeige Alle {/* Show All */}
           </button>
         )}
       </div>
