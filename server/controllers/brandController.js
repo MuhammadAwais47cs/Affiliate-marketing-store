@@ -34,20 +34,21 @@ exports.getBrandDetails = tryCatchAsyncError(async (req, res, next) => {
 exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
   // return next(new ErrorHandler('template error'))
   const { id, alphabet } = req.params;
-  const resultPerPage = 100;
+  const resultPerPage = 1000;
   const brandsCount = await Brand.countDocuments();
-  let apiFeatures = ""; let activeOffers = [];
-  let cateName ='';
+  let apiFeatures = "";
+  let activeOffers = [];
+  let cateName = "";
   if (id) {
-    apiFeatures = new ApiFeatures(Brand.find({ category: id }), req.query)
-      .search()
-      .pagination(resultPerPage);
-  cateName = await category.findById(id);
+    apiFeatures = new ApiFeatures(
+      Brand.find({ category: id }),
+      req.query
+    ).search();
+    // .pagination(resultPerPage);
+    cateName = await category.findById(id);
   } else {
-    apiFeatures = new ApiFeatures(Brand.find(), req.query)
-      .search()
-      .alphabet()
-      .pagination(resultPerPage);
+    apiFeatures = new ApiFeatures(Brand.find(), req.query).search().alphabet();
+    // .pagination(resultPerPage);
     // .filter()
     activeOffers = await Brand.aggregate([
       {
@@ -65,9 +66,9 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
           // productCount: "$products" // Count the number of products for each brand
         },
       },
-    ]); 
-    console.log('activeOffers :>> ', activeOffers);
-    console.log('apiFeatures :>> ', apiFeatures);
+    ]);
+    console.log("activeOffers :>> ", activeOffers);
+    console.log("apiFeatures :>> ", apiFeatures);
   }
 
   const result = await apiFeatures.query;
