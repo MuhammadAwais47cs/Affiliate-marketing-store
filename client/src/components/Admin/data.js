@@ -114,6 +114,12 @@ module.exports.navigationItems = [
     icon: "chatbubble-outline",
     link: "/addSlider",
   },
+  {
+    id: 6,
+    title: "Add Blogs",
+    icon: "chatbubble-outline",
+    link: "/addBlogs",
+  },
 
   // {
   //   id: 5,

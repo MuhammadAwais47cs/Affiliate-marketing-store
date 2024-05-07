@@ -19,6 +19,7 @@ import Products from "./components/Product/Products.jsx";
 import Brands from "./components/Brand/Brands";
 import BrandDetails from "./components/Brand/BrandDetails";
 import AddBrand from "./components/Admin/AddBrand";
+import AddBlogs from "./components/Admin/AddBlogs";
 import AddProduct from "./components/Admin/AddProduct";
 import AddCategory from "./components/Admin/AddCategory";
 import Search from "./components/layout/search/Search";
@@ -84,6 +85,8 @@ function App() {
           <Route exact path="/addProduct" element={<AddProduct />} />
           <Route exact path="/addCategory" element={<AddCategory />} />
           <Route exact path="/admins" element={<Sidebar />} />
+          <Route exact path="/addBlogs" element={<AddBlogs />} />
+
           <Route
             path="/admin"
             element={

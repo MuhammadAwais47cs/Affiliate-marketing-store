@@ -4,6 +4,7 @@ import Sidebar from "./Sidebar.js";
 import AddBrand from "./AddBrand.js";
 import AddProduct from "./AddProduct.js";
 import AddCategory from "./AddCategory.js";
+import AddBlogs from "./AddBlogs.js";
 import "./dashboard.css";
 import { FaAlignJustify } from "react-icons/fa";
 
@@ -11,6 +12,7 @@ import MetaData from "../layout/MetaData";
 import { navigationItems } from "./data.js";
 import Products from "./DataTables/Products.js";
 import Brands from "./DataTables/Brands.js";
+import Blogs from "./DataTables/Blogs.js";
 import Categories from "./DataTables/Categories.js";
 import AddSlider from "./AddSlider.js";
 // import { CiMenuBurger } from "react-icons/ci";
@@ -179,6 +181,8 @@ const Dashboard = () => {
                     return <AddProduct />;
                   case " Category":
                     return <AddCategory />;
+                  case "Add Blogs":
+                    return <Blogs />;
 
                   default:
                     return null;
@@ -195,6 +199,8 @@ const Dashboard = () => {
                     return <AddProduct />;
                   case "Add Category":
                     return <AddCategory />;
+                  case "Add Blogs":
+                    return <AddBlogs />;
 
                   default:
                     return null;
