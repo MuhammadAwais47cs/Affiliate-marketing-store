@@ -188,7 +188,7 @@ const NewBlog = () => {
                     <div></div>
                     <div className="row">
                       <button
-                        className="w-50 mx-auto  mt-4  "
+                        className="w-50 mx-auto mt-4"
                         id="createBlogBtn"
                         type="submit"
                         disabled={loading}

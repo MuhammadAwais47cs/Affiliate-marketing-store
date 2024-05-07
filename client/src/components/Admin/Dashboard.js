@@ -183,6 +183,8 @@ const Dashboard = () => {
                     return <AddCategory />;
                   case "Add Blogs":
                     return <Blogs />;
+                  case " Blogs":
+                    return <AddBlogs />;
 
                   default:
                     return null;

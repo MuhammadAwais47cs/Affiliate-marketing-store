@@ -19,7 +19,7 @@ app.use(errorMiddleware);
 
 const category = require("./routes/categoryRoutes");
 const subscriber = require("./routes/subscriber");
-
+const blogs = require("./routes/blogsRoutes");
 const brands = require("./routes/brandRoutes");
 const sliders = require("./routes/sliderRoutes");
 const products = require("./routes/productsRoutes");
@@ -32,4 +32,5 @@ app.use("/api/v1", sliders);
 app.use("/api/v1", user);
 app.use("/api/v1", subscriber);
 app.use("/api/v1", mails);
+app.use("/api/v1", blogs);
 module.exports = app;
