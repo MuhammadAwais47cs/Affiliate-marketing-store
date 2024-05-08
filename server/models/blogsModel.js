@@ -9,16 +9,16 @@ const blogsSchema = mongoose.Schema({
     type: String,
     //required: [true, "Please Enter product Description"],
   },
-  images: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
+  // images: {
+  //   public_id: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   url: {
+  //     type: String,
+  //     required: true,
+  //   },
+  // },
   category: {
     type: String,
     // required: [true, "Please Enter product Description"],

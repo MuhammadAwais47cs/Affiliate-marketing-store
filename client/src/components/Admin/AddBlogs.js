@@ -9,6 +9,7 @@ import { clearErrors } from "../../actions/brandAction";
 import { useAlert } from "react-alert";
 import { NEW_BRAND_RESET } from "../../constant/brandConstant";
 import { baseurl } from "../../baseurl";
+import Editor from "../RichEditor/Editor";
 
 const NewBlog = () => {
   const dispatch = useDispatch();
@@ -23,12 +24,12 @@ const NewBlog = () => {
 
   const [checkboxes, setCheckboxes] = useState([
     { id: 1, label: "Top", isChecked: false },
-    //  { id: 2, label: "Published", isChecked: false },
-    //  { id: 3, label: "Other", isChecked: false },
+    { id: 2, label: "Published", isChecked: false },
+    { id: 3, label: "Other", isChecked: false },
   ]);
 
   const [data, setData] = useState({
-    blog: "",
+    label: "",
     icon: "",
     relatedBrand: [],
   });
@@ -72,13 +73,9 @@ const NewBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setloading(true);
-    const relatedBrandIds = data.relatedBrand?.map((brand) => brand?.id);
 
     const formdata = {
-      label: data.blog,
-      icon: data.icon,
-      relatedBrand: relatedBrandIds,
-
+      label: data.label,
       top: checkboxes[0].isChecked,
     };
 
@@ -87,7 +84,7 @@ const NewBlog = () => {
     };
 
     const res = await axios.post(
-      `${baseurl}/api/v1/blog/new`,
+      `${baseurl}/api/v1/blogs/new`,
       { data: formdata },
       config
     );
@@ -105,15 +102,23 @@ const NewBlog = () => {
             <Loader />
           ) : (
             <div className="row ">
-              <div className="col-md-2"> </div>
-              <div className="col-md-8 border rounded-4 shadow">
+              <div className="col-md-1"> </div>
+              <div className="col-md-10 border rounded-4 shadow">
                 <form
                   className="m-4"
                   encType="multipart/form-data"
                   onSubmit={handleSubmit}
                 >
                   <div className="row">
-                    <div className="mb-3 col-md-6">
+                    <label
+                      for="exampleFormControlInput1"
+                      className="form-label"
+                    >
+                      Post
+                    </label>
+                  </div>
+                  <div className="row pt-5 mt-5">
+                    {/* <div className="mb-3 col-md-6">
                       <label
                         for="exampleFormControlInput1"
                         className="form-label"
@@ -166,7 +171,7 @@ const NewBlog = () => {
                         name="color"
                         options={relatedBrands}
                       />
-                    </div>
+                    </div> */}
                     <div className="d-flex   mt-3 pt-1">
                       {checkboxes.map((checkbox, index) => (
                         <div className="d-flex  mx-1 w-50" key={index}>
@@ -186,10 +191,10 @@ const NewBlog = () => {
 
                     {/* add one more filed to upload svg's  */}
                     <div></div>
-                    <div className="row">
+                    <div className="row pt-5">
                       <button
                         className="w-50 mx-auto mt-4"
-                        id="createBlogBtn"
+                        id="createProductBtn"
                         type="submit"
                         disabled={loading}
                       >
@@ -199,7 +204,7 @@ const NewBlog = () => {
                   </div>
                 </form>
               </div>
-              <div className="col-md-2"></div>
+              <div className="col-md-1"></div>
             </div>
           )}
         </div>

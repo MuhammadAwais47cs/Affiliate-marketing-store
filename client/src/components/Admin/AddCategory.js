@@ -10,8 +10,7 @@ import { addBrandCheckBox, addBrandFields, languages } from "./data";
 import Loader from "../layout/Loader/Loader";
 import axios from "axios";
 import { baseurl } from "../../baseurl";
-
-
+import Editor from "../RichEditor/Editor";
 
 const NewCategory = () => {
   const dispatch = useDispatch();
@@ -24,22 +23,22 @@ const NewCategory = () => {
   );
   const [relatedBrands, setRelatedBrands] = useState([]);
 
-   const [checkboxes, setCheckboxes] = useState([
-     { id: 1, label: "Top", isChecked: false },
+  const [checkboxes, setCheckboxes] = useState([
+    { id: 1, label: "Top", isChecked: false },
     //  { id: 2, label: "Published", isChecked: false },
     //  { id: 3, label: "Other", isChecked: false },
-   ]);
+  ]);
 
   const [data, setData] = useState({
     category: "",
     icon: "",
-    relatedBrand:[],
+    relatedBrand: [],
   });
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
     getAllBrands();
-    
+
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -55,26 +54,26 @@ const NewCategory = () => {
     const icon = event.target.files[0];
     setData({ ...data, icon });
   };
- const getAllBrands = async () => {
-   const link = `${baseurl}/api/v1/brands`;
-   const { data } = await axios.get(link);
-   let brands = data?.brands?.map(({ _id, name }) => {
-     return { id: _id, label: name, value: _id };
-   });
-   setRelatedBrands(brands);
- };
-   const handleCheckboxChange = (id) => {
-     const updatedCheckboxes = checkboxes.map((checkbox) => {
-       if (checkbox.id === id) {
-         return {
-           ...checkbox,
-           isChecked: !checkbox.isChecked,
-         };
-       }
-       return checkbox;
-     });
-     setCheckboxes(updatedCheckboxes);
-   };
+  const getAllBrands = async () => {
+    const link = `${baseurl}/api/v1/brands`;
+    const { data } = await axios.get(link);
+    let brands = data?.brands?.map(({ _id, name }) => {
+      return { id: _id, label: name, value: _id };
+    });
+    setRelatedBrands(brands);
+  };
+  const handleCheckboxChange = (id) => {
+    const updatedCheckboxes = checkboxes.map((checkbox) => {
+      if (checkbox.id === id) {
+        return {
+          ...checkbox,
+          isChecked: !checkbox.isChecked,
+        };
+      }
+      return checkbox;
+    });
+    setCheckboxes(updatedCheckboxes);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,6 +119,7 @@ const NewCategory = () => {
                   onSubmit={handleSubmit}
                 >
                   <div className="row">
+                    <Editor />
                     <div className="mb-3 col-md-6">
                       <label
                         for="exampleFormControlInput1"
