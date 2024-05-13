@@ -16,7 +16,7 @@ function Categories() {
   const getAllCategories = async () => {
     const link = `${baseurl}/api/v1/Categories`;
     const { data } = await axios.get(link);
-    console.log("data :>> ", data, data.categories);
+
     let Categories = data?.categories;
     setCategories(Categories);
   };

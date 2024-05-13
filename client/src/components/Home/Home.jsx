@@ -108,6 +108,7 @@ function Home() {
                           <Link
                             className="d-flex flex-row justify-content-center bg-white shadow-lg p-lg-2 p-md-1 border-0 rounded mb-2 mx-2"
                             to={`/brand/${brand?._id}`}
+                            key={brand?.name}
                           >
                             <img
                               src={brand?.images?.url}

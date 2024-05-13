@@ -37,7 +37,6 @@ function Editor() {
   const handleProcedureContentChange = (content, delta, source, editor) => {
     setCode(content);
     //let has_attribues = delta.ops[1].attributes || "";
-    //console.log(has_attribues);
     //const cursorPosition = e.quill.getSelection().index;
     // this.quill.insertText(cursorPosition, "★");
     //this.quill.setSelection(cursorPosition + 1);

@@ -33,7 +33,6 @@ function ProductDetails() {
   const arrayUniqueByKey = [
     ...new Map(products?.map((item) => [item[key], item])).values(),
   ];
-  console.log("arrayUniqueByKey :>> ", arrayUniqueByKey);
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
@@ -54,7 +53,6 @@ function ProductDetails() {
       axios
         .get(`${baseurl}/api/v1/product/${popId}`)
         .then(({ data }) => {
-          console.log("res", data);
           setmodalData(data.product);
           setIsOpenModal(true);
         })
@@ -69,15 +67,12 @@ function ProductDetails() {
   // queryParameters.get("scrollPosition");
 
   const getSimilarBrands = async (relatedBrands) => {
-    console.log("relatedBrands :>> ", relatedBrands);
-
     // write a post api to get similar brands by brand.realtedBrand ids array
     const { data } = await axios.post(
       `${baseurl}/api/v1/getSimilarBrands`,
       { relatedBrands },
-      { headers: { "Content-Type": "application/json" } },
+      { headers: { "Content-Type": "application/json" } }
     );
-    console.log("data :>> ", data);
   };
   const handleLinkClick = (url) => {
     window.open(url, "_blank");

@@ -6,7 +6,6 @@ const cloudinary = require("cloudinary");
 
 // // Create blogs
 exports.createBlogs = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.body :>> ", req.body);
   const result = await blogs.create(req.body.data);
   return res.status(201).json({
     success: true,
@@ -18,7 +17,6 @@ exports.createBlogs = tryCatchAsyncError(async (req, res, next) => {
 // get blogs by Id OR get blogs details
 
 exports.getblogsDetails = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.params.id :>> ", req.params.id);
   const blogs = await blogs.findById(req.params.id);
   if (!blogs) {
     return next(new ErrorHandler(`blogs not found`, 404));
@@ -47,7 +45,6 @@ exports.getAllBlogs = tryCatchAsyncError(async (req, res, next) => {
   if (!result) {
     return next(new ErrorHandler(`blogs not found`, 404));
   }
-  // console.log("else blogss :>> ", blogss);
   res
     .status(200)
     .json({ success: true, Blogs: result, blogssCount, resultPerPage });

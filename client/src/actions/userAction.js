@@ -64,7 +64,6 @@ export const register =
   async (dispatch) => {
     try {
       dispatch({ type: REGISTER_USER_REQUEST });
-      console.log("name, email, password :>> ", name, email, password);
 
       const config = { headers: { "Content-Type": "application/json" } };
       // const config = { headers: { "Content-Type": "multipart/form-data" } };

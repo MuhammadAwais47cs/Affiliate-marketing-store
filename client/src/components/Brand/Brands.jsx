@@ -15,7 +15,6 @@ function Brands({ withCate }) {
   const params = useParams();
   const location = useLocation();
   const { keyword, id } = params;
-  console.log('params :>> ', params);
   const { state } = location;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,13 +22,12 @@ function Brands({ withCate }) {
   const [showAll, setShowAll] = useState(false);
 
   const [topBrands, setTopBrands] = useState([]);
-  const [allCategories , setAllCategories] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
   const [price, setPrice] = useState(500000);
 
   const noProduct = { name: "No Product Found" };
-  const { loading, error, brands, cateName, resultPerPage, brandsCount } = useSelector(
-    (state) => state.brands
-  );
+  const { loading, error, brands, cateName, resultPerPage, brandsCount } =
+    useSelector((state) => state.brands);
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
@@ -40,15 +38,23 @@ function Brands({ withCate }) {
   };
 
   useEffect(() => {
-    getXnumOfCategories(20 , false).then((cat) => {setAllCategories(cat);}).catch((error) => console.log(error))
-    getAllTopBrands().then((brands) => {setTopBrands(brands);}).catch((error) => console.log(error))
+    getXnumOfCategories(20, false)
+      .then((cat) => {
+        setAllCategories(cat);
+      })
+      .catch((error) => console.log(error));
+    getAllTopBrands()
+      .then((brands) => {
+        setTopBrands(brands);
+      })
+      .catch((error) => console.log(error));
 
     if (error) return alert.error(error);
     withCate
       ? dispatch(getBrand("", "", "", "", "", id))
-      : keyword ? dispatch(getBrand(keyword, "", "", "", "", ""))
-
-        : dispatch(getBrand("", "", "", "", "", false, true)); // true means withAlphabet
+      : keyword
+      ? dispatch(getBrand(keyword, "", "", "", "", ""))
+      : dispatch(getBrand("", "", "", "", "", false, true)); // true means withAlphabet
   }, [dispatch, keyword, currentPage, id, withCate, state, error]);
   return (
     <>
@@ -59,23 +65,18 @@ function Brands({ withCate }) {
             <div className=" d-flex flex-row flex-wrap justify-content-center rounded-4 bg-white shadow mx-5 px-auto py-2 ">
               {alphabets.map((name, i) => (
                 <a
-                  key={i}
+                  key={name}
                   className={`btn btn-sm btn-outline-warning btn-opacity-25 rounded-pill mx-1 ${
                     alphabet === name && "active"
                   }`}
                   href={`#${name}`}
-                  // onClick={(e) => getBrandByAlphabet(e, name)}
-
-                  // onClick={() =>setAlphabet(name) }
                 >
                   {name}
                 </a>
               ))}
             </div>
           )}
-          {console.log("cateName >> ", cateName)}
           <h2 className="productsHeading fs-3 fw-3">
-            {/* {withCate ? cateName?.label : "All Brands"} */}
             {withCate ? cateName?.label : "Alle Marken"}
           </h2>
           {loading ? (

@@ -46,8 +46,6 @@ function CountdownTimer({ expirationDate }) {
   const scrollPositionFromQueryParameter =
     queryParameters.get("scrollPosition");
   useEffect(() => {
-    console.log("useEffect");
-
     if (scrollPositionFromQueryParameter || scrollPosition) {
       window.scrollTo(0, scrollPositionFromQueryParameter || scrollPosition);
     }
@@ -61,8 +59,6 @@ function CountdownTimer({ expirationDate }) {
   );
 }
 const Offers = ({ product, callBack }) => {
-  console.log("Current coupon codes and offers", product);
-
   const handleClick = (link) => {
     // Store scroll position and other relevant state information
     const scrollPosition = window.scrollY;

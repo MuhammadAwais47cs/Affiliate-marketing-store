@@ -40,23 +40,14 @@ function ProductDetails() {
   const { state } = location;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(500000);
-
-  const noProduct = { name: "No Product Found" };
- 
 
   const { loading, error, products, resultPerPage, productsCount } =
     useSelector((state) => state.products);
-  //  console.log(' useSelector(state=>state.products) :>> ',  useSelector(state=>state.products));
-
-  //  const keyword
   const setCurrentPageNo = (e) => {
-    // console.log('e :>> ', e);
     setCurrentPage(e);
   };
   const priceHandler = (e, newPrice) => {
-    console.log("newPrice :>> ", newPrice, e.target.value);
     setPrice(e.target.value);
   };
   useEffect(() => {
@@ -115,7 +106,6 @@ function ProductDetails() {
                   <li
                     className="category-link"
                     key={name}
-                    // onClick={() => setCategory(value)}
                     onClick={() =>
                       navigate(`/products`, { state: { category: value } })
                     }
@@ -133,7 +123,6 @@ function ProductDetails() {
                   <li
                     className="category-link"
                     key={brand}
-                    // onClick={() => setBrand(category)}
                     onClick={() => navigate(`/products`, { state: { brand } })}
                   >
                     {brand}

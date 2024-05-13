@@ -24,8 +24,8 @@ const svg = [
 const Footer = () => {
   return (
     <div id="" className="bg-secondary bg-opacity-25 shadow  px-4  py-4 my-3">
-      <div class="d-flex flex-wrap justify-content-center">
-        <div class="col-md-4">
+      <div className="d-flex flex-wrap justify-content-center">
+        <div className="col-md-4">
           <h4 className="redmeeHeading">
             <i
               className={`fa fa-calendar fa-lg text-theame me-2  `}
@@ -34,16 +34,16 @@ const Footer = () => {
             So lösen Sie einen Gutschein ein.
           </h4>
         </div>
-        <div class="col-md-7 w-50">
+        <div className="col-md-7 w-50">
           <hr style={{ height: "0.5px", backgroundColor: "#717D7E" }} />
         </div>
       </div>
 
       <div className="d-flex flex-wrap justify-content-evenly ">
-        {svg.map(({ para }, i) => (
+        {svg.map(({ para }) => (
           <div
             className="col-md-12 col-lg m-2  bg-white shadow-lg rounded"
-            key={i}
+            key={para}
           >
             <div className="  d-flex flex-wrap mx-2 my-2">
               <div className="col-1">

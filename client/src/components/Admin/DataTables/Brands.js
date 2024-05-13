@@ -23,7 +23,6 @@ function Brands() {
     setisLoading(false);
   };
   const deleteRow = async (row, type) => {
-    console.log("row :>> ", row);
     // first ask for confirmation from the user
     const isDelete = window.confirm("Are you sure to delete this brand?");
     if (!isDelete) return;
@@ -34,7 +33,6 @@ function Brands() {
     axios
       .delete(link)
       .then(({ data }) => {
-        console.log("response :>> ", data, data?.success);
         data?.success && setBrands(brands.filter((brand) => brand._id !== id));
         setisLoading(false);
       })
@@ -44,8 +42,6 @@ function Brands() {
 
         setisLoading(false);
       });
-
-    // console.log("row :>> ", row);
   };
   const actions = (cell, row) => {
     return (

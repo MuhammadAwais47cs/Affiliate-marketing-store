@@ -7,14 +7,13 @@ const cloudinary = require("cloudinary");
 
 // // Create Subscribers
 exports.createSubscriber = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.body :>> ", req.body);
-   let subscriber = await Subscribers.findOne({ email: req.body.email });
-console.log('subscriber :>> ', subscriber);
-   if (subscriber) return res.status(401).json({
-     success: false,
-     message: "User Already exited,  ",
-   });
-    subscriber = await Subscribers.create(req.body);
+  let subscriber = await Subscribers.findOne({ email: req.body.email });
+  if (subscriber)
+    return res.status(401).json({
+      success: false,
+      message: "User Already exited,  ",
+    });
+  subscriber = await Subscribers.create(req.body);
   return res.status(201).json({
     success: true,
     message: "Thanks for joinning us, Subscribe successfully",

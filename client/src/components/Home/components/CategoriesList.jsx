@@ -10,8 +10,6 @@ const CategoriesList = ({ data }) => {
 
   useMemo(() => {
     const categoriesList = calculateVisibleBrands(data, isDesktop, 12, 4);
-    console.log("data...........", data);
-    console.log("categoriesList...........", categoriesList);
     setCategories(categoriesList);
   }, [data, isDesktop]);
 
@@ -30,7 +28,6 @@ const CategoriesList = ({ data }) => {
   return (
     <>
       <div className="row justify-content-center ">
-        {console.log("categories", categories)}
         {categories &&
           categories.map((category, index) => (
             <Category key={category._id} category={category} />

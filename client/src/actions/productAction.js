@@ -43,7 +43,6 @@ export const getProduct =
 
       const { data } = await axios.get(link);
 
-      console.log("data :>> ", data);
       dispatch({
         type: ALL_PRODUCT_SUCCESS,
         payload: data,
@@ -57,7 +56,6 @@ export const getProduct =
   };
 export const getProductDetails = (id) => async (dispatch) => {
   try {
-    console.log("id :>> ", id);
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const { data } = await axios.get(`${baseurl}/api/v1/product/${id}`);
     dispatch({
@@ -81,22 +79,18 @@ export const clearErrors = () => async (dispatch) => {
 export const createProduct = (productData, images) => async (dispatch) => {
   try {
     dispatch({ type: NEW_PRODUCT_REQUEST });
-    console.log(productData, images);
 
     const image = await uploadImage(images[0], "ssbwpm0g");
-    console.log(image);
 
     let product = productData;
     product = {
       ...product,
       images: image,
     };
-    console.log("proda", product);
 
     const config = {
       headers: { "Content-Type": "application/json" },
     };
-    console.log(productData);
 
     const { data } = await axios.post(
       `${baseurl}/api/v1/products/new`,

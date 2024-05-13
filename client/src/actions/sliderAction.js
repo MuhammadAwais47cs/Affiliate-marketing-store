@@ -20,7 +20,6 @@ export const getSlider = () => async (dispatch) => {
 
     const { data } = await axios.get(link);
 
-    console.log("data :>> ", data);
     dispatch({
       type: ALL_SLIDER_SUCCESS,
       payload: data,
@@ -34,7 +33,6 @@ export const getSlider = () => async (dispatch) => {
 };
 export const getBrandDetails = (id) => async (dispatch) => {
   try {
-    console.log("id :>> ", id);
     dispatch({ type: SLIDER_DETAILS_REQUEST });
     const { data } = await axios.get(`${baseurl}/api/v1/brand/${id}`);
     dispatch({
@@ -58,14 +56,11 @@ export const clearErrors = () => async (dispatch) => {
 export const createSlider = (images) => async (dispatch) => {
   try {
     dispatch({ type: NEW_SLIDER_REQUEST });
-    console.log(images, "images........");
 
     const imagesUrls = await Promise.all(
       images.map(async (file) => await uploadImage(file, "kcfbvaww"))
     );
-    console.log("imagesUrls :>> ", imagesUrls);
-    
-   
+
     let slider = "";
     slider = {
       ...slider,

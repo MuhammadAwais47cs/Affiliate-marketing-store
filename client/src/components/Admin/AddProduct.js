@@ -259,7 +259,6 @@ const NewProduct = () => {
                       </label>
                       <Select
                         className="basic-single"
-                         
                         classNamePrefix="select"
                         onChange={(e) =>
                           setProduct({ ...product, relatedBrand: e })
@@ -356,7 +355,7 @@ const NewProduct = () => {
                     <div className="col-md-6 h-50 w-50">
                       {imagesPreview.map((image, index) => (
                         <img
-                          key={index}
+                          key={image}
                           src={image}
                           style={{ maxWidth: "40px" }}
                           alt="Product Preview"
@@ -367,7 +366,7 @@ const NewProduct = () => {
 
                   <div className="d-flex   mt-3 pt-1">
                     {checkboxes.map((inputField, index) => (
-                      <div className="d-flex  mx-4 w-50" key={index}>
+                      <div className="d-flex  mx-4 w-50" key={inputField?.id}>
                         <input
                           type="checkbox"
                           name="types"

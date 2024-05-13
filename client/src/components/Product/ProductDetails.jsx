@@ -8,16 +8,9 @@ import "./ProductDetails.css";
 import { getBrandDetails } from "../../actions/brandAction";
 function ProductDetails() {
   const { product, error } = useSelector((state) => state.productDetails);
-  const { loading, products, resultPerPage, productsCount } = useSelector(
-    (state) => state.products
-  );
-  // const { brand } = useSelector((state) => state.Brands);
-  console.log(
-    "useSelector((state) => state.Brands); :>> ",
-    useSelector((state) => state.Brands)
-  );
+  const { loading, products } = useSelector((state) => state.products);
+
   let pushDataArray = [];
-  // console.table(products)
   if (products) {
     for (let i = 1; i < products.length; i++) {
       if (products[i]?.store !== products[i + 1]?.store) {
@@ -27,14 +20,12 @@ function ProductDetails() {
           store: products[i]["store"],
         });
       }
-      // console.log("pushDataArray", pushDataArray); // Output: ['ali', 'asad', 'john']
     }
   }
   const key = "store";
   const arrayUniqueByKey = [
     ...new Map(products?.map((item) => [item[key], item])).values(),
   ];
-  console.log("arrayUniqueByKey :>> ", arrayUniqueByKey);
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
@@ -44,10 +35,8 @@ function ProductDetails() {
 
     dispatch(getProductDetails(id));
     dispatch(getBrandDetails(id));
-    // console.log('products.lenght < 1 :>> ',!products?.name,products, products.lenght < 1);
     if (!products?.name) {
       let proName = product?.name;
-      console.log("products.lenght in  < 1 :>> ", proName, product?.name);
       dispatch(getProduct(proName));
     }
   }, [dispatch, id, product.name, error, alert]);

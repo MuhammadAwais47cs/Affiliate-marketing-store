@@ -96,13 +96,13 @@ const Footer = () => {
             {/* You can subscribe to the newsletter here: */}
           </p>
           <form onSubmit={handleSubmit}>
-            <div class="mb-3">
-              {/* <label for="exampleInputEmail1" class="form-label">
+            <div className="mb-3">
+              {/* <label for="exampleInputEmail1" className="form-label">
                 Email address
               </label> */}
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 name="email"
                 id="exampleInputEmail1"
                 onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -111,7 +111,7 @@ const Footer = () => {
               />
             </div>
 
-            <button type="submit" class="btn btn-sm btn-warning bg-theame">
+            <button type="submit" className="btn btn-sm btn-warning bg-theame">
               Abonnieren {/* Subscribe */}
             </button>
           </form>

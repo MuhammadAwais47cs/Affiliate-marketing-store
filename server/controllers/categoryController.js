@@ -6,7 +6,6 @@ const cloudinary = require("cloudinary");
 
 // // Create category
 exports.createCategory = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.body :>> ", req.body);
   const result = await category.create(req.body.data);
   return res.status(201).json({
     success: true,
@@ -18,7 +17,6 @@ exports.createCategory = tryCatchAsyncError(async (req, res, next) => {
 // get category by Id OR get category details
 
 exports.getcategoryDetails = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.params.id :>> ", req.params.id);
   const category = await category.findById(req.params.id);
   if (!category) {
     return next(new ErrorHandler(`category not found`, 404));
@@ -47,7 +45,6 @@ exports.getAllCategories = tryCatchAsyncError(async (req, res, next) => {
   if (!result) {
     return next(new ErrorHandler(`category not found`, 404));
   }
-  // console.log("else categorys :>> ", categorys);
   res
     .status(200)
     .json({ success: true, categories: result, categorysCount, resultPerPage });

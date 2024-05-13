@@ -20,7 +20,7 @@ exports.registerUser = tryCatchAsyncError(async (req, res, next) => {
   // });
 
   const { name, email, password } = req.body;
-  console.log("req.body :>> ", name, req.body);
+
   const user = await User.create({
     name,
     email,
@@ -149,7 +149,6 @@ exports.resetPassword = tryCatchAsyncError(async (req, res, next) => {
 
 // Get User Detail
 exports.getUserDetails = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.user.id :>> ", req.user.id);
   const user = await User.findById(req.user.id);
 
   res.status(200).json({

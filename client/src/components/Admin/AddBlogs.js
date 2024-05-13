@@ -16,10 +16,7 @@ const NewBlog = () => {
   const alert = useAlert();
 
   const { error, success } = useSelector((state) => state?.newBrand);
-  console.log(
-    "useSelector((state)=>state) :>> ",
-    useSelector((state) => state)
-  );
+  
   const [relatedBrands, setRelatedBrands] = useState([]);
 
   const [checkboxes, setCheckboxes] = useState([
@@ -70,8 +67,10 @@ const NewBlog = () => {
     setCheckboxes(updatedCheckboxes);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (data) => {
+    // e.preventDefault();
+
+    return;
     setloading(true);
 
     const formdata = {
@@ -88,7 +87,6 @@ const NewBlog = () => {
       { data: formdata },
       config
     );
-    console.log("data :>> ", res.data);
     alert.success(res.data.message);
 
     setloading(false);
@@ -107,7 +105,7 @@ const NewBlog = () => {
                 <form
                   className="m-4"
                   encType="multipart/form-data"
-                  onSubmit={handleSubmit}
+                  // onSubmit={handleSubmit}
                 >
                   <div className="row">
                     <label
@@ -116,6 +114,7 @@ const NewBlog = () => {
                     >
                       Post
                     </label>
+                    <Editor submitBlog={handleSubmit} />
                   </div>
                   <div className="row pt-5 mt-5">
                     {/* <div className="mb-3 col-md-6">
@@ -174,7 +173,7 @@ const NewBlog = () => {
                     </div> */}
                     <div className="d-flex   mt-3 pt-1">
                       {checkboxes.map((checkbox, index) => (
-                        <div className="d-flex  mx-1 w-50" key={index}>
+                        <div className="d-flex  mx-1 w-50" key={checkbox.id}>
                           <label className=" font-bold mx-2">
                             <input
                               type="checkbox"
@@ -191,7 +190,7 @@ const NewBlog = () => {
 
                     {/* add one more filed to upload svg's  */}
                     <div></div>
-                    <div className="row pt-5">
+                    {/* <div className="row pt-5">
                       <button
                         className="w-50 mx-auto mt-4"
                         id="createProductBtn"
@@ -200,7 +199,7 @@ const NewBlog = () => {
                       >
                         Create
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </form>
               </div>

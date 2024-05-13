@@ -25,10 +25,7 @@ const LoginSignUp = () => {
     token,
     user: isUser,
   } = useSelector((state) => state.user);
-  console.log(
-    "useSelector((state) => state.user);:>> ",
-    useSelector((state) => state.user)
-  );
+
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
@@ -62,8 +59,6 @@ const LoginSignUp = () => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log("user :>> ", user);
-    console.log("myForm :>> ", myForm);
 
     dispatch(register(user));
   };

@@ -6,7 +6,6 @@ const cloudinary = require("cloudinary");
 
 // // Create slider
 exports.createSlider = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.body :>> ", req.body);
   const slider = await Slider.create(req.body);
   return res.status(201).json({
     success: true,
@@ -18,7 +17,6 @@ exports.createSlider = tryCatchAsyncError(async (req, res, next) => {
 // get Slider by Id OR get Slider details
 
 exports.getSliderDetails = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.params.id :>> ", req.params.id);
   const slider = await Slider.findById(req.params.id);
   if (!slider) {
     return next(new ErrorHandler(`slider not found`, 404));

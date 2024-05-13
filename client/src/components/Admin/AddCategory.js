@@ -17,10 +17,7 @@ const NewCategory = () => {
   const alert = useAlert();
 
   const { error, success } = useSelector((state) => state?.newBrand);
-  console.log(
-    "useSelector((state)=>state) :>> ",
-    useSelector((state) => state)
-  );
+  
   const [relatedBrands, setRelatedBrands] = useState([]);
 
   const [checkboxes, setCheckboxes] = useState([
@@ -97,7 +94,7 @@ const NewCategory = () => {
       { data: formdata },
       config
     );
-    console.log("data :>> ", res.data);
+
     alert.success(res.data.message);
 
     setloading(false);
@@ -176,7 +173,7 @@ const NewCategory = () => {
                     </div>
                     <div className="d-flex   mt-3 pt-1">
                       {checkboxes.map((checkbox, index) => (
-                        <div className="d-flex  mx-1 w-50" key={index}>
+                        <div className="d-flex  mx-1 w-50" key={checkbox.id}>
                           <label className=" font-bold mx-2">
                             <input
                               type="checkbox"

@@ -9,7 +9,6 @@ const cloudinary = require("cloudinary");
 
 // // Create brand
 exports.createBrand = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.body :>> ", req.body);
   const brand = await Brand.create(req.body);
   return res.status(201).json({
     success: true,
@@ -21,7 +20,6 @@ exports.createBrand = tryCatchAsyncError(async (req, res, next) => {
 // get Brand by Id OR get Brand details
 
 exports.getBrandDetails = tryCatchAsyncError(async (req, res, next) => {
-  console.log("req.params.id :>> ", req.params.id);
   const brand = await Brand.findById(req.params.id);
   if (!brand) {
     return next(new ErrorHandler(`brand not found`, 404));
@@ -67,8 +65,6 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
         },
       },
     ]);
-    console.log("activeOffers :>> ", activeOffers);
-    console.log("apiFeatures :>> ", apiFeatures);
   }
 
   const result = await apiFeatures.query;
@@ -77,7 +73,6 @@ exports.getAllBrands = tryCatchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler(`Brand not found`, 404));
   }
 
-  // console.log("else brands :>> ", brands);
   res.status(200).json({
     success: true,
     brands: result,
@@ -152,7 +147,6 @@ exports.getAllBrandsWithAlphabets = tryCatchAsyncError(
 
     const filteredResult = createAlphabetFilter(result);
 
-    // console.log("else brands :>> ", brands);
     res.status(200).json({
       success: true,
       brands: filteredResult,
@@ -163,7 +157,7 @@ exports.getAllBrandsWithAlphabets = tryCatchAsyncError(
   }
 );
 
-// delete Brand by Id 
+// delete Brand by Id
 exports.deleteBrand = tryCatchAsyncError(async (req, res, next) => {
   const brand = await Brand.findById(req.params.id);
   if (!brand) {
@@ -176,10 +170,9 @@ exports.deleteBrand = tryCatchAsyncError(async (req, res, next) => {
   });
 });
 
-// get similar brands by brand.relatedbrands with ids array of related brands ids 
+// get similar brands by brand.relatedbrands with ids array of related brands ids
 exports.getSimilarBrands = tryCatchAsyncError(async (req, res, next) => {
   const { ids } = req.body;
-  console.log("ids :>> ", ids);
   const brands = await Brand.find({ _id: { $in: ids } });
   if (!brands) {
     return next(new ErrorHandler(`Brands not found`, 404));

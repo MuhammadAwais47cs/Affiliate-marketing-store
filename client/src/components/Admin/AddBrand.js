@@ -15,10 +15,7 @@ const NewProduct = () => {
   const alert = useAlert();
 
   const { loading, error, success } = useSelector((state) => state?.newBrand);
-  console.log(
-    "useSelector((state)=>state) :>> ",
-    useSelector((state) => state)
-  );
+  
   const [brand, setBrand] = useState({
     name: "",
     sName: "",
@@ -69,7 +66,7 @@ const NewProduct = () => {
     e.preventDefault();
     const { name, sName, link, relatedBrand, category, language, description } =
       brand;
-    console.log("brand :>> ", brand);
+
     const myForm = new FormData();
     myForm.set("name", name);
     myForm.set("sName", sName);
@@ -93,7 +90,6 @@ const NewProduct = () => {
       checkboxes,
     };
 
-    console.log("myForm :>> ", data);
     dispatch(createBrand(data, images));
   };
   const handleCheckboxChange = (id) => {
@@ -249,7 +245,7 @@ const NewProduct = () => {
                     <div className="col-md-6 h-50 w-50">
                       {imagesPreview.map((image, index) => (
                         <img
-                          key={index}
+                          key={image}
                           src={image}
                           style={{ maxWidth: "40px" }}
                           className=""
@@ -259,7 +255,7 @@ const NewProduct = () => {
                     </div>
                     <div className="d-flex   mt-3 pt-1">
                       {checkboxes.map((checkbox, index) => (
-                        <div className="d-flex  mx-1 w-50" key={index}>
+                        <div className="d-flex  mx-1 w-50" key={checkbox.id}>
                           <label className=" font-bold mx-2">
                             <input
                               type="checkbox"

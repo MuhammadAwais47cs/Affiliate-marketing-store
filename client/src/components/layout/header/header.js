@@ -114,7 +114,7 @@ function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               {pagesTabs?.map(({ name, value, children, link }) => (
-                <Nav.Link href={link} className="text-color">
+                <Nav.Link href={link} className="text-color" key={name}>
                   {name}
                 </Nav.Link>
               ))}

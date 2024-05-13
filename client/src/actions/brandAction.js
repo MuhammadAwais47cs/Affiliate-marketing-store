@@ -52,7 +52,6 @@ export const getBrand =
 
       const { data } = await axios.get(link);
 
-      console.log("data :>> ", data);
       dispatch({
         type: ALL_BRAND_SUCCESS,
         payload: data,
@@ -66,7 +65,6 @@ export const getBrand =
   };
 export const getBrandDetails = (id) => async (dispatch) => {
   try {
-    console.log("id :>> ", id);
     dispatch({ type: BRAND_DETAILS_REQUEST });
     const { data } = await axios.get(`${baseurl}/api/v1/brand/${id}`);
     dispatch({
@@ -90,17 +88,13 @@ export const clearErrors = () => async (dispatch) => {
 export const createBrand = (brandData, images) => async (dispatch) => {
   try {
     dispatch({ type: NEW_BRAND_REQUEST });
-    console.log(brandData, "data");
-    console.log(images, "images");
     const image = await uploadImage(images[0], "kcfbvaww");
-    console.log(image);
 
     let brand = brandData;
     brand = {
       ...brand,
       images: image,
     };
-    console.log("proda", brand);
 
     const config = {
       headers: { "Content-Type": "application/json" },
