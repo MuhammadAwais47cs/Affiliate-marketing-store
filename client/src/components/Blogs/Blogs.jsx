@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { baseurl } from "../../baseurl";
+import axios from "axios";
 // import "./blogs.css";
 function Blogs() {
+  const alert = useAlert();
+  const [Blogs, setBlogs] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+  useEffect(() => {
+    getAllBlogs();
+  }, [Blogs.length < 1]);
+  const getAllBlogs = async () => {
+    setisLoading(true);
+    const link = `${baseurl}/api/v1/Blogs`;
+    const { data } = await axios.get(link);
+    let Blogs = data?.Blogs;
+    setBlogs(Blogs);
+    setisLoading(false);
+  };
+
   return (
     <>
-      <div className="wrapper">
+      <div className="wrapper mx-auto px-auto">
+        {console.log("Blogs", Blogs)}
+        {Blogs.map((item, i) => (
+          <div
+            key={item?._id}
+            dangerouslySetInnerHTML={{ __html: item.label }}
+          />
+        ))}
+
         <div className="card">
           <div className="card-banner">
             <p className="category-tag popular">Pizza</p>

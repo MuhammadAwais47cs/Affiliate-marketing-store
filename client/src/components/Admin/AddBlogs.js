@@ -27,6 +27,7 @@ const NewBlog = () => {
 
   const [data, setData] = useState({
     label: "",
+    blog: "",
     icon: "",
     relatedBrand: [],
   });
@@ -67,10 +68,10 @@ const NewBlog = () => {
     setCheckboxes(updatedCheckboxes);
   };
 
-  const handleSubmit = async (data) => {
-    // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    return;
+    // return;
     setloading(true);
 
     const formdata = {
@@ -105,7 +106,7 @@ const NewBlog = () => {
                 <form
                   className="m-4"
                   encType="multipart/form-data"
-                  // onSubmit={handleSubmit}
+                  onSubmit={handleSubmit}
                 >
                   <div className="row">
                     <label
@@ -114,25 +115,24 @@ const NewBlog = () => {
                     >
                       Post
                     </label>
-                    <Editor submitBlog={handleSubmit} />
+                    {/* <Editor /> */}
                   </div>
                   <div className="row pt-5 mt-5">
-                    {/* <div className="mb-3 col-md-6">
+                    <div className="mb-3 col-md-6">
                       <label
                         for="exampleFormControlInput1"
                         className="form-label"
                       >
-                        blog
+                        Blog
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="blog"
                         onChange={(e) =>
-                          setData({ ...data, blog: e.target.value })
+                          setData({ ...data, label: e.target.value })
                         }
                         required
-                        name="blog"
+                        name="label"
                       />
                     </div>
                     <div className="mb-3 col-md-6">
@@ -170,7 +170,7 @@ const NewBlog = () => {
                         name="color"
                         options={relatedBrands}
                       />
-                    </div> */}
+                    </div>
                     <div className="d-flex   mt-3 pt-1">
                       {checkboxes.map((checkbox, index) => (
                         <div className="d-flex  mx-1 w-50" key={checkbox.id}>
@@ -190,7 +190,7 @@ const NewBlog = () => {
 
                     {/* add one more filed to upload svg's  */}
                     <div></div>
-                    {/* <div className="row pt-5">
+                    <div className="row pt-5">
                       <button
                         className="w-50 mx-auto mt-4"
                         id="createProductBtn"
@@ -199,7 +199,7 @@ const NewBlog = () => {
                       >
                         Create
                       </button>
-                    </div> */}
+                    </div>
                   </div>
                 </form>
               </div>

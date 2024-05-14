@@ -101,38 +101,40 @@ function Blogs() {
       {isLoading ? (
         <Loader />
       ) : (
-        <BootstrapTable
-          data={Blogs}
-          striped
-          pagination
-          hover
-          // cellEdit={cellEditProp}
-          search
-          tableHeaderClass="rpr_header"
-          tableBodyClass="rpr_body"
-          containerClass="rpr_container"
-          options={options}
-        >
-          <TableHeaderColumn width="20%" isKey={true} dataField="name">
-            Name
-          </TableHeaderColumn>
-
-          <TableHeaderColumn width="10%" dataField="published">
-            Published
-          </TableHeaderColumn>
-
-          <TableHeaderColumn dataField="popular" width="10%">
-            Popular
-          </TableHeaderColumn>
-          <TableHeaderColumn
-            width="20%"
-            dataAlign="right"
-            dataFormat={actions}
-            dataField="COUNTRY"
+        <>
+          <BootstrapTable
+            data={Blogs}
+            striped
+            pagination
+            hover
+            // cellEdit={cellEditProp}
+            search
+            tableHeaderClass="rpr_header"
+            tableBodyClass="rpr_body"
+            containerClass="rpr_container"
+            options={options}
           >
-            Actions
-          </TableHeaderColumn>
-        </BootstrapTable>
+            <TableHeaderColumn width="20%" isKey={true} dataField="name">
+              Name
+            </TableHeaderColumn>
+
+            <TableHeaderColumn width="10%" dataField="published">
+              Published
+            </TableHeaderColumn>
+
+            <TableHeaderColumn dataField="popular" width="10%">
+              Popular
+            </TableHeaderColumn>
+            <TableHeaderColumn
+              width="20%"
+              dataAlign="right"
+              dataFormat={actions}
+              dataField="COUNTRY"
+            >
+              Actions
+            </TableHeaderColumn>
+          </BootstrapTable>
+        </>
       )}
     </>
   );
