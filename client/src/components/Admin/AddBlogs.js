@@ -115,7 +115,7 @@ const NewBlog = () => {
                     >
                       Post
                     </label>
-                    {/* <Editor /> */}
+                    <Editor />
                   </div>
                   <div className="row pt-5 mt-5">
                     <div className="mb-3 col-md-6">

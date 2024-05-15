@@ -6,7 +6,10 @@ const errorMiddleware = require("./middleware/Error");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUploader = require("express-fileupload");
-// const connection_url = 'mongodb+srv://admin:admin@cluster0.rzbahaf.mongodb.net/?retryWrites=true&w=majority'
+// var app = express();
+// var bodyParser = require('body-parser');
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
